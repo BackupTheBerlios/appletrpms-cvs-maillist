@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SOURCES	wmwifi-0.6-wireless.c.patch, NONE,	1.1 wmwifi-0.6-wmwifi.h.patch, NONE,	1.1 AfterStep-2.2.6-ttf.patch, NONE, 1.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2007-June/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SOURCES%0A%09wmwifi-0.6-wireless.c.patch%2C%20NONE%2C%0A%091.1%20wmwifi-0.6-wmwifi.h.patch%2C%20NONE%2C%0A%091.1%20AfterStep-2.2.6-ttf.patch%2C%20NONE%2C%201.1&In-Reply-To=%3C467203D0.mail7S311I2PK%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000017.html">
+   <LINK REL="Next"  HREF="000019.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SOURCES	wmwifi-0.6-wireless.c.patch, NONE,	1.1 wmwifi-0.6-wmwifi.h.patch, NONE,	1.1 AfterStep-2.2.6-ttf.patch, NONE, 1.1</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SOURCES%0A%09wmwifi-0.6-wireless.c.patch%2C%20NONE%2C%0A%091.1%20wmwifi-0.6-wmwifi.h.patch%2C%20NONE%2C%0A%091.1%20AfterStep-2.2.6-ttf.patch%2C%20NONE%2C%201.1&In-Reply-To=%3C467203D0.mail7S311I2PK%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SOURCES	wmwifi-0.6-wireless.c.patch, NONE,	1.1 wmwifi-0.6-wmwifi.h.patch, NONE,	1.1 AfterStep-2.2.6-ttf.patch, NONE, 1.1">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Fri Jun 15 05:13:20 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000017.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.53, 1.54  wmwifi.spec, 1.5, 1.6
+</A></li>
+        <LI>Next message: <A HREF="000019.html">[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.18,	1.19
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#18">[ date ]</a>
+              <a href="thread.html#18">[ thread ]</a>
+              <a href="subject.html#18">[ subject ]</a>
+              <a href="author.html#18">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv10050
+
+Added Files:
+	wmwifi-0.6-wireless.c.patch wmwifi-0.6-wmwifi.h.patch 
+	AfterStep-2.2.6-ttf.patch 
+Log Message:
+added patches for wmwifi, ttf patch for AS.
+
+
+--- NEW FILE: wmwifi-0.6-wireless.c.patch ---
+--- src/wireless.c	2006-03-15 07:50:52.000000000 -0600
++++ src/wireless.c	2007-06-14 18:47:24.000000000 -0500
+@@ -9,6 +9,7 @@
+ #include &lt;net/ethernet.h&gt;
+ #include &lt;linux/if.h&gt;
+ #include &lt;linux/socket.h&gt;
++#include &lt;linux/if.h&gt;
+ #include &lt;linux/wireless.h&gt;
+ 
+ /*
+
+--- NEW FILE: wmwifi-0.6-wmwifi.h.patch ---
+--- src/wmwifi.h	2006-03-14 10:12:19.000000000 -0600
++++ src/wmwifi.h	2007-06-14 19:18:59.000000000 -0500
+@@ -12,6 +12,7 @@
+ #include &lt;netdb.h&gt;		/* gethostbyname, getnetbyname */
+ #include &lt;net/ethernet.h&gt;	/* struct ether_addr */
+ #include &lt;sys/time.h&gt;		/* struct timeval */
++#include &lt;linux/if.h&gt;
+ #include &lt;linux/wireless.h&gt;
+ 
+ #define KILO    1e3
+
+--- NEW FILE: AfterStep-2.2.6-ttf.patch ---
+--- autoconf/configure.in	2007-05-15 15:42:02.000000000 -0500
++++ autoconf/configure.in	2007-05-30 19:50:22.000000000 -0500
+@@ -70,8 +70,8 @@
+ AC_ARG_WITH(tiff_includes,  	[  --with-tiff-includes=DIR use TIFF includes in DIR], tiff_includes=&quot;$withval&quot;, tiff_includes=NO)
+ AC_ARG_WITH(svg,		[  --with-svg               support SVG image format via librsvg 2.0 [[yes]]])
+ 
+-AC_ARG_WITH(tff,		[  --with-ttf               support True Type Fonts via FreeType library [[yes]]])
+-AC_ARG_WITH(tff_includes,   	[  --with-ttf-includes=DIR  use FreeType includes in DIR], ttf_includes=&quot;$withval&quot;, ttf_includes=NO)
++AC_ARG_WITH(ttf,		[  --with-ttf               support True Type Fonts via FreeType library [[yes]]])
++AC_ARG_WITH(ttf_includes,   	[  --with-ttf-includes=DIR  use FreeType includes in DIR], ttf_includes=&quot;$withval&quot;, ttf_includes=NO)
+ AC_ARG_WITH(gtk,	    	[  --with-gtk               use GTK 2.0 widget libraries where possible [[yes]]])
+ 
+ dnl# compile-time switches
+--- libAfterImage/configure.in	2007-05-15 15:42:02.000000000 -0500
++++ libAfterImage/configure.in	2007-05-30 19:50:23.000000000 -0500
+@@ -57,8 +57,8 @@
+ AC_ARG_WITH(tiff_includes,  [  --with-tiff-includes=DIR use TIFF includes in DIR], tiff_includes=&quot;$withval&quot;, tiff_includes=NO)
+ AC_ARG_WITH(svg,		    [  --with-svg               support SVG image format via librsvg [yes]])
+ 
+-AC_ARG_WITH(tff,		    [  --with-ttf               support True Type Fonts via FreeType library [yes]])
+-AC_ARG_WITH(tff_includes,   [  --with-ttf-includes=DIR  use FreeType includes in DIR], ttf_includes=&quot;$withval&quot;, ttf_includes=NO)
++AC_ARG_WITH(ttf,		    [  --with-ttf               support True Type Fonts via FreeType library [yes]])
++AC_ARG_WITH(ttf_includes,   [  --with-ttf-includes=DIR  use FreeType includes in DIR], ttf_includes=&quot;$withval&quot;, ttf_includes=NO)
+ 
+ AC_ARG_WITH(afterbase,		    [  --with-afterbase               use libAfterBase library of basic functionality [yes]])
+ AC_ARG_WITH(afterbase_includes, [  --with-afterbase-includes=DIR  use libAfterBase includes in DIR], afterbase_includes=&quot;$withval&quot;, afterbase_includes=NO)
+--- libAfterImage/configure	2007-05-15 15:42:02.000000000 -0500
++++ libAfterImage/configure	2007-05-30 19:50:23.000000000 -0500
+@@ -1574,15 +1574,15 @@
+ fi;
+ 
+ 
+-# Check whether --with-tff or --without-tff was given.
+-if test &quot;${with_tff+set}&quot; = set; then
+-  withval=&quot;$with_tff&quot;
++# Check whether --with-ttf or --without-ttf was given.
++if test &quot;${with_ttf+set}&quot; = set; then
++  withval=&quot;$with_ttf&quot;
+ 
+ fi;
+ 
+-# Check whether --with-tff_includes or --without-tff_includes was given.
+-if test &quot;${with_tff_includes+set}&quot; = set; then
+-  withval=&quot;$with_tff_includes&quot;
++# Check whether --with-ttf_includes or --without-ttf_includes was given.
++if test &quot;${with_ttf_includes+set}&quot; = set; then
++  withval=&quot;$with_ttf_includes&quot;
+   ttf_includes=&quot;$withval&quot;
+ else
+   ttf_includes=NO
+--- configure	2007-05-15 15:42:02.000000000 -0500
++++ configure	2007-05-30 19:50:19.000000000 -0500
+@@ -1593,15 +1593,15 @@
+ fi;
+ 
+ 
+-# Check whether --with-tff or --without-tff was given.
+-if test &quot;${with_tff+set}&quot; = set; then
+-  withval=&quot;$with_tff&quot;
++# Check whether --with-ttf or --without-ttf was given.
++if test &quot;${with_ttf+set}&quot; = set; then
++  withval=&quot;$with_ttf&quot;
+ 
+ fi;
+ 
+-# Check whether --with-tff_includes or --without-tff_includes was given.
+-if test &quot;${with_tff_includes+set}&quot; = set; then
+-  withval=&quot;$with_tff_includes&quot;
++# Check whether --with-ttf_includes or --without-ttf_includes was given.
++if test &quot;${with_ttf_includes+set}&quot; = set; then
++  withval=&quot;$with_ttf_includes&quot;
+   ttf_includes=&quot;$withval&quot;
+ else
+   ttf_includes=NO
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000017.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.53, 1.54  wmwifi.spec, 1.5, 1.6
+</A></li>
+	<LI>Next message: <A HREF="000019.html">[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.18,	1.19
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#18">[ date ]</a>
+              <a href="thread.html#18">[ thread ]</a>
+              <a href="subject.html#18">[ subject ]</a>
+              <a href="author.html#18">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

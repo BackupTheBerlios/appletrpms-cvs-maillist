@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SPECS avfs.spec, 1.1, 1.2 medit.spec, 1.1, 1.2  peksystray.spec, 1.9, 1.10 rxvt-unicode.spec, 1.7, 1.8 trayer.spec, 1.3, 1.4  wmbiff.spec, 1.8, 1.9 wmradio.spec, 1.9, 1.10
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20avfs.spec%2C%201.1%2C%0A%201.2%20medit.spec%2C%201.1%2C%201.2%20%20peksystray.spec%2C%201.9%2C%201.10%20rxvt-unicode.spec%2C%201.7%2C%0A%201.8%20trayer.spec%2C%201.3%2C%201.4%20%20wmbiff.spec%2C%201.8%2C%201.9%20wmradio.spec%2C%201.9%2C%201.10&In-Reply-To=%3C489B0089.mail6VB1TXVO9%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000056.html">
+   <LINK REL="Next"  HREF="000058.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SPECS avfs.spec, 1.1, 1.2 medit.spec, 1.1, 1.2  peksystray.spec, 1.9, 1.10 rxvt-unicode.spec, 1.7, 1.8 trayer.spec, 1.3, 1.4  wmbiff.spec, 1.8, 1.9 wmradio.spec, 1.9, 1.10</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20avfs.spec%2C%201.1%2C%0A%201.2%20medit.spec%2C%201.1%2C%201.2%20%20peksystray.spec%2C%201.9%2C%201.10%20rxvt-unicode.spec%2C%201.7%2C%0A%201.8%20trayer.spec%2C%201.3%2C%201.4%20%20wmbiff.spec%2C%201.8%2C%201.9%20wmradio.spec%2C%201.9%2C%201.10&In-Reply-To=%3C489B0089.mail6VB1TXVO9%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SPECS avfs.spec, 1.1, 1.2 medit.spec, 1.1, 1.2  peksystray.spec, 1.9, 1.10 rxvt-unicode.spec, 1.7, 1.8 trayer.spec, 1.3, 1.4  wmbiff.spec, 1.8, 1.9 wmradio.spec, 1.9, 1.10">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Thu Aug  7 16:02:49 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000056.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec, 1.2, 1.3  wmfire.spec, 1.9, 1.10 worker.spec, 1.4, 1.5
+</A></li>
+        <LI>Next message: <A HREF="000058.html">[Appletrpms-cvs] CVS: afterapps-specs buildme,1.18,1.19
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#57">[ date ]</a>
+              <a href="thread.html#57">[ thread ]</a>
+              <a href="subject.html#57">[ subject ]</a>
+              <a href="author.html#57">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv8864/SPECS
+
+Modified Files:
+	avfs.spec medit.spec peksystray.spec rxvt-unicode.spec 
+	trayer.spec wmbiff.spec wmradio.spec 
+Log Message:
+updates for build under x86_64
+
+
+Index: avfs.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/avfs.spec,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- avfs.spec	7 Mar 2008 03:28:42 -0000	1.1
++++ avfs.spec	7 Aug 2008 14:02:46 -0000	1.2
+@@ -1,6 +1,6 @@
+ %define	name 	avfs
+ %define	version	0.9.8
+-%define	release	1%{?dist}
++%define	release	2%{?dist}
+ 
+ Summary:	Enables programs to look inside archived/compressed files, access remote files
+ Name:		%name
+@@ -42,7 +42,7 @@
+ %setup -q
+ 
+ %build
+-./configure --prefix=%{_prefix} --enable-fuse
++./configure --prefix=%{_prefix} --libdir=%{_libdir} --enable-fuse
+ make
+ 
+ %install
+@@ -73,5 +73,8 @@
+ %{_libdir}/*.*a
+ 
+ %changelog
++* Wed Aug 06 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.9.8-2
++- Added libdir to configure for build under x86_64.
++
+ * Sat Nov 10 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.9.8-1
+ - Initial build.
+
+Index: medit.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/medit.spec,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- medit.spec	7 Mar 2008 03:28:42 -0000	1.1
++++ medit.spec	7 Aug 2008 14:02:47 -0000	1.2
+@@ -1,6 +1,6 @@
+ %define	name 	medit
+ %define	version	0.9.3
+-%define	release	1%{?dist}
++%define	release	2%{?dist}
+ 
+ Summary:	medit is a GTK-based text editor
+ Name:		%name
+@@ -22,7 +22,7 @@
+ %setup -q
+ 
+ %build
+-./configure --prefix=%{_prefix} --with-python --docdir=%{_datadir}/doc/%{name}-%{version}
++./configure --prefix=%{_prefix} --libdir=%{_libdir} --with-python --docdir=%{_datadir}/doc/%{name}-%{version}
+ make
+ 
+ %install
+@@ -68,6 +68,9 @@
+ %{_mandir}/man1/medit*
+ 
+ %changelog
++* Wed Aug 06 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.9.3-2
++- Added libdir to configure for build under x86_64.
++
+ * Sun Feb 10 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.9.3-1
+ - New version.
+ 
+
+Index: peksystray.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/peksystray.spec,v
+retrieving revision 1.9
+retrieving revision 1.10
+diff -u -r1.9 -r1.10
+--- peksystray.spec	27 Apr 2007 16:09:18 -0000	1.9
++++ peksystray.spec	7 Aug 2008 14:02:47 -0000	1.10
+@@ -31,7 +31,7 @@
+ 
+ %define name peksystray
+ %define version 0.4.0
+-%define release 2%{?dist}
++%define release 3%{?dist}
+ 
+ Summary: peksystray is a dockable systray
+ Name: %name
+@@ -41,6 +41,7 @@
+ Group: AfterStep/Applets
+ URL: <A HREF="http://sourceforge.net/projects/peksystray/">http://sourceforge.net/projects/peksystray/</A>
+ Source0: <A HREF="http://easynews.dl.sourceforge.net/sourceforge/%{name">http://easynews.dl.sourceforge.net/sourceforge/%{name</A>}/%{name}-%{version}.tar.bz2
++Patch0: %{name}-%{version}-ldadd.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+@@ -50,14 +51,15 @@
+ 
+ %prep
+ %setup -q
++%patch0
+ 
+ %build
+ 
+ %if %{xseven}
+ 	CFLAGS=&quot;-lX11&quot; \
+-	./configure --prefix=%{_prefix}
++	./configure --prefix=%{_prefix} --libdir=%{_libdir}
+ %else
+-	./configure --prefix=%{_prefix}
++	./configure --prefix=%{_prefix} --libdir=%{_libdir}
+ %endif
+ 
+ make
+@@ -77,6 +79,9 @@
+ 
+ 
+ %changelog
++* Wed Aug 06 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.4.0-3
++- added patch from Gentoo for build under x86_64.
++
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.4.0-2
+ - added distro info to release.
+ 
+
+Index: rxvt-unicode.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/rxvt-unicode.spec,v
+retrieving revision 1.7
+retrieving revision 1.8
+diff -u -r1.7 -r1.8
+--- rxvt-unicode.spec	1 Jul 2008 01:45:24 -0000	1.7
++++ rxvt-unicode.spec	7 Aug 2008 14:02:47 -0000	1.8
+@@ -1,7 +1,7 @@
+ %define aitest	%(rpm -q --queryformat='%{VERSION}' libAfterImage)
+ %define aiver	%aitest 
+ %define version 9.05
+-%define release 1%{?dist}
++%define release 2%{?dist}
+ %define name	rxvt-unicode
+ %define epoch	2
+ 
+@@ -15,9 +15,9 @@
+ URL:		<A HREF="http://software.schmorp.de/pkg/rxvt-unicode.html">http://software.schmorp.de/pkg/rxvt-unicode.html</A>
+ Source0:	<A HREF="http://dist.schmorp.de/rxvt-unicode/%{name">http://dist.schmorp.de/rxvt-unicode/%{name</A>}-%{version}.tar.bz2
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-BuildRequires:	perl-devel libXpm-devel libXft-devel freetype-devel
++BuildRequires:	perl-devel libXpm-devel libXft-devel freetype-devel perl-ExtUtils-Embed
+ BuildRequires:	libAfterImage-devel &gt;= 1.15
+-BuildRequires:  fontconfig-devel
++BuildRequires:  fontconfig-devel gcc-c++
+ BuildRequires:  freetype-devel
+ BuildRequires:  glib2-devel
+ BuildRequires:  /usr/bin/tic
+@@ -84,6 +84,9 @@
+ %{_libdir}/urxvt
+ 
+ %changelog
++* Wed Aug 06 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2:9.05-2
++- added required for perl-ExtUtils-Embed.
++
+ * Sat Jun 21 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2:9.05-1
+ - new version.
+ 
+
+Index: trayer.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/trayer.spec,v
+retrieving revision 1.3
+retrieving revision 1.4
+diff -u -r1.3 -r1.4
+--- trayer.spec	9 Nov 2007 16:15:08 -0000	1.3
++++ trayer.spec	7 Aug 2008 14:02:47 -0000	1.4
+@@ -25,7 +25,7 @@
+ 
+ %define name trayer
+ %define version 1.0
+-%define release 3%{?dist}
++%define release 4%{?dist}
+ 
+ Summary: A lightweight GTK2-based systray for UNIX desktop
+ Name: %name
+@@ -37,6 +37,7 @@
+ Source0: <A HREF="http://download.gna.org/fvwm-crystal/%{name">http://download.gna.org/fvwm-crystal/%{name</A>}/%{version}/%{name}-%{version}.tar.gz
+ Patch0: %{name}-%{version}-Makefile.common.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
++BuildRequires: libXmu-devel
+ 
+ %description
+ A lightweight GTK2-based systray for UNIX desktop.
+@@ -63,6 +64,9 @@
+ %doc CREDITS COPYING CHANGELOG README
+ 
+ %changelog
++* Wed Aug 06 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.0-4
++- added build requirement for libXmu-devel.
++
+ * Thu Nov 08 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.0-3
+ - added patch for gtk issues (thanks Team Debian).
+ 
+
+Index: wmbiff.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmbiff.spec,v
+retrieving revision 1.8
+retrieving revision 1.9
+diff -u -r1.8 -r1.9
+--- wmbiff.spec	27 Apr 2007 16:09:18 -0000	1.8
++++ wmbiff.spec	7 Aug 2008 14:02:47 -0000	1.9
+@@ -1,6 +1,6 @@
+ %define name wmbiff
+ %define version 0.4.27
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: A dockable/swallowed mail notifier
+ Name: %name
+@@ -27,7 +27,7 @@
+ %setup -q
+ 
+ %build
+-./configure --prefix=%{_prefix} --mandir=%{_mandir}
++./configure --prefix=%{_prefix} --mandir=%{_mandir} --libdir=%{_libdir} 
+ make
+ 
+ %install
+@@ -50,6 +50,9 @@
+ %doc AUTHORS ChangeLog COPYING FAQ INSTALL NEWS README* TODO
+ 
+ %changelog
++* Wed Aug 06 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.4.27-5
++- added libdir to configure for build under x86_64.
++
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 0.4.27-4
+ - added distro info to release.
+ * Wed Oct 18 2006 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 0.4.27-3
+
+Index: wmradio.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmradio.spec,v
+retrieving revision 1.9
+retrieving revision 1.10
+diff -u -r1.9 -r1.10
+--- wmradio.spec	27 Apr 2007 16:09:18 -0000	1.9
++++ wmradio.spec	7 Aug 2008 14:02:47 -0000	1.10
+@@ -1,6 +1,6 @@
+ %define name wmradio
+ %define version 0.9
+-%define release 5%{?dist}
++%define release 6%{?dist}
+ 
+ Summary: wmradio is FM radio card applet for WindowMaker
+ Name: %name
+@@ -21,7 +21,7 @@
+ 
+ %build
+ cp %{SOURCE1} .
+-./configure --prefix=%{_prefix} --disable-libxosd --disable-gnome --mandir=%{_mandir}/man1
++./configure --prefix=%{_prefix} --libdir=%{_libdir} --disable-libxosd --disable-gnome --mandir=%{_mandir}/man1
+ make
+ 
+ %install
+@@ -29,7 +29,7 @@
+ 
+ make MANDIR=%{_mandir}/man1 install DESTDIR=$RPM_BUILD_ROOT
+ 
+-make install-skins DESTDIR=$RPM_BUILD_ROOT
++make install-skins LIBDIR=%{_libdir}/wmradio/ DESTDIR=$RPM_BUILD_ROOT
+ 
+ mkdir -p $RPM_BUILD_ROOT%{_datadir}/
+ 
+@@ -49,6 +49,9 @@
+ %{_datadir}/pixmaps/*.png
+ 
+ %changelog
++* Wed Aug 06 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.9-6
++- added libdir to configure for build under x86_64.
++
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.9-5
+ - added distro info to release.
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000056.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec, 1.2, 1.3  wmfire.spec, 1.9, 1.10 worker.spec, 1.4, 1.5
+</A></li>
+	<LI>Next message: <A HREF="000058.html">[Appletrpms-cvs] CVS: afterapps-specs buildme,1.18,1.19
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#57">[ date ]</a>
+              <a href="thread.html#57">[ thread ]</a>
+              <a href="subject.html#57">[ subject ]</a>
+              <a href="author.html#57">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,582 @@
+From rpm_speedy at mail.berlios.de  Mon Aug  4 05:24:32 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Mon, 04 Aug 2008 05:24:32 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.20,
+	1.21
+Message-ID: <48967670.mail6JZ11JYF4@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv8438/include
+
+Modified Files:
+	misc-apps.inc 
+Log Message:
+new fotoxx, worker; man page fix for wmfire
+
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.20
+retrieving revision 1.21
+diff -u -r1.20 -r1.21
+--- misc-apps.inc	1 Jul 2008 01:45:24 -0000	1.20
++++ misc-apps.inc	4 Aug 2008 03:24:29 -0000	1.21
+@@ -70,9 +70,9 @@
+ APPLET_LIST += CALCOO
+ 
+ FOTOXX_NAME=fotoxx
+-FOTOXX_VERSION=4.7
++FOTOXX_VERSION=4.9
+ FOTOXX_TAR=$(FOTOXX_NAME)-$(FOTOXX_VERSION).tar.gz
+-FOTOXX_URL=http://kornelix.squarespace.com/storage/programs/$(FOTOXX_NAME)/$(FOTOXX_TAR)
++FOTOXX_URL=http://kornelix.squarespace.com/storage/$(FOTOXX_TAR)
+ 
+ APPLET_LIST += FOTOXX
+ 
+@@ -155,7 +155,7 @@
+ APPLET_LIST += TRAYER
+ 
+ WORKER_NAME=worker
+-WORKER_VERSION=2.16.3
++WORKER_VERSION=2.16.5
+ WORKER_TAR=$(WORKER_NAME)-$(WORKER_VERSION).tar.gz
+ WORKER_URL=http://www.boomerangsworld.de/worker/downloads/$(WORKER_TAR)
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Mon Aug  4 05:24:32 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Mon, 04 Aug 2008 05:24:32 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec, 1.2,
+ 1.3  wmfire.spec, 1.9, 1.10 worker.spec, 1.4, 1.5
+Message-ID: <48967670.mail6JU11D5U3@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv8438/SPECS
+
+Modified Files:
+	fotoxx.spec wmfire.spec worker.spec 
+Log Message:
+new fotoxx, worker; man page fix for wmfire
+
+
+Index: fotoxx.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/fotoxx.spec,v
+retrieving revision 1.2
+retrieving revision 1.3
+diff -u -r1.2 -r1.3
+--- fotoxx.spec	1 Jul 2008 01:45:24 -0000	1.2
++++ fotoxx.spec	4 Aug 2008 03:24:29 -0000	1.3
+@@ -1,5 +1,5 @@
+ %define name fotoxx
+-%define version 4.7
++%define version 4.9
+ %define release 1%{?dist}
+ 
+ Summary: application for processing image files from a digital camera
+@@ -9,7 +9,7 @@
+ License: GPLv2
+ Group: Applications/Multimedia
+ URL: http://kornelix.squarespace.com/%{name}/
+-Source0: http://kornelix.squarespace.com/storage/programs/%{name}/%{name}-%{version}.tar.gz
++Source0: http://kornelix.squarespace.com/storage/%{name}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ Requires: gtk2 atk cairo pango libpng exiv2 libstdc++
+ Buildrequires: gtk2-devel atk-devel cairo-devel pango-devel libpng-devel libstdc++-devel
+@@ -90,6 +90,9 @@
+ %{_datadir}/pixmaps/*.png
+ 
+ %changelog
++* Sun Jul 12 2008 J. Krebs <rpm_speedy at yahoo.com> - 4.9-1
++- new version.
++
+ * Sat Jun 21 2008 J. Krebs <rpm_speedy at yahoo.com> - 4.7-1
+ - new version.
+ 
+
+Index: wmfire.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmfire.spec,v
+retrieving revision 1.9
+retrieving revision 1.10
+diff -u -r1.9 -r1.10
+--- wmfire.spec	27 Apr 2007 16:09:18 -0000	1.9
++++ wmfire.spec	4 Aug 2008 03:24:29 -0000	1.10
+@@ -25,7 +25,7 @@
+ 
+ %define name wmfire
+ %define version 1.2.3
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: wmfire is a configurable cpu, mem, or network monitor
+ Name: %name
+@@ -69,7 +69,7 @@
+ %install
+ rm -rf $RPM_BUILD_ROOT
+ 
+-make mandir=%{_mandir}/man1 install DESTDIR=$RPM_BUILD_ROOT
++make mandir=%{_mandir} install DESTDIR=$RPM_BUILD_ROOT
+ 
+ %clean
+ rm -rf $RPM_BUILD_ROOT
+@@ -77,11 +77,14 @@
+ %files
+ %defattr(-,root,root,-)
+ %{_bindir}/*
+-%{_mandir}/man1/*
++%{_mandir}/man1/wmfire*
+ %doc AUTHORS COPYING ChangeLog INSTALL NEWS README ALL_I_GET_IS_A_GREY_BOX
+ 
+ 
+ %changelog
++* Sat Jul 02 2008 J. Krebs <rpm_speedy at yahoo.com> 1.2.3-5
++- fixed man page path.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> 1.2.3-4
+ - added distro info to release.
+ 
+
+Index: worker.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/worker.spec,v
+retrieving revision 1.4
+retrieving revision 1.5
+diff -u -r1.4 -r1.5
+--- worker.spec	25 May 2008 14:49:04 -0000	1.4
++++ worker.spec	4 Aug 2008 03:24:29 -0000	1.5
+@@ -1,5 +1,5 @@
+ %define name worker
+-%define version 2.16.3
++%define version 2.16.5
+ %define release 1%{?dist}
+ %define doc_version 2.10.0.2
+ 
+@@ -12,8 +12,8 @@
+ Source0:	http://www.boomerangsworld.de/worker/downloads/%{name}-%{version}.tar.gz
+ Source1:	http://www.boomerangsworld.de/worker/downloads/%{name}-%{doc_version}-doc.tar.bz2
+ URL:		http://www.boomerangsworld.de/worker/
+-Requires:	libXpm avfs fuse
+-BuildRequires:	libX11-devel bzip2-devel zlib-devel libXpm-devel avfs-devel
++Requires:	libXpm avfs fuse file
++BuildRequires:	libX11-devel bzip2-devel zlib-devel libXpm-devel avfs-devel file-devel
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+@@ -30,7 +30,9 @@
+ ./configure --prefix=%{_prefix} \
+ 	--mandir=%{_mandir} \
+ 	--docdir=%{_datadir}/doc/%{name}-%{version} \
+-	--enable-xft
++	--enable-xft \
++	--with-avfs \
++	--with-libmagic
+ 
+ make
+ 
+@@ -118,6 +120,12 @@
+ %{_datadir}/applications/*
+ 
+ %changelog
++* Fri Jul 04 2008 J. Krebs <rpm_speedy at yahoo.com> 2.16.5-1
++- new version
++
++* Wed Jul 02 2008 J. Krebs <rpm_speedy at yahoo.com> 2.16.4-1
++- new version
++
+ * Thu Apr 17 2008 J. Krebs <rpm_speedy at yahoo.com> 2.16.3-1
+ - new version
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Thu Aug  7 16:02:49 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Thu, 07 Aug 2008 16:02:49 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS avfs.spec, 1.1,
+ 1.2 medit.spec, 1.1, 1.2  peksystray.spec, 1.9, 1.10 rxvt-unicode.spec, 1.7,
+ 1.8 trayer.spec, 1.3, 1.4  wmbiff.spec, 1.8, 1.9 wmradio.spec, 1.9, 1.10
+Message-ID: <489B0089.mail6VB1TXVO9@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv8864/SPECS
+
+Modified Files:
+	avfs.spec medit.spec peksystray.spec rxvt-unicode.spec 
+	trayer.spec wmbiff.spec wmradio.spec 
+Log Message:
+updates for build under x86_64
+
+
+Index: avfs.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/avfs.spec,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- avfs.spec	7 Mar 2008 03:28:42 -0000	1.1
++++ avfs.spec	7 Aug 2008 14:02:46 -0000	1.2
+@@ -1,6 +1,6 @@
+ %define	name 	avfs
+ %define	version	0.9.8
+-%define	release	1%{?dist}
++%define	release	2%{?dist}
+ 
+ Summary:	Enables programs to look inside archived/compressed files, access remote files
+ Name:		%name
+@@ -42,7 +42,7 @@
+ %setup -q
+ 
+ %build
+-./configure --prefix=%{_prefix} --enable-fuse
++./configure --prefix=%{_prefix} --libdir=%{_libdir} --enable-fuse
+ make
+ 
+ %install
+@@ -73,5 +73,8 @@
+ %{_libdir}/*.*a
+ 
+ %changelog
++* Wed Aug 06 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.9.8-2
++- Added libdir to configure for build under x86_64.
++
+ * Sat Nov 10 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.9.8-1
+ - Initial build.
+
+Index: medit.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/medit.spec,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- medit.spec	7 Mar 2008 03:28:42 -0000	1.1
++++ medit.spec	7 Aug 2008 14:02:47 -0000	1.2
+@@ -1,6 +1,6 @@
+ %define	name 	medit
+ %define	version	0.9.3
+-%define	release	1%{?dist}
++%define	release	2%{?dist}
+ 
+ Summary:	medit is a GTK-based text editor
+ Name:		%name
+@@ -22,7 +22,7 @@
+ %setup -q
+ 
+ %build
+-./configure --prefix=%{_prefix} --with-python --docdir=%{_datadir}/doc/%{name}-%{version}
++./configure --prefix=%{_prefix} --libdir=%{_libdir} --with-python --docdir=%{_datadir}/doc/%{name}-%{version}
+ make
+ 
+ %install
+@@ -68,6 +68,9 @@
+ %{_mandir}/man1/medit*
+ 
+ %changelog
++* Wed Aug 06 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.9.3-2
++- Added libdir to configure for build under x86_64.
++
+ * Sun Feb 10 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.9.3-1
+ - New version.
+ 
+
+Index: peksystray.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/peksystray.spec,v
+retrieving revision 1.9
+retrieving revision 1.10
+diff -u -r1.9 -r1.10
+--- peksystray.spec	27 Apr 2007 16:09:18 -0000	1.9
++++ peksystray.spec	7 Aug 2008 14:02:47 -0000	1.10
+@@ -31,7 +31,7 @@
+ 
+ %define name peksystray
+ %define version 0.4.0
+-%define release 2%{?dist}
++%define release 3%{?dist}
+ 
+ Summary: peksystray is a dockable systray
+ Name: %name
+@@ -41,6 +41,7 @@
+ Group: AfterStep/Applets
+ URL: http://sourceforge.net/projects/peksystray/
+ Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.bz2
++Patch0: %{name}-%{version}-ldadd.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+@@ -50,14 +51,15 @@
+ 
+ %prep
+ %setup -q
++%patch0
+ 
+ %build
+ 
+ %if %{xseven}
+ 	CFLAGS="-lX11" \
+-	./configure --prefix=%{_prefix}
++	./configure --prefix=%{_prefix} --libdir=%{_libdir}
+ %else
+-	./configure --prefix=%{_prefix}
++	./configure --prefix=%{_prefix} --libdir=%{_libdir}
+ %endif
+ 
+ make
+@@ -77,6 +79,9 @@
+ 
+ 
+ %changelog
++* Wed Aug 06 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.4.0-3
++- added patch from Gentoo for build under x86_64.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.4.0-2
+ - added distro info to release.
+ 
+
+Index: rxvt-unicode.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/rxvt-unicode.spec,v
+retrieving revision 1.7
+retrieving revision 1.8
+diff -u -r1.7 -r1.8
+--- rxvt-unicode.spec	1 Jul 2008 01:45:24 -0000	1.7
++++ rxvt-unicode.spec	7 Aug 2008 14:02:47 -0000	1.8
+@@ -1,7 +1,7 @@
+ %define aitest	%(rpm -q --queryformat='%{VERSION}' libAfterImage)
+ %define aiver	%aitest 
+ %define version 9.05
+-%define release 1%{?dist}
++%define release 2%{?dist}
+ %define name	rxvt-unicode
+ %define epoch	2
+ 
+@@ -15,9 +15,9 @@
+ URL:		http://software.schmorp.de/pkg/rxvt-unicode.html
+ Source0:	http://dist.schmorp.de/rxvt-unicode/%{name}-%{version}.tar.bz2
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-BuildRequires:	perl-devel libXpm-devel libXft-devel freetype-devel
++BuildRequires:	perl-devel libXpm-devel libXft-devel freetype-devel perl-ExtUtils-Embed
+ BuildRequires:	libAfterImage-devel >= 1.15
+-BuildRequires:  fontconfig-devel
++BuildRequires:  fontconfig-devel gcc-c++
+ BuildRequires:  freetype-devel
+ BuildRequires:  glib2-devel
+ BuildRequires:  /usr/bin/tic
+@@ -84,6 +84,9 @@
+ %{_libdir}/urxvt
+ 
+ %changelog
++* Wed Aug 06 2008 J. Krebs <rpm_speedy at yahoo.com> - 2:9.05-2
++- added required for perl-ExtUtils-Embed.
++
+ * Sat Jun 21 2008 J. Krebs <rpm_speedy at yahoo.com> - 2:9.05-1
+ - new version.
+ 
+
+Index: trayer.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/trayer.spec,v
+retrieving revision 1.3
+retrieving revision 1.4
+diff -u -r1.3 -r1.4
+--- trayer.spec	9 Nov 2007 16:15:08 -0000	1.3
++++ trayer.spec	7 Aug 2008 14:02:47 -0000	1.4
+@@ -25,7 +25,7 @@
+ 
+ %define name trayer
+ %define version 1.0
+-%define release 3%{?dist}
++%define release 4%{?dist}
+ 
+ Summary: A lightweight GTK2-based systray for UNIX desktop
+ Name: %name
+@@ -37,6 +37,7 @@
+ Source0: http://download.gna.org/fvwm-crystal/%{name}/%{version}/%{name}-%{version}.tar.gz
+ Patch0: %{name}-%{version}-Makefile.common.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
++BuildRequires: libXmu-devel
+ 
+ %description
+ A lightweight GTK2-based systray for UNIX desktop.
+@@ -63,6 +64,9 @@
+ %doc CREDITS COPYING CHANGELOG README
+ 
+ %changelog
++* Wed Aug 06 2008 J. Krebs <rpm_speedy at yahoo.com> - 1.0-4
++- added build requirement for libXmu-devel.
++
+ * Thu Nov 08 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.0-3
+ - added patch for gtk issues (thanks Team Debian).
+ 
+
+Index: wmbiff.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmbiff.spec,v
+retrieving revision 1.8
+retrieving revision 1.9
+diff -u -r1.8 -r1.9
+--- wmbiff.spec	27 Apr 2007 16:09:18 -0000	1.8
++++ wmbiff.spec	7 Aug 2008 14:02:47 -0000	1.9
+@@ -1,6 +1,6 @@
+ %define name wmbiff
+ %define version 0.4.27
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: A dockable/swallowed mail notifier
+ Name: %name
+@@ -27,7 +27,7 @@
+ %setup -q
+ 
+ %build
+-./configure --prefix=%{_prefix} --mandir=%{_mandir}
++./configure --prefix=%{_prefix} --mandir=%{_mandir} --libdir=%{_libdir} 
+ make
+ 
+ %install
+@@ -50,6 +50,9 @@
+ %doc AUTHORS ChangeLog COPYING FAQ INSTALL NEWS README* TODO
+ 
+ %changelog
++* Wed Aug 06 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.4.27-5
++- added libdir to configure for build under x86_64.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> 0.4.27-4
+ - added distro info to release.
+ * Wed Oct 18 2006 J. Krebs <rpm_speedy at yahoo.com> 0.4.27-3
+
+Index: wmradio.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmradio.spec,v
+retrieving revision 1.9
+retrieving revision 1.10
+diff -u -r1.9 -r1.10
+--- wmradio.spec	27 Apr 2007 16:09:18 -0000	1.9
++++ wmradio.spec	7 Aug 2008 14:02:47 -0000	1.10
+@@ -1,6 +1,6 @@
+ %define name wmradio
+ %define version 0.9
+-%define release 5%{?dist}
++%define release 6%{?dist}
+ 
+ Summary: wmradio is FM radio card applet for WindowMaker
+ Name: %name
+@@ -21,7 +21,7 @@
+ 
+ %build
+ cp %{SOURCE1} .
+-./configure --prefix=%{_prefix} --disable-libxosd --disable-gnome --mandir=%{_mandir}/man1
++./configure --prefix=%{_prefix} --libdir=%{_libdir} --disable-libxosd --disable-gnome --mandir=%{_mandir}/man1
+ make
+ 
+ %install
+@@ -29,7 +29,7 @@
+ 
+ make MANDIR=%{_mandir}/man1 install DESTDIR=$RPM_BUILD_ROOT
+ 
+-make install-skins DESTDIR=$RPM_BUILD_ROOT
++make install-skins LIBDIR=%{_libdir}/wmradio/ DESTDIR=$RPM_BUILD_ROOT
+ 
+ mkdir -p $RPM_BUILD_ROOT%{_datadir}/
+ 
+@@ -49,6 +49,9 @@
+ %{_datadir}/pixmaps/*.png
+ 
+ %changelog
++* Wed Aug 06 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.9-6
++- added libdir to configure for build under x86_64.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.9-5
+ - added distro info to release.
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Thu Aug  7 16:02:49 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Thu, 07 Aug 2008 16:02:49 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs buildme,1.18,1.19
+Message-ID: <489B0089.mail6V511TSPQ@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs
+In directory sheep:/tmp/cvs-serv8864
+
+Modified Files:
+	buildme 
+Log Message:
+updates for build under x86_64
+
+
+Index: buildme
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/buildme,v
+retrieving revision 1.18
+retrieving revision 1.19
+diff -u -r1.18 -r1.19
+--- buildme	9 Jul 2005 15:05:18 -0000	1.18
++++ buildme	7 Aug 2008 14:02:46 -0000	1.19
+@@ -15,7 +15,7 @@
+ our $SPECS = "SPECS";
+ our $RPMS = "RPMS";
+ our $SRPMS = "SRPMS";
+-our $RPM = "rpmbuild --define='_topdir $ENV{PWD}'";
++our $RPM = "rpmbuild --target=x86_64 --define='_topdir $ENV{PWD}'";
+ 
+ my $target = shift;
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Thu Aug  7 16:02:49 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Thu, 07 Aug 2008 16:02:49 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SOURCES
+ peksystray-0.4.0-ldadd.patch, NONE, 1.1
+Message-ID: <489B0089.mail6V7112WW5@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv8864/SOURCES
+
+Added Files:
+	peksystray-0.4.0-ldadd.patch 
+Log Message:
+updates for build under x86_64
+
+
+--- NEW FILE: peksystray-0.4.0-ldadd.patch ---
+diff -u -Nr peksystray-0.4.0.orig/src/Makefile.am peksystray-0.4.0/src/Makefile.am
+--- src/Makefile.am	2003-06-13 22:06:23.000000000 -0400
++++ src/Makefile.am	2007-08-05 15:06:47.000000000 -0400
+@@ -2,6 +2,4 @@
+ 
+ INCLUDES = @x_includes@
+ 
+-peksystray_LDADD = @x_libraries@
+-
+ peksystray_SOURCES = peksystray.c
+diff -u -Nr peksystray-0.4.0.orig/src/Makefile.in peksystray-0.4.0/src/Makefile.in
+--- src/Makefile.in	2007-01-05 18:16:38.000000000 -0500
++++ src/Makefile.in	2007-08-05 15:07:02.000000000 -0400
+@@ -146,7 +146,6 @@
+ x_includes = @x_includes@
+ x_libraries = @x_libraries@
+ INCLUDES = @x_includes@
+-peksystray_LDADD = @x_libraries@
+ peksystray_SOURCES = peksystray.c
+ all: all-am
+ 
+@@ -206,7 +205,7 @@
+ 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+ peksystray$(EXEEXT): $(peksystray_OBJECTS) $(peksystray_DEPENDENCIES) 
+ 	@rm -f peksystray$(EXEEXT)
+-	$(LINK) $(peksystray_LDFLAGS) $(peksystray_OBJECTS) $(peksystray_LDADD) $(LIBS)
++	$(LINK) $(peksystray_LDFLAGS) $(peksystray_OBJECTS) $(LIBS)
+ 
+ mostlyclean-compile:
+ 	-rm -f *.$(OBJEXT)
+
+
+

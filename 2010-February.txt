@@ -1,0 +1,92 @@
+From rpm_speedy at mail.berlios.de  Wed Feb  3 04:50:36 2010
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Wed, 03 Feb 2010 04:50:36 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec,1.11,1.12
+Message-ID: <4B68F28C.mail3P01N6IEF@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv4739/SPECS
+
+Modified Files:
+	fotoxx.spec 
+Log Message:
+updates to hvclock, stalonetray, fotoxx.
+
+
+Index: fotoxx.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/fotoxx.spec,v
+retrieving revision 1.11
+retrieving revision 1.12
+diff -u -r1.11 -r1.12
+--- fotoxx.spec	17 Jan 2010 03:39:04 -0000	1.11
++++ fotoxx.spec	3 Feb 2010 03:50:33 -0000	1.12
+@@ -1,5 +1,5 @@
+ %define name fotoxx
+-%define version 9.3
++%define version 9.5
+ %define release 1%{?dist}
+ 
+ Summary: application for processing image files from a digital camera
+@@ -55,8 +55,7 @@
+ %install
+ rm -rf $RPM_BUILD_ROOT
+ 
+-make install DESTDIR=$RPM_BUILD_ROOT PREFIX=%{_prefix} \
+-	DOCDIR=%{_datadir}/doc/%{name}-%{version}
++make install DESTDIR=$RPM_BUILD_ROOT PREFIX=%{_prefix}
+ 
+ #Install application link for X-Windows
+ echo -e "[Desktop Entry]
+@@ -94,6 +93,12 @@
+ %{_mandir}/man1/*.gz
+ 
+ %changelog
++* Mon Feb 01 2010 J. Krebs <rpm_speedy at yahoo.com> - 9.5-1
++- new version.
++
++* Mon Jan 18 2010 J. Krebs <rpm_speedy at yahoo.com> - 9.4-1
++- new version.
++
+ * Fri Jan 15 2010 J. Krebs <rpm_speedy at yahoo.com> - 9.3-1
+ - new version.
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Wed Feb  3 04:50:36 2010
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Wed, 03 Feb 2010 04:50:36 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.30,
+	1.31
+Message-ID: <4B68F28C.mail3P31Q5GIF@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv4739/include
+
+Modified Files:
+	misc-apps.inc 
+Log Message:
+updates to hvclock, stalonetray, fotoxx.
+
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.30
+retrieving revision 1.31
+diff -u -r1.30 -r1.31
+--- misc-apps.inc	17 Jan 2010 03:39:04 -0000	1.30
++++ misc-apps.inc	3 Feb 2010 03:50:34 -0000	1.31
+@@ -70,7 +70,7 @@
+ APPLET_LIST += CALCOO
+ 
+ FOTOXX_NAME=fotoxx
+-FOTOXX_VERSION=9.3
++FOTOXX_VERSION=9.5
+ FOTOXX_TAR=$(FOTOXX_NAME)-$(FOTOXX_VERSION).tar.gz
+ FOTOXX_URL=http://kornelix.squarespace.com/storage/downloads/$(FOTOXX_TAR)
+ 
+
+
+

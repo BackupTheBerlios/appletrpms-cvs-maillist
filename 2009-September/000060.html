@@ -1,0 +1,993 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.9-SkipPager-Database.c.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-Pager.c.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-afterconf.h.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-asdatabase.h.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-hints.c.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-hints.h.patch, NONE, 1.1  AfterStep-2.2.9-ascompose.c.patch, NONE, 1.1  AfterStep-2.2.9-asgtklookedit.c.patch, NONE, 1.1  AfterStep-2.2.9-screen.c.patch, NONE, 1.1  AlsaMixer.app-0.1-Makefile.patch, NONE, 1.1  Temperature.app-1.4-frog-6.patch, NONE, 1.1 fotoxx-8.1-Makefile.patch, NONE, 1.1 libAfterImage-1.18-ascompose.c.patch, NONE, 1.1 libAfterImage-Makefile-ldconfig.patch, NONE, 1.1 libAfterImage-afterimage-config.patch, NONE, 1.1 libAfterImage-glx.patch, NONE, 1.1 libAfterImage-multiarch.patch, NONE, 1.1 medit-0.9.4-stdio.h-conflict.patch, NONE, 1.1 rxvt-unicode-gcc44.patch, NONE, 1.1 wmcalendar-0.5.2-exit-sin-and-cos.patch, NONE, 1.1 wmcalendar-0.5.2-rename_kill_func.patch, NONE, 1.1 yudit-2.9.0-patch1.txt, NONE, 1.1 yudit-2.9.0-patch2.txt, NONE, 1.1 yudit-2.9.0-patch3.txt, NONE, 1.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SOURCES%0A%20AfterStep-2.2.9-SkipPager-Database.c.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-SkipPager-Pager.c.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-SkipPager-afterconf.h.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-SkipPager-asdatabase.h.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-SkipPager-hints.c.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-SkipPager-hints.h.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-ascompose.c.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-asgtklookedit.c.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-screen.c.patch%2C%20NONE%2C%0A%201.1%20%20AlsaMixer.app-0.1-Makefile.patch%2C%20NONE%2C%0A%201.1%20%20Temperature.app-1.4-frog-6.patch%2C%20NONE%2C%201.1%20fotoxx-8.1-Makefile.patch%2C%0A%20NONE%2C%201.1%20libAfterImage-1.18-ascompose.c.patch%2C%20NONE%2C%0A%201.1%20libAfterImage-Makefile-ldconfig.patch%2C%20NONE%2C%0A%201.1%20libAfterImage-afterimage-config.patch%2C%20NONE%2C%201.1%20libAfterImage-glx.patch%2C%0A%20NONE%2C%201.1%20libAfterImage-multiarch.patch%2C%20NONE%2C%0A%201.1%20medit-0.9.4-stdio.h-conflict.patch%2C%20NONE%2C%201.1%20rxvt-unicode-gcc44.patch%2C%0A%20NONE%2C%201.1%20wmcalendar-0.5.2-exit-sin-and-cos.patch%2C%20NONE%2C%0A%201.1%20wmcalendar-0.5.2-rename_kill_func.patch%2C%20NONE%2C%0A%201.1%20yudit-2.9.0-patch1.txt%2C%20NONE%2C%201.1%20yudit-2.9.0-patch2.txt%2C%20NONE%2C%0A%201.1%20yudit-2.9.0-patch3.txt%2C%20NONE%2C%201.1&In-Reply-To=%3C4AAD3FB2.mail4S41153OA%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000061.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.9-SkipPager-Database.c.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-Pager.c.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-afterconf.h.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-asdatabase.h.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-hints.c.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-hints.h.patch, NONE, 1.1  AfterStep-2.2.9-ascompose.c.patch, NONE, 1.1  AfterStep-2.2.9-asgtklookedit.c.patch, NONE, 1.1  AfterStep-2.2.9-screen.c.patch, NONE, 1.1  AlsaMixer.app-0.1-Makefile.patch, NONE, 1.1  Temperature.app-1.4-frog-6.patch, NONE, 1.1 fotoxx-8.1-Makefile.patch, NONE, 1.1 libAfterImage-1.18-ascompose.c.patch, NONE, 1.1 libAfterImage-Makefile-ldconfig.patch, NONE, 1.1 libAfterImage-afterimage-config.patch, NONE, 1.1 libAfterImage-glx.patch, NONE, 1.1 libAfterImage-multiarch.patch, NONE, 1.1 medit-0.9.4-stdio.h-conflict.patch, NONE, 1.1 rxvt-unicode-gcc44.patch, NONE, 1.1 wmcalendar-0.5.2-exit-sin-and-cos.patch, NONE, 1.1 wmcalendar-0.5.2-rename_kill_func.patch, NONE, 1.1 yudit-2.9.0-patch1.txt, NONE, 1.1 yudit-2.9.0-patch2.txt, NONE, 1.1 yudit-2.9.0-patch3.txt, NONE, 1.1</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SOURCES%0A%20AfterStep-2.2.9-SkipPager-Database.c.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-SkipPager-Pager.c.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-SkipPager-afterconf.h.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-SkipPager-asdatabase.h.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-SkipPager-hints.c.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-SkipPager-hints.h.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-ascompose.c.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-asgtklookedit.c.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.9-screen.c.patch%2C%20NONE%2C%0A%201.1%20%20AlsaMixer.app-0.1-Makefile.patch%2C%20NONE%2C%0A%201.1%20%20Temperature.app-1.4-frog-6.patch%2C%20NONE%2C%201.1%20fotoxx-8.1-Makefile.patch%2C%0A%20NONE%2C%201.1%20libAfterImage-1.18-ascompose.c.patch%2C%20NONE%2C%0A%201.1%20libAfterImage-Makefile-ldconfig.patch%2C%20NONE%2C%0A%201.1%20libAfterImage-afterimage-config.patch%2C%20NONE%2C%201.1%20libAfterImage-glx.patch%2C%0A%20NONE%2C%201.1%20libAfterImage-multiarch.patch%2C%20NONE%2C%0A%201.1%20medit-0.9.4-stdio.h-conflict.patch%2C%20NONE%2C%201.1%20rxvt-unicode-gcc44.patch%2C%0A%20NONE%2C%201.1%20wmcalendar-0.5.2-exit-sin-and-cos.patch%2C%20NONE%2C%0A%201.1%20wmcalendar-0.5.2-rename_kill_func.patch%2C%20NONE%2C%0A%201.1%20yudit-2.9.0-patch1.txt%2C%20NONE%2C%201.1%20yudit-2.9.0-patch2.txt%2C%20NONE%2C%0A%201.1%20yudit-2.9.0-patch3.txt%2C%20NONE%2C%201.1&In-Reply-To=%3C4AAD3FB2.mail4S41153OA%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.9-SkipPager-Database.c.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-Pager.c.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-afterconf.h.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-asdatabase.h.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-hints.c.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-hints.h.patch, NONE, 1.1  AfterStep-2.2.9-ascompose.c.patch, NONE, 1.1  AfterStep-2.2.9-asgtklookedit.c.patch, NONE, 1.1  AfterStep-2.2.9-screen.c.patch, NONE, 1.1  AlsaMixer.app-0.1-Makefile.patch, NONE, 1.1  Temperature.app-1.4-frog-6.patch, NONE, 1.1 fotoxx-8.1-Makefile.patch, NONE, 1.1 libAfterImage-1.18-ascompose.c.patch, NONE, 1.1 libAfterImage-Makefile-ldconfig.patch, NONE, 1.1 libAfterImage-afterimage-config.patch, NONE, 1.1 libAfterImage-glx.patch, NONE, 1.1 libAfterImage-multiarch.patch, NONE, 1.1 medit-0.9.4-stdio.h-conflict.patch, NONE, 1.1 rxvt-unicode-gcc44.patch, NONE, 1.1 wmcalendar-0.5.2-exit-sin-and-cos.patch, NONE, 1.1 wmcalendar-0.5.2-rename_kill_func.patch, NONE, 1.1 yudit-2.9.0-patch1.txt, NONE, 1.1 yudit-2.9.0-patch2.txt, NONE, 1.1 yudit-2.9.0-patch3.txt, NONE, 1.1">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Sun Sep 13 20:53:38 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000061.html">[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.23, 1.24  misc-apps.inc, 1.21, 1.22 wm-apps.inc, 1.50, 1.51
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#60">[ date ]</a>
+              <a href="thread.html#60">[ thread ]</a>
+              <a href="subject.html#60">[ subject ]</a>
+              <a href="author.html#60">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv6093/SOURCES
+
+Added Files:
+	AfterStep-2.2.9-SkipPager-Database.c.patch 
+	AfterStep-2.2.9-SkipPager-Pager.c.patch 
+	AfterStep-2.2.9-SkipPager-afterconf.h.patch 
+	AfterStep-2.2.9-SkipPager-asdatabase.h.patch 
+	AfterStep-2.2.9-SkipPager-hints.c.patch 
+	AfterStep-2.2.9-SkipPager-hints.h.patch 
+	AfterStep-2.2.9-ascompose.c.patch 
+	AfterStep-2.2.9-asgtklookedit.c.patch 
+	AfterStep-2.2.9-screen.c.patch 
+	AlsaMixer.app-0.1-Makefile.patch 
+	Temperature.app-1.4-frog-6.patch fotoxx-8.1-Makefile.patch 
+	libAfterImage-1.18-ascompose.c.patch 
+	libAfterImage-Makefile-ldconfig.patch 
+	libAfterImage-afterimage-config.patch libAfterImage-glx.patch 
+	libAfterImage-multiarch.patch 
+	medit-0.9.4-stdio.h-conflict.patch rxvt-unicode-gcc44.patch 
+	wmcalendar-0.5.2-exit-sin-and-cos.patch 
+	wmcalendar-0.5.2-rename_kill_func.patch yudit-2.9.0-patch1.txt 
+	yudit-2.9.0-patch2.txt yudit-2.9.0-patch3.txt 
+Log Message:
+Many updates, patches, work-arounds.  Added AlsaMixer.app.
+
+
+--- NEW FILE: AfterStep-2.2.9-SkipPager-Database.c.patch ---
+--- libAfterConf/Database.c	2008-03-21 17:48:51.000000000 -0500
++++ libAfterConf/Database.c	2009-08-25 14:28:01.000000000 -0500
+@@ -138,6 +138,8 @@
+ 	{TF_NO_MYNAME_PREPENDING, &quot;UseAnyViewport&quot;, 14, TT_FLAG, DATABASE_UseAnyViewport_ID, NULL},
+ 	{TF_NO_MYNAME_PREPENDING, &quot;IgnoreRestack&quot;, 13, TT_FLAG, DATABASE_IgnoreRestack_ID, NULL},
+ 	{TF_NO_MYNAME_PREPENDING, &quot;HonorRestack&quot;, 12, TT_FLAG, DATABASE_HonorRestack_ID, NULL},
++	{TF_NO_MYNAME_PREPENDING, &quot;PagerHit&quot;, 10, TT_FLAG, DATABASE_PagerHit_ID, NULL},
++	{TF_NO_MYNAME_PREPENDING, &quot;PagerSkip&quot;, 12, TT_FLAG, DATABASE_PagerSkip_ID, NULL},
+ 	ASCF_DEFINE_KEYWORD(DATABASE,TF_NO_MYNAME_PREPENDING,Fullscreen,TT_FLAG,NULL),
+ 	ASCF_DEFINE_KEYWORD(DATABASE,TF_NO_MYNAME_PREPENDING,NoFullscreen,TT_FLAG,NULL),
+ 	ASCF_DEFINE_KEYWORD(DATABASE,TF_NO_MYNAME_PREPENDING,WindowOpacity,TT_INTEGER,NULL),
+@@ -184,6 +186,7 @@
+ 	{STYLE_IGNORE_CONFIG, 	    DATABASE_IgnoreConfig_ID, 	    DATABASE_HonorConfig_ID},
+ 	{STYLE_IGNORE_RESTACK, 	    DATABASE_IgnoreRestack_ID, 	    DATABASE_HonorRestack_ID},
+ 	{STYLE_CURRENT_VIEWPORT,    DATABASE_UseCurrentViewport_ID, 	DATABASE_UseAnyViewport_ID},
++	{STYLE_PAGER,    DATABASE_PagerHit_ID, 	DATABASE_PagerSkip_ID},
+ 	{STYLE_ICON, 				0 /* special case */ , 			DATABASE_NoIcon_ID},
+ 	{STYLE_STARTUP_DESK, 		0 /*special case */ , 			DATABASE_StartsAnywhere_ID},
+ 	{STYLE_FRAME, 				0 /*special case */ , 			DATABASE_NoFrame_ID},
+
+--- NEW FILE: AfterStep-2.2.9-SkipPager-Pager.c.patch ---
+--- src/Pager/Pager.c	2008-03-25 12:33:59.000000000 -0500
++++ src/Pager/Pager.c	2009-08-25 14:32:18.000000000 -0500
+@@ -2432,9 +2432,9 @@
+ 
+ /*         show_activity( &quot;message %lX window %X data %p&quot;, type, body[0], wd ); */
+ 		res = handle_window_packet( type, body, &amp;wd );
+-        if( res == WP_DataCreated )
++        if( res == WP_DataCreated &amp;&amp; get_flags(wd-&gt;flags, AS_HitPager))
+             add_client( wd );
+-		else if( res == WP_DataChanged )
++		else if( res == WP_DataChanged  &amp;&amp; get_flags(wd-&gt;flags, AS_HitPager))
+ 		{	
+             refresh_client( saved_desk, wd );
+ 			new_desk = wd-&gt;desk ;
+
+--- NEW FILE: AfterStep-2.2.9-SkipPager-afterconf.h.patch ---
+--- libAfterConf/afterconf.h	2009-04-02 15:17:42.000000000 -0500
++++ libAfterConf/afterconf.h	2009-08-25 14:28:29.000000000 -0500
+@@ -1407,9 +1407,11 @@
+ #define DATABASE_WindowOpacity_ID		   (DATABASE_ID_START+69)
+ #define DATABASE_IgnoreRestack_ID          (DATABASE_ID_START+70)
+ #define DATABASE_HonorRestack_ID            (DATABASE_ID_START+71)
++#define DATABASE_PagerHit_ID            (DATABASE_ID_START+72)
++#define DATABASE_PagerSkip_ID            (DATABASE_ID_START+73)
+ 
+ 
+-#define DATABASE_ID_END             (DATABASE_ID_START+72)
++#define DATABASE_ID_END             (DATABASE_ID_START+74)
+ 
+ /* we use name_list structure 1 to 1 in here, as it does not requre any
+    preprocessing from us
+
+--- NEW FILE: AfterStep-2.2.9-SkipPager-asdatabase.h.patch ---
+--- libAfterStep/asdatabase.h	2007-05-03 14:41:58.000000000 -0500
++++ libAfterStep/asdatabase.h	2009-08-25 14:29:11.000000000 -0500
+@@ -28,6 +28,7 @@
+ 
+ 
+ /* this are pure flags */
++#define STYLE_PAGER		(1 &lt;&lt; 4)   
+ #define STYLE_IGNORE_RESTACK	(1 &lt;&lt; 5)   /* if set - client will not be able to rise/lower 
+ 											  the window */
+ #define STYLE_FULLSCREEN		(1 &lt;&lt; 6)
+@@ -60,7 +61,7 @@
+ #define STYLE_BUTTONS           (1 &lt;&lt; 30)   /*  */
+ #define STYLE_FLAGS             (1 &lt;&lt; 31)   /*  */
+ 
+-#define STYLE_DEFAULTS		(STYLE_TITLE|STYLE_CIRCULATE|STYLE_WINLIST| \
++#define STYLE_DEFAULTS		(STYLE_PAGER | STYLE_TITLE|STYLE_CIRCULATE|STYLE_WINLIST| \
+                              STYLE_FOCUS|STYLE_FOCUS_ON_MAP|STYLE_HANDLES| \
+ 							 STYLE_ICON_TITLE|STYLE_PPOSITION|STYLE_GROUP_HINTS| \
+ 							 STYLE_TRANSIENT_HINTS|STYLE_MOTIF_HINTS|STYLE_KDE_HINTS| \
+
+--- NEW FILE: AfterStep-2.2.9-SkipPager-hints.c.patch ---
+--- libAfterStep/hints.c	2007-07-06 17:35:15.000000000 -0500
++++ libAfterStep/hints.c	2009-08-25 14:29:51.000000000 -0500
+@@ -40,7 +40,7 @@
+ {
+ 	if (hints)
+ 	{										   /* some defaults to start with : */
+-		hints-&gt;flags = AS_Gravity | AS_AcceptsFocus | AS_Titlebar | AS_IconTitle | AS_Handles | AS_Border;
++		hints-&gt;flags = AS_HitPager | AS_Gravity | AS_AcceptsFocus | AS_Titlebar | AS_IconTitle | AS_Handles | AS_Border;
+         /* can't gracefully close the window if it does not support WM_DELETE_WINDOW */
+         hints-&gt;function_mask = ~(AS_FuncClose|AS_FuncPinMenu);
+         hints-&gt;gravity = NorthWestGravity;
+@@ -1341,6 +1341,7 @@
+ 		{STYLE_IGNORE_CONFIG, AS_IgnoreConfigRequest, 0, 0, AS_IgnoreConfigRequest},
+ 		{STYLE_IGNORE_RESTACK, AS_IgnoreRestackRequest, 0, 0, AS_IgnoreRestackRequest},
+ 		{STYLE_CURRENT_VIEWPORT, AS_UseCurrentViewport, 0, 0, AS_UseCurrentViewport},
++		{STYLE_PAGER, AS_HitPager, 0, 0, AS_HitPager},
+ 		{0, 0, 0, 0, 0}
+ 	};
+ 
+
+--- NEW FILE: AfterStep-2.2.9-SkipPager-hints.h.patch ---
+--- libAfterStep/hints.h	2007-05-03 14:41:58.000000000 -0500
++++ libAfterStep/hints.h	2009-08-25 14:30:13.000000000 -0500
+@@ -97,6 +97,7 @@
+ 										  * window should be animated */ 
+ #define AS_UseCurrentViewport  	(1&lt;&lt;27)
+ #define AS_WindowOpacity	   	(1&lt;&lt;28)
++#define AS_HitPager	   	(1&lt;&lt;29)
+ 
+ #define NOLOOK_HINT_FLAGS	(AS_IgnoreConfigRequest|AS_Module|AS_ShortLived| \
+ 							 AS_AvoidCover|AS_AcceptsFocus|AS_ClickToFocus| \
+
+--- NEW FILE: AfterStep-2.2.9-ascompose.c.patch ---
+--- libAfterImage/apps/ascompose.c	2009-02-11 17:32:03.000000000 -0600
++++ libAfterImage/apps/ascompose.c	2009-08-26 08:56:51.000000000 -0500
+@@ -43,13 +43,19 @@
+ # endif
+ #endif
+ 
+-#if defined(SHAPE) &amp;&amp; !defined(X_DISPLAY_MISSING)
+-#include &lt;X11/extensions/shape.h&gt;
+-#endif /* SHAPE */
++
+ #include &quot;../afterbase.h&quot;
+ #include &quot;../afterimage.h&quot;
+ #include &quot;common.h&quot;
+ 
++#if !defined(X_DISPLAY_MISSING)
++int asvisual_empty_XErrorHandler (Display * dpy, XErrorEvent * event);
++
++# if defined(SHAPE)
++#  include &lt;X11/extensions/shape.h&gt;
++# endif /* SHAPE */
++#endif /* X_DISPLAY_MISSING */
++
+ 
+ 
+ /****h* libAfterImage/ascompose
+@@ -797,8 +803,6 @@
+ 	return w;
+ }
+ 
+-int asvisual_empty_XErrorHandler (Display * dpy, XErrorEvent * event);
+-
+ Bool
+ set_root_pixmap_property(long pmap) /* Must have long type to work with XChangeProp on 64 bit machines !!!*/
+ {
+@@ -823,13 +827,13 @@
+ 		for (i = 0 ; i &lt; 2 ; ++i)
+ 			if (atoms[i])
+ 			{
+-				LOCAL_DEBUG_OUT(&quot;atoms[%d] = %X&quot;, i, atoms[i]);
++				LOCAL_DEBUG_OUT(&quot;atoms[%d] = %lX&quot;, i, atoms[i]);
+ 				data.long_ptr = NULL ;
+ 		        XGetWindowProperty(dpy, root, atoms[i], 0L, 1L, False, AnyPropertyType, &amp;type, &amp;format, &amp;nitems, &amp;after, &amp;data.uc_ptr);
+ 				if (data.long_ptr == NULL)
+ 					break;
+ 				pmaps[i] = data.long_ptr[0] ;
+-				LOCAL_DEBUG_OUT(&quot;pmaps[%d] = %X&quot;, i, pmaps[i]);
++				LOCAL_DEBUG_OUT(&quot;pmaps[%d] = %lX&quot;, i, pmaps[i]);
+ 				if (format != 32 || nitems == 0 || pmaps[i] != pmaps[0] || type != XA_PIXMAP) 
+ 					break;
+ 			}
+@@ -837,7 +841,7 @@
+ 		{
+ 			/* XKillClient is a dangerous affair since properties may hold stale values tha are no longer valid */
+ 			int (*oldXErrorHandler) (Display *, XErrorEvent *) = XSetErrorHandler (asvisual_empty_XErrorHandler);
+-			LOCAL_DEBUG_OUT(&quot;killing client for pmap %X&quot;, pmaps[0]);
++			LOCAL_DEBUG_OUT(&quot;killing client for pmap %lX&quot;, pmaps[0]);
+            	XKillClient(dpy, pmaps[0]);
+ 			XSync(dpy, False);
+ 			XSetErrorHandler (oldXErrorHandler);
+@@ -848,7 +852,7 @@
+ 		if (!atoms[i])
+ 			if ( (atoms[i] = XInternAtom (dpy, names[i], False)) == None)
+ 				break;
+-		LOCAL_DEBUG_OUT(&quot;Changing property %X to pmap id %X&quot;, atoms[i], pmap);
++		LOCAL_DEBUG_OUT(&quot;Changing property %lX to pmap id %lX&quot;, atoms[i], pmap);
+     	XChangeProperty(dpy, root, atoms[i], XA_PIXMAP, 32, PropModeReplace, (unsigned char *) &amp;pmap, 1);
+ 	}
+ 	if (i &gt;= 2)
+
+--- NEW FILE: AfterStep-2.2.9-asgtklookedit.c.patch ---
+--- libASGTK/asgtklookedit.c	2008-07-02 09:46:01.000000000 -0500
++++ libASGTK/asgtklookedit.c	2009-08-01 15:42:43.000000000 -0500
+@@ -25,6 +25,7 @@
+ #include &quot;../libAfterImage/asvisual.h&quot;
+ #include &quot;../libAfterStep/asapp.h&quot;
+ #include &quot;../libAfterStep/screen.h&quot;
++#include &quot;../libAfterStep/session.h&quot;
+ #include &quot;../libAfterStep/parser.h&quot;
+ #include &quot;../libAfterStep/freestor.h&quot;
+ #include &quot;../libAfterStep/mystyle.h&quot;
+
+--- NEW FILE: AfterStep-2.2.9-screen.c.patch ---
+--- libAfterStep/screen.c	2009-02-11 17:32:03.000000000 -0600
++++ libAfterStep/screen.c	2009-08-25 14:31:29.000000000 -0500
+@@ -291,6 +291,7 @@
+ 		return -1;
+ 
+ 	dpy = display ;
++	set_current_X_display (display); /* for libAfterBase X Wrappers */
+ 	
+ 	if( scr == NULL ) 
+ 	{
+@@ -401,8 +402,6 @@
+ 		exit (1);
+ 	}
+ 	
+-	set_current_X_display (dpy); /* for libAfterBase X Wrappers */
+-
+ 	ConnectXDisplay (dpy, scr, (event_mask&amp;SubstructureRedirectMask));
+     XSelectInput (dpy, scr-&gt;Root, event_mask);
+ 	return x_fd;
+
+--- NEW FILE: AlsaMixer.app-0.1-Makefile.patch ---
+--- Makefile	2004-09-30 23:44:06.000000000 +0300
++++ Makefile	2008-06-28 08:40:28.000000000 +0300
+@@ -4,22 +4,22 @@
+ 
+ DESTDIR =
+ GNUSTEP_BINDIR = /usr/local/GNUstep/Apps/AlsaMixer.app
+-X11_BINDIR = /usr/X11R6/bin
++X11_BINDIR = /usr/bin
+ 
+-CXX=c++
+-CXXFLAGS += -Wall -pedantic -fno-rtti -fno-exceptions -O2 -I/usr/X11R6/include
+-LDFLAGS += -L/usr/X11R6/lib -lXpm -lXext -lX11 -lasound
++CXX ?= g++
++CXXFLAGS += -Wall -pedantic -fno-rtti -fno-exceptions
++LIBS = -lXpm -lXext -lX11 -lasound
+ 
+ OBJECTS = Main.o Mixer.o Xpm.o AMixer/AMixer.o AMixer/AItem.o AMixer/AChannel.o
+ 
+ all: AlsaMixer.app
+ 
+ AlsaMixer.app: $(OBJECTS)
+-	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS)
++	$(CXX) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $@
+ 
+ .PHONY:	install clean distclean
+ 
+-install: install-gnustep
++install: install-x11
+ 
+ install-gnustep: all
+ 	install -d  $(DESTDIR)$(GNUSTEP_BINDIR)
+
+--- NEW FILE: Temperature.app-1.4-frog-6.patch ---
+Files Temperature.app-1.4/.dockapp.cc.swp and Temperature.app-1.4-frog/.dockapp.cc.swp differ
+diff -Nur Temperature.app-1.4/Makefile Temperature.app-1.4-frog/Makefile
+--- Makefile	2001-06-25 18:03:07.000000000 +0200
++++ Makefile	2006-02-24 21:08:06.000000000 +0100
+@@ -1,35 +1,32 @@
+-#
+-# Temperature.app Makefile
+-#
++CC              = g++
++CXXFLAGS	+= -I.. -I/usr/include -I/usr/include/freetype2 -DHAVE_XFT -Wall
++LIBS            = -L/usr/lib64 -L/usr/lib -lXpm -lX11 -lpthread -lXft -lXext -lXext
+ 
+-DESTDIR =
+-GNUSTEP_BINDIR = /usr/local/GNUstep/Apps/Temperature.app
+-X11_BINDIR = /usr/X11R6/bin
++PREFIX          = /usr
++INSTALL         = /usr/bin/install -c
++DESTDIR         =
+ 
+[...1372 lines suppressed...]
++#include &lt;X11/xpm.h&gt;
++
++class Xpm 
++{
++    private:
++    Display*      _display;
++    XpmAttributes _attributes;
++    Pixmap        _image;
++    Pixmap        _mask;
++    GC		  _gc;
++    Window	  _win;
++
++    public:
++    Xpm(Display* display,Window win,GC&amp; gc,char* data[]);
++    virtual ~Xpm();
++    virtual void setXpm();
++    virtual void drawString(int x,int y,char *string,int len);
++};
++
++#endif
+
+--- NEW FILE: fotoxx-8.1-Makefile.patch ---
+--- Makefile	2009-08-20 00:42:45.000000000 -0500
++++ Makefile	2009-08-20 12:56:11.000000000 -0500
+@@ -41,17 +41,6 @@
+ 	cp -R data/* $(DESTDIR)$(DATADIR)
+ 	cp $(PROGRAM) $(DESTDIR)$(BINDIR)
+ 	cp -R locales/* $(DESTDIR)$(DATADIR)/locales
+-#  install .desktop file (menu entry)
+-	@echo &quot;[Desktop Entry]&quot; &gt; $(DESKTOP)
+-	@echo &quot;Name=$(PROGRAM)&quot; &gt;&gt; $(DESKTOP)
+-	@echo &quot;Categories=Graphics&quot; &gt;&gt; $(DESKTOP)
+-	@echo &quot;Type=Application&quot; &gt;&gt; $(DESKTOP)
+-	@echo &quot;Terminal=false&quot; &gt;&gt; $(DESKTOP)
+-	@echo &quot;Exec=$(BINDIR)/$(PROGRAM)&quot; &gt;&gt; $(DESKTOP)
+-	@echo &quot;Icon=$(DATADIR)/icons/$(PROGRAM).png&quot; &gt;&gt; $(DESKTOP)
+-	@echo &quot;GenericName=Digital Photo Editor&quot; &gt;&gt; $(DESKTOP)
+-	@chown $(USER): $(DESKTOP)
+-	xdg-desktop-menu install $(DESKTOP)
+ #  install man page
+ 	cp -f doc/$(PROGRAM).man $(PROGRAM).1
+ 	gzip -f $(PROGRAM).1
+
+--- NEW FILE: libAfterImage-1.18-ascompose.c.patch ---
+--- apps/ascompose.c	2008-06-24 11:46:11.000000000 -0500
++++ apps/ascompose.c	2009-08-26 09:20:13.000000000 -0500
+@@ -43,13 +43,19 @@
+ # endif
+ #endif
+ 
+-#if defined(SHAPE) &amp;&amp; !defined(X_DISPLAY_MISSING)
+-#include &lt;X11/extensions/shape.h&gt;
+-#endif /* SHAPE */
++
+ #include &quot;../afterbase.h&quot;
+ #include &quot;../afterimage.h&quot;
+ #include &quot;common.h&quot;
+ 
++#if !defined(X_DISPLAY_MISSING)
++int asvisual_empty_XErrorHandler (Display * dpy, XErrorEvent * event);
++
++# if defined(SHAPE)
++#  include &lt;X11/extensions/shape.h&gt;
++# endif /* SHAPE */
++#endif /* X_DISPLAY_MISSING */
++
+ 
+ 
+ /****h* libAfterImage/ascompose
+@@ -274,6 +280,7 @@
+ Window make_main_window(Bool on_root, ASComposeWinProps *props);	
+ 
+ int screen = 0, depth = 0;
++Display *dpy = NULL;
+ 
+ int main(int argc, char** argv) {
+ 
+@@ -731,7 +738,10 @@
+ 	if (main_window_props.canvas)
+ 		XFreePixmap(dpy, main_window_props.canvas); 
+ 	if( dpy )
++	{
+         XCloseDisplay (dpy);
++		dpy = NULL;
++	}
+ #endif
+ 	LOCAL_DEBUG_OUT( &quot;display Closed%s&quot;,&quot;&quot;);
+ #ifdef DEBUG_ALLOCS
+@@ -793,8 +803,6 @@
+ 	return w;
+ }
+ 
+-int asvisual_empty_XErrorHandler (Display * dpy, XErrorEvent * event);
+-
+ Bool
+ set_root_pixmap_property(long pmap) /* Must have long type to work with XChangeProp on 64 bit machines !!!*/
+ {
+@@ -819,13 +827,13 @@
+ 		for (i = 0 ; i &lt; 2 ; ++i)
+ 			if (atoms[i])
+ 			{
+-				LOCAL_DEBUG_OUT(&quot;atoms[%d] = %X&quot;, i, atoms[i]);
++				LOCAL_DEBUG_OUT(&quot;atoms[%d] = %lX&quot;, i, atoms[i]);
+ 				data.long_ptr = NULL ;
+ 		        XGetWindowProperty(dpy, root, atoms[i], 0L, 1L, False, AnyPropertyType, &amp;type, &amp;format, &amp;nitems, &amp;after, &amp;data.uc_ptr);
+ 				if (data.long_ptr == NULL)
+ 					break;
+ 				pmaps[i] = data.long_ptr[0] ;
+-				LOCAL_DEBUG_OUT(&quot;pmaps[%d] = %X&quot;, i, pmaps[i]);
++				LOCAL_DEBUG_OUT(&quot;pmaps[%d] = %lX&quot;, i, pmaps[i]);
+ 				if (format != 32 || nitems == 0 || pmaps[i] != pmaps[0] || type != XA_PIXMAP) 
+ 					break;
+ 			}
+@@ -833,7 +841,7 @@
+ 		{
+ 			/* XKillClient is a dangerous affair since properties may hold stale values tha are no longer valid */
+ 			int (*oldXErrorHandler) (Display *, XErrorEvent *) = XSetErrorHandler (asvisual_empty_XErrorHandler);
+-			LOCAL_DEBUG_OUT(&quot;killing client for pmap %X&quot;, pmaps[0]);
++			LOCAL_DEBUG_OUT(&quot;killing client for pmap %lX&quot;, pmaps[0]);
+            	XKillClient(dpy, pmaps[0]);
+ 			XSync(dpy, False);
+ 			XSetErrorHandler (oldXErrorHandler);
+@@ -844,7 +852,7 @@
+ 		if (!atoms[i])
+ 			if ( (atoms[i] = XInternAtom (dpy, names[i], False)) == None)
+ 				break;
+-		LOCAL_DEBUG_OUT(&quot;Changing property %X to pmap id %X&quot;, atoms[i], pmap);
++		LOCAL_DEBUG_OUT(&quot;Changing property %lX to pmap id %lX&quot;, atoms[i], pmap);
+     	XChangeProperty(dpy, root, atoms[i], XA_PIXMAP, 32, PropModeReplace, (unsigned char *) &amp;pmap, 1);
+ 	}
+ 	if (i &gt;= 2)
+
+--- NEW FILE: libAfterImage-Makefile-ldconfig.patch ---
+--- Makefile.in	2008-10-04 19:52:07.000000000 +0200
++++ Makefile.in	2008-10-04 19:53:15.000000000 +0200
+@@ -143,20 +143,6 @@
+ 		@(if [ -d $(LIBDIR) ] &amp;&amp; [ -w $(LIBDIR) ]; then \
+ 		    echo &quot;$(INSTALL_LIB) $(LIB_STATIC) $(LIBDIR)&quot;; \
+ 		    $(INSTALL_LIB) $(LIB_STATIC) $(LIBDIR); \
+-		    if [ `uname` = &quot;Linux&quot; ]; then \
+-			if test $(LIBDIR) = &quot;/lib&quot; || test $(LIBDIR) = &quot;/usr/lib&quot;; then \
+-		    	    echo &quot;&quot; &gt; /dev/null; \
+-			elif grep -q $(LIBDIR) /etc/ld.so.conf &gt; /dev/null 2&gt;&amp;1; then \
+-		    	    echo &quot;&quot; &gt; /dev/null; \
+-			else \
+-		    	    echo &quot;Unable to find $(LIBDIR) in ld.so.conf. In order to use &quot;; \
+-		    	    echo &quot;$(LIB_STATIC), you may need to add it or set LD_LIBRARY_PATH.&quot;; \
+-			fi; \
+-			if test -w /etc; then \
+-			    echo &quot;$(LDCONFIG)&quot;; \
+-			    $(LDCONFIG); \
+-			fi; \
+-		    fi ;\
+ 		fi \
+ 		)
+ 
+@@ -169,18 +155,6 @@
+ 		$(RM) -f $(LIBDIR)/$(LIB_SHARED).$(LIBVERMAJOR) $(LIBDIR)/$(LIB_SHARED); \
+ 		$(LN_S) -f $(LIB_SHARED).$(LIBVER) $(LIBDIR)/$(LIB_SHARED).$(LIBVERMAJOR); \
+ 		$(LN_S) -f $(LIB_SHARED).$(LIBVERMAJOR) $(LIBDIR)/$(LIB_SHARED); \
+-		if test `uname` = &quot;Linux&quot;; then \
+-		   if test $(LIBDIR) = &quot;/lib&quot; || test $(LIBDIR) = &quot;/usr/lib&quot;; then \
+-		     echo &quot;&quot; &gt; /dev/null; \
+-		   elif grep -q $(LIBDIR) /etc/ld.so.conf &gt; /dev/null 2&gt;&amp;1; then \
+-		     echo &quot;&quot; &gt; /dev/null; \
+-		   else \
+-		     echo &quot;Unable to find $(LIBDIR) in ld.so.conf. In order to use &quot;; \
+-		     echo &quot;$(LIB_SHARED), you may need to add it or set LD_LIBRARY_PATH.&quot;; \
+-		   fi; \
+-		   echo &quot;$(LDCONFIG)&quot;; \
+-		   $(LDCONFIG); \
+-		 fi \
+ 		)
+ 
+ install.cyg:	mkdir
+
+--- NEW FILE: libAfterImage-afterimage-config.patch ---
+--- afterimage-config.in	2008-10-04 19:36:52.000000000 +0200
++++ afterimage-config.in	2008-10-04 19:42:48.000000000 +0200
+@@ -115,11 +115,7 @@
+         	libs=&quot;-lAfterBase $libs&quot;
+  	fi
+  	libs=&quot;-lAfterImage $libs&quot; 
+-	if test &quot;@libdir@&quot; != &quot;/usr/lib&quot; ; then
+-  		echo <A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">-L at libdir</A>@ $libs
+- 	else
+-  		echo $libs
+- 	fi
++ 	echo $libs
+  else
+         echo $libs
+  fi
+@@ -127,7 +123,6 @@
+ 
+ if test &quot;$echo_libtool&quot; = &quot;yes&quot; ; then
+  convlib=&quot;libAfterImage.la&quot;
+- echo @libdir@/$convlib
+ fi
+ 
+ if test &quot;$echo_have_afterbase&quot; = &quot;yes&quot; ; then
+
+--- NEW FILE: libAfterImage-glx.patch ---
+--- asvisual.c	2008-11-27 06:17:24.000000000 +0100
++++ asvisual.c	2008-11-27 06:18:19.000000000 +0100
+@@ -404,9 +404,9 @@
+ 		}
+ #ifdef HAVE_GLX
+ 		if( asv-&gt;glx_scratch_gc_direct )
+-			glXDestroyContext(dpy, asv-&gt;glx_scratch_gc_direct );
++			glXDestroyContext(asv-&gt;dpy, asv-&gt;glx_scratch_gc_direct );
+ 		if( asv-&gt;glx_scratch_gc_indirect )
+-			glXDestroyContext(dpy, asv-&gt;glx_scratch_gc_indirect );
++			glXDestroyContext(asv-&gt;dpy, asv-&gt;glx_scratch_gc_indirect );
+ #endif
+ 		if( asv-&gt;scratch_window ) 
+ 			XDestroyWindow( asv-&gt;dpy, asv-&gt;scratch_window );
+
+--- NEW FILE: libAfterImage-multiarch.patch ---
+--- configure.in	2008-10-04 19:43:12.000000000 +0200
++++ configure.in	2008-10-04 19:44:34.000000000 +0200
+@@ -689,9 +689,9 @@
+     	AFTERIMAGE_TEST_LIBS=&quot;-L./ -L../libAfterBase -lAfterImage $AFTERIMAGE_LIBS&quot;
+     	AFTERIMAGE_LIB_LIBS=&quot;-L./ -L../libAfterBase $AFTERIMAGE_LIBS&quot;
+     else
+-    	AFTERIMAGE_APPS_LIBS=&quot;-L../ -L$libdir -lAfterImage $AFTERIMAGE_LIBS&quot;
+-    	AFTERIMAGE_TEST_LIBS=&quot;-L./ -L$libdir -lAfterImage $AFTERIMAGE_LIBS&quot;
+-    	AFTERIMAGE_LIB_LIBS=&quot;-L./ -L$libdir $AFTERIMAGE_LIBS&quot;
++    	AFTERIMAGE_APPS_LIBS=&quot;-L../ -lAfterImage $AFTERIMAGE_LIBS&quot;
++    	AFTERIMAGE_TEST_LIBS=&quot;-L./ -lAfterImage $AFTERIMAGE_LIBS&quot;
++    	AFTERIMAGE_LIB_LIBS=&quot;-L./ $AFTERIMAGE_LIBS&quot;
+     fi
+     AC_DEFINE(HAVE_AFTERBASE,1,[Define if libAfterBase is available])
+ else
+@@ -722,7 +722,7 @@
+ 	  CLEAN_AFTERIMAGE_LIBS=&quot;$CLEAN_AFTERIMAGE_LIBS $L&quot;
+   fi
+ done
+-AFTERIMAGE_LIBS=&quot;-L$libdir -lAfterImage $CLEAN_AFTERIMAGE_LIBS&quot;
++AFTERIMAGE_LIBS=&quot;-lAfterImage $CLEAN_AFTERIMAGE_LIBS&quot;
+ AC_SUBST(AFTERIMAGE_LIBS)
+ 
+ if test &quot;x$enable_staticlibs&quot; = &quot;xyes&quot;; then
+--- configure.orig	2008-10-04 19:44:46.000000000 +0200
++++ configure	2008-10-04 19:45:28.000000000 +0200
+@@ -8805,9 +8805,9 @@
+     	AFTERIMAGE_TEST_LIBS=&quot;-L./ -L../libAfterBase -lAfterImage $AFTERIMAGE_LIBS&quot;
+     	AFTERIMAGE_LIB_LIBS=&quot;-L./ -L../libAfterBase $AFTERIMAGE_LIBS&quot;
+     else
+-    	AFTERIMAGE_APPS_LIBS=&quot;-L../ -L$libdir -lAfterImage $AFTERIMAGE_LIBS&quot;
+-    	AFTERIMAGE_TEST_LIBS=&quot;-L./ -L$libdir -lAfterImage $AFTERIMAGE_LIBS&quot;
+-    	AFTERIMAGE_LIB_LIBS=&quot;-L./ -L$libdir $AFTERIMAGE_LIBS&quot;
++    	AFTERIMAGE_APPS_LIBS=&quot;-L../ -lAfterImage $AFTERIMAGE_LIBS&quot;
++    	AFTERIMAGE_TEST_LIBS=&quot;-L./ -lAfterImage $AFTERIMAGE_LIBS&quot;
++    	AFTERIMAGE_LIB_LIBS=&quot;-L./ $AFTERIMAGE_LIBS&quot;
+     fi
+ 
+ cat &gt;&gt;confdefs.h &lt;&lt;\_ACEOF
+@@ -9314,7 +9314,7 @@
+ 	  CLEAN_AFTERIMAGE_LIBS=&quot;$CLEAN_AFTERIMAGE_LIBS $L&quot;
+   fi
+ done
+-AFTERIMAGE_LIBS=&quot;-L$libdir -lAfterImage $CLEAN_AFTERIMAGE_LIBS&quot;
++AFTERIMAGE_LIBS=&quot;-lAfterImage $CLEAN_AFTERIMAGE_LIBS&quot;
+ 
+ 
+ if test &quot;x$enable_staticlibs&quot; = &quot;xyes&quot;; then
+
+--- NEW FILE: medit-0.9.4-stdio.h-conflict.patch ---
+--- moo/moolua/ldebug.c	2008-08-25 01:17:21.000000000 -0500
++++ moo/moolua/ldebug.c	2009-08-01 09:29:29.000000000 -0500
+@@ -46,7 +46,7 @@
+   if (pc &lt; 0)
+     return -1;  /* only active lua functions have current-line information */
+   else
+-    return getline(ci_func(ci)-&gt;l.p, pc);
++    return lua_getline(ci_func(ci)-&gt;l.p, pc);
+ }
+ 
+ 
+--- moo/moolua/ldebug.h	2008-08-25 01:17:21.000000000 -0500
++++ moo/moolua/ldebug.h	2009-08-01 08:48:54.000000000 -0500
+@@ -13,7 +13,7 @@
+ 
+ #define pcRel(pc, p)	(cast(int, (pc) - (p)-&gt;code) - 1)
+ 
+-#define getline(f,pc)	(((f)-&gt;lineinfo) ? (f)-&gt;lineinfo[pc] : 0)
++#define lua_getline(f,pc)	(((f)-&gt;lineinfo) ? (f)-&gt;lineinfo[pc] : 0)
+ 
+ #define resethookcount(L)	(L-&gt;hookcount = L-&gt;basehookcount)
+ 
+--- moo/moolua/luaall.c	2008-08-25 01:17:21.000000000 -0500
++++ moo/moolua/luaall.c	2009-08-01 08:53:48.000000000 -0500
+@@ -4,6 +4,7 @@
+ 
+ #define luaall_c
+ 
++#include &quot;lobject.c&quot;
+ #include &quot;lapi.c&quot;
+ #include &quot;lcode.c&quot;
+ #include &quot;ldebug.c&quot;
+@@ -13,7 +14,6 @@
+ #include &quot;lgc.c&quot;
+ #include &quot;llex.c&quot;
+ #include &quot;lmem.c&quot;
+-#include &quot;lobject.c&quot;
+ #include &quot;lopcodes.c&quot;
+ #include &quot;lparser.c&quot;
+ #include &quot;lstate.c&quot;
+--- moo/moolua/lvm.c	2008-08-25 01:17:21.000000000 -0500
++++ moo/moolua/lvm.c	2009-08-01 09:30:55.000000000 -0500
+@@ -68,10 +68,10 @@
+   if (mask &amp; LUA_MASKLINE) {
+     Proto *p = ci_func(L-&gt;ci)-&gt;l.p;
+     int npc = pcRel(pc, p);
+-    int newline = getline(p, npc);
++    int newline = lua_getline(p, npc);
+     /* call linehook when enter a new function, when jump back (loop),
+        or when enter a new line */
+-    if (npc == 0 || pc &lt;= oldpc || newline != getline(p, pcRel(oldpc, p)))
++    if (npc == 0 || pc &lt;= oldpc || newline != lua_getline(p, pcRel(oldpc, p)))
+       luaD_callhook(L, LUA_HOOKLINE, newline);
+   }
+ }
+
+--- NEW FILE: rxvt-unicode-gcc44.patch ---
+--- src/background.C	2009-04-25 01:12:46.000000000 +0200
++++ src/background.C	2009-04-25 01:19:21.000000000 +0200
+@@ -261,7 +261,7 @@
+   unsigned int w = 0, h = 0;
+   unsigned int n;
+   unsigned long new_flags = (flags &amp; (~geometryFlags));
+-  char *p;
++  const char *p;
+ #  define MAXLEN_GEOM		256 /* could be longer than regular geometry string */
+ 
+   if (geom == NULL)
+@@ -677,7 +677,7 @@
+       if (!target-&gt;asimman)
+         target-&gt;asimman = create_generic_imageman (target-&gt;rs[Rs_path]);
+ 
+-      if (char *f = strchr (file, ';'))
++      if (char *f = (char *) strchr (file, ';'))
+         {
+           size_t len = f - file;
+           f = (char *)malloc (len + 1);
+--- src/command.C	2009-04-25 01:20:29.000000000 +0200
++++ src/command.C	2009-04-25 01:21:20.000000000 +0200
+@@ -3336,7 +3336,7 @@
+           }
+         else
+           {
+-            char *eq = strchr (str, '='); // constness lost, but verified to be ok
++            char *eq = (char *) strchr (str, '='); // constness lost, but verified to be ok
+ 
+             if (eq)
+               {
+--- src/misc.C	2009-04-25 01:41:05.000000000 +0200
++++ src/misc.C	2009-04-25 01:41:37.000000000 +0200
+@@ -170,7 +170,7 @@
+ char *
+ rxvt_basename (const char *str) NOTHROW
+ {
+-  char *base = strrchr (str, '/');
++  char *base = (char *) strrchr (str, '/');
+ 
+   return (char *) (base ? base + 1 : str);
+ }
+
+--- NEW FILE: wmcalendar-0.5.2-exit-sin-and-cos.patch ---
+--- Src/calendarfunc.c	2003-07-13 17:41:02.000000000 +0300
++++ Src/calendarfunc.c	2008-05-03 10:03:06.000000000 +0300
+@@ -22,7 +22,7 @@
+ 
+ #include &quot;calendarfunc.h&quot;
+ #include &lt;stdio.h&gt;
+-
++#include &lt;math.h&gt;
+ 
+ 
+ long persian_jdn(struct icaltimetype dt)
+--- Src/dockapp.c	2003-07-15 18:15:12.000000000 +0300
++++ Src/dockapp.c	2008-05-03 10:03:34.000000000 +0300
+@@ -23,6 +23,7 @@
+  * modified by Seiichi SATO &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">ssato at sh.rim.or.jp</A>&gt;
+  */
+ 
++#include &lt;stdlib.h&gt;
+ #include &quot;dockapp.h&quot;
+ 
+ #define WINDOWED_SIZE_W 64
+--- Src/Makefile	2003-07-15 18:19:26.000000000 +0300
++++ Src/Makefile	2008-05-03 10:11:48.000000000 +0300
+@@ -1,19 +1,15 @@
+-CC     = gcc
++CC     ?= gcc
+ INCLUDES  = `pkg-config --cflags gtk+-2.0` -I. 
+-LFLAGS = `pkg-config --libs gtk+-2.0`
+ 
+ # for BSD
+ #INCLUDES = `gtk12-config --cflags` -I. 
+ #LFLAGS = `gtk12-config --libs`
+-X11BASE = /usr/X11R6
+-CFLAGS =  $(INCLUDES) -DICON_TYPE=$(ICON_TYPE)
+-INCDIR = -I$(X11BASE)/include/X11 -I$(X11BASE)/include -I$/usr/include -I$/usr/local/include
+-DESTDIR= /usr/local
+-LIBDIR = -L/usr/lib -L${X11BASE}/lib -L/usr/local/lib
++CFLAGS +=  $(INCLUDES) -DICON_TYPE=$(ICON_TYPE)
++PREFIX = /usr
+ PACKAGE = wmCalendar
+ 
+ # for Linux
+-LIBS   = $(LIBDIR) -lXpm -lical -lpthread
++LIBS   = -lXpm -lical -lpthread `pkg-config --libs gtk+-2.0`
+ # for Solaris (untested!!!)
+ # LIBS   = -lXpm -lX11 -lXext -lsocket -lnsl -lical
+ 
+@@ -30,7 +26,7 @@
+ all:	wmCalendar.o wmCalendar 
+ 
+ wmCalendar: $(OBJECTS) 
+-	 $(CC) $(COPTS)  $(SYSTEM) $(LFLAGS) -o $@ $(OBJECTS) -o wmCalendar $(INCDIR)$(LIBDIR) $(LIBS)
++	 $(CC) $(CFLAGS) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $@
+ 
+ wmCalendar.o: wmCalendar_master.xpm   wmCalendar_master2.xpm
+ clean:
+@@ -40,6 +36,8 @@
+ 	rm -f wmCalendar
+ 
+ install:: wmCalendar
+-	install -c -s -m 0755 wmCalendar $(DESTDIR)/bin/
+-	install -c -m 0644 wmCalendar.1 $(DESTDIR)/man/man1 
++	install -d $(DESTDIR)$(PREFIX)/bin
++	install -m 0755 wmCalendar $(DESTDIR)$(PREFIX)/bin
++	install -d $(DESTDIR)$(PREFIX)/share/man/man1
++	install -m 0644 wmCalendar.1 $(DESTDIR)$(PREFIX)/share/man/man1 
+ 
+
+--- NEW FILE: wmcalendar-0.5.2-rename_kill_func.patch ---
+--- Src/calendar.c	2009-01-22 16:36:23.000000000 +0100
++++ Src/calendar.c	2009-01-22 16:36:07.000000000 +0100
+@@ -48,7 +48,7 @@
+ 
+ 
+ 
+-void kill (GtkWidget * widget)
++void close_app (GtkWidget * widget)
+ {
+     gtk_widget_destroy ((GtkWidget*)gtk_widget_get_toplevel(widget));
+     gtk_main_quit ();
+@@ -193,7 +193,7 @@
+ 	gtk_signal_connect(GTK_OBJECT (event_box), &quot;button_press_event&quot;,
+ 			   GTK_SIGNAL_FUNC (move), NULL);
+ 	gtk_signal_connect(GTK_OBJECT (event_box2), &quot;button_press_event&quot;,
+-			   (GtkSignalFunc) kill, GTK_OBJECT(dayView));
++			   (GtkSignalFunc) close_app, GTK_OBJECT(dayView));
+ 
+ 	gtk_widget_realize(dayView);
+ 	//	gtk_window_set_position(GTK_WINDOW (dayView),GTK_WIN_POS_CENTER_ON_PARENT);
+
+--- NEW FILE: yudit-2.9.0-patch1.txt ---
+*** swindow/SPostscript.cpp	2007-12-09 20:52:09.000000000 +0900
+--- swindow/SPostscript.cpp	2008-06-15 14:46:31.000000000 +0900
+***************
+*** 209,217 ****
+    SString bb(&quot;%%BoundingBox: &quot;);
+  
+!   bb.print (widthMargin); bb.append (&quot; &quot;);
+!   bb.print (heightMargin); bb.append (&quot; &quot;);
+!   bb.print (width - widthMargin); bb.append (&quot; &quot;);
+!   bb.print (height - heightMargin); 
+!   head.append (bb);
+  
+    head.append (&quot;%%Title: Untitled&quot;);
+--- 209,235 ----
+    SString bb(&quot;%%BoundingBox: &quot;);
+  
+!   switch (orientation)
+!   {
+!   case LANDSCAPE:
+!  
+!         bb.print (heightMargin); bb.append (&quot; &quot;);
+!         bb.print (widthMargin); bb.append (&quot; &quot;);
+!         bb.print (height - heightMargin); bb.append (&quot; &quot;);
+!         bb.print (width - widthMargin);
+!         head.append (bb);
+!  
+!     break;
+!  
+!   case PORTRAIT:
+!   default:
+!  
+!         bb.print (widthMargin); bb.append (&quot; &quot;);
+!         bb.print (heightMargin); bb.append (&quot; &quot;);
+!         bb.print (width - widthMargin); bb.append (&quot; &quot;);
+!         bb.print (height - heightMargin);
+!         head.append (bb);
+!  
+!     break;
+!   }
+  
+    head.append (&quot;%%Title: Untitled&quot;);
+***************
+*** 263,268 ****
+       m.append (&quot;A4 &quot;);
+    }
+!   m.print (width); m.append (&quot; &quot;);
+!   m.print (height); m.append (&quot; 0 () ()&quot;);
+    head.append (m);
+    // windows gs goes crazy if I uncomment this.
+--- 281,294 ----
+       m.append (&quot;A4 &quot;);
+    }
+!   if (orientation == LANDSCAPE)
+!   {
+!     m.print (height); m.append (&quot; &quot;);
+!     m.print (width); m.append (&quot; 0 () ()&quot;);
+!   }
+!   else 
+!   {
+!     m.print (width); m.append (&quot; &quot;);
+!     m.print (height); m.append (&quot; 0 () ()&quot;);
+!   }
+    head.append (m);
+    // windows gs goes crazy if I uncomment this.
+***************
+*** 330,334 ****
+      currentPage++;
+      char buff[128];
+!     sprintf (buff, &quot;\n%%%%Page: %u %u\nsave\n&quot;, pages, currentPage);
+      writeString (buff);
+    }
+--- 356,378 ----
+      currentPage++;
+      char buff[128];
+!  
+!   switch (orientation)
+!   {
+!   case LANDSCAPE:
+!  
+!           sprintf (buff, &quot;\n%%%%Page: %u %u\nsave\n90 rotate\n0 -%d.000 translate\n&quot;, pages, currentPage, height);
+!  
+!     break;
+!  
+!   case PORTRAIT:
+!   default:
+!  
+!           sprintf (buff, &quot;\n%%%%Page: %u %u\nsave\n&quot;, pages, currentPage);
+!  
+!     break;
+!   }
+!  
+!  
+!  
+      writeString (buff);
+    }
+*** uniprint/Main.cpp	2007-12-12 22:12:15.000000000 +0900
+--- uniprint/Main.cpp	2008-06-15 14:48:23.000000000 +0900
+***************
+*** 114,117 ****
+--- 114,121 ----
+        orient = SPrinter::LANDSCAPE;
+      }
++     else if (strcmp (&quot;-landscape&quot;, argv[i])==0)
++     { 
++       orient = SPrinter::LANDSCAPE;
++     }
+      else if (strcmp (&quot;-printer&quot;, argv[i])==0 &amp;&amp; i&lt;argc-1)
+      { 
+***************
+*** 338,342 ****
+    fprintf (stdout,   &quot;usage: uniprint [-out file] [-printer name] [-in file] [-decode name] \n&quot;);
+    fprintf (stdout,   &quot;[-media A4] [-break] [-right|-left] [-hsize header-font-size] [-size font-size]\n&quot;);
+!   fprintf (stdout,   &quot;[-landscape] [-wrap] [-font truetype.ttf [-font otherfont.ttf [...]] \n\n&quot;);
+    fprintf (stdout,   &quot;uniprint [-us] using uniscribe-clone rendering (default).\n&quot;);
+    fprintf (stdout,   &quot;uniprint [-nus] not using uniscribe-clone rendering.\n&quot;);
+--- 342,346 ----
+    fprintf (stdout,   &quot;usage: uniprint [-out file] [-printer name] [-in file] [-decode name] \n&quot;);
+    fprintf (stdout,   &quot;[-media A4] [-break] [-right|-left] [-hsize header-font-size] [-size font-size]\n&quot;);
+!   fprintf (stdout,   &quot;[-L|-landscape] [-wrap] [-font truetype.ttf [-font otherfont.ttf [...]] \n\n&quot;);
+    fprintf (stdout,   &quot;uniprint [-us] using uniscribe-clone rendering (default).\n&quot;);
+    fprintf (stdout,   &quot;uniprint [-nus] not using uniscribe-clone rendering.\n&quot;);
+
+--- NEW FILE: yudit-2.9.0-patch2.txt ---
+--- stoolkit/SBHashtable.cpp	2006-05-21 10:57:44.000000000 +0200
++++ stoolkit/SBHashtable.cpp	2008-11-18 12:30:37.000000000 +0100
+@@ -324,7 +324,9 @@
+         }
+         if (j==1)
+         {
+-           delete bv; GET_BUCKET (buffer-&gt;array, mod) = 0;
++           delete [] bv;
++	   bv = NULL;
++	   GET_BUCKET (buffer-&gt;array, mod) = 0;
+            break;
+         }
+         break;
+@@ -365,7 +367,8 @@
+              bi = bv[j];
+              delete bi;
+           }
+-          delete bv;
++          delete [] bv;
++	  bv = NULL;
+        }
+     }
+     delete buffer;
+@@ -532,7 +535,8 @@
+    }
+    if (bv != 0)
+    {
+-     delete bv;
++     delete [] bv;
++     bv = NULL;
+    }
+    nv[count] = bi;
+    nv[count+1] = 0;
+
+--- NEW FILE: yudit-2.9.0-patch3.txt ---
+*** swindow/SPostscript.cpp	2007-12-09 20:52:09.000000000 +0900
+--- swindow/SPostscript.cpp	2009-03-28 00:19:36.000000000 +0900
+***************
+*** 26,33 ****
+   */
+  #ifndef USE_WINAPI 
+! #include &lt;X11/Xlib.h&gt;
+! #include &lt;X11/Xutil.h&gt;
+! #include &quot;swindow/SAwt.h&quot;
+! #include &quot;swindow/sx11/SX11Impl.h&quot;
+  #endif
+  
+--- 26,35 ----
+   */
+  #ifndef USE_WINAPI 
+! # if USE_X11
+! #  include &lt;X11/Xlib.h&gt;
+! #  include &lt;X11/Xutil.h&gt;
+! #  include &quot;swindow/SAwt.h&quot;
+! #  include &quot;swindow/sx11/SX11Impl.h&quot;
+! # endif
+  #endif
+  
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000061.html">[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.23, 1.24  misc-apps.inc, 1.21, 1.22 wm-apps.inc, 1.50, 1.51
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#60">[ date ]</a>
+              <a href="thread.html#60">[ thread ]</a>
+              <a href="subject.html#60">[ subject ]</a>
+              <a href="author.html#60">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

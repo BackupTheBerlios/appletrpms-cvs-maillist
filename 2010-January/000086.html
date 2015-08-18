@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SOURCES fotoxx-9.3-Makefile.patch, NONE, 1.1  fotoxx-8.6.1-Makefile.patch, 1.1, NONE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SOURCES%0A%20fotoxx-9.3-Makefile.patch%2C%20NONE%2C%201.1%20%20fotoxx-8.6.1-Makefile.patch%2C%201.1%2C%20NONE&In-Reply-To=%3C4B52865A.mailIHL11BACE%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000085.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SOURCES fotoxx-9.3-Makefile.patch, NONE, 1.1  fotoxx-8.6.1-Makefile.patch, 1.1, NONE</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SOURCES%0A%20fotoxx-9.3-Makefile.patch%2C%20NONE%2C%201.1%20%20fotoxx-8.6.1-Makefile.patch%2C%201.1%2C%20NONE&In-Reply-To=%3C4B52865A.mailIHL11BACE%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SOURCES fotoxx-9.3-Makefile.patch, NONE, 1.1  fotoxx-8.6.1-Makefile.patch, 1.1, NONE">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Sun Jan 17 04:39:06 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000085.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec, 1.10, 1.11  hvclock.spec, 1.5, 1.6 stalonetray.spec, 1.1, 1.2
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#86">[ date ]</a>
+              <a href="thread.html#86">[ thread ]</a>
+              <a href="subject.html#86">[ subject ]</a>
+              <a href="author.html#86">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv23898/SOURCES
+
+Added Files:
+	fotoxx-9.3-Makefile.patch 
+Removed Files:
+	fotoxx-8.6.1-Makefile.patch 
+Log Message:
+new versions of fotoxx, stalonetray, and hvclock.
+
+
+--- NEW FILE: fotoxx-9.3-Makefile.patch ---
+--- Makefile	2010-01-12 14:29:31.000000000 -0600
++++ Makefile	2010-01-16 18:22:33.000000000 -0600
+@@ -10,14 +10,13 @@
+ 
+ # use $PREFIX if defined, else assume /usr/local
+ ifeq &quot;$(PREFIX)&quot; &quot;&quot;
+-	PREFIX = /usr/local
++	PREFIX = /usr
+ endif
+ 
+ BINDIR = $(PREFIX)/bin
+ DATADIR = $(PREFIX)/share/$(PROGRAM)
+ ICONDIR = $(DATADIR)/icons
+-DESKTOP = $(DATADIR)/kornelix-$(PROGRAM).desktop
+-DOCDIR = $(PREFIX)/share/doc/$(PROGRAM)
++DOCDIR = $(PREFIX)/share/doc/$(PROGRAM)-$(VERSION)
+ MANDIR = $(PREFIX)/share/man/man1
+ 
+ $(PROGRAM): $(PROGRAM).o zfuncs.o
+@@ -33,31 +32,21 @@
+ 	  -D &quot;DATADIR=\&quot;$(DATADIR)\&quot;&quot; -D &quot;DOCDIR=\&quot;$(DOCDIR)\&quot;&quot; -D &quot;BINDIR=\&quot;$(BINDIR)\&quot;&quot;
+ 
+ install: $(PROGRAM)
+-	mkdir -p $(DESTDIR)$(DOCDIR) 
+ 	mkdir -p $(DESTDIR)$(BINDIR)
+ 	mkdir -p $(DESTDIR)$(DATADIR)
+ 	mkdir -p $(DESTDIR)$(ICONDIR) 
+ 	mkdir -p $(DESTDIR)$(DATADIR)/locales
+ 	mkdir -p $(DESTDIR)$(MANDIR) 
+-	cp -R doc/* $(DESTDIR)$(DOCDIR)
+ 	cp icons/* $(DESTDIR)$(ICONDIR)
+ 	cp -R locales/* $(DESTDIR)$(DATADIR)/locales
+ 	cp $(PROGRAM) $(DESTDIR)$(BINDIR)
+-	@ echo use make menu to install desktop menu
+-	@ echo use make manpage to install man page
+-
+-menu:
+-	cp -f desktop $(DESKTOP)
+-	xdg-desktop-menu install $(DESKTOP)
+-
+-manpage:
+ 	cp -f doc/$(PROGRAM).man $(PROGRAM).1
+ 	gzip -f -9 $(PROGRAM).1
+ 	cp $(PROGRAM).1.gz $(DESTDIR)$(MANDIR)
+ 	rm -f $(PROGRAM).1.gz
++	rm -f doc/$(PROGRAM).man
+ 
+ uninstall:
+-	xdg-desktop-menu uninstall $(DESKTOP)
+ 	rm -f $(DESTDIR)$(BINDIR)/$(PROGRAM)
+ 	rm -R -f $(DESTDIR)$(DOCDIR)
+ 	rm -R -f $(DESTDIR)$(DATADIR)
+
+--- fotoxx-8.6.1-Makefile.patch DELETED ---
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000085.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec, 1.10, 1.11  hvclock.spec, 1.5, 1.6 stalonetray.spec, 1.1, 1.2
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#86">[ date ]</a>
+              <a href="thread.html#86">[ thread ]</a>
+              <a href="subject.html#86">[ subject ]</a>
+              <a href="author.html#86">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.26,	1.27
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/include%20misc-apps.inc%2C%201.26%2C%0A%091.27&In-Reply-To=%3C4AEE69C9.mailG6K11AWCY%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000077.html">
+   <LINK REL="Next"  HREF="000079.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.26,	1.27</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/include%20misc-apps.inc%2C%201.26%2C%0A%091.27&In-Reply-To=%3C4AEE69C9.mailG6K11AWCY%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.26,	1.27">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Mon Nov  2 06:10:33 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000077.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.9-ASDocGen.c.patch, NONE, 1.1  AfterStep-2.2.9-AfterStep.c.patch, NONE, 1.1  AfterStep-2.2.9-Database.c.patch, NONE, 1.1  AfterStep-2.2.9-Feel.c.patch, NONE, 1.1 AfterStep-2.2.9-NEW.patch, NONE, 1.1  AfterStep-2.2.9-Pager.c.patch, NONE, 1.1  AfterStep-2.2.9-WinList.c.patch, NONE, 1.1  AfterStep-2.2.9-WinTabs.c.patch, NONE, 1.1  AfterStep-2.2.9-afterbase.c.patch, NONE, 1.1  AfterStep-2.2.9-afterconf.h.patch, NONE, 1.1  AfterStep-2.2.9-afterstep.c.patch, NONE, 1.1  AfterStep-2.2.9-asapp.c.patch, NONE, 1.1  AfterStep-2.2.9-ascolor.c.patch, NONE, 1.1  AfterStep-2.2.9-asdatabase.h.patch, NONE, 1.1  AfterStep-2.2.9-asfeel.h.patch, NONE, 1.1  AfterStep-2.2.9-asim_afterbase.h.patch, NONE, 1.1  AfterStep-2.2.9-asimbrowser.c.patch, NONE, 1.1  AfterStep-2.2.9-configure.c.patch, NONE, 1.1  AfterStep-2.2.9-hints.c.patch, NONE, 1.1  AfterStep-2.2.9-hints.h.patch, NONE, 1.1  AfterStep-2.2.9-pager.c.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-Database.c.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-Pager.c.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-afterconf.h.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-asdatabase.h.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-hints.c.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-hints.h.patch, 1.1, NONE
+</A></li>
+        <LI>Next message: <A HREF="000079.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS wmsorsen.spec, NONE, 1.1  AfterStep.spec, 1.63, 1.64 medit.spec, 1.3, 1.4 worker.spec, 1.6, 1.7
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#78">[ date ]</a>
+              <a href="thread.html#78">[ thread ]</a>
+              <a href="subject.html#78">[ subject ]</a>
+              <a href="author.html#78">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv20854/include
+
+Modified Files:
+	misc-apps.inc 
+Log Message:
+brought AfterStep up to date with cvs, patches for -v fix, other fixes.
+
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.26
+retrieving revision 1.27
+diff -u -r1.26 -r1.27
+--- misc-apps.inc	29 Oct 2009 00:41:38 -0000	1.26
++++ misc-apps.inc	2 Nov 2009 05:10:31 -0000	1.27
+@@ -70,7 +70,7 @@
+ APPLET_LIST += CALCOO
+ 
+ FOTOXX_NAME=fotoxx
+-FOTOXX_VERSION=8.6.1
++FOTOXX_VERSION=8.6.2
+ FOTOXX_TAR=$(FOTOXX_NAME)-$(FOTOXX_VERSION).tar.gz
+ FOTOXX_URL=<A HREF="http://kornelix.squarespace.com/storage/downloads/$(FOTOXX_TAR">http://kornelix.squarespace.com/storage/downloads/$(FOTOXX_TAR</A>)
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000077.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.9-ASDocGen.c.patch, NONE, 1.1  AfterStep-2.2.9-AfterStep.c.patch, NONE, 1.1  AfterStep-2.2.9-Database.c.patch, NONE, 1.1  AfterStep-2.2.9-Feel.c.patch, NONE, 1.1 AfterStep-2.2.9-NEW.patch, NONE, 1.1  AfterStep-2.2.9-Pager.c.patch, NONE, 1.1  AfterStep-2.2.9-WinList.c.patch, NONE, 1.1  AfterStep-2.2.9-WinTabs.c.patch, NONE, 1.1  AfterStep-2.2.9-afterbase.c.patch, NONE, 1.1  AfterStep-2.2.9-afterconf.h.patch, NONE, 1.1  AfterStep-2.2.9-afterstep.c.patch, NONE, 1.1  AfterStep-2.2.9-asapp.c.patch, NONE, 1.1  AfterStep-2.2.9-ascolor.c.patch, NONE, 1.1  AfterStep-2.2.9-asdatabase.h.patch, NONE, 1.1  AfterStep-2.2.9-asfeel.h.patch, NONE, 1.1  AfterStep-2.2.9-asim_afterbase.h.patch, NONE, 1.1  AfterStep-2.2.9-asimbrowser.c.patch, NONE, 1.1  AfterStep-2.2.9-configure.c.patch, NONE, 1.1  AfterStep-2.2.9-hints.c.patch, NONE, 1.1  AfterStep-2.2.9-hints.h.patch, NONE, 1.1  AfterStep-2.2.9-pager.c.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-Database.c.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-Pager.c.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-afterconf.h.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-asdatabase.h.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-hints.c.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-hints.h.patch, 1.1, NONE
+</A></li>
+	<LI>Next message: <A HREF="000079.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS wmsorsen.spec, NONE, 1.1  AfterStep.spec, 1.63, 1.64 medit.spec, 1.3, 1.4 worker.spec, 1.6, 1.7
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#78">[ date ]</a>
+              <a href="thread.html#78">[ thread ]</a>
+              <a href="subject.html#78">[ subject ]</a>
+              <a href="author.html#78">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

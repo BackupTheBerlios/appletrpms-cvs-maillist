@@ -1,0 +1,939 @@
+From rpm_speedy at mail.berlios.de  Sun May 25 16:49:06 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sun, 25 May 2008 16:49:06 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SOURCES
+ AfterStep-2.2.8-Pager.c.patch, NONE,
+ 1.1  AfterStep-2.2.8-configure.h.in.patch, NONE, 1.1  fotox-0.43-build.patch,
+ NONE, 1.1 AfterStep-2.2.7-wharf.alternate, 1.1, 1.2
+Message-ID: <48397C62.mailKK11N296@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv575/SOURCES
+
+Modified Files:
+	AfterStep-2.2.7-wharf.alternate 
+Added Files:
+	AfterStep-2.2.8-Pager.c.patch 
+	AfterStep-2.2.8-configure.h.in.patch fotox-0.43-build.patch 
+Log Message:
+added fotox, Updated AS to 2.2.8, updated others
+
+
+--- NEW FILE: AfterStep-2.2.8-Pager.c.patch ---
+--- src/Pager/Pager.c	2008-02-22 08:20:00.000000000 -0600
++++ src/Pager/Pager.c	2008-03-25 12:54:44.000000000 -0500
+@@ -105,7 +105,6 @@
+ 
+     int page_rows,  page_columns ;
+ 	/* x and y size of desktop */
+-	int vscaled_desk_width, vscaled_desk_height ;  /* calculated in accordance to Scale param in database */
+ 	int desk_width, desk_height ;                  /* adjusted for the size of title */
+ 	/* area of the main window used up by labels, borders and other garbadge :*/
+ 	int wasted_width, wasted_height ;
+@@ -395,6 +394,7 @@
+ /*****************************************************************************
+  * This routine is responsible for reading and parsing the config file
+  ****************************************************************************/
++
+ void
+ CheckConfigSanity()
+ {
+@@ -439,7 +439,7 @@
+     if (Config->geometry.width <= Config->columns )
+ 		clear_flags(Config->geometry.flags, WidthValue);
+     if (!get_flags(Config->geometry.flags, WidthValue) )
+-		Config->geometry.width = PagerState.vscaled_desk_width*Config->columns ;
++		Config->geometry.width = (PagerState.vscreen_width*Config->columns)/Scr.VScale ;
+ 
+ 	PagerState.desk_width = Config->geometry.width/Config->columns ;
+ 	Config->geometry.width = PagerState.desk_width*Config->columns ;
+@@ -447,11 +447,11 @@
+     if (Config->geometry.height <= Config->rows )
+ 		clear_flags(Config->geometry.flags, HeightValue);
+     if (!get_flags(Config->geometry.flags, HeightValue) || Config->geometry.height <= Config->rows )
+-		Config->geometry.height = PagerState.vscaled_desk_height*Config->rows ;
++		Config->geometry.height = (PagerState.vscreen_height*Config->rows)/Scr.VScale ;
+ 
+     PagerState.desk_height = Config->geometry.height/Config->rows ;
+     Config->geometry.height = PagerState.desk_height*Config->rows ;
+-
++	
+ 	PagerState.wasted_width = PagerState.wasted_height = 0 ;
+ 
+     if( !get_flags(Config->geometry.flags, XValue))
+@@ -701,9 +701,6 @@
+ 	PagerState.vscreen_width = Scr.VxMax + Scr.MyDisplayWidth;
+     PagerState.vscreen_height = Scr.VyMax + Scr.MyDisplayHeight;
+ 
+-    PagerState.vscaled_desk_width = PagerState.vscreen_width/Scr.VScale;
+-    PagerState.vscaled_desk_height = PagerState.vscreen_height/Scr.VScale;
+-
+     SHOW_TIME("BaseConfigParsingTime",started);
+     LOCAL_DEBUG_OUT("desk_size(%dx%d),vscreen_size(%dx%d),vscale(%d)", PagerState.desk_width, PagerState.desk_height, PagerState.vscreen_width, PagerState.vscreen_height, Scr.VScale );
+ }
+@@ -1031,7 +1028,7 @@
+ }
+ 
+ 
+-unsigned int
++inline unsigned int
+ calculate_desk_width( ASPagerDesk *d )
+ {
+     unsigned int width = PagerState.desk_width;
+@@ -1158,7 +1155,7 @@
+     if( wa )
+     {
+         register int p = PagerState.page_columns-1;
+-        int pos_inc = Scr.MyDisplayWidth/Scr.VScale;
++        int pos_inc = (Scr.MyDisplayWidth * d->background->width)/PagerState.vscreen_width;
+ 				/* d->background->width/PagerState.page_columns ; */
+         int pos = d->background->win_x+p*pos_inc;
+         int size = d->background->height ;
+@@ -1177,7 +1174,8 @@
+         wa += PagerState.page_columns-1;
+         wrecta += PagerState.page_columns-1;
+         p = PagerState.page_rows-1;
+-        pos_inc = Scr.MyDisplayHeight/Scr.VScale;
++        pos_inc =  (Scr.MyDisplayHeight * d->background->height)/PagerState.vscreen_height;
++		    /* Scr.MyDisplayHeight/PagerState.vscale_v;     */
+ 			/* d->background->height/PagerState.page_rows ; */
+         pos = d->background->win_y + p*pos_inc;
+         pos2 = d->background->win_x ;
+@@ -1206,8 +1204,10 @@
+   		{
+       		int sel_x = sel_desk->background->win_x ;
+ 	        int sel_y = sel_desk->background->win_y ;
+-  		    int page_width = Scr.MyDisplayWidth/Scr.VScale ;
+-      		int page_height = Scr.MyDisplayHeight/Scr.VScale ;
++  		    int page_width = /*Scr.MyDisplayWidth/PagerState.vscale_h ;*/
++				(Scr.MyDisplayWidth * sel_desk->background->width)/PagerState.vscreen_width;
++      		int page_height = /* Scr.MyDisplayHeight/PagerState.vscale_v ;*/
++				(Scr.MyDisplayHeight * sel_desk->background->height)/PagerState.vscreen_height;
+ 	        int i = 4;
+ 
+   		    sel_x += (Scr.Vx*page_width)/Scr.MyDisplayWidth ;
+@@ -1500,8 +1500,6 @@
+             if( height > row_height )
+                 row_height = height;
+             
+-            LOCAL_DEBUG_OUT( " :RESIZING: desk = %d, size = %dx%d, all_size = %+d%+d", i, width, height, all_width, all_height );
+-
+             if( ++col >= Config->columns )
+             {
+                 if( all_width < x+width )
+@@ -1513,6 +1511,8 @@
+                 col = 0;
+             }else
+                 x += width;
++            LOCAL_DEBUG_OUT( " :RESIZING: desk = %d, size = %dx%d, all_size = %+d%+d, +x+y = %+d%+d, row_height = %d", i, width, height, all_width, all_height, x, y, row_height );
++
+         }
+         if( all_width < x )
+             all_width = x ;
+@@ -1572,20 +1572,25 @@
+         * and then devide size of the main canvas by this number : */
+         for( col = 0 ; col < Config->columns ; ++col )
+         {
+-            Bool unshaded = False ;
+             unsigned int col_shaded_width = 0 ;
+             int i ;
+ 
+             for( i = col ; i < PagerState.desks_num ; i+= Config->columns )
+             {
+                 ASPagerDesk *d = &(PagerState.desks[i]);
++	
+                 if( !get_flags(d->flags, ASP_DeskShaded )  )
+-                    unshaded = True ;
+-				else if( col_shaded_width < d->title_width )
+-                    col_shaded_width = d->title_width ;
++				{
++	                ++unshaded_col_count ;
++					col_shaded_width = 0;
++					break;
++				}else
++				{
++					int dw = calculate_desk_width(d);
++					if( col_shaded_width < dw )
++                    	col_shaded_width = dw;
++				}
+             }
+-            if( unshaded )
+-                ++unshaded_col_count ;
+             shaded_width += col_shaded_width ;
+         }
+ 
+@@ -1611,7 +1616,6 @@
+         * and then devide size of the main canvas by this number : */
+         for( row = 0 ; row < Config->rows ; ++row )
+         {
+-            Bool unshaded = False ;
+             unsigned int row_shaded_height = 0 ;
+             int i, max_i = (row+1)*Config->columns ;
+ 
+@@ -1622,15 +1626,20 @@
+             {
+                 ASPagerDesk *d = &(PagerState.desks[i]);
+                 if( !get_flags(d->flags, ASP_DeskShaded )  )
+-                    unshaded = True ;
+-				else if( row_shaded_height < d->title_height )
+-                    row_shaded_height = d->title_height ;
++				{
++	                ++unshaded_row_count ;
++					row_shaded_height = 0;
++					break;
++				}else
++				{
++					int dh = calculate_desk_height(d);
++					if( row_shaded_height < dh )
++	                    row_shaded_height = dh;
++				}
+             }
+-            if( unshaded )
+-                ++unshaded_row_count ;
+             shaded_height += row_shaded_height ;
+         }
+-LOCAL_DEBUG_OUT( "unshaded_row_count = %d", unshaded_row_count );
++LOCAL_DEBUG_OUT( "unshaded_row_count = %d, shaded_height = %d, main_height = %d", unshaded_row_count, shaded_height, main_height );
+         if( unshaded_row_count == 0 )
+             return PagerState.desk_height;
+         return (main_height - shaded_height)/unshaded_row_count;
+@@ -2755,9 +2764,10 @@
+                 if( new_desk_width != PagerState.desk_width ||
+                     new_desk_height != PagerState.desk_height )
+                 {
+-                    PagerState.desk_width = new_desk_width ;
+-                    PagerState.desk_height = new_desk_height ;
+-                }
++                    PagerState.desk_width = new_desk_width;
++                    PagerState.desk_height = new_desk_height;
++              	}
++				
+                 rearrange_pager_desks( True );
+             }else if( changes != 0 )
+             {
+
+--- NEW FILE: AfterStep-2.2.8-configure.h.in.patch ---
+--- configure.h.in	2006-11-13 19:43:39.000000000 -0600
++++ configure.h.in	2008-03-06 21:44:06.000000000 -0600
+@@ -103,13 +103,13 @@
+ #define AFTERSTEP_APPS_DIR		"applications" 
+ #define AFTERSTEP_CACHE_FILE	AFTER_NONCF "/AfterStepCategories"
+ #define GNOME_APPS_PATH		"~/.gnome2/vfolders/applications/:$GNOMEDIR/share/applications:/usr/share/applications"
+-#define GNOME_ICONS_PATH	"~/.icons/gnome/48x48/apps/:$XDG_DATA_DIRS/icons/gnome/48x48/apps/:$GNOMEDIR/share/pixmaps:/usr/share/pixmaps:/usr/share/icons:/usr/share/icons/hicolor/48x48/apps:/usr/share/icons/gnome/48x48/apps"
++#define GNOME_ICONS_PATH	"~/.icons/gnome/48x48/apps/:$XDG_DATA_DIRS/icons/gnome/48x48/apps/:$GNOMEDIR/share/pixmaps:/usr/share/pixmaps:/usr/share/icons:/usr/share/icons/hicolor/48x48/apps:/usr/share/icons/hicolor/32x32/apps:/usr/share/icons/gnome/48x48/apps"
+ #define GNOME_CACHE_FILE	AFTER_NONCF "/GNOMECategories"
+ #define KDE_APPS_PATH		"$KDEDIR/share/applnk:$KDEDIR/share/applications:/usr/share/applnk:/usr/share/applications"
+ #define KDE_ICONS_PATH		"~/.icons/kde/48x48/apps/:$XDG_DATA_DIRS/icons/kde/48x48/apps/:$KDEDIR/share/icons/default.kde/48x48/apps:$KDEDIR/share/icons/hicolor/48x48/apps:$KDEDIR/share/icons/locolor/48x48/apps:/usr/share/pixmaps"
+ #define KDE_CACHE_FILE		AFTER_NONCF "/KDECategories"
+ #define OTHER_APPS_PATH     "/etc/X11/applnk:/usr/share/applications:/usr/local/share/applications"
+-#define OTHER_ICONS_PATH    "/usr/share/pixmaps:/usr/local/share/pixmaps:/usr/share/icons:/usr/share/icons/hicolor/48x48/apps"
++#define OTHER_ICONS_PATH    "/usr/share/pixmaps:/usr/local/share/pixmaps:/usr/share/icons:/usr/share/icons/hicolor/48x48/apps:/usr/share/icons/hicolor/32x32/apps"
+ #define OTHER_CACHE_FILE	AFTER_NONCF "/OtherCategories"
+ 
+ 
+
+--- NEW FILE: fotox-0.43-build.patch ---
+--- build	2008-05-21 10:22:52.000000000 -0500
++++ build	2008-05-22 11:27:18.000000000 -0500
+@@ -38,32 +38,9 @@
+ 
+ PREFIX="$DESTDIR$PREFIX"
+ 
+-if [ -n "$PREFIX" ]; then
+-   BINDIR="$PREFIX/bin"
+-   DATADIR="$PREFIX/share/$APPNAME"
+-   DOCDIR="$PREFIX/share/doc/$APPNAME"
+-else
+-   if [ $(id -u) -eq 0 ]; then  PREFIX=/usr/local
+-   else  PREFIX="$HOME"; fi
+-fi
+-
+-# if not predefined, query install locations
+-
+-if [ -z "$BINDIR" ]; then 
+-   BINDIR="$PREFIX/bin"
+-   read -p "binary directory: [ $BINDIR ] " dir
+-   if [ -n "$dir" ]; then BINDIR="$dir"; fi
+-fi
+-if [ -z "$DATADIR" ]; then 
+-   DATADIR="$PREFIX/share/$APPNAME"
+-   read -p "data directory: [ $DATADIR ] " dir
+-   if [ -n "$dir" ]; then DATADIR="$dir"; fi
+-fi
+-if [ -z "$DOCDIR" ]; then 
+-   DOCDIR="$PREFIX/share/doc/$APPNAME"
+-   read -p "doc directory: [ $DOCDIR ] " dir
+-   if [ -n "$dir" ]; then DOCDIR="$dir"; fi
+-fi
++BINDIR="/usr/bin"
++DATADIR="/usr/share/$APPNAME"
++DOCDIR="/usr/share/doc/$APPNAME-0.41"
+ 
+ # check prerequisites: g++ and libgtk2.0-dev
+ 
+@@ -97,18 +74,13 @@
+ # move application files to target locations
+ 
+ if [ $install -eq 1 ]; then
+-   mkdir -p "$DATADIR" "$DOCDIR" "$BINDIR"
+-   chmod 0755 "$DATADIR" "$DOCDIR" "$BINDIR"
++   mkdir -p -m o=rx "$RPM_BUILD_ROOT$DATADIR" "$RPM_BUILD_ROOT$BINDIR"
+    if [ $? -ne 0 ]; then exit 1; fi
+-   cp -f  *.pdf  "$DOCDIR"
+-   cp -f  README  "$DOCDIR"
+-   cp -f  COPYING  "$DOCDIR"
+-   cp -f  changelog  "$DOCDIR"
+-   cp -f -r  icons  "$DATADIR"
+-   cp -f  *.xtext  "$DATADIR"
+-   cp -f  parameter*  "$DATADIR" > /dev/null 2>&1
+-   cp -f  *.conf  "$DATADIR" > /dev/null 2>&1
+-   cp -f  $APPNAME  "$BINDIR"
++   cp -f -r  icons  "$RPM_BUILD_ROOT$DATADIR"
++   cp -f  *.xtext  "$RPM_BUILD_ROOT$DATADIR"
++   cp -f  parameter*  "$RPM_BUILD_ROOT$DATADIR" > /dev/null 2>&1
++   cp -f  *.conf  "$RPM_BUILD_ROOT$DATADIR" > /dev/null 2>&1
++   cp -f  $APPNAME  "$RPM_BUILD_ROOT$BINDIR"
+    if [ $? -ne 0 ]; then exit 1; fi
+    echo "$APPNAME installation successful"
+ fi
+
+Index: AfterStep-2.2.7-wharf.alternate
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SOURCES/AfterStep-2.2.7-wharf.alternate,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- AfterStep-2.2.7-wharf.alternate	7 Mar 2008 03:28:42 -0000	1.1
++++ AfterStep-2.2.7-wharf.alternate	25 May 2008 14:49:04 -0000	1.2
+@@ -96,17 +96,19 @@
+ *Wharf Mail		logos/Thunderbird Exec "Thunderbird" thunderbird &
+ *Wharf Mail		logos/Thunderbird Exec "Thunderbird2" mozilla-thunderbird &
+ *Wharf Mail		normal/MailBox2 Exec "mozilla-mail" mozilla --mail &
+-*Wharf Mail		normal/MailBox2 Exec "kmail" kmail &
+-*Wharf Mail		normal/MailBox2 Exec "balsa" balsa &
++*Wharf Mail		kmail.png Exec "kmail" kmail &
++*Wharf Mail		gnome-balsa2.png Exec "balsa" balsa &
+ *Wharf Mail		normal/MailBox2 ExecInTerm "Mutt" -title "Mutt e-mail reader" -e mutt -y &
+ *Wharf Mail		normal/MailBox2 ExecInTerm "Pine" -title "Pine e-mail and news reader" -e pine &
+ 
+ # First available text editor :
+ *Wharf TextEditor	medit.png Exec "medit" medit &
+-*Wharf TextEditor	normal/Pen1 Exec "nedit" nedit &
++*Wharf TextEditor	logos/NEdit Exec "nedit" nedit &
+ *Wharf TextEditor 	normal/Pen1 Exec "cooledit" cooledit --look next &
++*Wharf TextEditor 	kedit.png Exec "kedit" kedit &
++*Wharf TextEditor 	normal/Pen1 Exec "gedit" gedit &
+ *Wharf TextEditor 	xemacs.png Exec "xemacs" xemacs &
+-*Wharf TextEditor 	normal/Pen1 Exec "VIM" gvim &
++*Wharf TextEditor 	logos/VIM Exec "VIM" gvim &
+ *Wharf TextEditor	normal/Pen1 ExecInTerm "nano" -title "Nano text editor" -e nano &
+ 
+ # First available file manager :
+@@ -114,7 +116,8 @@
+ *Wharf FileManager	logos/konqueror     Exec "Konqueror" konqueror &
+ *Wharf FileManager 	normal/Filecabinet2 Exec "Krusader" krusader &
+ *Wharf FileManager 	normal/Filecabinet2 Exec "Gentoo File Manager" gentoo &
+-*Wharf FileManager 	normal/Filecabinet2 Exec "Rox" rox &
++*Wharf FileManager 	normal/Filecabinet2 Exec "ROX-Filer" rox &
++*Wharf FileManager 	normal/Filecabinet2 Exec "PCMan" pcmanfm &
+ *Wharf FileManager 	normal/Filecabinet2 Exec "Nautilus" nautilus --no-desktop &
+ *Wharf FileManager	normal/MCInMonitorShadow ExecInTerm "-" -g 130x35 if(aterm){-T mc-VerticalTitle -tr -tint blue -fg white -bg black} if(Eterm){-O --tint blue -f white -b black) if(rxvt){-tr -fg white -bg black} -e mc &
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Sun May 25 16:49:07 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sun, 25 May 2008 16:49:07 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS fotox.spec, NONE,
+ 1.1  AfterStep.spec, 1.59, 1.60 parcellite.spec, 1.1, 1.2 wmtemp.spec, 1.5,
+ 1.6  wmupmon.spec, 1.5, 1.6 wmweather+.spec, 1.13, 1.14 worker.spec, 1.3,
+ 1.4
+Message-ID: <48397C63.mailKP1NIQ03@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv575/SPECS
+
+Modified Files:
+	AfterStep.spec parcellite.spec wmtemp.spec wmupmon.spec 
+	wmweather+.spec worker.spec 
+Added Files:
+	fotox.spec 
+Log Message:
+added fotox, Updated AS to 2.2.8, updated others
+
+
+--- NEW FILE: fotox.spec ---
+%define name fotox
+%define version 0.43
+%define release 1%{?dist}
+
+Summary: application for processing image files from a digital camera
+Name: %name
+Version: %version
+Release: %release
+License: GPLv2
+Group: Applications/Multimedia
+URL: http://kornelix.squarespace.com/fotox/
+Source0: http://kornelix.squarespace.com/storage/fotox/%{name}.43.tar.gz
+Patch0: %{name}-0.43-build.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Requires: gtk2 atk cairo pango libpng exiv2 libstdc++
+Buildrequires: gtk2-devel atk-devel cairo-devel pango-devel libpng-devel libstdc++-devel
+
+%description
+Fotox is a free open-source Linux program for improving image files
+made with a digital camera.
+
+ The following functions are provided:
+
+    * Show thumbnails of image files in a directory, navigate, choose
+      files to view or edit.
+    * Adjust overexposed or underexposed areas to improve visibility
+      of detail (change brightness independently for different
+      brightness levels).
+    * Reduce fog or haze by removing "whiteness" and intensifying
+      colors.
+    * Edit whole image or an arbitrary area outlined with the mouse.
+    * High dynamic range (HDR) photography: combine an underexposed
+      and overexposed image to improve details visible in both bright
+      and dark areas. Automatic image alignment.
+    * Photo stitching or panorama: stitch two or more images together
+      to make an ultra-wide image.
+    * Simple image alignment and brightness / color matching.
+    * Crop an image (choose the area of interest and cut-off the
+      margins).
+    * Rotate an image by any angle (level a tilted image, or turn in
+      90 degree steps).
+    * Resize an image, with convenience buttons for 2/3, 1/2, 1/3 and
+      1/4 size.
+    * Red-eye removal.
+
+%prep
+%setup -n fotox
+%patch0
+
+%build
+rm -rf $RPM_BUILD_ROOT
+
+./build build
+
+%install
+./build install
+
+#Install application link for X-Windows
+echo -e "[Desktop Entry]
+Name=Fotox Digital Image Editor
+Comment=Edit and improve digital camera image files
+Exec=fotox
+Icon=fotox.png
+Terminal=false
+Encoding=UTF-8
+Type=Application" > %{name}.desktop
+                                                                                
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
+desktop-file-install --vendor "" --delete-original \
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications                   \
+  --add-category X-Red-Hat-Extra                                  \
+  --add-category GTK                                              \
+  --add-category 2DGraphics                                       \
+  --add-category Graphics	                                  \
+  %{name}.desktop
+
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/
+install -m 644 icons/fotox.png $RPM_BUILD_ROOT%{_datadir}/pixmaps/
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root,-)
+%doc README changelog *.pdf
+%{_bindir}/fotox
+%{_datadir}/applications/*.desktop
+%{_datadir}/fotox/*.xtext
+%{_datadir}/fotox/icons/*
+%{_datadir}/pixmaps/*.png
+
+%changelog
+* Thu May 22 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.43-1
+- new version.
+
+* Mon Apr 21 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.41-1
+- new version.
+
+* Sat Apr 18 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.40-1
+- new version.
+
+* Sat Apr 12 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.39-1
+- new version.
+
+* Sun Mar 09 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.37-1
+- Initial build.
+
+Index: AfterStep.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/AfterStep.spec,v
+retrieving revision 1.59
+retrieving revision 1.60
+diff -u -r1.59 -r1.60
+--- AfterStep.spec	7 Mar 2008 03:28:42 -0000	1.59
++++ AfterStep.spec	25 May 2008 14:49:04 -0000	1.60
+@@ -42,9 +42,9 @@
+ %define	version	2.2.8
+ %define	libaiver	1.17
+ %define	libabver	1.12
+-%define	libairel	1%{?dist}
+-%define	libabrel	1%{?dist}
+-%define release 1%{?dist}
++%define	libairel	2%{?dist}
++%define	libabrel	2%{?dist}
++%define release 2%{?dist}
+ %define epoch 20
+ 
+ Summary:	AfterStep Window Manager (NeXTalike)
+@@ -69,6 +69,8 @@
+ Patch0:		%{name}-2.2.5-ImageMagick.patch
+ Patch1:		%{name}-2.2.7-winlist.patch
+ Patch2:		%{name}-2.2.7-pager.patch
++Patch3:		%{name}-2.2.8-configure.h.in.patch
++Patch4:		%{name}-2.2.8-Pager.c.patch
+ Distribution:	The AfterStep TEAM
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ %if %{mdk}
+@@ -198,6 +200,8 @@
+ %patch0
+ %patch1
+ %patch2
++%patch3
++%patch4
+ 
+ %build
+ CFLAGS=$RPM_OPT_FLAGS \
+@@ -409,7 +413,10 @@
+ if [ -x /usr/sbin/fndSession ]; then /usr/sbin/fndSession || true ; fi
+ 
+ %changelog
+-* Fri Mar 06 2008 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.8-1
++* Mon Mar 24 2008 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.8-2
++- Pager fix added to fix issues when swallowed by Wharf.
++
++* Wed Mar 17 2008 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.8-1
+ - new version.
+ 
+ * Thu Dec 06 2007 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.7-4
+
+Index: parcellite.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/parcellite.spec,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- parcellite.spec	7 Mar 2008 03:28:42 -0000	1.1
++++ parcellite.spec	25 May 2008 14:49:04 -0000	1.2
+@@ -1,5 +1,5 @@
+ %define name parcellite
+-%define version 0.6.1
++%define version 0.7
+ %define release 1%{?dist}
+ 
+ Summary: Parcellite (Parcelle Lite) is a lightweight GTK+ clipboard manager
+@@ -62,8 +62,12 @@
+ %{_datadir}/applications/*.desktop
+ %{_sysconfdir}/xdg/autostart/*.desktop
+ %doc AUTHORS COPYING INSTALL ChangeLog NEWS README TODO
++%{_mandir}/man1/*
+ 
+ %changelog
++* Fri Apr 19 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.7-1
++- New version.
++
+ * Sun Feb 24 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.6.1-1
+ - New version.
+ 
+
+Index: wmtemp.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmtemp.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmtemp.spec	27 Apr 2007 16:09:18 -0000	1.5
++++ wmtemp.spec	25 May 2008 14:49:04 -0000	1.6
+@@ -1,6 +1,6 @@
+ %define name wmtemp
+-%define version 0.0.5
+-%define release 4%{?dist}
++%define version 0.0.6
++%define release 1%{?dist}
+ 
+ Summary: wmtemp displays CPU & SYS temps in "LCD look" via lm_sensors
+ Name: %name
+@@ -43,6 +43,9 @@
+ 
+ 
+ %changelog
++* Mon May 12 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.0.6-1
++- new version.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.0.5-4
+ - added distro info to release.
+ 
+
+Index: wmupmon.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmupmon.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmupmon.spec	27 Apr 2007 16:09:18 -0000	1.5
++++ wmupmon.spec	25 May 2008 14:49:04 -0000	1.6
+@@ -1,6 +1,6 @@
+ %define name wmupmon
+ %define version 0.1.3
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: DockApp that displays your system uptime in realtime
+ Name: %name
+@@ -8,8 +8,8 @@
+ Release: %release
+ License: GPL
+ Group: AfterStep/Applets
+-URL: http://j-z-s.com/projects/index.php?project=wmupmon
+-Source0: http://j-z-s.com/projects/downloads/%{name}-%{version}.tar.gz
++URL: ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/
++Source0: ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+@@ -39,6 +39,9 @@
+ 
+ 
+ %changelog
++* Sat Apr 12 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.1.3-5
++- Website is no longer available. Moved links to ftp.afterstep.org.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.1.3-4
+ - added distro info to release.
+ 
+
+Index: wmweather+.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmweather+.spec,v
+retrieving revision 1.13
+retrieving revision 1.14
+diff -u -r1.13 -r1.14
+--- wmweather+.spec	27 Apr 2007 16:09:18 -0000	1.13
++++ wmweather+.spec	25 May 2008 14:49:04 -0000	1.14
+@@ -24,8 +24,8 @@
+ ### END Distro Definitions
+ 
+ %define name wmweather+
+-%define version 2.9
+-%define release 7%{?dist}
++%define version 2.11
++%define release 1%{?dist}
+ 
+ Summary: A dock app for displaying weather information
+ Name: %name
+@@ -35,7 +35,6 @@
+ Group: AfterStep/Applets
+ URL: http://sourceforge.net/project/showfiles.php?group_id=60336
+ Source0: http://easynews.dl.sourceforge.net/sourceforge/wmweatherplus/%{name}-%{version}.tar.gz
+-Patch0: wmweather+-fedorafix.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires: w3c-libwww-devel libwraster
+ Requires: w3c-libwww libwraster
+@@ -57,7 +56,6 @@
+ 
+ %prep
+ %setup -q
+-%patch0 -p1
+ 
+ %build
+ ./configure --prefix=%{_prefix} --mandir=%{_mandir}
+@@ -78,6 +76,9 @@
+ 
+ 
+ %changelog
++* Fri Apr 12 2008 J. Krebs <rpm_speedy at yahoo.com> - 2.11-1
++- new version.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 2.9-7
+ - added distro info to release.
+ 
+
+Index: worker.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/worker.spec,v
+retrieving revision 1.3
+retrieving revision 1.4
+diff -u -r1.3 -r1.4
+--- worker.spec	7 Mar 2008 03:28:42 -0000	1.3
++++ worker.spec	25 May 2008 14:49:04 -0000	1.4
+@@ -1,5 +1,5 @@
+ %define name worker
+-%define version 2.16.2
++%define version 2.16.3
+ %define release 1%{?dist}
+ %define doc_version 2.10.0.2
+ 
+@@ -27,7 +27,11 @@
+ %setup -q -a 1
+ 
+ %build
+-./configure --prefix=%{_prefix} --mandir=%{_mandir} --docdir=%{_datadir}/doc/%{name}-%{version}
++./configure --prefix=%{_prefix} \
++	--mandir=%{_mandir} \
++	--docdir=%{_datadir}/doc/%{name}-%{version} \
++	--enable-xft
++
+ make
+ 
+ %install
+@@ -114,6 +118,9 @@
+ %{_datadir}/applications/*
+ 
+ %changelog
++* Thu Apr 17 2008 J. Krebs <rpm_speedy at yahoo.com> 2.16.3-1
++- new version
++
+ * Mon Feb 11 2008 J. Krebs <rpm_speedy at yahoo.com> 2.16.2-1
+ - new version
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Sun May 25 16:49:07 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sun, 25 May 2008 16:49:07 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.16,
+ 1.17  wm-apps.inc, 1.49, 1.50
+Message-ID: <48397C63.mailL1116LDE@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv575/include
+
+Modified Files:
+	misc-apps.inc wm-apps.inc 
+Log Message:
+added fotox, Updated AS to 2.2.8, updated others
+
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.16
+retrieving revision 1.17
+diff -u -r1.16 -r1.17
+--- misc-apps.inc	7 Mar 2008 03:28:42 -0000	1.16
++++ misc-apps.inc	25 May 2008 14:49:05 -0000	1.17
+@@ -69,6 +69,13 @@
+ 
+ APPLET_LIST += CALCOO
+ 
++FOTOX_NAME=fotox
++FOTOX_VERSION=0.43
++FOTOX_TAR=$(FOTOX_NAME).43.tar.gz
++FOTOX_URL=http://kornelix.squarespace.com/storage/fotox/$(FOTOX_TAR)
++
++APPLET_LIST += FOTOX
++
+ LIBDOCKAPP_NAME=libdockapp
+ LIBDOCKAPP_VERSION=0.6.1
+ LIBDOCKAPP_TAR=$(LIBDOCKAPP_NAME)-$(LIBDOCKAPP_VERSION).tar.bz2
+@@ -113,7 +120,7 @@
+ APPLET_LIST += MIXER.APP
+ 
+ PARCELLITE_NAME=parcellite
+-PARCELLITE_VERSION=0.6.1
++PARCELLITE_VERSION=0.7
+ PARCELLITE_TAR=$(PARCELLITE_NAME)-$(PARCELLITE_VERSION).tar.gz
+ PARCELLITE_URL=http://xyhthyx.googlecode.com/files/$(PARCELLITE_TAR)
+ 
+@@ -148,7 +155,7 @@
+ APPLET_LIST += TRAYER
+ 
+ WORKER_NAME=worker
+-WORKER_VERSION=2.16.2
++WORKER_VERSION=2.16.3
+ WORKER_TAR=$(WORKER_NAME)-$(WORKER_VERSION).tar.gz
+ WORKER_URL=http://www.boomerangsworld.de/worker/downloads/$(WORKER_TAR)
+ 
+
+Index: wm-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/wm-apps.inc,v
+retrieving revision 1.49
+retrieving revision 1.50
+diff -u -r1.49 -r1.50
+--- wm-apps.inc	7 Mar 2008 03:28:42 -0000	1.49
++++ wm-apps.inc	25 May 2008 14:49:05 -0000	1.50
+@@ -241,7 +241,7 @@
+ APPLET_LIST += WMSYSTRAY
+ 
+ WMTEMP_NAME=wmtemp
+-WMTEMP_VERSION=0.0.5
++WMTEMP_VERSION=0.0.6
+ WMTEMP_TAR=$(WMTEMP_NAME)-$(WMTEMP_VERSION).tar.gz
+ WMTEMP_URL=http://gnodde.org/$(WMTEMP_NAME)/$(WMTEMP_TAR)
+ 
+@@ -264,7 +264,7 @@
+ WMUPMON_NAME=wmupmon
+ WMUPMON_VERSION=0.1.3
+ WMUPMON_TAR=$(WMUPMON_NAME)-$(WMUPMON_VERSION).tar.gz
+-WMUPMON_URL=http://j-z-s.com/projects/downloads/$(WMUPMON_TAR)
++WMUPMON_URL=ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMUPMON_TAR)
+ 
+ APPLET_LIST += WMUPMON
+ 
+@@ -283,7 +283,7 @@
+ APPLET_LIST += WMWEATHER
+ 
+ WMWEATHERPLUS_NAME=wmweather+
+-WMWEATHERPLUS_VERSION=2.9
++WMWEATHERPLUS_VERSION=2.11
+ WMWEATHERPLUS_TAR=$(WMWEATHERPLUS_NAME)-$(WMWEATHERPLUS_VERSION).tar.gz
+ WMWEATHERPLUS_URL=http://easynews.dl.sourceforge.net/sourceforge/wmweatherplus/$(WMWEATHERPLUS_TAR)
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Sun May 25 19:57:17 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sun, 25 May 2008 19:57:17 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS libical.spec,1.7,1.8
+Message-ID: <4839A87D.mail5Y111ARNL@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv7664/SPECS
+
+Modified Files:
+	libical.spec 
+Log Message:
+updated libical tp 0.31
+
+
+Index: libical.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/libical.spec,v
+retrieving revision 1.7
+retrieving revision 1.8
+diff -u -r1.7 -r1.8
+--- libical.spec	28 Oct 2007 14:56:40 -0000	1.7
++++ libical.spec	25 May 2008 17:57:14 -0000	1.8
+@@ -1,5 +1,5 @@
+ %define	name	libical
+-%define	version	0.27
++%define	version	0.31
+ %define release 1%{?dist}
+ 
+ Summary:	An implementation of basic iCAL protocols
+@@ -10,7 +10,6 @@
+ Group:		Development/Libraries/C and C++
+ URL:		http://softwarestudio.org/libical/
+ Source0:	http://easynews.dl.sourceforge.net/sourceforge/freeassociation/%name-%version.tar.gz
+-#Patch0:		%name.diff
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+@@ -32,49 +31,45 @@
+ #%patch0
+ 
+ %build
+- 
+ ./configure \
+-     --prefix=%{_prefix} \
+-     --exec-prefix=%{_prefix} \
+-     --enable-shared \
+-     --libdir=%{_libdir}
++	--prefix=%{_prefix} \
++	--exec-prefix=%{_prefix} \
++	--enable-shared \
++	--libdir=%{_libdir}
+ 
+ make
+ 
+ %install
+-rm -rf examples/.deps/
+-rm -rf examples/.libs
++rm -rf $RPM_BUILD_ROOT
+ 
+ make install DESTDIR=$RPM_BUILD_ROOT
+ 
+ mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}/scripts/
+ install -m 644 scripts/*.pl $RPM_BUILD_ROOT%{_datadir}/%{name}/scripts/
+-#rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/scripts/
+-rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/doc/Makefil*
+-rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/examples/Makefil*
+ 
+ %clean
+ rm -rf $RPM_BUILD_ROOT
+ 
+ %files
+ %defattr(-,root,root)
+-%doc README AUTHORS ChangeLog NEWS TEST THANKS TODO doc examples
++%doc README AUTHORS ChangeLog NEWS TEST THANKS TODO doc/AddingOrModifyingComponents.txt doc/UsingLibical.txt
+ %{_libdir}/*.so.*
+-%dir %{_datadir}/libical
+-%{_datadir}/libical/zoneinfo/*
+-%{_datadir}/libical/scripts/*
+ 
+ %files devel
+ %defattr(-,root,root)
+ %{_libdir}/*.*a
+ %{_libdir}/*.so
+ %{_includedir}/*.h
++%{_datadir}/libical/scripts/*
+ 
+ %post -p /sbin/ldconfig
+ 
+ %postun -p /sbin/ldconfig
+ 
+ %changelog
++* Sun May 25 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.31-1
++- new version.
++
+ * Thu Oct 11 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.27-1
+ - new version.
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Sun May 25 19:57:17 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sun, 25 May 2008 19:57:17 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.17,
+	1.18
+Message-ID: <4839A87D.mail5Y411BVT8@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv7664/include
+
+Modified Files:
+	misc-apps.inc 
+Log Message:
+updated libical tp 0.31
+
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.17
+retrieving revision 1.18
+diff -u -r1.17 -r1.18
+--- misc-apps.inc	25 May 2008 14:49:05 -0000	1.17
++++ misc-apps.inc	25 May 2008 17:57:15 -0000	1.18
+@@ -84,7 +84,7 @@
+ APPLET_LIST += LIBDOCKAPP
+ 
+ LIBICAL_NAME=libical
+-LIBICAL_VERSION=0.30
++LIBICAL_VERSION=0.31
+ LIBICAL_TAR=$(LIBICAL_NAME)-$(LIBICAL_VERSION).tar.gz
+ LIBICAL_URL=http://easynews.dl.sourceforge.net/sourceforge/freeassociation/$(LIBICAL_TAR)
+ 
+
+
+

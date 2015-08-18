@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.5-ImageMagick.patch, NONE, 1.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SOURCES%0A%20AfterStep-2.2.5-ImageMagick.patch%2C%20NONE%2C%201.1&In-Reply-To=%3C463227E7.mail3P1B4NPX%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000008.html">
+   <LINK REL="Next"  HREF="000010.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.5-ImageMagick.patch, NONE, 1.1</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SOURCES%0A%20AfterStep-2.2.5-ImageMagick.patch%2C%20NONE%2C%201.1&In-Reply-To=%3C463227E7.mail3P1B4NPX%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.5-ImageMagick.patch, NONE, 1.1">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Fri Apr 27 18:42:15 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000008.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.49,	1.50
+</A></li>
+        <LI>Next message: <A HREF="000010.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS aterm.spec,1.21,1.22
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#9">[ date ]</a>
+              <a href="thread.html#9">[ thread ]</a>
+              <a href="subject.html#9">[ subject ]</a>
+              <a href="author.html#9">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv31217/SOURCES
+
+Added Files:
+	AfterStep-2.2.5-ImageMagick.patch 
+Log Message:
+added ImageMagick patch for desktop entry.  Under FC6, &quot;display&quot; wants a term.
+
+
+--- NEW FILE: AfterStep-2.2.5-ImageMagick.patch ---
+--- afterstep/applications/graphics.desktop	2006-11-24 05:31:33.000000000 -0600
++++ afterstep/applications/graphics.desktop	2007-04-27 11:25:15.000000000 -0500
+@@ -204,7 +204,7 @@
+ Comment=X application for displaying and manipulating images
+ Exec=display
+ Icon=normal/View
+-Terminal=false
++Terminal=true
+ Type=Application
+ Encoding=UTF-8
+ Categories=Graphics
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000008.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.49,	1.50
+</A></li>
+	<LI>Next message: <A HREF="000010.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS aterm.spec,1.21,1.22
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#9">[ date ]</a>
+              <a href="thread.html#9">[ thread ]</a>
+              <a href="subject.html#9">[ subject ]</a>
+              <a href="author.html#9">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

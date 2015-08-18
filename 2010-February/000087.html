@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec,1.11,1.12
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20fotoxx.spec%2C1.11%2C1.12&In-Reply-To=%3C4B68F28C.mail3P01N6IEF%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000088.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec,1.11,1.12</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20fotoxx.spec%2C1.11%2C1.12&In-Reply-To=%3C4B68F28C.mail3P01N6IEF%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec,1.11,1.12">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Wed Feb  3 04:50:36 CET 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000088.html">[Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.30,	1.31
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#87">[ date ]</a>
+              <a href="thread.html#87">[ thread ]</a>
+              <a href="subject.html#87">[ subject ]</a>
+              <a href="author.html#87">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv4739/SPECS
+
+Modified Files:
+	fotoxx.spec 
+Log Message:
+updates to hvclock, stalonetray, fotoxx.
+
+
+Index: fotoxx.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/fotoxx.spec,v
+retrieving revision 1.11
+retrieving revision 1.12
+diff -u -r1.11 -r1.12
+--- fotoxx.spec	17 Jan 2010 03:39:04 -0000	1.11
++++ fotoxx.spec	3 Feb 2010 03:50:33 -0000	1.12
+@@ -1,5 +1,5 @@
+ %define name fotoxx
+-%define version 9.3
++%define version 9.5
+ %define release 1%{?dist}
+ 
+ Summary: application for processing image files from a digital camera
+@@ -55,8 +55,7 @@
+ %install
+ rm -rf $RPM_BUILD_ROOT
+ 
+-make install DESTDIR=$RPM_BUILD_ROOT PREFIX=%{_prefix} \
+-	DOCDIR=%{_datadir}/doc/%{name}-%{version}
++make install DESTDIR=$RPM_BUILD_ROOT PREFIX=%{_prefix}
+ 
+ #Install application link for X-Windows
+ echo -e &quot;[Desktop Entry]
+@@ -94,6 +93,12 @@
+ %{_mandir}/man1/*.gz
+ 
+ %changelog
++* Mon Feb 01 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 9.5-1
++- new version.
++
++* Mon Jan 18 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 9.4-1
++- new version.
++
+ * Fri Jan 15 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 9.3-1
+ - new version.
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000088.html">[Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.30,	1.31
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#87">[ date ]</a>
+              <a href="thread.html#87">[ thread ]</a>
+              <a href="subject.html#87">[ subject ]</a>
+              <a href="author.html#87">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

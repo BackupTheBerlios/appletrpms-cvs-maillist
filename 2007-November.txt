@@ -1,0 +1,406 @@
+From rpm_speedy at mail.berlios.de  Thu Nov  1 18:39:35 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Thu, 01 Nov 2007 18:39:35 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS rxvt-unicode.spec, 1.3,
+	1.4
+Message-ID: <472A0F57.mailBG6117J0N@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv12066/SPECS
+
+Modified Files:
+	rxvt-unicode.spec 
+Log Message:
+updated rxvt to 8.4, added docs patch.
+
+
+Index: rxvt-unicode.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/rxvt-unicode.spec,v
+retrieving revision 1.3
+retrieving revision 1.4
+diff -u -r1.3 -r1.4
+--- rxvt-unicode.spec	28 Oct 2007 14:56:40 -0000	1.3
++++ rxvt-unicode.spec	1 Nov 2007 17:39:32 -0000	1.4
+@@ -14,6 +14,7 @@
+ Group:		User Interface/X
+ URL:		http://software.schmorp.de/pkg/rxvt-unicode.html
+ Source0:	http://dist.schmorp.de/rxvt-unicode/%{name}-%{version}.tar.bz2
++Patch0:		%{name}-%{version}-docs.patch
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires:	perl-devel libXpm-devel libXft-devel freetype-devel
+ BuildRequires:	libAfterImage-devel >= 1.15
+
+
+
+From rpm_speedy at mail.berlios.de  Thu Nov  1 18:42:07 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Thu, 01 Nov 2007 18:42:07 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SOURCES
+	rxvt-unicode-8.4-docs.patch, NONE, 1.1
+Message-ID: <472A0FEF.mailEG71153QP@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv17293
+
+Added Files:
+	rxvt-unicode-8.4-docs.patch 
+Log Message:
+added patch for urxvt doc errors.
+
+
+--- NEW FILE: rxvt-unicode-8.4-docs.patch ---
+--- doc/rxvt.1.man.in	2007-10-27 07:07:31.000000000 -0500
++++ doc/rxvt.1.man.in	2007-10-29 09:39:06.000000000 -0500
+@@ -260,7 +260,8 @@
+ used to brighten or darken the image in addition to tinting it.
+ Please note that certain tint colours can be applied on the server\-side,
+ thus yielding performance gain of two orders of magnitude. These colours are:
+-blue, red, green, cyan, magenta, yellow, and those close to them; resource
++blue, red, green, cyan, magenta, yellow, and those close to them. Also
++pure black and pure white colors essentialy mean no tinting; resource
+ \&\fItintColor\fR. Example:
+ .Sp
+ .Vb 1
+@@ -268,7 +269,7 @@
+ .Ve
+ .IP "\fB\-sh\fR \fInumber\fR" 4
+ .IX Item "-sh number"
+-Darken (0 .. 100) or lighten (\-1 .. \-100) the transparent
++Darken (0 .. 100) or lighten (100 .. 200) the transparent
+ background image in addition to (or instead of) tinting it;
+ resource \fIshading\fR.
+ .IP "\fB\-blt\fR \fIstring\fR" 4
+--- doc/rxvt.1.pod	2007-10-27 07:01:23.000000000 -0500
++++ doc/rxvt.1.pod	2007-10-29 09:40:30.000000000 -0500
+@@ -148,13 +148,14 @@
+ Please note that certain tint colours can be applied on the server-side,
+ thus yielding performance gain of two orders of magnitude. These colours are:
+ blue, red, green, cyan, magenta, yellow, and those close to them; resource
++pure black and pure white colors essentialy mean no tinting; resource
+ I<tintColor>. Example:
+ 
+    @@RXVT_NAME@@ -tr -tint blue -sh 40
+ 
+ =item B<-sh> I<number>
+ 
+-Darken (0 .. 100) or lighten (-1 .. -100) the transparent
++Darken (0 .. 100) or lighten (100 .. 200) the transparent
+ background image in addition to (or instead of) tinting it;
+ resource I<shading>.
+ 
+--- doc/rxvt.7.pod	2007-10-24 05:40:28.000000000 -0500
++++ doc/rxvt.7.pod	2007-10-29 09:42:52.000000000 -0500
+@@ -218,10 +218,10 @@
+ Here are four ways to get transparency. B<Do> read the manpage and option
+ descriptions for the programs mentioned and rxvt-unicode. Really, do it!
+ 
+-1. Use inheritPixmap:
++1. Use transparent mode:
+ 
+    Esetroot wallpaper.jpg
+-   @@URXVT_NAME@@ -ip -tint red -sh 40
++   @@URXVT_NAME@@ -tr -tint red -sh 40
+ 
+ That works. If you think it doesn't, you lack transparency and tinting
+ support, or you are unable to read.
+@@ -2367,8 +2367,7 @@
+ 
+ =item --enable-transparency (default: on)
+ 
+-Add support for inheriting parent backgrounds thus giving a fake
+-transparency to the term.
++Add support for backgrounds, creating illusion of transparency in the term.
+ 
+ =item --enable-fading (default: on)
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Fri Nov  9 17:15:10 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 09 Nov 2007 17:15:10 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS aspostit.spec, 1.5,
+ 1.6  aterm.spec, 1.23, 1.24 speyes.spec, 1.5, 1.6 trayer.spec, 1.2,
+ 1.3  wmeyes.spec, 1.5, 1.6
+Message-ID: <4734878E.mailLHS11I8CJ@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv27685/SPECS
+
+Modified Files:
+	aspostit.spec aterm.spec speyes.spec trayer.spec wmeyes.spec 
+Log Message:
+added aterm, trayer patches, added requires to wmeyes, speyes, aspostit
+
+
+Index: aspostit.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/aspostit.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- aspostit.spec	27 Apr 2007 16:09:17 -0000	1.5
++++ aspostit.spec	9 Nov 2007 16:15:08 -0000	1.6
+@@ -1,6 +1,6 @@
+ %define name aspostit
+ %define version 1.3
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: Post-It notes
+ Name: %name
+@@ -11,6 +11,8 @@
+ URL: http://tigr.net/afterstep/view.php?applet=aspostit/data
+ Source0: http://tigr.net/afterstep/download/%{name}/%{name}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
++Requires: libXaw
++Buildrequires: libXaw-devel
+ 
+ %description
+ A swallowable applet allows you to ceate notes in post-it like
+@@ -44,6 +46,9 @@
+ 
+ 
+ %changelog
++* Thu Nov 08 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.3-5
++- added requires for libXaw.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.3-4
+ - added distro info to release.
+ 
+
+Index: aterm.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/aterm.spec,v
+retrieving revision 1.23
+retrieving revision 1.24
+diff -u -r1.23 -r1.24
+--- aterm.spec	23 Aug 2007 14:24:27 -0000	1.23
++++ aterm.spec	9 Nov 2007 16:15:08 -0000	1.24
+@@ -2,7 +2,7 @@
+ %define aiver	%aitest 
+ %define	name	aterm
+ %define	version	1.0.1
+-%define	release	1%{?dist}
++%define	release	3%{?dist}
+ %define epoch	2
+ 
+ Summary:	aterm - terminal emulator in an X window
+@@ -14,6 +14,7 @@
+ Group:		Applications/X11
+ URL:		http://aterm.sourceforge.net
+ Patch0:		%{name}-%{version}-main.c.patch
++Patch1:		%{name}-%{version}-screen.c.patch
+ Source:		ftp://ftp.afterstep.org/apps/aterm/%{name}-%{version}.tar.gz
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires:	libAfterImage-devel
+@@ -33,6 +34,7 @@
+ %prep
+ %setup -q
+ %patch0
++%patch1
+ 
+ LD_LIBRARY_PATH=../AfterStep-%{asversion}/libAfterBase \
+         CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix} \
+@@ -79,6 +81,9 @@
+ #%config(missingok) /etc/X11/wmconfig/aterm
+ 
+ %changelog
++* Fri Nov 09 2007 J. Krebs <rpm_speedy at yahoo.com> 2:1.0.1-3
++- added patches for cut and paste, borderless.
++
+ * Tue Aug 21 2007 J. Krebs <rpm_speedy at yahoo.com> 2:1.0.1-1
+ - new version, linked to libAfterImage from AS 2.2.7.
+ 
+
+Index: speyes.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/speyes.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- speyes.spec	27 Apr 2007 16:09:18 -0000	1.5
++++ speyes.spec	9 Nov 2007 16:15:08 -0000	1.6
+@@ -1,6 +1,6 @@
+ %define name speyes
+ %define version 1.2.0
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: South Park-themed wmeyes
+ Name: %name
+@@ -12,6 +12,8 @@
+ Source0: http://okb-1.org/speyes/%{name}-%{version}.tar.gz
+ Source1: %{name}.man
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
++Requires: libXmu
++Buildrequires: libXmu-devel
+ 
+ %description
+ South Park-themed wmeyes.
+@@ -41,6 +43,9 @@
+ 
+ 
+ %changelog
++* Thu Nov 08 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.8.0-5
++- added requires for libXmu and libXmu-devel.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.8.0-4
+ - added distro info to release.
+ 
+
+Index: trayer.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/trayer.spec,v
+retrieving revision 1.2
+retrieving revision 1.3
+diff -u -r1.2 -r1.3
+--- trayer.spec	27 Apr 2007 16:09:18 -0000	1.2
++++ trayer.spec	9 Nov 2007 16:15:08 -0000	1.3
+@@ -25,7 +25,7 @@
+ 
+ %define name trayer
+ %define version 1.0
+-%define release 2%{?dist}
++%define release 3%{?dist}
+ 
+ Summary: A lightweight GTK2-based systray for UNIX desktop
+ Name: %name
+@@ -35,6 +35,7 @@
+ Group: User Interface/Desktops
+ URL: http://fvwm-crystal.org/
+ Source0: http://download.gna.org/fvwm-crystal/%{name}/%{version}/%{name}-%{version}.tar.gz
++Patch0: %{name}-%{version}-Makefile.common.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+@@ -42,6 +43,7 @@
+ 
+ %prep
+ %setup -q
++%patch0
+ 
+ %build
+ make PREFIX=%{_prefix}
+@@ -61,6 +63,9 @@
+ %doc CREDITS COPYING CHANGELOG README
+ 
+ %changelog
++* Thu Nov 08 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.0-3
++- added patch for gtk issues (thanks Team Debian).
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.0-2
+ - added distro info to release.
+ 
+
+Index: wmeyes.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmeyes.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmeyes.spec	27 Apr 2007 16:09:18 -0000	1.5
++++ wmeyes.spec	9 Nov 2007 16:15:08 -0000	1.6
+@@ -1,6 +1,6 @@
+ %define name wmeyes
+ %define version 1.2
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: wmeyes is a dockapp with moving eyes that follow mouse movement
+ Name: %name
+@@ -12,6 +12,8 @@
+ Source0: %{name}-%{version}.tar.gz
+ Source1: %{name}.man
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
++Requires: libXmu
++Buildrequires: libXmu-devel
+ 
+ %description
+ wmeyes is a dockapp with moving eyes that follow mouse movement.
+@@ -41,6 +43,9 @@
+ 
+ 
+ %changelog
++* Thu Nov 08 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.2-5
++- added requires for libXmu and libXmu-devel.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.2-4
+ - added distro info to release.
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Fri Nov  9 17:15:10 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 09 Nov 2007 17:15:10 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SOURCES
+ aterm-1.0.1-screen.c.patch, NONE, 1.1  trayer-1.0-Makefile.common.patch,
+ NONE, 1.1 aterm-1.0.1-main.c.patch, 1.1, 1.2
+Message-ID: <4734878E.mailLHP119RXJ@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv27685/SOURCES
+
+Modified Files:
+	aterm-1.0.1-main.c.patch 
+Added Files:
+	aterm-1.0.1-screen.c.patch trayer-1.0-Makefile.common.patch 
+Log Message:
+added aterm, trayer patches, added requires to wmeyes, speyes, aspostit
+
+
+--- NEW FILE: aterm-1.0.1-screen.c.patch ---
+--- src/screen.c	2006-03-29 16:32:07.000000000 -0600
++++ src/screen.c	2007-11-09 09:48:50.000000000 -0600
+@@ -2883,7 +2883,7 @@
+         selection.type = 1;
+ 		/* "fix" for the high-ascii pasting? : */
+ 		/* may need to try all three : aterm_XA_UTF8_STRING, _XA_COMPAUND_TEXT and XA_STRING in that order */
+-		XConvertSelection(Xdisplay, XA_PRIMARY, XA_STRING, aterm_XA_VT_SELECTION, TermWin.vt,tm);
++		XConvertSelection(Xdisplay, XA_PRIMARY, _XA_COMPAUND_TEXT, aterm_XA_VT_SELECTION, TermWin.vt,tm);
+ /*	XConvertSelection(Xdisplay, XA_PRIMARY, _XA_COMPAUND_TEXT, prop, TermWin.vt,tm); */
+     }
+ }
+
+--- NEW FILE: trayer-1.0-Makefile.common.patch ---
+--- Makefile.common	2004-06-02 01:15:37.000000000 -0500
++++ Makefile.common	2007-11-08 23:23:20.000000000 -0600
+@@ -25,7 +25,7 @@
+ endif
+ 
+ # -DGTK_DISABLE_DEPRECATED does not work yet
+-CFLAGS += -DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED
++CFLAGS += -DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED
+ 
+ %.o: %.c
+ 	$(CC) $(CFLAGS) $(INCS) -c $<
+
+Index: aterm-1.0.1-main.c.patch
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SOURCES/aterm-1.0.1-main.c.patch,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- aterm-1.0.1-main.c.patch	27 Aug 2007 17:48:26 -0000	1.1
++++ aterm-1.0.1-main.c.patch	9 Nov 2007 16:15:08 -0000	1.2
+@@ -1,14 +1,5 @@
+ --- src/main.c	2007-08-01 09:08:29.000000000 -0500
+-+++ src/main.c	2007-08-21 22:18:10.000000000 -0500
+-@@ -32,7 +32,7 @@
+-  *----------------------------------------------------------------------*/
+- 
+- #ifndef lint
+--static const char rcsid[] = "$Id$";
+-+static const char rcsid[] = "$Id$";
+- #endif
+- 
+- #define INTERN			/* assign all global vars to me */
+++++ src/main.c	2007-11-09 09:54:17.000000000 -0600
+ @@ -741,6 +741,7 @@
+  
+  
+
+
+

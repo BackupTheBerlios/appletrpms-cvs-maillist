@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.4.disableKDEglobals.patch, NONE, 1.1  AfterStep-2.2.4.menu.pictures.patch, NONE, 1.1 Propaganda-KDE-Desktop, NONE, 1.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SOURCES%0A%20AfterStep-2.2.4.disableKDEglobals.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.4.menu.pictures.patch%2C%20NONE%2C%201.1%20Propaganda-KDE-Desktop%2C%0A%20NONE%2C%201.1&In-Reply-To=%3C45EAEB0D.mailCVZ190L41%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000000.html">
+   <LINK REL="Next"  HREF="000002.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.4.disableKDEglobals.patch, NONE, 1.1  AfterStep-2.2.4.menu.pictures.patch, NONE, 1.1 Propaganda-KDE-Desktop, NONE, 1.1</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SOURCES%0A%20AfterStep-2.2.4.disableKDEglobals.patch%2C%20NONE%2C%0A%201.1%20%20AfterStep-2.2.4.menu.pictures.patch%2C%20NONE%2C%201.1%20Propaganda-KDE-Desktop%2C%0A%20NONE%2C%201.1&In-Reply-To=%3C45EAEB0D.mailCVZ190L41%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.4.disableKDEglobals.patch, NONE, 1.1  AfterStep-2.2.4.menu.pictures.patch, NONE, 1.1 Propaganda-KDE-Desktop, NONE, 1.1">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Sun Mar  4 16:51:41 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000000.html">[Appletrpms-cvs] CVS: afterapps-specs/include as-apps.inc, 1.9, 1.10  misc-apps.inc, 1.11, 1.12 wm-apps.inc, 1.41, 1.42
+</A></li>
+        <LI>Next message: <A HREF="000002.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS wmflame.spec,1.4,1.5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1">[ date ]</a>
+              <a href="thread.html#1">[ thread ]</a>
+              <a href="subject.html#1">[ subject ]</a>
+              <a href="author.html#1">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv16642
+
+Added Files:
+	AfterStep-2.2.4.disableKDEglobals.patch 
+	AfterStep-2.2.4.menu.pictures.patch Propaganda-KDE-Desktop 
+Log Message:
+minor AfterStep 2.2.4 patches, added Propaganda patch
+
+
+--- NEW FILE: AfterStep-2.2.4.disableKDEglobals.patch ---
+--- src/afterstep/configure.c	2006-09-26 18:45:18.000000000 -0500
++++ src/afterstep/configure.c	2007-02-23 13:12:13.000000000 -0600
+@@ -1697,6 +1697,7 @@
+             }
+         	if( UpdateGtkRC(Environment) ) 
+ 				ExecuteFunction (&amp;gtkrc_signal_func, &amp;dummy_event, -1);
++			if( !get_flags(Environment-&gt;flags,ASE_NoKDEGlobalsTheming ) )
+ 			if( UpdateKCSRC() ) 
+ 				ExecuteFunction (&amp;kde_signal_func, &amp;dummy_event, -1);
+ 		}
+@@ -1785,6 +1786,7 @@
+         what = PARSE_EVERYTHING ;
+ 		if( UpdateGtkRC(Environment) ) 
+ 			ExecuteFunction (&amp;gtkrc_signal_func, &amp;dummy_event, -1);
++		if( !get_flags(Environment-&gt;flags,ASE_NoKDEGlobalsTheming ) )
+ 		UpdateKCSRC();
+     }
+ 
+
+--- NEW FILE: AfterStep-2.2.4.menu.pictures.patch ---
+--- afterstep/start/1_Desktop/Pictures/.include.in	2006-10-02 20:48:15.000000000 -0500
++++ afterstep/start/1_Desktop/Pictures/.include.in	2007-02-24 21:49:44.000000000 -0600
+@@ -9,5 +9,6 @@
+ include &quot;@datadir@/afterstep/backgrounds&quot; Background
+ include &quot;@with_afterdir@/backgrounds&quot; Background
+ include &quot;/usr/share/pixmaps/backgrounds&quot; BackgroundForeign
++include &quot;/usr/share/backgrounds&quot; BackgroundForeign
+ include &quot;/usr/local/share/pixmaps/backgrounds&quot; BackgroundForeign
+ command Background
+
+--- NEW FILE: Propaganda-KDE-Desktop ---
+# KDE Config File
+[URL properties]
+Toolbar=top
+LocationBar=hide
+Menubar=top
+HTMLView=yes
+Statusbar=show
+ViewMode=IconView
+ShowDotFiles=yes
+TreeView=Off
+VisualSchnauzer=Off
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000000.html">[Appletrpms-cvs] CVS: afterapps-specs/include as-apps.inc, 1.9, 1.10  misc-apps.inc, 1.11, 1.12 wm-apps.inc, 1.41, 1.42
+</A></li>
+	<LI>Next message: <A HREF="000002.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS wmflame.spec,1.4,1.5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1">[ date ]</a>
+              <a href="thread.html#1">[ thread ]</a>
+              <a href="subject.html#1">[ subject ]</a>
+              <a href="author.html#1">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

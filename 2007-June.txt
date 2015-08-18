@@ -1,0 +1,625 @@
+From rpm_speedy at mail.berlios.de  Fri Jun 15 05:08:01 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 15 Jun 2007 05:08:01 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.53,
+ 1.54  wmwifi.spec, 1.5, 1.6
+Message-ID: <46720291.mail7BW1LB2C1@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv9445
+
+Modified Files:
+	AfterStep.spec wmwifi.spec 
+Log Message:
+new version of AfterStep, fixed IFNAMSIZ build on wmwifi.
+
+
+Index: AfterStep.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/AfterStep.spec,v
+retrieving revision 1.53
+retrieving revision 1.54
+diff -u -r1.53 -r1.54
+--- AfterStep.spec	5 May 2007 04:28:10 -0000	1.53
++++ AfterStep.spec	15 Jun 2007 03:07:59 -0000	1.54
+@@ -17,10 +17,17 @@
+ %if %{fedora}
+   %define generic 0
+   %define fcver $(grep release /etc/fedora-release | cut -d ' ' -f4)
++  %define fver $(grep release /etc/fedora-release | cut -d ' ' -f2)
++  %define fedora7 %(if [ %fver -eq release ]; then echo 1; else echo 0; fi;)
++  %{?_with_fedora7:   %{expand: %%global fedora7 1}}
+   %define fedora5 %(if [ %fcver -ge 5 ]; then echo 1; else echo 0; fi;)
+   %{?_with_fedora5:   %{expand: %%global fedora5 1}}
+   %define fedora4 %(if [ %fcver -le 4 ]; then echo 1; else echo 0; fi;)
+   %{?_with_fedora4:   %{expand: %%global fedora4 1}}  
++  %if %{fedora7}
++    %define fedora5 1
++    %define fedora4 0
++  %endif
+ %endif
+ 
+ #%if %{suse}
+@@ -32,8 +39,8 @@
+ ### END Distro Definitions
+ 
+ %define	name AfterStep
+-%define	version	2.2.5
+-%define release 3%{?dist}
++%define	version	2.2.6
++%define release 1%{?dist}
+ %define epoch 20
+ 
+ Summary:	AfterStep Window Manager (NeXTalike)
+@@ -54,9 +61,8 @@
+ Source6: 	afterstep.desktop.xsessions
+ Source7: 	afterstep.desktop.wm-properties
+ Source8:	afterstep.fedora.README
+-Source9: 	AfterStep-2.2.5-Propaganda-setup.tar.gz
+-Patch0:		%{name}-%{version}-ImageMagick.patch
+-Patch1:		%{name}-%{version}-MMX.patch
++Patch0:		%{name}-2.2.5-ImageMagick.patch
++Patch1:		%{name}-%{version}-ttf.patch
+ Distribution:	The AfterStep TEAM
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ Requires:	%{name}-libs = %{epoch}:%{version}
+@@ -199,10 +205,6 @@
+ %multiarch_binaries $RPM_BUILD_ROOT%{_bindir}/asgtk-config
+ %endif
+ 
+-#add Propaganda Menu files
+-cd $RPM_BUILD_ROOT/%{_datadir}
+-tar xvf %{SOURCE9}
+-
+ %clean
+ rm -rf $RPM_BUILD_ROOT
+ 
+@@ -278,6 +280,9 @@
+ if [ -x /usr/sbin/fndSession ]; then /usr/sbin/fndSession || true ; fi
+ 
+ %changelog
++* Wed May 030 2007 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.6-1
++- new version.
++
+ * Fri May 04 2007 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.5-3
+ - added rpm macro libdir to configure.
+ 
+
+Index: wmwifi.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmwifi.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmwifi.spec	18 Oct 2006 21:13:11 -0000	1.5
++++ wmwifi.spec	15 Jun 2007 03:07:59 -0000	1.6
+@@ -23,13 +23,9 @@
+ %endif
+ ### END Distro Definitions
+ 
+-%define __prefix /usr
+-%define _bindir %{__prefix}/bin
+-%define _datadir %{__prefix}/share
+-%define _mandir %{_datadir}/man
+ %define name wmwifi
+ %define version 0.6
+-%define release 1
++%define release 2
+ 
+ Summary: WiFi dockapp displays signal, link, noise, & bitrate info in LCD format
+ Name: %name
+@@ -39,6 +35,8 @@
+ Group: AfterStep/Applets
+ URL: http://wmwifi.digitalssg.net/
+ Source0: http://digitalssg.net/debian/%{name}-%{version}.tar.gz
++Patch0: %{name}-%{version}-wireless.c.patch
++Patch1: %{name}-%{version}-%{name}.h.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+ 
+ %if %{mdk}
+@@ -56,9 +54,11 @@
+  
+ %prep
+ %setup -q
++%patch0
++%patch1
+ 
+ %build
+-./configure --prefix=%{__prefix} --with-x --mandir=%{_mandir}
++./configure --prefix=%{_prefix} --with-x --mandir=%{_mandir}
+ make
+ 
+ %install
+@@ -75,8 +75,10 @@
+ %{_mandir}/man1/*
+ %doc AUTHORS COPYING ChangeLog INSTALL NEWS README
+ 
+-
+ %changelog
++* Thu Jun 14 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.6-2
++- fixed IFNAMSIZ build issues under FC6.
++
+ * Mon Apr 17 2006 J. Krebs <rpm_speedy at yahoo.com> - 0.6-1
+ - new version.
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Fri Jun 15 05:13:20 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 15 Jun 2007 05:13:20 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SOURCES
+	wmwifi-0.6-wireless.c.patch, NONE,
+	1.1 wmwifi-0.6-wmwifi.h.patch, NONE,
+	1.1 AfterStep-2.2.6-ttf.patch, NONE, 1.1
+Message-ID: <467203D0.mail7S311I2PK@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv10050
+
+Added Files:
+	wmwifi-0.6-wireless.c.patch wmwifi-0.6-wmwifi.h.patch 
+	AfterStep-2.2.6-ttf.patch 
+Log Message:
+added patches for wmwifi, ttf patch for AS.
+
+
+--- NEW FILE: wmwifi-0.6-wireless.c.patch ---
+--- src/wireless.c	2006-03-15 07:50:52.000000000 -0600
++++ src/wireless.c	2007-06-14 18:47:24.000000000 -0500
+@@ -9,6 +9,7 @@
+ #include <net/ethernet.h>
+ #include <linux/if.h>
+ #include <linux/socket.h>
++#include <linux/if.h>
+ #include <linux/wireless.h>
+ 
+ /*
+
+--- NEW FILE: wmwifi-0.6-wmwifi.h.patch ---
+--- src/wmwifi.h	2006-03-14 10:12:19.000000000 -0600
++++ src/wmwifi.h	2007-06-14 19:18:59.000000000 -0500
+@@ -12,6 +12,7 @@
+ #include <netdb.h>		/* gethostbyname, getnetbyname */
+ #include <net/ethernet.h>	/* struct ether_addr */
+ #include <sys/time.h>		/* struct timeval */
++#include <linux/if.h>
+ #include <linux/wireless.h>
+ 
+ #define KILO    1e3
+
+--- NEW FILE: AfterStep-2.2.6-ttf.patch ---
+--- autoconf/configure.in	2007-05-15 15:42:02.000000000 -0500
++++ autoconf/configure.in	2007-05-30 19:50:22.000000000 -0500
+@@ -70,8 +70,8 @@
+ AC_ARG_WITH(tiff_includes,  	[  --with-tiff-includes=DIR use TIFF includes in DIR], tiff_includes="$withval", tiff_includes=NO)
+ AC_ARG_WITH(svg,		[  --with-svg               support SVG image format via librsvg 2.0 [[yes]]])
+ 
+-AC_ARG_WITH(tff,		[  --with-ttf               support True Type Fonts via FreeType library [[yes]]])
+-AC_ARG_WITH(tff_includes,   	[  --with-ttf-includes=DIR  use FreeType includes in DIR], ttf_includes="$withval", ttf_includes=NO)
++AC_ARG_WITH(ttf,		[  --with-ttf               support True Type Fonts via FreeType library [[yes]]])
++AC_ARG_WITH(ttf_includes,   	[  --with-ttf-includes=DIR  use FreeType includes in DIR], ttf_includes="$withval", ttf_includes=NO)
+ AC_ARG_WITH(gtk,	    	[  --with-gtk               use GTK 2.0 widget libraries where possible [[yes]]])
+ 
+ dnl# compile-time switches
+--- libAfterImage/configure.in	2007-05-15 15:42:02.000000000 -0500
++++ libAfterImage/configure.in	2007-05-30 19:50:23.000000000 -0500
+@@ -57,8 +57,8 @@
+ AC_ARG_WITH(tiff_includes,  [  --with-tiff-includes=DIR use TIFF includes in DIR], tiff_includes="$withval", tiff_includes=NO)
+ AC_ARG_WITH(svg,		    [  --with-svg               support SVG image format via librsvg [yes]])
+ 
+-AC_ARG_WITH(tff,		    [  --with-ttf               support True Type Fonts via FreeType library [yes]])
+-AC_ARG_WITH(tff_includes,   [  --with-ttf-includes=DIR  use FreeType includes in DIR], ttf_includes="$withval", ttf_includes=NO)
++AC_ARG_WITH(ttf,		    [  --with-ttf               support True Type Fonts via FreeType library [yes]])
++AC_ARG_WITH(ttf_includes,   [  --with-ttf-includes=DIR  use FreeType includes in DIR], ttf_includes="$withval", ttf_includes=NO)
+ 
+ AC_ARG_WITH(afterbase,		    [  --with-afterbase               use libAfterBase library of basic functionality [yes]])
+ AC_ARG_WITH(afterbase_includes, [  --with-afterbase-includes=DIR  use libAfterBase includes in DIR], afterbase_includes="$withval", afterbase_includes=NO)
+--- libAfterImage/configure	2007-05-15 15:42:02.000000000 -0500
++++ libAfterImage/configure	2007-05-30 19:50:23.000000000 -0500
+@@ -1574,15 +1574,15 @@
+ fi;
+ 
+ 
+-# Check whether --with-tff or --without-tff was given.
+-if test "${with_tff+set}" = set; then
+-  withval="$with_tff"
++# Check whether --with-ttf or --without-ttf was given.
++if test "${with_ttf+set}" = set; then
++  withval="$with_ttf"
+ 
+ fi;
+ 
+-# Check whether --with-tff_includes or --without-tff_includes was given.
+-if test "${with_tff_includes+set}" = set; then
+-  withval="$with_tff_includes"
++# Check whether --with-ttf_includes or --without-ttf_includes was given.
++if test "${with_ttf_includes+set}" = set; then
++  withval="$with_ttf_includes"
+   ttf_includes="$withval"
+ else
+   ttf_includes=NO
+--- configure	2007-05-15 15:42:02.000000000 -0500
++++ configure	2007-05-30 19:50:19.000000000 -0500
+@@ -1593,15 +1593,15 @@
+ fi;
+ 
+ 
+-# Check whether --with-tff or --without-tff was given.
+-if test "${with_tff+set}" = set; then
+-  withval="$with_tff"
++# Check whether --with-ttf or --without-ttf was given.
++if test "${with_ttf+set}" = set; then
++  withval="$with_ttf"
+ 
+ fi;
+ 
+-# Check whether --with-tff_includes or --without-tff_includes was given.
+-if test "${with_tff_includes+set}" = set; then
+-  withval="$with_tff_includes"
++# Check whether --with-ttf_includes or --without-ttf_includes was given.
++if test "${with_ttf_includes+set}" = set; then
++  withval="$with_ttf_includes"
+   ttf_includes="$withval"
+ else
+   ttf_includes=NO
+
+
+
+From rpm_speedy at mail.berlios.de  Fri Jun 15 05:14:23 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 15 Jun 2007 05:14:23 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.18,
+	1.19
+Message-ID: <4672040F.mail7TX1KIE6M@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv10093/include
+
+Modified Files:
+	core-apps.inc 
+Log Message:
+updated AS version to 2.2.6.
+
+
+Index: core-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/core-apps.inc,v
+retrieving revision 1.18
+retrieving revision 1.19
+diff -u -r1.18 -r1.19
+--- core-apps.inc	27 Apr 2007 16:09:18 -0000	1.18
++++ core-apps.inc	15 Jun 2007 03:14:21 -0000	1.19
+@@ -3,7 +3,7 @@
+ # This is for the core, like AfterStep itself
+ 
+ AFTERSTEP_NAME=AfterStep
+-AFTERSTEP_VERSION=2.2.5
++AFTERSTEP_VERSION=2.2.6
+ AFTERSTEP_TAR=$(AFTERSTEP_NAME)-$(AFTERSTEP_VERSION).tar.gz
+ AFTERSTEP_URL=ftp://ftp.afterstep.org/stable/$(AFTERSTEP_TAR)
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Fri Jun 15 05:46:19 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 15 Jun 2007 05:46:19 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.54,
+ 1.55  wmwifi.spec, 1.6, 1.7
+Message-ID: <46720B8B.mail98C112Y7B@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv11920/SPECS
+
+Modified Files:
+	AfterStep.spec wmwifi.spec 
+Log Message:
+fixed a comparator in AS.spec, added distro info to wmwifi.
+
+
+Index: AfterStep.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/AfterStep.spec,v
+retrieving revision 1.54
+retrieving revision 1.55
+diff -u -r1.54 -r1.55
+--- AfterStep.spec	15 Jun 2007 03:07:59 -0000	1.54
++++ AfterStep.spec	15 Jun 2007 03:46:16 -0000	1.55
+@@ -18,7 +18,7 @@
+   %define generic 0
+   %define fcver $(grep release /etc/fedora-release | cut -d ' ' -f4)
+   %define fver $(grep release /etc/fedora-release | cut -d ' ' -f2)
+-  %define fedora7 %(if [ %fver -eq release ]; then echo 1; else echo 0; fi;)
++  %define fedora7 %(if [ %fver = release ]; then echo 1; else echo 0; fi;)
+   %{?_with_fedora7:   %{expand: %%global fedora7 1}}
+   %define fedora5 %(if [ %fcver -ge 5 ]; then echo 1; else echo 0; fi;)
+   %{?_with_fedora5:   %{expand: %%global fedora5 1}}
+@@ -40,7 +40,7 @@
+ 
+ %define	name AfterStep
+ %define	version	2.2.6
+-%define release 1%{?dist}
++%define release 2%{?dist}
+ %define epoch 20
+ 
+ Summary:	AfterStep Window Manager (NeXTalike)
+@@ -280,7 +280,10 @@
+ if [ -x /usr/sbin/fndSession ]; then /usr/sbin/fndSession || true ; fi
+ 
+ %changelog
+-* Wed May 030 2007 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.6-1
++* Thu Jun 14 2007 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.6-2
++- added test for F7.
++
++* Wed May 30 2007 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.6-1
+ - new version.
+ 
+ * Fri May 04 2007 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.5-3
+
+Index: wmwifi.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmwifi.spec,v
+retrieving revision 1.6
+retrieving revision 1.7
+diff -u -r1.6 -r1.7
+--- wmwifi.spec	15 Jun 2007 03:07:59 -0000	1.6
++++ wmwifi.spec	15 Jun 2007 03:46:17 -0000	1.7
+@@ -25,7 +25,7 @@
+ 
+ %define name wmwifi
+ %define version 0.6
+-%define release 2
++%define release 2%{?dist}
+ 
+ Summary: WiFi dockapp displays signal, link, noise, & bitrate info in LCD format
+ Name: %name
+@@ -37,7 +37,7 @@
+ Source0: http://digitalssg.net/debian/%{name}-%{version}.tar.gz
+ Patch0: %{name}-%{version}-wireless.c.patch
+ Patch1: %{name}-%{version}-%{name}.h.patch
+-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
++BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %if %{mdk}
+ Requires: libdockapp0
+
+
+
+From rpm_speedy at mail.berlios.de  Sat Jun 16 06:53:37 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sat, 16 Jun 2007 06:53:37 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS bubblemon-dockapp.spec,
+ 1.10, 1.11  wmcalendar.spec, 1.16, 1.17 wmclockmon.spec, 1.9,
+ 1.10 wmfishtime.spec, 1.5, 1.6
+Message-ID: <46736CD1.mailFYV117G7M@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv20295/SPECS
+
+Modified Files:
+	bubblemon-dockapp.spec wmcalendar.spec wmclockmon.spec 
+	wmfishtime.spec 
+Log Message:
+added dependencies and cleanup.
+
+
+Index: bubblemon-dockapp.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/bubblemon-dockapp.spec,v
+retrieving revision 1.10
+retrieving revision 1.11
+diff -u -r1.10 -r1.11
+--- bubblemon-dockapp.spec	27 Apr 2007 16:09:18 -0000	1.10
++++ bubblemon-dockapp.spec	16 Jun 2007 04:53:34 -0000	1.11
+@@ -25,7 +25,7 @@
+ 
+ %define name bubblemon-dockapp
+ %define version 1.46
+-%define release 5%{?dist}
++%define release 6%{?dist}
+ 
+ Summary: system monitoring dockapp based-on GNOME BubbleMon
+ Name: %name
+@@ -37,9 +37,13 @@
+ Source0: http://www.ne.jp/asahi/linux/timecop/software/%{name}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ %if %{mdk}
+-Requires: libgtk+1.2-devel
++Requires: libgtk+1.2
++Buildrequires: libgtk+1.2-devel
+ %endif
+ %if %{fedora}
++Requires: gtk+
++Requires: gdk-pixbuf
++BuildRequires: gtk+-devel
+ BuildRequires: gdk-pixbuf-devel
+ %endif
+ 
+@@ -81,6 +85,9 @@
+ %doc ChangeLog INSTALL README SUPPORTED_SYSTEMS doc/COPYING doc/Xdefaults.sample
+ 
+ %changelog
++* Fri Jun 15 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.46-6
++- added require for gtk+-devel, gtk+.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.46-5
+ - added distro info to release.
+ 
+
+Index: wmcalendar.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmcalendar.spec,v
+retrieving revision 1.16
+retrieving revision 1.17
+diff -u -r1.16 -r1.17
+--- wmcalendar.spec	27 Apr 2007 16:09:18 -0000	1.16
++++ wmcalendar.spec	16 Jun 2007 04:53:34 -0000	1.17
+@@ -25,7 +25,7 @@
+ 
+ %define name wmcalendar
+ %define version 0.5.2
+-%define release 2%{?dist}
++%define release 3%{?dist}
+ 
+ Summary: wmCalendar is a calendar dockapp
+ Name: %name
+@@ -37,7 +37,6 @@
+ Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
+ Source1: %{name}.ogo2ical
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-Buildrequires: libical
+ Requires: libical
+ Buildrequires: libical-devel
+ 
+@@ -89,6 +88,9 @@
+ 
+ 
+ %changelog
++* Fri Jun  15 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.5.2-3
++- spec file cleanup.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.5.2-2
+ - added distro info to release.
+ 
+
+Index: wmclockmon.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmclockmon.spec,v
+retrieving revision 1.9
+retrieving revision 1.10
+diff -u -r1.9 -r1.10
+--- wmclockmon.spec	27 Apr 2007 16:09:18 -0000	1.9
++++ wmclockmon.spec	16 Jun 2007 04:53:34 -0000	1.10
+@@ -1,6 +1,31 @@
++### BEGIN Distro Defines
++%define mdk  %(if [ -e /etc/mandrake-release ]; then echo 1; else echo 0; fi;)
++%{?_with_mdk:   %{expand: %%global mdk 1}}
++
++%define fedora  %(if [ -e /etc/fedora-release ]; then echo 1; else echo 0; fi;)
++%{?_with_fedora:   %{expand: %%global fedora 1}}
++
++%define suse %(if [ -e /etc/SuSE-release ]; then echo 1; else echo 0; fi;)
++%{?_with_suse:   %{expand: %%global suse 1}}
++
++%define generic 1
++
++%if %{mdk}
++  %define generic 0
++%endif
++
++%if %{fedora}
++  %define generic 0
++%endif
++
++%if %{suse}
++  %define generic 0
++%endif
++### END Distro Definitions
++
+ %define name wmclockmon
+ %define version 0.8.1
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: digital clock with 7 different styles in either LCD or LED style
+ Name: %name
+@@ -11,6 +36,16 @@
+ URL: http://tnemeth.free.fr/projets/dockapps.html
+ Source0: http://tnemeth.free.fr/projets/programmes/%{name}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
++%if %{mdk}
++Requires: libgtk+1.2
++Buildrequires: libgtk+1.2-devel
++%endif
++%if %{fedora}
++Requires: gtk+
++Requires: gdk-pixbuf
++BuildRequires: gtk+-devel
++BuildRequires: gdk-pixbuf-devel
++%endif
+ 
+ %description
+ wmclockmon is a nice digital clock with 7 different styles in either
+@@ -50,6 +85,9 @@
+ %doc doc/sample*.wmclockmonrc AUTHORS BUGS COPYING ChangeLog INSTALL NEWS README THANKS TODO
+ 
+ %changelog
++* Fri Jun 15 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.8.1-5
++- added require for gtk+-devel, gtk+.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.8.1-4
+ - added distro info to release.
+ 
+
+Index: wmfishtime.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmfishtime.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmfishtime.spec	27 Apr 2007 16:09:18 -0000	1.5
++++ wmfishtime.spec	16 Jun 2007 04:53:34 -0000	1.6
+@@ -1,6 +1,31 @@
++### BEGIN Distro Defines
++%define mdk  %(if [ -e /etc/mandrake-release ]; then echo 1; else echo 0; fi;)
++%{?_with_mdk:   %{expand: %%global mdk 1}}
++
++%define fedora  %(if [ -e /etc/fedora-release ]; then echo 1; else echo 0; fi;)
++%{?_with_fedora:   %{expand: %%global fedora 1}}
++
++%define suse %(if [ -e /etc/SuSE-release ]; then echo 1; else echo 0; fi;)
++%{?_with_suse:   %{expand: %%global suse 1}}
++
++%define generic 1
++
++%if %{mdk}
++  %define generic 0
++%endif
++
++%if %{fedora}
++  %define generic 0
++%endif
++
++%if %{suse}
++  %define generic 0
++%endif
++### END Distro Definitions
++
+ %define name wmfishtime
+ %define version 1.24
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: clock dockapp with fish
+ Name: %name
+@@ -11,6 +36,16 @@
+ URL: http://www.ne.jp/asahi/linux/timecop/
+ Source0: http://www.ne.jp/asahi/linux/timecop/software/%{name}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
++%if %{mdk}
++Requires: libgtk+1.2
++Buildrequires: libgtk+1.2-devel
++%endif
++%if %{fedora}
++Requires: gtk+
++Requires: gdk-pixbuf
++BuildRequires: gtk+-devel
++BuildRequires: gdk-pixbuf-devel
++%endif
+ 
+ %description
+ Well, this is just your standard time dockapp. Top part has the clock face,
+@@ -48,6 +83,9 @@
+ 
+ 
+ %changelog
++* Fri Jun 15 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.24-5
++- added require for gtk+-devel, gtk+.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.24-4
+ - added distro info to release.
+ 
+
+
+

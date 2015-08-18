@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.53, 1.54  wmwifi.spec, 1.5, 1.6
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2007-June/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20AfterStep.spec%2C%201.53%2C%0A%201.54%20%20wmwifi.spec%2C%201.5%2C%201.6&In-Reply-To=%3C46720291.mail7BW1LB2C1%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000018.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.53, 1.54  wmwifi.spec, 1.5, 1.6</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20AfterStep.spec%2C%201.53%2C%0A%201.54%20%20wmwifi.spec%2C%201.5%2C%201.6&In-Reply-To=%3C46720291.mail7BW1LB2C1%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.53, 1.54  wmwifi.spec, 1.5, 1.6">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Fri Jun 15 05:08:01 CEST 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000018.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES	wmwifi-0.6-wireless.c.patch, NONE,	1.1 wmwifi-0.6-wmwifi.h.patch, NONE,	1.1 AfterStep-2.2.6-ttf.patch, NONE, 1.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#17">[ date ]</a>
+              <a href="thread.html#17">[ thread ]</a>
+              <a href="subject.html#17">[ subject ]</a>
+              <a href="author.html#17">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv9445
+
+Modified Files:
+	AfterStep.spec wmwifi.spec 
+Log Message:
+new version of AfterStep, fixed IFNAMSIZ build on wmwifi.
+
+
+Index: AfterStep.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/AfterStep.spec,v
+retrieving revision 1.53
+retrieving revision 1.54
+diff -u -r1.53 -r1.54
+--- AfterStep.spec	5 May 2007 04:28:10 -0000	1.53
++++ AfterStep.spec	15 Jun 2007 03:07:59 -0000	1.54
+@@ -17,10 +17,17 @@
+ %if %{fedora}
+   %define generic 0
+   %define fcver $(grep release /etc/fedora-release | cut -d ' ' -f4)
++  %define fver $(grep release /etc/fedora-release | cut -d ' ' -f2)
++  %define fedora7 %(if [ %fver -eq release ]; then echo 1; else echo 0; fi;)
++  %{?_with_fedora7:   %{expand: %%global fedora7 1}}
+   %define fedora5 %(if [ %fcver -ge 5 ]; then echo 1; else echo 0; fi;)
+   %{?_with_fedora5:   %{expand: %%global fedora5 1}}
+   %define fedora4 %(if [ %fcver -le 4 ]; then echo 1; else echo 0; fi;)
+   %{?_with_fedora4:   %{expand: %%global fedora4 1}}  
++  %if %{fedora7}
++    %define fedora5 1
++    %define fedora4 0
++  %endif
+ %endif
+ 
+ #%if %{suse}
+@@ -32,8 +39,8 @@
+ ### END Distro Definitions
+ 
+ %define	name AfterStep
+-%define	version	2.2.5
+-%define release 3%{?dist}
++%define	version	2.2.6
++%define release 1%{?dist}
+ %define epoch 20
+ 
+ Summary:	AfterStep Window Manager (NeXTalike)
+@@ -54,9 +61,8 @@
+ Source6: 	afterstep.desktop.xsessions
+ Source7: 	afterstep.desktop.wm-properties
+ Source8:	afterstep.fedora.README
+-Source9: 	AfterStep-2.2.5-Propaganda-setup.tar.gz
+-Patch0:		%{name}-%{version}-ImageMagick.patch
+-Patch1:		%{name}-%{version}-MMX.patch
++Patch0:		%{name}-2.2.5-ImageMagick.patch
++Patch1:		%{name}-%{version}-ttf.patch
+ Distribution:	The AfterStep TEAM
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ Requires:	%{name}-libs = %{epoch}:%{version}
+@@ -199,10 +205,6 @@
+ %multiarch_binaries $RPM_BUILD_ROOT%{_bindir}/asgtk-config
+ %endif
+ 
+-#add Propaganda Menu files
+-cd $RPM_BUILD_ROOT/%{_datadir}
+-tar xvf %{SOURCE9}
+-
+ %clean
+ rm -rf $RPM_BUILD_ROOT
+ 
+@@ -278,6 +280,9 @@
+ if [ -x /usr/sbin/fndSession ]; then /usr/sbin/fndSession || true ; fi
+ 
+ %changelog
++* Wed May 030 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 20:2.2.6-1
++- new version.
++
+ * Fri May 04 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 20:2.2.5-3
+ - added rpm macro libdir to configure.
+ 
+
+Index: wmwifi.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmwifi.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmwifi.spec	18 Oct 2006 21:13:11 -0000	1.5
++++ wmwifi.spec	15 Jun 2007 03:07:59 -0000	1.6
+@@ -23,13 +23,9 @@
+ %endif
+ ### END Distro Definitions
+ 
+-%define __prefix /usr
+-%define _bindir %{__prefix}/bin
+-%define _datadir %{__prefix}/share
+-%define _mandir %{_datadir}/man
+ %define name wmwifi
+ %define version 0.6
+-%define release 1
++%define release 2
+ 
+ Summary: WiFi dockapp displays signal, link, noise, &amp; bitrate info in LCD format
+ Name: %name
+@@ -39,6 +35,8 @@
+ Group: AfterStep/Applets
+ URL: <A HREF="http://wmwifi.digitalssg.net/">http://wmwifi.digitalssg.net/</A>
+ Source0: <A HREF="http://digitalssg.net/debian/%{name">http://digitalssg.net/debian/%{name</A>}-%{version}.tar.gz
++Patch0: %{name}-%{version}-wireless.c.patch
++Patch1: %{name}-%{version}-%{name}.h.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+ 
+ %if %{mdk}
+@@ -56,9 +54,11 @@
+  
+ %prep
+ %setup -q
++%patch0
++%patch1
+ 
+ %build
+-./configure --prefix=%{__prefix} --with-x --mandir=%{_mandir}
++./configure --prefix=%{_prefix} --with-x --mandir=%{_mandir}
+ make
+ 
+ %install
+@@ -75,8 +75,10 @@
+ %{_mandir}/man1/*
+ %doc AUTHORS COPYING ChangeLog INSTALL NEWS README
+ 
+-
+ %changelog
++* Thu Jun 14 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.6-2
++- fixed IFNAMSIZ build issues under FC6.
++
+ * Mon Apr 17 2006 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.6-1
+ - new version.
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000018.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES	wmwifi-0.6-wireless.c.patch, NONE,	1.1 wmwifi-0.6-wmwifi.h.patch, NONE,	1.1 AfterStep-2.2.6-ttf.patch, NONE, 1.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#17">[ date ]</a>
+              <a href="thread.html#17">[ thread ]</a>
+              <a href="subject.html#17">[ subject ]</a>
+              <a href="author.html#17">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

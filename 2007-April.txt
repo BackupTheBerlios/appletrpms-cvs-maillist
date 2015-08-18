@@ -1,0 +1,304 @@
+From rpm_speedy at mail.berlios.de  Fri Apr 27 18:09:20 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 27 Apr 2007 18:09:20 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include as-apps.inc, 1.10,
+ 1.11  core-apps.inc, 1.17, 1.18
+Message-ID: <46322030.mail5AK11V86J@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv6658/include
+
+Modified Files:
+	as-apps.inc core-apps.inc 
+Log Message:
+added {?dist} tag, new versions of AfterStep, asmem, asmail.
+
+
+Index: as-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/as-apps.inc,v
+retrieving revision 1.10
+retrieving revision 1.11
+diff -u -r1.10 -r1.11
+--- as-apps.inc	4 Mar 2007 15:46:13 -0000	1.10
++++ as-apps.inc	27 Apr 2007 16:09:18 -0000	1.11
+@@ -45,14 +45,14 @@
+ APPLET_LIST += ASLOAD
+ 
+ ASMAIL_NAME=asmail
+-ASMAIL_VERSION=2.0
++ASMAIL_VERSION=2.1
+ ASMAIL_TAR=$(ASMAIL_NAME)-$(ASMAIL_VERSION).tar.gz
+ ASMAIL_URL=http://tigr.net/afterstep/download/$(ASMAIL_NAME)/$(ASMAIL_TAR)
+ 
+ APPLET_LIST += ASMAIL
+ 
+ ASMEM_NAME=asmem
+-ASMEM_VERSION=1.10
++ASMEM_VERSION=1.12
+ ASMEM_TAR=$(ASMEM_NAME)-$(ASMEM_VERSION).tar.gz
+ ASMEM_URL=http://tigr.net/afterstep/download/$(ASMEM_NAME)/$(ASMEM_TAR)
+ 
+
+Index: core-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/core-apps.inc,v
+retrieving revision 1.17
+retrieving revision 1.18
+diff -u -r1.17 -r1.18
+--- core-apps.inc	25 Nov 2006 18:47:08 -0000	1.17
++++ core-apps.inc	27 Apr 2007 16:09:18 -0000	1.18
+@@ -3,7 +3,7 @@
+ # This is for the core, like AfterStep itself
+ 
+ AFTERSTEP_NAME=AfterStep
+-AFTERSTEP_VERSION=2.2.4
++AFTERSTEP_VERSION=2.2.5
+ AFTERSTEP_TAR=$(AFTERSTEP_NAME)-$(AFTERSTEP_VERSION).tar.gz
+ AFTERSTEP_URL=ftp://ftp.afterstep.org/stable/$(AFTERSTEP_TAR)
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Fri Apr 27 18:42:15 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 27 Apr 2007 18:42:15 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.49,
+	1.50
+Message-ID: <463227E7.mail3W19PLDA@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv31217/SPECS
+
+Modified Files:
+	AfterStep.spec 
+Log Message:
+added ImageMagick patch for desktop entry.  Under FC6, "display" wants a term.
+
+
+Index: AfterStep.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/AfterStep.spec,v
+retrieving revision 1.49
+retrieving revision 1.50
+diff -u -r1.49 -r1.50
+--- AfterStep.spec	27 Apr 2007 16:09:17 -0000	1.49
++++ AfterStep.spec	27 Apr 2007 16:42:12 -0000	1.50
+@@ -54,6 +54,7 @@
+ Source6: 	afterstep.desktop.xsessions
+ Source7: 	afterstep.desktop.wm-properties
+ Source8:	afterstep.fedora.README
++Patch0:		%{name}-%{version}-ImageMagick.patch
+ Distribution:	The AfterStep TEAM
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ Requires:	%{name}-libs = %{epoch}:%{version}
+@@ -116,6 +117,7 @@
+ 
+ %prep
+ %setup -q -n %{name}-%{version}
++%patch0
+ 
+ %build
+ CFLAGS=$RPM_OPT_FLAGS \
+
+
+
+From rpm_speedy at mail.berlios.de  Fri Apr 27 18:42:15 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 27 Apr 2007 18:42:15 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SOURCES
+ AfterStep-2.2.5-ImageMagick.patch, NONE, 1.1
+Message-ID: <463227E7.mail3P1B4NPX@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv31217/SOURCES
+
+Added Files:
+	AfterStep-2.2.5-ImageMagick.patch 
+Log Message:
+added ImageMagick patch for desktop entry.  Under FC6, "display" wants a term.
+
+
+--- NEW FILE: AfterStep-2.2.5-ImageMagick.patch ---
+--- afterstep/applications/graphics.desktop	2006-11-24 05:31:33.000000000 -0600
++++ afterstep/applications/graphics.desktop	2007-04-27 11:25:15.000000000 -0500
+@@ -204,7 +204,7 @@
+ Comment=X application for displaying and manipulating images
+ Exec=display
+ Icon=normal/View
+-Terminal=false
++Terminal=true
+ Type=Application
+ Encoding=UTF-8
+ Categories=Graphics
+
+
+
+From rpm_speedy at mail.berlios.de  Fri Apr 27 19:04:05 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 27 Apr 2007 19:04:05 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS aterm.spec,1.21,1.22
+Message-ID: <46322D05.mailKQD1V83JQ@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv26096/SPECS
+
+Modified Files:
+	aterm.spec 
+Log Message:
+updated aterm for 2.2.5 release.
+
+
+Index: aterm.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/aterm.spec,v
+retrieving revision 1.21
+retrieving revision 1.22
+diff -u -r1.21 -r1.22
+--- aterm.spec	27 Apr 2007 16:09:17 -0000	1.21
++++ aterm.spec	27 Apr 2007 17:04:02 -0000	1.22
+@@ -2,7 +2,7 @@
+ %define asver %astest 
+ %define	name	aterm
+ %define	version	1.0.0
+-%define	release	8%{?dist}
++%define	release	9%{?dist}
+ %define epoch	2
+ 
+ Summary:	aterm - terminal emulator in an X window
+@@ -59,6 +59,9 @@
+ #%config(missingok) /etc/X11/wmconfig/aterm
+ 
+ %changelog
++* Fri Apr 27 2007 J. Krebs <rpm_speedy at yahoo.com> 1.0.0-9
++- rebuild to coincide with AS 2.2.5 release.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> 1.0.0-8
+ - added distro info to release.
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Fri Apr 27 23:31:41 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 27 Apr 2007 23:31:41 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.50,
+	1.51
+Message-ID: <46326BBD.mail7H411ARL8@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv9573/SPECS
+
+Modified Files:
+	AfterStep.spec 
+Log Message:
+Menu entry files for Propaganda images.
+
+
+Index: AfterStep.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/AfterStep.spec,v
+retrieving revision 1.50
+retrieving revision 1.51
+diff -u -r1.50 -r1.51
+--- AfterStep.spec	27 Apr 2007 16:42:12 -0000	1.50
++++ AfterStep.spec	27 Apr 2007 21:31:39 -0000	1.51
+@@ -54,6 +54,7 @@
+ Source6: 	afterstep.desktop.xsessions
+ Source7: 	afterstep.desktop.wm-properties
+ Source8:	afterstep.fedora.README
++Source9: 	AfterStep-2.2.5-Propaganda-setup.tar.gz
+ Patch0:		%{name}-%{version}-ImageMagick.patch
+ Distribution:	The AfterStep TEAM
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+@@ -161,42 +162,46 @@
+ install -m 0755 %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/switchdesk/Xclients.afterstep
+ install -d $RPM_BUILD_ROOT/etc/X11/gdm/Sessions/
+ install -m 0755 %{SOURCE2} $RPM_BUILD_ROOT/etc/X11/gdm/Sessions/afterstep
+-install -d %{buildroot}%{_datadir}/xsessions/
+-install -m 0644 %{SOURCE6} %{buildroot}%{_datadir}/xsessions/afterstep.desktop
+-install -d %{buildroot}%{_datadir}/gnome/wm-properties/
+-install -m 0644 %{SOURCE7} %{buildroot}%{_datadir}/gnome/wm-properties/afterstep.desktop
+-rm -f %{buildroot}%{_datadir}/gnome/wm-properties/AfterStep.desktop
+-rm -f %{buildroot}%{_datadir}/xsessions/AfterStep.desktop
++install -d $RPM_BUILD_ROOT%{_datadir}/xsessions/
++install -m 0644 %{SOURCE6} $RPM_BUILD_ROOT%{_datadir}/xsessions/afterstep.desktop
++install -d $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties/
++install -m 0644 %{SOURCE7} $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties/afterstep.desktop
++rm -f $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties/AfterStep.desktop
++rm -f $RPM_BUILD_ROOT%{_datadir}/xsessions/AfterStep.desktop
+ %endif
+ 
+ #fedora core 5 and later gdm setup
+ %if %{fedora5}
+-install -d %{buildroot}%{_datadir}/xsessions/
+-install -m 0644 %{SOURCE6} %{buildroot}%{_datadir}/xsessions/afterstep.desktop
+-rm -f %{buildroot}%{_datadir}/gnome/wm-properties/AfterStep.desktop
+-rm -f %{buildroot}%{_datadir}/xsessions/AfterStep.desktop
++install -d $RPM_BUILD_ROOT%{_datadir}/xsessions/
++install -m 0644 %{SOURCE6} $RPM_BUILD_ROOT%{_datadir}/xsessions/afterstep.desktop
++rm -f $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties/AfterStep.desktop
++rm -f $RPM_BUILD_ROOT%{_datadir}/xsessions/AfterStep.desktop
+ %endif
+ 
+ # mandrake/mandriva menu items
+ %if %{mdk}
+ install -d $RPM_BUILD_ROOT/etc/X11/wmsession.d/
+ install -m 0644 %{SOURCE3} $RPM_BUILD_ROOT/etc/X11/wmsession.d/42AfterStep
+-install -d $RPM_BUILD_ROOT/usr/lib/menu/afterstep
+-install -m 0644 %{SOURCE4} $RPM_BUILD_ROOT/usr/lib/menu/afterstep
++install -d $RPM_BUILD_ROOT%{_libdir}/menu/afterstep
++install -m 0644 %{SOURCE4} $RPM_BUILD_ROOT%{_libdir}/menu/afterstep
+ install -d $RPM_BUILD_ROOT/etc/menu-methods/
+ install -m 0755 %{SOURCE5} $RPM_BUILD_ROOT/etc/menu-methods/AfterStep
+ %endif
+ 
+ %if %{ismultiarch}
+-#mkdir -p %{buildroot}%{multiarch_bindir}
+-%multiarch_binaries %{buildroot}%{_bindir}/afterimage-config
+-%multiarch_binaries %{buildroot}%{_bindir}/afterimage-libs
+-%multiarch_binaries %{buildroot}%{_bindir}/afterstep-config
+-%multiarch_binaries %{buildroot}%{_bindir}/asgtk-config
++#mkdir -p $RPM_BUILD_ROOT%{multiarch_bindir}
++%multiarch_binaries $RPM_BUILD_ROOT%{_bindir}/afterimage-config
++%multiarch_binaries $RPM_BUILD_ROOT%{_bindir}/afterimage-libs
++%multiarch_binaries $RPM_BUILD_ROOT%{_bindir}/afterstep-config
++%multiarch_binaries $RPM_BUILD_ROOT%{_bindir}/asgtk-config
+ %endif
+ 
++#add Propaganda Menu files
++cd $RPM_BUILD_ROOT/%{_datadir}
++tar xvf %{SOURCE9}
++
+ %clean
+-rm -rf %{buildroot}
++rm -rf $RPM_BUILD_ROOT
+ 
+ %files
+ %defattr(-,root,root)
+@@ -211,7 +216,7 @@
+ %config /etc/X11/wmsession.d/42AfterStep
+ %{_sysconfdir}/menu-methods/AfterStep
+ %{_datadir}/xsessions/AfterStep.desktop
+-%config /usr/lib/menu/afterstep/AfterStep.menu
++%config %{_libdir}/menu/afterstep/AfterStep.menu
+ %endif
+ %if %{fedora5}
+ %{_datadir}/xsessions/afterstep.desktop
+
+
+
+From rpm_speedy at mail.berlios.de  Fri Apr 27 23:31:41 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 27 Apr 2007 23:31:41 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SOURCES
+ AfterStep-2.2.5-Propaganda-setup.tar.gz, NONE, 1.1
+Message-ID: <46326BBD.mail7H111OA6E@sheep.berlios.de>
+
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/octet-stream
+Size: 6022 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/appletrpms-cvs/attachments/20070427/e7f9747f/attachment.obj>
+

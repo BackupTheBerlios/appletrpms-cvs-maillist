@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.62, 1.63  fotoxx.spec, 1.8, 1.9
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20AfterStep.spec%2C%201.62%2C%0A%201.63%20%20fotoxx.spec%2C%201.8%2C%201.9&In-Reply-To=%3C4AEE69C9.mailG6E11BO2S%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000077.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.62, 1.63  fotoxx.spec, 1.8, 1.9</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20AfterStep.spec%2C%201.62%2C%0A%201.63%20%20fotoxx.spec%2C%201.8%2C%201.9&In-Reply-To=%3C4AEE69C9.mailG6E11BO2S%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.62, 1.63  fotoxx.spec, 1.8, 1.9">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Mon Nov  2 06:10:33 CET 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000077.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.9-ASDocGen.c.patch, NONE, 1.1  AfterStep-2.2.9-AfterStep.c.patch, NONE, 1.1  AfterStep-2.2.9-Database.c.patch, NONE, 1.1  AfterStep-2.2.9-Feel.c.patch, NONE, 1.1 AfterStep-2.2.9-NEW.patch, NONE, 1.1  AfterStep-2.2.9-Pager.c.patch, NONE, 1.1  AfterStep-2.2.9-WinList.c.patch, NONE, 1.1  AfterStep-2.2.9-WinTabs.c.patch, NONE, 1.1  AfterStep-2.2.9-afterbase.c.patch, NONE, 1.1  AfterStep-2.2.9-afterconf.h.patch, NONE, 1.1  AfterStep-2.2.9-afterstep.c.patch, NONE, 1.1  AfterStep-2.2.9-asapp.c.patch, NONE, 1.1  AfterStep-2.2.9-ascolor.c.patch, NONE, 1.1  AfterStep-2.2.9-asdatabase.h.patch, NONE, 1.1  AfterStep-2.2.9-asfeel.h.patch, NONE, 1.1  AfterStep-2.2.9-asim_afterbase.h.patch, NONE, 1.1  AfterStep-2.2.9-asimbrowser.c.patch, NONE, 1.1  AfterStep-2.2.9-configure.c.patch, NONE, 1.1  AfterStep-2.2.9-hints.c.patch, NONE, 1.1  AfterStep-2.2.9-hints.h.patch, NONE, 1.1  AfterStep-2.2.9-pager.c.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-Database.c.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-Pager.c.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-afterconf.h.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-asdatabase.h.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-hints.c.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-hints.h.patch, 1.1, NONE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#76">[ date ]</a>
+              <a href="thread.html#76">[ thread ]</a>
+              <a href="subject.html#76">[ subject ]</a>
+              <a href="author.html#76">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv20854/SPECS
+
+Modified Files:
+	AfterStep.spec fotoxx.spec 
+Log Message:
+brought AfterStep up to date with cvs, patches for -v fix, other fixes.
+
+
+Index: AfterStep.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/AfterStep.spec,v
+retrieving revision 1.62
+retrieving revision 1.63
+diff -u -r1.62 -r1.63
+--- AfterStep.spec	13 Sep 2009 18:53:35 -0000	1.62
++++ AfterStep.spec	2 Nov 2009 05:10:31 -0000	1.63
+@@ -42,9 +42,9 @@
+ %define	version	2.2.9
+ %define	libaiver	1.19
+ %define	libabver	1.13
+-%define	libairel	2%{?dist}
+-%define	libabrel	2%{?dist}
+-%define release 2%{?dist}
++%define	libairel	3%{?dist}
++%define	libabrel	3%{?dist}
++%define release 3%{?dist}
+ %define epoch 20
+ 
+ Summary:	AfterStep Window Manager (NeXTalike)
+@@ -70,20 +70,34 @@
+ Patch1:		%{name}-2.2.7-winlist.patch
+ Patch2:		%{name}-2.2.7-pager.patch
+ Patch3:		%{name}-2.2.9-asgtklookedit.c.patch
+-Patch4:		AfterStep-2.2.9-ascompose.c.patch
+-Patch5:		AfterStep-2.2.9-screen.c.patch
+-Patch6:		AfterStep-2.2.9-SkipPager-afterconf.h.patch
+-Patch7:		AfterStep-2.2.9-SkipPager-asdatabase.h.patch
+-Patch8:		AfterStep-2.2.9-SkipPager-Database.c.patch
+-Patch9:		AfterStep-2.2.9-SkipPager-hints.c.patch
+-Patch10:	AfterStep-2.2.9-SkipPager-hints.h.patch
+-Patch11:	AfterStep-2.2.9-SkipPager-Pager.c.patch
++Patch4:		%{name}-2.2.9-ascompose.c.patch
++Patch5:		%{name}-2.2.9-screen.c.patch
++Patch6:		%{name}-2.2.9-asdatabase.h.patch
++Patch7:		%{name}-2.2.9-Database.c.patch
++Patch8:		%{name}-2.2.9-hints.c.patch
++Patch9:		%{name}-2.2.9-hints.h.patch
++Patch10:	%{name}-2.2.9-afterbase.c.patch
++Patch11:	%{name}-2.2.9-afterconf.h.patch
++Patch12:	%{name}-2.2.9-afterstep.c.patch
++Patch13:	%{name}-2.2.9-AfterStep.c.patch
++Patch14:	%{name}-2.2.9-asapp.c.patch
++Patch15:	%{name}-2.2.9-ascolor.c.patch
++Patch16:	%{name}-2.2.9-ASDocGen.c.patch
++Patch17:	%{name}-2.2.9-asfeel.h.patch
++Patch18:	%{name}-2.2.9-asim_afterbase.h.patch
++Patch19:	%{name}-2.2.9-asimbrowser.c.patch
++Patch20:	%{name}-2.2.9-configure.c.patch
++Patch21:	%{name}-2.2.9-Feel.c.patch
++Patch22:	%{name}-2.2.9-NEW.patch
++Patch23:	%{name}-2.2.9-pager.c.patch
++Patch24:	%{name}-2.2.9-Pager.c.patch
++Patch25:	%{name}-2.2.9-WinList.c.patch
++Patch26:	%{name}-2.2.9-WinTabs.c.patch
+ Distribution:	The AfterStep TEAM
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ %if %{mdk}
+ Obsoletes:	libAfterStep1
+ %endif
+-Obsoletes:	AfterStep-libs
+ Provides:	AfterStep-libs
+ Requires: 	libAfterImage = %{epoch}:%{libaiver}-%libairel
+ Requires:	readline
+@@ -216,6 +230,21 @@
+ %patch9
+ %patch10
+ %patch11
++%patch12
++%patch13
++%patch14
++%patch15
++%patch16
++%patch17
++%patch18
++%patch19
++%patch20
++%patch21
++%patch22
++%patch23
++%patch24
++%patch25
++%patch26
+ 
+ %build
+ CFLAGS=$RPM_OPT_FLAGS \
+@@ -428,6 +457,12 @@
+ if [ -x /usr/sbin/fndSession ]; then /usr/sbin/fndSession || true ; fi
+ 
+ %changelog
++* Sun Nov 01 2009 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 20:2.2.9-3
++- added more fixes and patches for -v, brought in-line with cvs.
++
++* Thu Oct 29 2009 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 20:2.2.9-2
++- added patches for glibc segfaults.
++
+ * Thu Jul 30 2009 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 20:2.2.9-1
+ - new version.
+ 
+
+Index: fotoxx.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/fotoxx.spec,v
+retrieving revision 1.8
+retrieving revision 1.9
+diff -u -r1.8 -r1.9
+--- fotoxx.spec	29 Oct 2009 00:41:38 -0000	1.8
++++ fotoxx.spec	2 Nov 2009 05:10:31 -0000	1.9
+@@ -1,5 +1,5 @@
+ %define name fotoxx
+-%define version 8.6.1
++%define version 8.6.2
+ %define release 1%{?dist}
+ 
+ Summary: application for processing image files from a digital camera
+@@ -93,6 +93,9 @@
+ %{_mandir}/man1/*.gz
+ 
+ %changelog
++* Thu Oct 29 2009 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 8.6.2-1
++- new version.
++
+ * Mon Oct 26 2009 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 8.6.1-1
+ - new version.
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000077.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.9-ASDocGen.c.patch, NONE, 1.1  AfterStep-2.2.9-AfterStep.c.patch, NONE, 1.1  AfterStep-2.2.9-Database.c.patch, NONE, 1.1  AfterStep-2.2.9-Feel.c.patch, NONE, 1.1 AfterStep-2.2.9-NEW.patch, NONE, 1.1  AfterStep-2.2.9-Pager.c.patch, NONE, 1.1  AfterStep-2.2.9-WinList.c.patch, NONE, 1.1  AfterStep-2.2.9-WinTabs.c.patch, NONE, 1.1  AfterStep-2.2.9-afterbase.c.patch, NONE, 1.1  AfterStep-2.2.9-afterconf.h.patch, NONE, 1.1  AfterStep-2.2.9-afterstep.c.patch, NONE, 1.1  AfterStep-2.2.9-asapp.c.patch, NONE, 1.1  AfterStep-2.2.9-ascolor.c.patch, NONE, 1.1  AfterStep-2.2.9-asdatabase.h.patch, NONE, 1.1  AfterStep-2.2.9-asfeel.h.patch, NONE, 1.1  AfterStep-2.2.9-asim_afterbase.h.patch, NONE, 1.1  AfterStep-2.2.9-asimbrowser.c.patch, NONE, 1.1  AfterStep-2.2.9-configure.c.patch, NONE, 1.1  AfterStep-2.2.9-hints.c.patch, NONE, 1.1  AfterStep-2.2.9-hints.h.patch, NONE, 1.1  AfterStep-2.2.9-pager.c.patch, NONE, 1.1  AfterStep-2.2.9-SkipPager-Database.c.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-Pager.c.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-afterconf.h.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-asdatabase.h.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-hints.c.patch, 1.1, NONE  AfterStep-2.2.9-SkipPager-hints.h.patch, 1.1, NONE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#76">[ date ]</a>
+              <a href="thread.html#76">[ thread ]</a>
+              <a href="subject.html#76">[ subject ]</a>
+              <a href="author.html#76">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

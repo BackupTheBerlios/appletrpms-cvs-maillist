@@ -1,0 +1,553 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SPECS ascd.spec, 1.13, 1.14  fotoxx.spec, 1.12, 1.13 medit.spec, 1.4, 1.5 mined.spec, 1.2, 1.3  rxvt-unicode.spec, 1.9, 1.10 wmfire.spec, 1.10, 1.11 wmtz.spec, 1.5, 1.6  worker.spec, 1.7, 1.8 yudit.spec, 1.3, 1.4
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20ascd.spec%2C%201.13%2C%0A%201.14%20%20fotoxx.spec%2C%201.12%2C%201.13%20medit.spec%2C%201.4%2C%201.5%20mined.spec%2C%201.2%2C%0A%201.3%20%20rxvt-unicode.spec%2C%201.9%2C%201.10%20wmfire.spec%2C%201.10%2C%201.11%20wmtz.spec%2C%201.5%2C%0A%201.6%20%20worker.spec%2C%201.7%2C%201.8%20yudit.spec%2C%201.3%2C%201.4&In-Reply-To=%3C4BB8ECB9.mailI2C18171A%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000090.html">
+   <LINK REL="Next"  HREF="000092.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SPECS ascd.spec, 1.13, 1.14  fotoxx.spec, 1.12, 1.13 medit.spec, 1.4, 1.5 mined.spec, 1.2, 1.3  rxvt-unicode.spec, 1.9, 1.10 wmfire.spec, 1.10, 1.11 wmtz.spec, 1.5, 1.6  worker.spec, 1.7, 1.8 yudit.spec, 1.3, 1.4</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20ascd.spec%2C%201.13%2C%0A%201.14%20%20fotoxx.spec%2C%201.12%2C%201.13%20medit.spec%2C%201.4%2C%201.5%20mined.spec%2C%201.2%2C%0A%201.3%20%20rxvt-unicode.spec%2C%201.9%2C%201.10%20wmfire.spec%2C%201.10%2C%201.11%20wmtz.spec%2C%201.5%2C%0A%201.6%20%20worker.spec%2C%201.7%2C%201.8%20yudit.spec%2C%201.3%2C%201.4&In-Reply-To=%3C4BB8ECB9.mailI2C18171A%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SPECS ascd.spec, 1.13, 1.14  fotoxx.spec, 1.12, 1.13 medit.spec, 1.4, 1.5 mined.spec, 1.2, 1.3  rxvt-unicode.spec, 1.9, 1.10 wmfire.spec, 1.10, 1.11 wmtz.spec, 1.5, 1.6  worker.spec, 1.7, 1.8 yudit.spec, 1.3, 1.4">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Sun Apr  4 21:47:05 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000090.html">[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.24, 1.25  misc-apps.inc, 1.31, 1.32 wm-apps.inc, 1.55, 1.56
+</A></li>
+        <LI>Next message: <A HREF="000092.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS wmcpum.app.spec, 1.5, 1.6  wmsm.app.spec, 1.5, 1.6
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#91">[ date ]</a>
+              <a href="thread.html#91">[ thread ]</a>
+              <a href="subject.html#91">[ subject ]</a>
+              <a href="author.html#91">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv23320/SPECS
+
+Modified Files:
+	ascd.spec fotoxx.spec medit.spec mined.spec rxvt-unicode.spec 
+	wmfire.spec wmtz.spec worker.spec yudit.spec 
+Log Message:
+new versions and orphaned links.
+
+
+Index: ascd.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/ascd.spec,v
+retrieving revision 1.13
+retrieving revision 1.14
+diff -u -r1.13 -r1.14
+--- ascd.spec	13 Sep 2009 18:53:35 -0000	1.13
++++ ascd.spec	4 Apr 2010 19:47:02 -0000	1.14
+@@ -1,25 +1,25 @@
+-%define name ascd
+-%define version 0.13.2
+-%define release 8%{?dist}
+-
+-Summary: Audio CD player
+-Name: %name
+-Version: %version
+-Release: %release
+-License: GPL
+-Group: AfterStep/Applets
+-URL: <A HREF="http://worldserver.oleane.com/rsn/ascd-en.html">http://worldserver.oleane.com/rsn/ascd-en.html</A>
+-Source0: <A HREF="http://tigr.net/afterstep/download/%{name">http://tigr.net/afterstep/download/%{name</A>}/%{name}-%{version}.tar.gz
+-Source1: <A HREF="http://worldserver.oleane.com/rsn/Archives/ascd-0.13pr6-themes.tgz">http://worldserver.oleane.com/rsn/Archives/ascd-0.13pr6-themes.tgz</A>
+-Source2: <A HREF="http://worldserver.oleane.com/rsn/Archives/dwing.tgz">http://worldserver.oleane.com/rsn/Archives/dwing.tgz</A>
+-Source3: <A HREF="http://worldserver.oleane.com/rsn/Archives/lcd.tar.gz">http://worldserver.oleane.com/rsn/Archives/lcd.tar.gz</A>
+-Patch0: ascd-0.13.2.a.patch
+-Patch1: ascd-0.13.2.b.patch
+-Patch2: ascd-0.13.2.c.patch
+-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-Obsoletes: ascd-themes
+-Provides: ascd-themes
+-BuildRequires: imake
++%define name		ascd
++%define version		0.13.2
++%define release		9%{?dist}
++
++Summary:	Audio CD player
++Name:		%name
++Version:	%version
++Release:	%release
++License:	GPL
++Group:		AfterStep/Applets
++URL:		<A HREF="http://tigr.net/afterstep/applets/">http://tigr.net/afterstep/applets/</A>
++Source0:	<A HREF="http://tigr.net/afterstep/download/%{name">http://tigr.net/afterstep/download/%{name</A>}/%{name}-%{version}.tar.gz
++Source1:	<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/ascd-0.13pr6-themes.tgz">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/ascd-0.13pr6-themes.tgz</A>
++Source2:	<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/dwing.tgz">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/dwing.tgz</A>
++Source3:	<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/lcd.tar.gz">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/lcd.tar.gz</A>
++Patch0:		ascd-0.13.2.a.patch
++Patch1:		ascd-0.13.2.b.patch
++Patch2:		ascd-0.13.2.c.patch
++BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
++Obsoletes:	ascd-themes
++Provides:	ascd-themes
++BuildRequires:	imake
+ 
+ %description
+ A swallowable applet allows to control the CD-ROM and provides
+@@ -73,6 +73,9 @@
+ %doc README ascd/doc/* ascd/themes/themes-manual.ps
+ 
+ %changelog
++* Wed Feb 03 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.13.2-9
++- updated links for source files.
++
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.13.2-8
+ - added distro info to release.
+ 
+
+Index: fotoxx.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/fotoxx.spec,v
+retrieving revision 1.12
+retrieving revision 1.13
+diff -u -r1.12 -r1.13
+--- fotoxx.spec	3 Feb 2010 03:50:33 -0000	1.12
++++ fotoxx.spec	4 Apr 2010 19:47:02 -0000	1.13
+@@ -1,5 +1,5 @@
+ %define name fotoxx
+-%define version 9.5
++%define version 9.9
+ %define release 1%{?dist}
+ 
+ Summary: application for processing image files from a digital camera
+@@ -10,7 +10,6 @@
+ Group: Applications/Multimedia
+ URL: <A HREF="http://kornelix.squarespace.com/%{name">http://kornelix.squarespace.com/%{name</A>}/
+ Source0: <A HREF="http://kornelix.squarespace.com/storage/downloads/%{name">http://kornelix.squarespace.com/storage/downloads/%{name</A>}-%{version}.tar.gz
+-Patch0: %{name}-9.3-Makefile.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ Requires: gtk2 atk cairo pango libpng exiv2 libstdc++ ufraw perl-Image-ExifTool
+ Buildrequires: gtk2-devel atk-devel cairo-devel pango-devel libpng-devel libstdc++-devel gcc-c++ freeimage-devel ufraw perl-Image-ExifTool
+@@ -46,7 +45,6 @@
+ 
+ %prep
+ %setup -q
+-%patch0
+ 
+ %build
+ make PREFIX=%{_prefix} \
+@@ -57,6 +55,8 @@
+ 
+ make install DESTDIR=$RPM_BUILD_ROOT PREFIX=%{_prefix}
+ 
++make manpage DESTDIR=$RPM_BUILD_ROOT PREFIX=%{_prefix}
++
+ #Install application link for X-Windows
+ echo -e &quot;[Desktop Entry]
+ Name=Fotoxx Digital Image Editor
+@@ -79,6 +79,10 @@
+ mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/
+ install -m 644 icons/fotoxx.png $RPM_BUILD_ROOT%{_datadir}/pixmaps/
+ 
++rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/fotoxx/*
++
++desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
++
+ %clean
+ rm -rf $RPM_BUILD_ROOT
+ 
+@@ -86,13 +90,20 @@
+ %defattr(-,root,root,-)
+ %doc doc/*
+ %{_bindir}/%{name}
+-%{_datadir}/applications/*.desktop
++%{_datadir}/applications/%{name}.desktop
+ %{_datadir}/%{name}/icons/*
+-%{_datadir}/%{name}/locales/*
++%{_datadir}/%{name}/locales/*/%{name}.po
++%{_datadir}/%{name}/locales/*/zfuncs.po
+ %{_datadir}/pixmaps/*.png
+-%{_mandir}/man1/*.gz
++%{_mandir}/man1/%{name}.1.gz
+ 
+ %changelog
++* Fri Mar 26 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 9.9-1
++- new version.
++
++* Mon Feb 22 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 9.6-1
++- new version.
++
+ * Mon Feb 01 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 9.5-1
+ - new version.
+ 
+
+Index: medit.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/medit.spec,v
+retrieving revision 1.4
+retrieving revision 1.5
+diff -u -r1.4 -r1.5
+--- medit.spec	21 Nov 2009 16:46:25 -0000	1.4
++++ medit.spec	4 Apr 2010 19:47:02 -0000	1.5
+@@ -2,22 +2,23 @@
+ %define pythver	%pythtst
+ 
+ %define	name 	medit
+-%define	version	0.9.4
+-%define	release	3%{?dist}
++%define	version	0.10.1
++%define	release	1%{?dist}
+ 
+ Summary:	medit is a GTK-based text editor
+ Name:		%name
+ Version:	%version
+ Release:	%release
+-License:	GPLv2 and LGPLv2
++License:	GPLv2 and LGPLv2.1
+ Group:		Applications/Editors
+ URL:		<A HREF="http://mooedit.sourceforge.net/">http://mooedit.sourceforge.net/</A>
+-Source0:	<A HREF="http://easynews.dl.sourceforge.net/sourceforge/mooedit/%{name">http://easynews.dl.sourceforge.net/sourceforge/mooedit/%{name</A>}-%{version}.tar.bz2
+-Patch0:		medit-0.9.4-stdio.h-conflict.patch
++Source0:	<A HREF="http://easynews.dl.sourceforge.net/sourceforge/mooedit/medit/%{version">http://easynews.dl.sourceforge.net/sourceforge/mooedit/medit/%{version</A>}/%{name}-%{version}.tar.bz2
++Patch0:		%{name}-%{version}-static+man.patch
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ Requires:	python &gt;= %{pythver}, pcre &gt;= 7.0, libxml2, pygtk2, pango, gtk2, cairo, atk, libICE, libX11, libSM
+ Buildrequires:	python-devel, pcre-devel &gt;= 7.0, libxml2-devel, perl-XML-Parser, pygtk2-devel, pango-devel 
+-Buildrequires:	gtk2-devel, cairo-devel, atk-devel, libICE-devel, libX11-devel, libSM-devel, intltool
++Buildrequires:	gtk2-devel, cairo-devel, atk-devel, libICE-devel, libX11-devel, libSM-devel, intltool, cmake
++BuildRequires:	gettext
+ Provides:	mooedit
+ 
+ %description
+@@ -28,17 +29,20 @@
+ %patch0
+ 
+ %build
+-./configure --prefix=%{_prefix} --libdir=%{_libdir} --with-python --docdir=%{_datadir}/doc/%{name}-%{version}
+-make
++%cmake \
++	-DMOO_DOC_DIR:PATH=share/doc/%{name}-%{version} \
++	-DCMAKE_INSTALL_PREFIX=/usr .
++make VERBOSE=1 %{?_smp_mflags}
+ 
+ %install
+ rm -rf $RPM_BUILD_ROOT
+-
+ make install DESTDIR=$RPM_BUILD_ROOT
+ 
+-rm -rf $RPM_BUILD_ROOT%{_datadir}/mime/mime.cache
++%find_lang moo
++
++%find_lang moo-gsv
+ 
+-rm -rf $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/icon-theme.cache
++desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
+ 
+ %clean
+ rm -rf $RPM_BUILD_ROOT
+@@ -59,20 +63,21 @@
+   %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+ fi
+ 
+-%files
++%files -f moo.lang
++%files -f moo-gsv.lang
+ %defattr(-,root,root,-)
+ %doc AUTHORS COPYING COPYING.GPL INSTALL LICENSE NEWS README THANKS doc/help/
+-%{_bindir}/medit
+-%{_libdir}/moo/
+-%{_libdir}/python%{pythver}/
+-%{_datadir}/applications/medit.desktop
++%{_bindir}/%{name}
++%{_datadir}/applications/%{name}.desktop
+ %{_datadir}/icons/hicolor/48x48/apps/medit.png
+-%{_datadir}/locale/
+ %{_datadir}/moo/
+ %{_datadir}/pixmaps/medit.png
+-%{_mandir}/man1/medit*
++%{_mandir}/man1/medit.*
+ 
+ %changelog
++* Sat Mar 20 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.10.1-1
++- new version.
++
+ * Fri Nov 20 2009 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.9.4-3
+ - added test for python major version.
+ 
+
+Index: mined.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/mined.spec,v
+retrieving revision 1.2
+retrieving revision 1.3
+diff -u -r1.2 -r1.3
+--- mined.spec	13 Sep 2009 18:53:35 -0000	1.2
++++ mined.spec	4 Apr 2010 19:47:02 -0000	1.3
+@@ -1,6 +1,6 @@
+ %define name	mined
+-%define version	2000.15.4
+-%define release	2%{?dist}
++%define version	2000.16
++%define release	1%{?dist}
+ 
+ Summary:	mined is a powerful text editor with extensive Unicode and CJK support
+ Name:		%name
+@@ -18,7 +18,7 @@
+ mined is a powerful text editor with extensive Unicode and CJK support.
+ 
+ %prep
+-%setup -q
++%setup -q -n %{name}-2000.15
+ 
+ %build
+ make -C src -f makefile.linux PREFIX=%{_prefix} LIBDIR=%{_libdir}
+@@ -39,6 +39,9 @@
+ %doc doc COMPILE.DOC DESCR INSTALL.DOC PACKAGE.DOC README VERSION
+ 
+ %changelog
++* Mon Mar 01 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2000.16-1
++- New version.
++
+ * Fri Jul 31 2009 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2000.15.4-1
+ - New version.
+ 
+
+Index: rxvt-unicode.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/rxvt-unicode.spec,v
+retrieving revision 1.9
+retrieving revision 1.10
+diff -u -r1.9 -r1.10
+--- rxvt-unicode.spec	13 Sep 2009 18:53:35 -0000	1.9
++++ rxvt-unicode.spec	4 Apr 2010 19:47:02 -0000	1.10
+@@ -1,6 +1,6 @@
+ %define aitest	%(rpm -q --queryformat='%{VERSION}' libAfterImage)
+ %define aiver	%aitest 
+-%define version 9.06
++%define version 9.07
+ %define release 1%{?dist}
+ %define name	rxvt-unicode
+ %define epoch	2
+@@ -14,7 +14,6 @@
+ Group:		User Interface/X
+ URL:		<A HREF="http://software.schmorp.de/pkg/rxvt-unicode.html">http://software.schmorp.de/pkg/rxvt-unicode.html</A>
+ Source0:	<A HREF="http://dist.schmorp.de/rxvt-unicode/%{name">http://dist.schmorp.de/rxvt-unicode/%{name</A>}-%{version}.tar.bz2
+-Patch0:		rxvt-unicode-gcc44.patch
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires:	perl-devel libXpm-devel libXft-devel freetype-devel perl-ExtUtils-Embed
+ BuildRequires:	libAfterImage-devel &gt;= 1.15
+@@ -40,7 +39,6 @@
+ 
+ %prep
+ %setup -q
+-%patch0
+ 
+ %build
+ 
+@@ -86,6 +84,9 @@
+ %{_libdir}/urxvt
+ 
+ %changelog
++* Wed Feb 03 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2:9.07-1
++- new version.
++
+ * Thu Jul 30 2009 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2:9.06-1
+ - new version.
+ 
+
+Index: wmfire.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmfire.spec,v
+retrieving revision 1.10
+retrieving revision 1.11
+diff -u -r1.10 -r1.11
+--- wmfire.spec	4 Aug 2008 03:24:29 -0000	1.10
++++ wmfire.spec	4 Apr 2010 19:47:02 -0000	1.11
+@@ -24,8 +24,8 @@
+ ### END Distro Definitions
+ 
+ %define name wmfire
+-%define version 1.2.3
+-%define release 5%{?dist}
++%define version 1.2.4
++%define release 1%{?dist}
+ 
+ Summary: wmfire is a configurable cpu, mem, or network monitor
+ Name: %name
+@@ -60,7 +60,7 @@
+ onscreen. The flame color can also be changed. 
+ 
+ %prep
+-%setup -q -n %{name}-%{version}
++%setup -q
+ 
+ %build
+ ./configure --prefix=%{_prefix}
+@@ -82,6 +82,9 @@
+ 
+ 
+ %changelog
++* Sun Mar 21 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 1.2.4-1
++- new version.
++
+ * Sat Jul 02 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 1.2.3-5
+ - fixed man page path.
+ 
+
+Index: wmtz.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmtz.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmtz.spec	27 Apr 2007 16:09:18 -0000	1.5
++++ wmtz.spec	4 Apr 2010 19:47:02 -0000	1.6
+@@ -1,17 +1,17 @@
+-%define name wmtz
+-%define version 0.7
+-%define release 4%{?dist}
+-
+-Summary: wmtz displays the local time from different time zones
+-Name: %name
+-Version: %version
+-Release: %release
+-License: GPL
+-Group: AfterStep/Applets
+-URL: <A HREF="http://www.geocities.com/jl1n/wmtz/wmtz.html">http://www.geocities.com/jl1n/wmtz/wmtz.html</A>
+-Source0: <A HREF="http://www.geocities.com/jl1n/%{name">http://www.geocities.com/jl1n/%{name</A>}/%{name}-%{version}.tar.gz
+-Patch0: %{name}-%{version}.patch
+-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
++%define name		wmtz
++%define version		0.7
++%define release		5%{?dist}
++
++Summary:	wmtz displays the local time from different time zones
++Name:		%name
++Version:	%version
++Release:	%release
++License:	GPL
++Group:		AfterStep/Applets
++URL:		<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/</A>
++Source0:	<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name</A>}/%{name}-%{version}.tar.gz
++Patch0:		%{name}-%{version}.patch
++BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+ wmtz is a Window Maker dock app derived from the WMiNET
+@@ -53,6 +53,9 @@
+ %doc BUGS CHANGES COPYING INSTALL README wmtz/wmtzrc
+ 
+ %changelog
++* Wed Feb 03 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.7-5
++- update source link.
++
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.7-4
+ - added distro info to release.
+ 
+
+Index: worker.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/worker.spec,v
+retrieving revision 1.7
+retrieving revision 1.8
+diff -u -r1.7 -r1.8
+--- worker.spec	21 Nov 2009 16:46:25 -0000	1.7
++++ worker.spec	4 Apr 2010 19:47:02 -0000	1.8
+@@ -1,5 +1,5 @@
+ %define name worker
+-%define version 2.17.5
++%define version 2.17.6
+ %define release 1%{?dist}
+ %define doc_version 2.10.0.2
+ 
+@@ -120,6 +120,9 @@
+ %{_datadir}/applications/*
+ 
+ %changelog
++* Mon Mar 01 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2.17.6-1
++- new version
++
+ * Thu Nov 12 2009 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2.17.5-1
+ - new version
+ 
+
+Index: yudit.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/yudit.spec,v
+retrieving revision 1.3
+retrieving revision 1.4
+diff -u -r1.3 -r1.4
+--- yudit.spec	13 Sep 2009 18:53:35 -0000	1.3
++++ yudit.spec	4 Apr 2010 19:47:02 -0000	1.4
+@@ -1,6 +1,6 @@
+ %define	name 	yudit
+-%define	version	2.9.0
+-%define	release	2%{?dist}
++%define	version	2.9.2
++%define	release	1%{?dist}
+ 
+ Summary:	Unicode Text Editor
+ Name:		%name
+@@ -9,9 +9,7 @@
+ License:	GPL
+ Group:		Applications/Editors
+ Source:		<A HREF="http://yudit.org/download/%{name">http://yudit.org/download/%{name</A>}-%{version}.tar.gz
+-Patch0:		%{name}-%{version}-patch1.txt
+-Patch1:		%{name}-%{version}-patch2.txt
+-Patch2:		%{name}-%{version}-patch3.txt
++Patch0:		%{name}-%{version}.patch0.txt
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires:	gcc-c++
+ 
+@@ -31,10 +29,7 @@
+ 
+ %prep
+ %setup
+-
+ %patch0
+-%patch1
+-%patch2
+ 
+ %build
+ ./configure --prefix=%{_prefix} --mandir=%{_mandir}
+@@ -124,6 +119,8 @@
+ %doc CHANGELOG.TXT COPYING.TXT FAQ.TXT README.TXT TODO.TXT doc/*.utf8 doc/notinstalled doc/problems doc/HOWTO-*.txt doc/otfsupport.txt
+ 
+ %changelog
++* Mon Mar 01 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2.9.2-1
++  New version.
+ * Fri Jul 31 2009 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2.9.0-2
+   Added require for c++ (gcc-c++), patches.
+ * Mon Dec 24 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2.9.0-1
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000090.html">[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.24, 1.25  misc-apps.inc, 1.31, 1.32 wm-apps.inc, 1.55, 1.56
+</A></li>
+	<LI>Next message: <A HREF="000092.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS wmcpum.app.spec, 1.5, 1.6  wmsm.app.spec, 1.5, 1.6
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#91">[ date ]</a>
+              <a href="thread.html#91">[ thread ]</a>
+              <a href="subject.html#91">[ subject ]</a>
+              <a href="author.html#91">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

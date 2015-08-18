@@ -1,0 +1,1272 @@
+From rpm_speedy at mail.berlios.de  Fri Mar  7 04:28:45 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 07 Mar 2008 04:28:45 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SOURCES
+	AfterStep-2.2.7-pager.patch, NONE,
+	1.1 AfterStep-2.2.7-wharf.alternate, NONE,
+	1.1 AfterStep-2.2.7-winlist.patch, NONE,
+	1.1 afterstep.desktop.xsessions, 1.2, 1.3
+Message-ID: <47D0B66D.mailF5D1VTO3J@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv19423/SOURCES
+
+Modified Files:
+	afterstep.desktop.xsessions 
+Added Files:
+	AfterStep-2.2.7-pager.patch AfterStep-2.2.7-wharf.alternate 
+	AfterStep-2.2.7-winlist.patch 
+Log Message:
+added new programs, updated older versions.
+
+
+--- NEW FILE: AfterStep-2.2.7-pager.patch ---
+--- afterstep/pager.in	2005-05-10 16:51:28.000000000 -0500
++++ afterstep/pager.in	2007-11-11 11:12:58.000000000 -0600
+@@ -35,7 +35,7 @@
+ 
+ *PagerDecoration  DeskBorderWidth 1, DeskBorderColor BaseDark, GridColor Inactive2Dark, SelectionColor HighActiveLight
+ 
+-*PagerGeometry       -1+27
++*PagerGeometry       -3+35
+ 
+ # PagerStyle is used to define look of Pager's desk window.
+ # Relevant look must be defined in your look file or in this file
+@@ -53,8 +53,8 @@
+ *PagerLabel          1       WWW
+ *PagerLabel          2       Mail
+ *PagerLabel          3       Games
+-*PagerRows	     @with_desktops@
+-*PagerColumns        2
++*PagerRows	     2
++*PagerColumns        @with_desktops@
+ 
+ # use this options to override global look : 
+ #*PagerShadeButton	 	default-shade-dark 		 default-shade-dark-pressed
+
+--- NEW FILE: AfterStep-2.2.7-wharf.alternate ---
+##########################################################################
+# Wharf - primary application launcher :
+#
+#------------------------------------------------------------------------
+
+*WharfAnimate
+*WharfAnimateMain
+*WharfAnimateDelay	2
+*WharfAnimateSteps	5
+*WharfAnimateStepsMain	5
+
+*WharfBalloons
+*WharfBalloonXOffset		10
+*WharfBalloonYOffset		-15
+*WharfBalloonDelay		120
+*WharfBalloonCloseDelay		1200
+*WharfBalloonStyle		"*WharfBalloon"
+*WharfBalloonBorderHilite	Right,Bottom
+*WharfShowHints                 Name
+
+#------------------------------------------------------------------------
+# Buttons
+#
+*WharfFullPush
+#*WharfNoPush
+
+# This will resize Wharf's buttons to fit the size of swallowed apps/icons
+#*WharfFitContents
+*WharfAlignContents HScaled, VScaled, HCenter, VCenter
+
+#------------------------------------------------------------------------
+# Geometry
+#
+*WharfForceSize		32x32
+*WharfRows		1
+#*WharfColumns		2
+*WharfGeometry		-0+0
+#*WharfBevel		Bottom,Right,NoOutline,Extra
+*WharfNoBorder
+
+#-----------------------------------------------------------------------
+# Applications :
+#
+
+# First available terminal. Rxvt-Unicode (urxvt) and aterm offer AfterStep support :
+*Wharf Term		logos/Unicode Exec "-" urxvt &
+*Wharf Term		logos/Unicode Exec "-" mlterm &
+*Wharf Term		logos/aterm2 Exec "-" aterm &
+*Wharf Term		logos/Eterm Exec "-" Eterm -P ~/.afterstep/non-configurable/0_background -f white &
+*Wharf Term		normal/Monitor3DBlue Exec "-" rxvt -bg black -fg grey70 -sl 500 -vb &
+*Wharf Term		logos/XWindow3 Exec "-" xterm -bg black -fg grey70 -sl 500 -vb &
+
+# First available Web Browser :
+*Wharf Browser		normal/WWW    Exec x-www-browser &
+*Wharf Browser		logos/Firefox Exec "firefox" firefox &
+*Wharf Browser		logos/Firefox Exec "Firefox2" mozilla-firefox &
+*Wharf Browser		iceweasel.png Exec "iceweasel" iceweasel &
+*Wharf Browser		logos/mozilla Exec "Mozilla" mozilla &
+*Wharf Browser		logos/Opera   Exec "Opera Web Browser" opera &
+*Wharf Browser		normal/WWW    Exec sensible-browser &
+
+# Restart the AfterStep session or close the session :
+*Wharf QuitFolder Folder-Stopsign Folder
+	*Wharf 	Restart_Session normal/Recycle Restart "" afterstep -r
+	*Wharf 	Quit normal/RedLight Quit "" afterstep
+*Wharf ~Folder
+
+# Subfolder of office applications. Look at how it pulls-in the same items that are in Menu/Applications/Office :
+*Wharf Office - CategoryTree "Office"
+
+# What's AfterStep without the MultiMedia bells and whistles? :
+*Wharf MultimediaFolder Folder-Headphones Folder
+	*Wharf gxmms2		xmms2.svg Exec "gxmms2" gxmms2 &
+	*Wharf AudioPlayer	normal/OldFashionedRadio Exec "xmms" xmms &
+	*Wharf Audacious	audacious.png Exec "audacious" audacious &
+	*Wharf Rhythmbox	rhythmbox.png Exec "rhythmbox" rhythmbox &
+	*Wharf Amarok		amarok.png Exec "amarok" amarok &
+	*Wharf MPlayer		normal/MovieProjector Exec "gmplayer" gmplayer -vo xv &
+	*Wharf Totem		totem.png Exec "totem" totem &
+	*Wharf VideoLANClient	vlc.png Exec "vlc" vlc &
+	*Wharf RealPlayer	realplay.png Exec "realplayer" realplay &
+*Wharf ~Folder
+
+# Odds-n-ends that fit in a folder nicely :
+*Wharf MiscFolder Folder-Screwdriver Folder
+	*Wharf Calculator	normal/Calculator Exec "Calcoo" calcoo &
+	*Wharf Calculator	normal/Calculator Exec "gcalctool" gcalctool &
+	*Wharf Calculator	kcalc.png Exec "kcalc" kcalc &
+	*Wharf Calculator	normal/Calculator2 Exec "xcalc" xcalc &
+
+	*Wharf ImageEditor	logos/gimp Exec "gimp" gimp &
+	*Wharf ImageEditor	normal/XV Exec "XV" xv &
+*Wharf ~Folder
+
+# First available e-mail client :
+*Wharf Mail		logos/Thunderbird Exec "Thunderbird" thunderbird &
+*Wharf Mail		logos/Thunderbird Exec "Thunderbird2" mozilla-thunderbird &
+*Wharf Mail		normal/MailBox2 Exec "mozilla-mail" mozilla --mail &
+*Wharf Mail		normal/MailBox2 Exec "kmail" kmail &
+*Wharf Mail		normal/MailBox2 Exec "balsa" balsa &
+*Wharf Mail		normal/MailBox2 ExecInTerm "Mutt" -title "Mutt e-mail reader" -e mutt -y &
+*Wharf Mail		normal/MailBox2 ExecInTerm "Pine" -title "Pine e-mail and news reader" -e pine &
+
+# First available text editor :
+*Wharf TextEditor	medit.png Exec "medit" medit &
+*Wharf TextEditor	normal/Pen1 Exec "nedit" nedit &
+*Wharf TextEditor 	normal/Pen1 Exec "cooledit" cooledit --look next &
+*Wharf TextEditor 	xemacs.png Exec "xemacs" xemacs &
+*Wharf TextEditor 	normal/Pen1 Exec "VIM" gvim &
+*Wharf TextEditor	normal/Pen1 ExecInTerm "nano" -title "Nano text editor" -e nano &
+
+# First available file manager :
+*Wharf FileManager	logos/Worker        Exec "Worker" worker &
+*Wharf FileManager	logos/konqueror     Exec "Konqueror" konqueror &
+*Wharf FileManager 	normal/Filecabinet2 Exec "Krusader" krusader &
+*Wharf FileManager 	normal/Filecabinet2 Exec "Gentoo File Manager" gentoo &
+*Wharf FileManager 	normal/Filecabinet2 Exec "Rox" rox &
+*Wharf FileManager 	normal/Filecabinet2 Exec "Nautilus" nautilus --no-desktop &
+*Wharf FileManager	normal/MCInMonitorShadow ExecInTerm "-" -g 130x35 if(aterm){-T mc-VerticalTitle -tr -tint blue -fg white -bg black} if(Eterm){-O --tint blue -f white -b black) if(rxvt){-tr -fg white -bg black} -e mc &
+
+# Alltray allows any application to be added to the systray :
+*Wharf alltray		/usr/share/pixmaps/alltray.png Exec "AllTray" alltray &
+
+# Not actually part of AfterStep; Trayer is the better option for systrays.
+*Wharf systray - MaxSwallow "trayer" trayer --SetDockType false --widthtype request --heighttype pixel --height 24 --edge bottom --align left --transparent true --alpha 128 &
+
+# Clock if not running MonitorWharf
+*Wharf clock - MaxSwallow "xclock" xclock -geometry 64x32 -digital -brief -bg gray10 -fg cyan -update 1 &
+
+#
+#  End of the Wharf configuration
+##########################################################################
+
+##########################################################################
+# MonitorWharf - monitorng applications, system configuration, clocks and docs:
+#
+#------------------------------------------------------------------------
+
+*MonitorWharfAnimate
+*MonitorWharfAnimateMain
+*MonitorWharfAnimateDelay	2
+*MonitorWharfAnimateSteps	5
+*MonitorWharfAnimateStepsMain	5
+
+*MonitorWharfBalloons
+*MonitorWharfBalloonXOffset		10
+*MonitorWharfBalloonYOffset		-15
+*MonitorWharfBalloonDelay		120
+*MonitorWharfBalloonCloseDelay		1200
+*MonitorWharfBalloonStyle		"*WharfBalloon"
+*MonitorWharfBalloonBorderHilite	Right,Bottom
+*MonitorWharfShowHints                 Name
+
+#------------------------------------------------------------------------
+# Buttons
+#
+*MonitorWharfFullPush
+#*MonitorWharfNoPush
+*MonitorWharfBevel		Right,NoOutline
+
+# This will resize Wharf's buttons to fit the size of swallowed apps/icons
+#*MonitorWharfFitContents
+#*MonitorWharfAlignContents HCenter, VCenter
+
+#------------------------------------------------------------------------
+# Geometry
+#
+#*MonitorWharfForceSize
+#*MonitorWharfRows		1
+*MonitorWharfColumns		1
+*MonitorWharfGeometry		-3-3
+
+#-----------------------------------------------------------------------
+# Monitoring Applications :
+#
+
+# To swallow Pager, you need to:
+#   - In autoexec, comment-out the line "Module  "I"     Pager 0 0"
+#   - In base, set the DeskTopScale value (default is 32, larger number
+#      means smaller Pager is displayed).  Helpful formula for vertical Wharf:
+#      (DesktopWidth) / (WharfWidth) * (#HorizontalViewports) = 1280/64*2 = 40
+#   - In Pager, comment-out the "*PagerGeometry       -3+35" line
+#   - In Pager, in the "*PagerDecoration  ..." line,
+#     change DeskBorderWidth from "1" to "0"
+#   - Edit the line below.  The 0,1, etc. refer to the desktops you want
+#     to display.  Default would be "0 1 2 3".
+#*MonitorWharf Pager - MaxSwallowModule "Pager" Pager 0 1
+
+# One of the annoying eyes Applets - first available :
+*MonitorWharf eyes - Swallow "speyes" speyes &
+*MonitorWharf eyes - Swallow "wmeyes" wmeyes &
+*MonitorWharf eyes - Swallow "xeyes" xeyes -geometry 64x64 &
+
+# One of the load monitors - first available :
+*MonitorWharf loadmonitor - Swallow "wmfire" wmfire -f 2 &
+*MonitorWharf loadmonitor - Swallow "wmcpuload" wmcpuload -wp &
+*MonitorWharf loadmonitor - Swallow "asmon" asmon &
+*MonitorWharf loadmonitor - Swallow "asload" asload -shape -exe "aterm -e top" &
+*MonitorWharf loadmonitor - Swallow "wmavgload" wmavgload -shape -led red &
+*MonitorWharf loadmonitor - Swallow "wmload" wmload -shape -led red &
+*MonitorWharf loadmonitor - Swallow "xload" xload -geometry 64x64 -bg gray70 -label LOAD -update 3 &
+
+# One of the audio players - first available :
+*MonitorWharf AudioPlayer - Swallow "wmusic" wmusic -w &
+*MonitorWharf AudioPlayer - Swallow "wmxmms" wmxmms --single &
+*MonitorWharf AudioPlayer logos/Xmms Exec "X Multi Media System" xmms &
+*MonitorWharf AudioPlayer - Swallow "ascd" ascd &
+
+# One of the memory monitors - first available :
+*MonitorWharf memory - Swallow "wmmemload" wmmemload -b -c -w &
+*MonitorWharf memory - Swallow "wmmemmon" wmmemmon -b -c -w &
+*MonitorWharf memory - Swallow "asmem" asmem &
+
+# One of the mixers - first available :
+*MonitorWharf mixer - Swallow "Mixer.app" Mixer.app &
+*MonitorWharf mixer - Swallow "wmix" wmix &
+*MonitorWharf mixer - Swallow "asmixer" asmixer -g -1-1 &
+*MonitorWharf mixer - Swallow "wmmixer" wmmixer &
+*MonitorWharf mixer - Swallow "asMix" asmix -shape &
+
+# One of the system temps - first available :
+# You'll need lm_sensors activated; folder-name is found in /sys/bus/i2c/devices/
+*MonitorWharf cputemp - Swallow "wmtemp" wmtemp -w &
+*MonitorWharf cputemp - Swallow "wmcpum" wmcpum -d 9191-0290 &
+*MonitorWharf cputemp - Swallow "wmsensormon" wmsensormon -dt 45 -ds 35 -wt 40 -ws 30 &
+
+# One of the weather monitors - first available :
+# Get the 4-letter code from http://weather.noaa.gov
+*MonitorWharf weather - Swallow "Temperature.app" Temperature.app -s KORD -f -c -p -w MPH &
+*MonitorWharf weather - Swallow "wmweather" wmweather -s KORD --compat &
+
+# One of the clocks - first available :
+*MonitorWharf clock - Swallow "wmclockmon" wmclockmon -w &
+*MonitorWharf clock - Swallow "asclock" asclock -24 -theme penguin &
+*MonitorWharf clock - Swallow "hvclock" hvclock &
+*MonitorWharf clock - Swallow "wmitime" wmitime &
+*MonitorWharf clock - Swallow "Time.app" Time.app -D -t 24 &
+*MonitorWharf clock - MaxSwallow "xclock" xclock -geometry 64x32 -digital -brief -bg gray10 -fg cyan -update 1 &
+*MonitorWharf clock - Exec "r" evolution &
+*MonitorWharf clock - Exec "r" korganizer &
+
+# One of the net monitors - first available :
+*MonitorWharf netmonitor - Swallow "wmnd" wmnd -w lines &
+*MonitorWharf netmonitor - Swallow "wminet" wminet -t &
+*MonitorWharf netmonitor - Swallow "wmnethru" wmnethru &
+*MonitorWharf netmonitor - Swallow "wmnet" wmnet --driver=devstats &
+*MonitorWharf netmonitor - Swallow "wmifinfo" wmifinfo -i eth0 &
+
+#
+#  End of the MonitorWharf configuration
+##########################################################################
+
+--- NEW FILE: AfterStep-2.2.7-winlist.patch ---
+--- afterstep/winlist	2007-05-14 16:13:19.000000000 -0500
++++ afterstep/winlist	2007-11-09 11:26:47.000000000 -0600
+@@ -9,7 +9,7 @@
+ *WinListDefaults
+ 	Geometry        +0+0
+ 	MinSize         10000    #will be truncated to thescreen size
+-	MaxRows         3
++	MaxRows         1
+ 	FillRowsFirst
+ 	UseSkipList
+ 	
+@@ -74,6 +74,6 @@
+ # By default WinList will avoid collision with Pager and Wharf
+ #*WinListNoCollides "Nedit*"
+ #*WinListAllowCollides "Pager*"
+-#*WinListNoCollidesSpacing 5
++*WinListNoCollidesSpacing 3
+ 
+ 
+
+Index: afterstep.desktop.xsessions
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SOURCES/afterstep.desktop.xsessions,v
+retrieving revision 1.2
+retrieving revision 1.3
+diff -u -r1.2 -r1.3
+--- afterstep.desktop.xsessions	24 Mar 2006 14:29:08 -0000	1.2
++++ afterstep.desktop.xsessions	7 Mar 2008 03:28:42 -0000	1.3
+@@ -6,3 +6,6 @@
+ TryExec=afterstep
+ Icon=
+ Type=Application
++
++[Window Manager]
++SessionManaged=true
+
+
+
+From rpm_speedy at mail.berlios.de  Fri Mar  7 04:28:45 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 07 Mar 2008 04:28:45 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.21,
+ 1.22  misc-apps.inc, 1.15, 1.16 wm-apps.inc, 1.48, 1.49
+Message-ID: <47D0B66D.mailF5I1FM6W5@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv19423/include
+
+Modified Files:
+	core-apps.inc misc-apps.inc wm-apps.inc 
+Log Message:
+added new programs, updated older versions.
+
+
+Index: core-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/core-apps.inc,v
+retrieving revision 1.21
+retrieving revision 1.22
+diff -u -r1.21 -r1.22
+--- core-apps.inc	28 Oct 2007 14:56:41 -0000	1.21
++++ core-apps.inc	7 Mar 2008 03:28:42 -0000	1.22
+@@ -3,7 +3,7 @@
+ # This is for the core, like AfterStep itself
+ 
+ AFTERSTEP_NAME=AfterStep
+-AFTERSTEP_VERSION=2.2.7
++AFTERSTEP_VERSION=2.2.8
+ AFTERSTEP_TAR=$(AFTERSTEP_NAME)-$(AFTERSTEP_VERSION).tar.gz
+ AFTERSTEP_URL=ftp://ftp.afterstep.org/stable/$(AFTERSTEP_TAR)
+ 
+@@ -24,7 +24,7 @@
+ APPLET_LIST += LIBAFTERIMAGE-NOX
+ 
+ RXVT-UNICODE_NAME=rxvt-unicode
+-RXVT-UNICODE_VERSION=8.4
++RXVT-UNICODE_VERSION=9.02
+ RXVT-UNICODE_TAR=$(RXVT-UNICODE_NAME)-$(RXVT-UNICODE_VERSION).tar.bz2
+ RXVT-UNICODE_URL=http://dist.schmorp.de/$(RXVT-UNICODE_NAME)/$(RXVT-UNICODE_TAR)
+ 
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.15
+retrieving revision 1.16
+diff -u -r1.15 -r1.16
+--- misc-apps.inc	28 Oct 2007 14:56:41 -0000	1.15
++++ misc-apps.inc	7 Mar 2008 03:28:42 -0000	1.16
+@@ -55,6 +55,13 @@
+ 
+ #APPLET_LIST += LCD
+ 
++AVFS_NAME=avfs
++AVFS_VERSION=0.9.8
++AVFS_TAR=$(AVFS_NAME)-$(AVFS_VERSION).tar.gz
++AVFS_URL=http://easynews.dl.sourceforge.net/sourceforge/avf/$(AVFS_TAR)
++
++APPLET_LIST += AVFS
++
+ CALCOO_NAME=calcoo
+ CALCOO_VERSION=1.3.18
+ CALCOO_TAR=$(CALCOO_NAME)-$(CALCOO_VERSION).tar.gz
+@@ -70,7 +77,7 @@
+ APPLET_LIST += LIBDOCKAPP
+ 
+ LIBICAL_NAME=libical
+-LIBICAL_VERSION=0.27
++LIBICAL_VERSION=0.30
+ LIBICAL_TAR=$(LIBICAL_NAME)-$(LIBICAL_VERSION).tar.gz
+ LIBICAL_URL=http://easynews.dl.sourceforge.net/sourceforge/freeassociation/$(LIBICAL_TAR)
+ 
+@@ -84,6 +91,13 @@
+ 
+ #APPLET_LIST += LIBWRASTER
+ 
++MEDIT_NAME=medit
++MEDIT_VERSION=0.9.3
++MEDIT_TAR=$(MEDIT_NAME)-$(MEDIT_VERSION).tar.bz2
++MEDIT_URL=http://easynews.dl.sourceforge.net/sourceforge/mooedit/$(MEDIT_TAR)
++
++APPLET_LIST += MEDIT
++
+ MINED_NAME=mined
+ MINED_VERSION=2000.14
+ MINED_TAR=$(MINED_NAME)-$(MINED_VERSION).tar.gz
+@@ -98,6 +112,13 @@
+ 
+ APPLET_LIST += MIXER.APP
+ 
++PARCELLITE_NAME=parcellite
++PARCELLITE_VERSION=0.6.1
++PARCELLITE_TAR=$(PARCELLITE_NAME)-$(PARCELLITE_VERSION).tar.gz
++PARCELLITE_URL=http://xyhthyx.googlecode.com/files/$(PARCELLITE_TAR)
++
++APPLET_LIST += PARCELLITE
++
+ SALMON_NAME=salmon
+ SALMON_VERSION=1.2.2
+ SALMON_TAR=$(SALMON_NAME)-$(SALMON_VERSION).tar.gz
+@@ -105,6 +126,13 @@
+ 
+ APPLET_LIST += SALMON
+ 
++STALONETRAY_NAME=stalonetray
++STALONETRAY_VERSION=0.7.6
++STALONETRAY_TAR=$(STALONETRAY_NAME)-$(STALONETRAY_VERSION).tar.gz
++STALONETRAY_URL=http://easynews.dl.sourceforge.net/sourceforge/$(STALONETRAY_NAME)/$(STALONETRAY_TAR)
++
++APPLET_LIST += STALONETRAY
++
+ TEMPERATURE.APP_NAME=Temperature.app
+ TEMPERATURE.APP_VERSION=1.4
+ TEMPERATURE.APP_TAR=$(TEMPERATURE.APP_NAME)-$(TEMPERATURE.APP_VERSION).tar.gz
+@@ -120,7 +148,7 @@
+ APPLET_LIST += TRAYER
+ 
+ WORKER_NAME=worker
+-WORKER_VERSION=2.15.0
++WORKER_VERSION=2.16.2
+ WORKER_TAR=$(WORKER_NAME)-$(WORKER_VERSION).tar.gz
+ WORKER_URL=http://www.boomerangsworld.de/worker/downloads/$(WORKER_TAR)
+ 
+@@ -135,7 +163,7 @@
+ APPLET_LIST += WORKER-DOC
+ 
+ YUDIT_NAME=yudit
+-YUDIT_VERSION=2.8.1
++YUDIT_VERSION=2.9.0
+ YUDIT_TAR=$(YUDIT_NAME)-$(YUDIT_VERSION).tar.gz
+ YUDIT_URL=http://yudit.org/download/$(YUDIT_TAR)
+ 
+
+Index: wm-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/wm-apps.inc,v
+retrieving revision 1.48
+retrieving revision 1.49
+diff -u -r1.48 -r1.49
+--- wm-apps.inc	28 Oct 2007 16:05:03 -0000	1.48
++++ wm-apps.inc	7 Mar 2008 03:28:42 -0000	1.49
+@@ -138,7 +138,7 @@
+ WMIFINFO_NAME=wmifinfo
+ WMIFINFO_VERSION=0.09
+ WMIFINFO_TAR=$(WMIFINFO_NAME)-$(WMIFINFO_VERSION).tgz
+-WMIFINFO_URL=http://www.zevv.nl/$(WMIFINFO_NAME)/$(WMIFINFO_TAR)
++WMIFINFO_URL=http://www.zevv.nl/play/code/$(WMIFINFO_NAME)/$(WMIFINFO_TAR)
+ 
+ APPLET_LIST += WMIFINFO
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Fri Mar  7 04:28:45 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 07 Mar 2008 04:28:45 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS avfs.spec, NONE,
+	1.1 medit.spec, NONE, 1.1 parcellite.spec, NONE,
+	1.1 stalonetray.spec, NONE, 1.1 AfterStep.spec, 1.58,
+	1.59 Temperature.app.spec, 1.7, 1.8 rxvt-unicode.spec, 1.4,
+	1.5 wmifinfo.spec, 1.5, 1.6 worker.spec, 1.2, 1.3 yudit.spec,
+	1.1, 1.2
+Message-ID: <47D0B66D.mailF5G11HISZ@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv19423/SPECS
+
+Modified Files:
+	AfterStep.spec Temperature.app.spec rxvt-unicode.spec 
+	wmifinfo.spec worker.spec yudit.spec 
+Added Files:
+	avfs.spec medit.spec parcellite.spec stalonetray.spec 
+Log Message:
+added new programs, updated older versions.
+
+
+--- NEW FILE: avfs.spec ---
+%define	name 	avfs
+%define	version	0.9.8
+%define	release	1%{?dist}
+
+Summary:	Enables programs to look inside archived/compressed files, access remote files
+Name:		%name
+Version:	%version
+Release:	%release
+License:	GPLv2 and LGPLv2
+Group:		Applications/Archiving
+URL:		http://sourceforge.net/projects/avf
+Source0:	http://easynews.dl.sourceforge.net/sourceforge/avf/%{name}-%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Requires:	fuse
+Buildrequires:	fuse-devel
+
+%description
+AVFS is a system which enables all programs to look inside archived
+or compressed files, or access remote files without recompiling the
+programs or changing the kernel.
+
+At the moment it supports floppies, tar and gzip files, zip, bzip2, ar
+and rar files, ftp sessions, http, webdav, rsh/rcp, ssh/scp. Quite a
+few other handlers are implemented with the Midnight Commander's
+external FS.
+
+AVFS is (C) under the GNU GPL (see the file COPYING). The shared
+library supporting AVFS with LD_PRELOAD is (C) under the GNU LGPL (see
+the file COPYING.LIB).
+
+AVFS comes with ABSOLUTELY NO WARRANTY, for details see the file COPYING. 
+
+%package devel
+Summary:   Development libraries and header files for %{name}
+Group:     Development/Libraries
+Requires:  %{name} = %{version}-%{release}
+
+%description devel
+Development libraries and header files for %{name}
+
+%prep
+%setup -q
+
+%build
+./configure --prefix=%{_prefix} --enable-fuse
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make install DESTDIR=$RPM_BUILD_ROOT
+
+rm -rf doc/Makefil*
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
+
+%files
+%defattr(-,root,root,-)
+%{_bindir}/*
+%{_libdir}/%{name}/
+%{_libdir}/*.so.*
+%{_includedir}/*
+%doc AUTHORS COPYING COPYING.LIB ChangeLog INSTALL NEWS README TODO doc/
+
+%files devel
+%{_includedir}/
+%{_libdir}/*.so
+%{_libdir}/*.*a
+
+%changelog
+* Sat Nov 10 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.9.8-1
+- Initial build.
+
+--- NEW FILE: medit.spec ---
+%define	name 	medit
+%define	version	0.9.3
+%define	release	1%{?dist}
+
+Summary:	medit is a GTK-based text editor
+Name:		%name
+Version:	%version
+Release:	%release
+License:	GPLv2 and LGPLv2
+Group:		Applications/Editors
+URL:		http://mooedit.sourceforge.net/
+Source0:	http://easynews.dl.sourceforge.net/sourceforge/mooedit/%{name}-%{version}.tar.bz2
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Requires:	python, pcre >= 7.0, libxml2, pygtk2, pango, gtk2, cairo, atk, libICE, libX11, libSM
+Buildrequires:	python-devel, pcre-devel >= 7.0, libxml2-devel, perl-XML-Parser, pygtk2-devel, pango-devel 
+Buildrequires:	gtk2-devel, cairo-devel, atk-devel, libICE-devel, libX11-devel, libSM-devel
+
+%description
+medit is a GTK-based text editor.
+
+%prep
+%setup -q
+
+%build
+./configure --prefix=%{_prefix} --with-python --docdir=%{_datadir}/doc/%{name}-%{version}
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make install DESTDIR=$RPM_BUILD_ROOT
+
+rm -rf $RPM_BUILD_ROOT%{_datadir}/mime/mime.cache
+
+rm -rf $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/icon-theme.cache
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post
+update-mime-database %{_datadir}/mime &> /dev/null || :
+
+touch --no-create %{_datadir}/icons/hicolor
+if [ -x %{_bindir}/gtk-update-icon-cache ]; then
+  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+fi
+
+%postun
+update-mime-database %{_datadir}/mime &> /dev/null || :
+
+touch --no-create %{_datadir}/icons/hicolor
+if [ -x %{_bindir}/gtk-update-icon-cache ]; then
+  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+fi
+
+%files
+%defattr(-,root,root,-)
+%doc AUTHORS COPYING COPYING.GPL INSTALL LICENSE NEWS README THANKS doc/help/
+%{_bindir}/medit
+%{_libdir}/moo/
+%{_libdir}/python2.5/
+%{_datadir}/applications/medit.desktop
+%{_datadir}/icons/hicolor/48x48/apps/medit.png
+%{_datadir}/locale/
+%{_datadir}/mime/
+%{_datadir}/moo/
+%{_datadir}/pixmaps/medit.png
+%{_mandir}/man1/medit*
+
+%changelog
+* Sun Feb 10 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.9.3-1
+- New version.
+
+* Thu Jan 10 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.9.2-1
+- New version.
+
+* Mon Dec 03 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.9.0-1
+- Initial build.
+
+--- NEW FILE: parcellite.spec ---
+%define name parcellite
+%define version 0.6.1
+%define release 1%{?dist}
+
+Summary: Parcellite (Parcelle Lite) is a lightweight GTK+ clipboard manager
+Name: %name
+Version: %version
+Release: %release
+License: GPLv3+
+Group: Applications/X11
+URL: http://code.google.com/p/xyhthyx/
+Source0: http://xyhthyx.googlecode.com/files/%{name}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Requires: gtk2 >= 2.10
+Buildrequires: gtk2-devel >= 2.10
+
+%description
+Parcellite (Parcelle Lite) is a lightweight GTK+ clipboard manager. This is
+a stripped down, basic-features-only version of Parcelle with a small memory
+footprint for those who like simplicity.
+
+%prep
+%setup -q
+
+%build
+./autogen.sh
+
+./configure prefix=%{_prefix} exec_prefix=%{_prefix}
+
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make install DESTDIR=$RPM_BUILD_ROOT prefix=%{_prefix} exec_prefix=%{_prefix}
+
+#Install application link for X-Windows
+echo -e "[Desktop Entry]
+Name=Parcellite
+Name[en_US]=Parcellite
+Comment=Lightweight GTK+ clipboard manager
+Exec=parcellite
+Icon=stock_paste
+Terminal=false
+Encoding=UTF-8
+Type=Application" > %{name}.desktop
+                                                                                
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
+desktop-file-install --vendor "" --delete-original \
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications                   \
+  --add-category GNOME                                            \
+  --add-category Application                                      \
+  --add-category Utility					  \
+  %{name}.desktop
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root,-)
+%{_bindir}/*
+%{_datadir}/applications/*.desktop
+%{_sysconfdir}/xdg/autostart/*.desktop
+%doc AUTHORS COPYING INSTALL ChangeLog NEWS README TODO
+
+%changelog
+* Sun Feb 24 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.6.1-1
+- New version.
+
+* Sun Feb 10 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.6-1
+- New version.
+
+* Mon Jan 21 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.5.1-1
+- New version.
+
+* Sun Dec 16 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.4.1-1
+- New version.
+
+* Sun Nov 25 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.4-1
+- Initial build.
+
+
+
+
+--- NEW FILE: stalonetray.spec ---
+%define name	stalonetray
+%define version	0.7.6
+%define release	1%{?dist}
+
+Summary:	STand Alone TRAY (notification area) implementation
+Name:		%name
+Version:	%version
+Release:	%release
+License:	GPLv2+
+Group:		User Interface/Desktops
+URL:		http://sourceforge.net/projects/stalonetray
+Source0:	http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+%description
+Stalonetray is a stand-alone freedesktop.org and KDE system tray
+(notification area) for X Window System/X11 (e.g. X.Org or XFree86).
+It has full XEMBED support and minimal dependencies: an X11 lib only.
+Stalonetray works with virtually any EWMH-compliant window manager.
+
+%prep
+%setup -q
+
+%build
+./configure --prefix=%{_prefix}
+
+make
+
+make check
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make DESTDIR=$RPM_BUILD_ROOT install
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root,-)
+%doc README NEWS COPYING AUTHORS ChangeLog stalonetrayrc.sample stalonetray.html stalonetray.xml
+%{_bindir}/*
+%{_mandir}/man*/*
+
+%changelog
+* Wed Jan 09 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.7.6-1
+- Initial build.
+
+Index: AfterStep.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/AfterStep.spec,v
+retrieving revision 1.58
+retrieving revision 1.59
+diff -u -r1.58 -r1.59
+--- AfterStep.spec	27 Aug 2007 17:18:49 -0000	1.58
++++ AfterStep.spec	7 Mar 2008 03:28:42 -0000	1.59
+@@ -39,9 +39,9 @@
+ ### END Distro Definitions
+ 
+ %define	name AfterStep
+-%define	version	2.2.7
+-%define	libaiver	1.15
+-%define	libabver	1.11
++%define	version	2.2.8
++%define	libaiver	1.17
++%define	libabver	1.12
+ %define	libairel	1%{?dist}
+ %define	libabrel	1%{?dist}
+ %define release 1%{?dist}
+@@ -65,7 +65,10 @@
+ Source6: 	afterstep.desktop.xsessions
+ Source7: 	afterstep.desktop.wm-properties
+ Source8:	afterstep.fedora.README
++Source9:	%{name}-2.2.7-wharf.alternate
+ Patch0:		%{name}-2.2.5-ImageMagick.patch
++Patch1:		%{name}-2.2.7-winlist.patch
++Patch2:		%{name}-2.2.7-pager.patch
+ Distribution:	The AfterStep TEAM
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ %if %{mdk}
+@@ -75,8 +78,9 @@
+ Provides:	AfterStep-libs
+ Requires: 	libAfterImage = %{epoch}:%{libaiver}-%libairel
+ Requires:	readline
+-Requires:	gtk2
++Requires:	gtk2, gtk2-devel
+ Requires:	qiv
++Requires:	libXt
+ BuildRequires:  readline-devel
+ BuildRequires:  gtk2-devel
+ BuildRequires:	librsvg2-devel
+@@ -84,6 +88,7 @@
+ BuildRequires:  freetype-devel
+ BuildRequires:  zlib-devel
+ BuildRequires:  libX11-devel
++BuildRequires:  libXt-devel
+ 
+ %description
+ AfterStep is a Window Manager for X which started by emulating the
+@@ -191,6 +196,8 @@
+ %prep
+ %setup -q
+ %patch0
++%patch1
++%patch2
+ 
+ %build
+ CFLAGS=$RPM_OPT_FLAGS \
+@@ -202,7 +209,7 @@
+ 	--disable-staticlibs                      \
+ 	--enable-i18n                             \
+ 	--with-helpcommand="xterm -e man"         \
+-	--with-desktops=1 --with-deskgeometry=2x3 \
++	--with-desktops=2 --with-deskgeometry=2x2 \
+ 	--with-imageloader="qiv --root"
+ 
+ make
+@@ -221,6 +228,9 @@
+ rm -rf afterstep/start/2_Modules/Scripts/
+ rm -rf afterstep/start/2_Modules/Stop/
+ 
++mv afterstep/wharf afterstep/wharf.orig
++cp %{SOURCE9} afterstep/wharf
++
+ %install
+ if [[ -d $RPM_BUILD_ROOT ]]; then rm -rf $RPM_BUILD_ROOT; fi
+ mkdir -p $RPM_BUILD_ROOT
+@@ -233,8 +243,8 @@
+ cp %{SOURCE8} .
+ install -d $RPM_BUILD_ROOT%{_datadir}/switchdesk/
+ install -m 0755 %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/switchdesk/Xclients.afterstep
+-install -d $RPM_BUILD_ROOT/etc/X11/gdm/Sessions/
+-install -m 0755 %{SOURCE2} $RPM_BUILD_ROOT/etc/X11/gdm/Sessions/afterstep
++install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/gdm/Sessions/
++install -m 0755 %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/X11/gdm/Sessions/afterstep
+ install -d $RPM_BUILD_ROOT%{_datadir}/xsessions/
+ install -m 0644 %{SOURCE6} $RPM_BUILD_ROOT%{_datadir}/xsessions/afterstep.desktop
+ install -d $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties/
+@@ -253,12 +263,12 @@
+ 
+ # mandrake/mandriva menu items
+ %if %{mdk}
+-install -d $RPM_BUILD_ROOT/etc/X11/wmsession.d/
+-install -m 0644 %{SOURCE3} $RPM_BUILD_ROOT/etc/X11/wmsession.d/42AfterStep
++install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/wmsession.d/
++install -m 0644 %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/X11/wmsession.d/42AfterStep
+ install -d $RPM_BUILD_ROOT%{_libdir}/menu/afterstep
+ install -m 0644 %{SOURCE4} $RPM_BUILD_ROOT%{_libdir}/menu/afterstep
+-install -d $RPM_BUILD_ROOT/etc/menu-methods/
+-install -m 0755 %{SOURCE5} $RPM_BUILD_ROOT/etc/menu-methods/AfterStep
++install -d $RPM_BUILD_ROOT%{_sysconfdir}/menu-methods/
++install -m 0755 %{SOURCE5} $RPM_BUILD_ROOT%{_sysconfdir}/menu-methods/AfterStep
+ %endif
+ 
+ %if %{ismultiarch}
+@@ -310,7 +320,7 @@
+ %{_mandir}/man1/*
+ # this is evil hack, but I can't get it to work otherwise on mdk
+ %if !%{fedora}
+-%config /etc/X11/wmsession.d/42AfterStep
++%config %{_sysconfdir}/X11/wmsession.d/42AfterStep
+ %{_sysconfdir}/menu-methods/AfterStep
+ %{_datadir}/xsessions/AfterStep.desktop
+ %config %{_libdir}/menu/afterstep/AfterStep.menu
+@@ -399,6 +409,18 @@
+ if [ -x /usr/sbin/fndSession ]; then /usr/sbin/fndSession || true ; fi
+ 
+ %changelog
++* Fri Mar 06 2008 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.8-1
++- new version.
++
++* Thu Dec 06 2007 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.7-4
++- added patch to skip short duration windows under workspace_state.
++
++* Thu Dec 06 2007 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.7-3
++- added patches to look for urxvt (then aterm, rxvt, xterm).
++
++* Fri Nov 09 2007 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.7-2
++- cleaned-up desktop.
++
+ * Mon Aug 27 2007 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.7-1
+ - new version.
+ 
+@@ -409,6 +431,9 @@
+   package makes it easier to differentiate.
+ - added qiv as a require for AfterStep - some apps still need
+   an image loader other than that provided by AfterStep.
++
++* Thu Jun 14 2007 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.6-2
++- added test for F7.
+ 
+ * Thu Jun 14 2007 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.6-2
+ - added test for F7.
+
+Index: Temperature.app.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/Temperature.app.spec,v
+retrieving revision 1.7
+retrieving revision 1.8
+diff -u -r1.7 -r1.8
+--- Temperature.app.spec	27 Apr 2007 16:09:17 -0000	1.7
++++ Temperature.app.spec	7 Mar 2008 03:28:42 -0000	1.8
+@@ -1,6 +1,6 @@
+ %define name Temperature.app
+ %define version 1.4
+-%define release 8%{?dist}
++%define release 9%{?dist}
+ 
+ Summary: WM applet gets temperature every 15 minutes
+ Name: %name
+@@ -13,7 +13,7 @@
+ Patch0: Temperature.app-1.4.as.patch
+ Patch1: Temperature.app-1.4-frog-5.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-Requires: wget
++Requires: wget xorg-x11-fonts-ISO8859-1-75dpi xorg-x11-fonts-ISO8859-1-100dpi
+ 
+ %description
+ This WM applet includes two binaries: "Temperature.app" for AfterStep
+@@ -66,6 +66,9 @@
+ 
+ 
+ %changelog
++* Sat Nov 10 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.4-9
++- added Require for xorg-x11-fonts-ISO8859-1-75dpi.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.4-8
+ - added distro info to release.
+ 
+
+Index: rxvt-unicode.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/rxvt-unicode.spec,v
+retrieving revision 1.4
+retrieving revision 1.5
+diff -u -r1.4 -r1.5
+--- rxvt-unicode.spec	1 Nov 2007 17:39:32 -0000	1.4
++++ rxvt-unicode.spec	7 Mar 2008 03:28:42 -0000	1.5
+@@ -1,6 +1,6 @@
+ %define aitest	%(rpm -q --queryformat='%{VERSION}' libAfterImage)
+ %define aiver	%aitest 
+-%define version 8.4
++%define version 9.02
+ %define release 1%{?dist}
+ %define name	rxvt-unicode
+ %define epoch	2
+@@ -14,7 +14,6 @@
+ Group:		User Interface/X
+ URL:		http://software.schmorp.de/pkg/rxvt-unicode.html
+ Source0:	http://dist.schmorp.de/rxvt-unicode/%{name}-%{version}.tar.bz2
+-Patch0:		%{name}-%{version}-docs.patch
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires:	perl-devel libXpm-devel libXft-devel freetype-devel
+ BuildRequires:	libAfterImage-devel >= 1.15
+@@ -85,6 +84,21 @@
+ %{_libdir}/urxvt
+ 
+ %changelog
++* Fri Feb 02 2008 J. Krebs <rpm_speedy at yahoo.com> - 2:9.02
++- new version.
++
++* Fri Jan 25 2008 J. Krebs <rpm_speedy at yahoo.com> - 2:9.0
++- new version.
++
++* Mon Dec 24 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.9
++- new version.
++
++* Sat Dec 15 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.8
++- new version.
++
++* Sun Nov 25 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.7
++- new version.
++
+ * Sat Oct 27 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.4
+ - new version.
+ 
+
+Index: wmifinfo.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmifinfo.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmifinfo.spec	27 Apr 2007 16:09:18 -0000	1.5
++++ wmifinfo.spec	7 Mar 2008 03:28:42 -0000	1.6
+@@ -1,6 +1,6 @@
+ %define name wmifinfo
+ %define version 0.09
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: wmifinfo shows basic network info for all available interfaces
+ Name: %name
+@@ -8,8 +8,8 @@
+ Release: %release
+ License: GPL
+ Group: AfterStep/Applets
+-URL: http://www.zevv.nl/wmifinfo/
+-Source0: http://www.zevv.nl/wmifinfo/%{name}-%{version}.tgz
++URL: http://www.zevv.nl/play/code/wmifinfo/
++Source0: http://www.zevv.nl/play/code/%{name}/%{name}-%{version}.tgz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+@@ -40,6 +40,9 @@
+ %doc README
+ 
+ %changelog
++* Sat Nov 24 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.09-5
++- updated URL info.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.09-4
+ - added distro info to release.
+ 
+
+Index: worker.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/worker.spec,v
+retrieving revision 1.2
+retrieving revision 1.3
+diff -u -r1.2 -r1.3
+--- worker.spec	23 Aug 2007 17:07:01 -0000	1.2
++++ worker.spec	7 Mar 2008 03:28:42 -0000	1.3
+@@ -1,5 +1,5 @@
+ %define name worker
+-%define version 2.15.0
++%define version 2.16.2
+ %define release 1%{?dist}
+ %define doc_version 2.10.0.2
+ 
+@@ -12,9 +12,8 @@
+ Source0:	http://www.boomerangsworld.de/worker/downloads/%{name}-%{version}.tar.gz
+ Source1:	http://www.boomerangsworld.de/worker/downloads/%{name}-%{doc_version}-doc.tar.bz2
+ URL:		http://www.boomerangsworld.de/worker/
+-BuildRequires:	libX11-devel
+-BuildRequires:	bzip2-devel
+-BuildRequires:	zlib-devel
++Requires:	libXpm avfs fuse
++BuildRequires:	libX11-devel bzip2-devel zlib-devel libXpm-devel avfs-devel
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+@@ -28,7 +27,7 @@
+ %setup -q -a 1
+ 
+ %build
+-./configure --prefix=%{_prefix} --mandir=%{_mandir}
++./configure --prefix=%{_prefix} --mandir=%{_mandir} --docdir=%{_datadir}/doc/%{name}-%{version}
+ make
+ 
+ %install
+@@ -36,15 +35,21 @@
+ 
+ make DESTDIR=$RPM_BUILD_ROOT install
+ 
+-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
++mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/16x16/apps/
++mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/32x32/apps/
++mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/48x48/apps/
++mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/64x64/apps/
++
++install -m 644 Icons/WorkerIcon16.xpm $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/16x16/apps/worker.xpm
++install -m 644 Icons/WorkerIcon32.xpm $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/32x32/apps/worker.xpm
++install -m 644 Icons/WorkerIcon48.xpm $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/48x48/apps/worker.xpm
++install -m 644 Icons/WorkerIcon.xpm $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/64x64/apps/worker.xpm
+ 
+-cp Icons/WorkerIcon48.xpm $RPM_BUILD_ROOT%{_datadir}/pixmaps/worker.xpm
+-cd worker-%{doc_version}-doc
++rm -rf $RPM_BUILD_ROOT%{_datadir}/pixmaps/*.xpm
+ 
++cd worker-%{doc_version}-doc
+ ./configure --prefix=%{_prefix}
+ make
+-
+-
+ make DESTDIR=$RPM_BUILD_ROOT install
+ 
+ #Install application link for X-Windows
+@@ -65,24 +70,59 @@
+   --add-category System						  \
+   %{name}.desktop
+ 
++cd ..
++
++mkdir -p $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++install -m 644 AUTHORS $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++install -m 644 COPYING $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++install -m 644 INSTALL $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++install -m 644 ChangeLog $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++install -m 644 NEWS $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++install -m 644 READM* $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++install -m 644 THANKS $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++
++mv $RPM_BUILD_ROOT%{_datadir}/doc/%{name}/* $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/%{name}/
++
+ %clean
+ rm -rf $RPM_BUILD_ROOT
+ 
++%post
++touch --no-create %{_datadir}/icons/hicolor
++if [ -x %{_bindir}/gtk-update-icon-cache ]; then
++  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
++fi
++
++%postun
++touch --no-create %{_datadir}/icons/hicolor
++if [ -x %{_bindir}/gtk-update-icon-cache ]; then
++  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
++fi
++
++
+ %files
+ %defattr(-,root,root,-)
+-%doc README NEWS AUTHORS ChangeLog
+-%docdir %{_datadir}/doc/worker
+-%{_datadir}/doc/worker/*
++%docdir %{_datadir}/doc/%{name}-%{version}
++%{_datadir}/doc/%{name}-%{version}/
+ %{_bindir}/*
+ %dir %{_datadir}/worker
+ %{_datadir}/worker/scripts/*
+ %{_datadir}/worker/catalogs/*
+ %{_datadir}/worker/config-*
+-%{_mandir}
+-%{_datadir}/pixmaps/*
++%{_mandir}/
++%{_datadir}/icons/hicolor/
+ %{_datadir}/applications/*
+ 
+ %changelog
++* Mon Feb 11 2008 J. Krebs <rpm_speedy at yahoo.com> 2.16.2-1
++- new version
++
++* Mon Dec 03 2007 J. Krebs <rpm_speedy at yahoo.com> 2.16.1-1
++- new version
++
++* Tue Nov 13 2007 J. Krebs <rpm_speedy at yahoo.com> 2.16.0-1
++- new version
++
+ * Fri Jun 08 2007 J. Krebs <rpm_speedy at yahoo.com> 2.15.0-1
+ - new version
+ 
+
+Index: yudit.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/yudit.spec,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- yudit.spec	23 Aug 2007 14:24:27 -0000	1.1
++++ yudit.spec	7 Mar 2008 03:28:42 -0000	1.2
+@@ -1,5 +1,5 @@
+ %define	name 	yudit
+-%define	version	2.8.1
++%define	version	2.9.0
+ %define	release	1%{?dist}
+ 
+ Summary:	Unicode Text Editor
+@@ -9,7 +9,6 @@
+ License:	GPL
+ Group:		Applications/Editors
+ Source:		http://yudit.org/download/%{name}-%{version}.tar.gz
+-Patch0:		%{name}-%{version}-patch1.txt
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+@@ -28,7 +27,6 @@
+ 
+ %prep
+ %setup
+-%patch0
+ 
+ %build
+ ./configure --prefix=%{_prefix} --mandir=%{_mandir}
+@@ -72,8 +70,10 @@
+ %dir %{_datadir}/yudit
+ %{_datadir}/yudit/data
+ %{_datadir}/yudit/fonts
+-%{_datadir}/yudit/src 
+-%{_datadir}/yudit/doc 
++%{_datadir}/yudit/src
++%{_datadir}/yudit/doc
++%{_datadir}/yudit/syntax
++
+ %dir %{_datadir}/yudit/locale
+ %{_datadir}/yudit/locale/am
+ %{_datadir}/yudit/locale/ar
+@@ -106,6 +106,7 @@
+ %{_datadir}/yudit/locale/vi
+ %{_datadir}/yudit/locale/yi
+ %{_datadir}/yudit/locale/zh
++%{_datadir}/yudit/locale/zh_CN
+ 
+ %dir %{_datadir}/yudit/config
+ %config %{_datadir}/yudit/config/*
+@@ -115,9 +116,10 @@
+ %doc CHANGELOG.TXT COPYING.TXT FAQ.TXT README.TXT TODO.TXT doc/*.utf8 doc/notinstalled doc/problems doc/HOWTO-*.txt doc/otfsupport.txt
+ 
+ %changelog
++* Mon Dec 24 2007 J. Krebs <rpm_speedy at yahoo.com> - 2.9.0-1
++  Updated to version 2.9.0
+ * Thu Feb 15 2007 J. Krebs <rpm_speedy at yahoo.com> - 2.8.1-1
+   Updated to version 2.8.1
+-  
+ * Mon Mar 21 2005 Gaspar Sinai <gsinai at yudit.org>
+   - Merged Marathi and Gujarati menu.
+   - Merged jodakshar.hwd marathi.hwd roman.hwd handwrinting recognition files
+
+
+

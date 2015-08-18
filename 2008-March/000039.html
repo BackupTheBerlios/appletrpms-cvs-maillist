@@ -1,0 +1,385 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SOURCES	AfterStep-2.2.7-pager.patch, NONE,	1.1 AfterStep-2.2.7-wharf.alternate, NONE,	1.1 AfterStep-2.2.7-winlist.patch, NONE,	1.1 afterstep.desktop.xsessions, 1.2, 1.3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SOURCES%0A%09AfterStep-2.2.7-pager.patch%2C%20NONE%2C%0A%091.1%20AfterStep-2.2.7-wharf.alternate%2C%20NONE%2C%0A%091.1%20AfterStep-2.2.7-winlist.patch%2C%20NONE%2C%0A%091.1%20afterstep.desktop.xsessions%2C%201.2%2C%201.3&In-Reply-To=%3C47D0B66D.mailF5D1VTO3J%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000040.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SOURCES	AfterStep-2.2.7-pager.patch, NONE,	1.1 AfterStep-2.2.7-wharf.alternate, NONE,	1.1 AfterStep-2.2.7-winlist.patch, NONE,	1.1 afterstep.desktop.xsessions, 1.2, 1.3</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SOURCES%0A%09AfterStep-2.2.7-pager.patch%2C%20NONE%2C%0A%091.1%20AfterStep-2.2.7-wharf.alternate%2C%20NONE%2C%0A%091.1%20AfterStep-2.2.7-winlist.patch%2C%20NONE%2C%0A%091.1%20afterstep.desktop.xsessions%2C%201.2%2C%201.3&In-Reply-To=%3C47D0B66D.mailF5D1VTO3J%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SOURCES	AfterStep-2.2.7-pager.patch, NONE,	1.1 AfterStep-2.2.7-wharf.alternate, NONE,	1.1 AfterStep-2.2.7-winlist.patch, NONE,	1.1 afterstep.desktop.xsessions, 1.2, 1.3">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Fri Mar  7 04:28:45 CET 2008</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000040.html">[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.21, 1.22  misc-apps.inc, 1.15, 1.16 wm-apps.inc, 1.48, 1.49
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#39">[ date ]</a>
+              <a href="thread.html#39">[ thread ]</a>
+              <a href="subject.html#39">[ subject ]</a>
+              <a href="author.html#39">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv19423/SOURCES
+
+Modified Files:
+	afterstep.desktop.xsessions 
+Added Files:
+	AfterStep-2.2.7-pager.patch AfterStep-2.2.7-wharf.alternate 
+	AfterStep-2.2.7-winlist.patch 
+Log Message:
+added new programs, updated older versions.
+
+
+--- NEW FILE: AfterStep-2.2.7-pager.patch ---
+--- afterstep/pager.in	2005-05-10 16:51:28.000000000 -0500
++++ afterstep/pager.in	2007-11-11 11:12:58.000000000 -0600
+@@ -35,7 +35,7 @@
+ 
+ *PagerDecoration  DeskBorderWidth 1, DeskBorderColor BaseDark, GridColor Inactive2Dark, SelectionColor HighActiveLight
+ 
+-*PagerGeometry       -1+27
++*PagerGeometry       -3+35
+ 
+ # PagerStyle is used to define look of Pager's desk window.
+ # Relevant look must be defined in your look file or in this file
+@@ -53,8 +53,8 @@
+ *PagerLabel          1       WWW
+ *PagerLabel          2       Mail
+ *PagerLabel          3       Games
+-*PagerRows	     @with_desktops@
+-*PagerColumns        2
++*PagerRows	     2
++*PagerColumns        @with_desktops@
+ 
+ # use this options to override global look : 
+ #*PagerShadeButton	 	default-shade-dark 		 default-shade-dark-pressed
+
+--- NEW FILE: AfterStep-2.2.7-wharf.alternate ---
+##########################################################################
+# Wharf - primary application launcher :
+#
+#------------------------------------------------------------------------
+
+*WharfAnimate
+*WharfAnimateMain
+*WharfAnimateDelay	2
+*WharfAnimateSteps	5
+*WharfAnimateStepsMain	5
+
+*WharfBalloons
+*WharfBalloonXOffset		10
+*WharfBalloonYOffset		-15
+*WharfBalloonDelay		120
+*WharfBalloonCloseDelay		1200
+*WharfBalloonStyle		&quot;*WharfBalloon&quot;
+*WharfBalloonBorderHilite	Right,Bottom
+*WharfShowHints                 Name
+
+#------------------------------------------------------------------------
+# Buttons
+#
+*WharfFullPush
+#*WharfNoPush
+
+# This will resize Wharf's buttons to fit the size of swallowed apps/icons
+#*WharfFitContents
+*WharfAlignContents HScaled, VScaled, HCenter, VCenter
+
+#------------------------------------------------------------------------
+# Geometry
+#
+*WharfForceSize		32x32
+*WharfRows		1
+#*WharfColumns		2
+*WharfGeometry		-0+0
+#*WharfBevel		Bottom,Right,NoOutline,Extra
+*WharfNoBorder
+
+#-----------------------------------------------------------------------
+# Applications :
+#
+
+# First available terminal. Rxvt-Unicode (urxvt) and aterm offer AfterStep support :
+*Wharf Term		logos/Unicode Exec &quot;-&quot; urxvt &amp;
+*Wharf Term		logos/Unicode Exec &quot;-&quot; mlterm &amp;
+*Wharf Term		logos/aterm2 Exec &quot;-&quot; aterm &amp;
+*Wharf Term		logos/Eterm Exec &quot;-&quot; Eterm -P ~/.afterstep/non-configurable/0_background -f white &amp;
+*Wharf Term		normal/Monitor3DBlue Exec &quot;-&quot; rxvt -bg black -fg grey70 -sl 500 -vb &amp;
+*Wharf Term		logos/XWindow3 Exec &quot;-&quot; xterm -bg black -fg grey70 -sl 500 -vb &amp;
+
+# First available Web Browser :
+*Wharf Browser		normal/WWW    Exec x-www-browser &amp;
+*Wharf Browser		logos/Firefox Exec &quot;firefox&quot; firefox &amp;
+*Wharf Browser		logos/Firefox Exec &quot;Firefox2&quot; mozilla-firefox &amp;
+*Wharf Browser		iceweasel.png Exec &quot;iceweasel&quot; iceweasel &amp;
+*Wharf Browser		logos/mozilla Exec &quot;Mozilla&quot; mozilla &amp;
+*Wharf Browser		logos/Opera   Exec &quot;Opera Web Browser&quot; opera &amp;
+*Wharf Browser		normal/WWW    Exec sensible-browser &amp;
+
+# Restart the AfterStep session or close the session :
+*Wharf QuitFolder Folder-Stopsign Folder
+	*Wharf 	Restart_Session normal/Recycle Restart &quot;&quot; afterstep -r
+	*Wharf 	Quit normal/RedLight Quit &quot;&quot; afterstep
+*Wharf ~Folder
+
+# Subfolder of office applications. Look at how it pulls-in the same items that are in Menu/Applications/Office :
+*Wharf Office - CategoryTree &quot;Office&quot;
+
+# What's AfterStep without the MultiMedia bells and whistles? :
+*Wharf MultimediaFolder Folder-Headphones Folder
+	*Wharf gxmms2		xmms2.svg Exec &quot;gxmms2&quot; gxmms2 &amp;
+	*Wharf AudioPlayer	normal/OldFashionedRadio Exec &quot;xmms&quot; xmms &amp;
+	*Wharf Audacious	audacious.png Exec &quot;audacious&quot; audacious &amp;
+	*Wharf Rhythmbox	rhythmbox.png Exec &quot;rhythmbox&quot; rhythmbox &amp;
+	*Wharf Amarok		amarok.png Exec &quot;amarok&quot; amarok &amp;
+	*Wharf MPlayer		normal/MovieProjector Exec &quot;gmplayer&quot; gmplayer -vo xv &amp;
+	*Wharf Totem		totem.png Exec &quot;totem&quot; totem &amp;
+	*Wharf VideoLANClient	vlc.png Exec &quot;vlc&quot; vlc &amp;
+	*Wharf RealPlayer	realplay.png Exec &quot;realplayer&quot; realplay &amp;
+*Wharf ~Folder
+
+# Odds-n-ends that fit in a folder nicely :
+*Wharf MiscFolder Folder-Screwdriver Folder
+	*Wharf Calculator	normal/Calculator Exec &quot;Calcoo&quot; calcoo &amp;
+	*Wharf Calculator	normal/Calculator Exec &quot;gcalctool&quot; gcalctool &amp;
+	*Wharf Calculator	kcalc.png Exec &quot;kcalc&quot; kcalc &amp;
+	*Wharf Calculator	normal/Calculator2 Exec &quot;xcalc&quot; xcalc &amp;
+
+	*Wharf ImageEditor	logos/gimp Exec &quot;gimp&quot; gimp &amp;
+	*Wharf ImageEditor	normal/XV Exec &quot;XV&quot; xv &amp;
+*Wharf ~Folder
+
+# First available e-mail client :
+*Wharf Mail		logos/Thunderbird Exec &quot;Thunderbird&quot; thunderbird &amp;
+*Wharf Mail		logos/Thunderbird Exec &quot;Thunderbird2&quot; mozilla-thunderbird &amp;
+*Wharf Mail		normal/MailBox2 Exec &quot;mozilla-mail&quot; mozilla --mail &amp;
+*Wharf Mail		normal/MailBox2 Exec &quot;kmail&quot; kmail &amp;
+*Wharf Mail		normal/MailBox2 Exec &quot;balsa&quot; balsa &amp;
+*Wharf Mail		normal/MailBox2 ExecInTerm &quot;Mutt&quot; -title &quot;Mutt e-mail reader&quot; -e mutt -y &amp;
+*Wharf Mail		normal/MailBox2 ExecInTerm &quot;Pine&quot; -title &quot;Pine e-mail and news reader&quot; -e pine &amp;
+
+# First available text editor :
+*Wharf TextEditor	medit.png Exec &quot;medit&quot; medit &amp;
+*Wharf TextEditor	normal/Pen1 Exec &quot;nedit&quot; nedit &amp;
+*Wharf TextEditor 	normal/Pen1 Exec &quot;cooledit&quot; cooledit --look next &amp;
+*Wharf TextEditor 	xemacs.png Exec &quot;xemacs&quot; xemacs &amp;
+*Wharf TextEditor 	normal/Pen1 Exec &quot;VIM&quot; gvim &amp;
+*Wharf TextEditor	normal/Pen1 ExecInTerm &quot;nano&quot; -title &quot;Nano text editor&quot; -e nano &amp;
+
+# First available file manager :
+*Wharf FileManager	logos/Worker        Exec &quot;Worker&quot; worker &amp;
+*Wharf FileManager	logos/konqueror     Exec &quot;Konqueror&quot; konqueror &amp;
+*Wharf FileManager 	normal/Filecabinet2 Exec &quot;Krusader&quot; krusader &amp;
+*Wharf FileManager 	normal/Filecabinet2 Exec &quot;Gentoo File Manager&quot; gentoo &amp;
+*Wharf FileManager 	normal/Filecabinet2 Exec &quot;Rox&quot; rox &amp;
+*Wharf FileManager 	normal/Filecabinet2 Exec &quot;Nautilus&quot; nautilus --no-desktop &amp;
+*Wharf FileManager	normal/MCInMonitorShadow ExecInTerm &quot;-&quot; -g 130x35 if(aterm){-T mc-VerticalTitle -tr -tint blue -fg white -bg black} if(Eterm){-O --tint blue -f white -b black) if(rxvt){-tr -fg white -bg black} -e mc &amp;
+
+# Alltray allows any application to be added to the systray :
+*Wharf alltray		/usr/share/pixmaps/alltray.png Exec &quot;AllTray&quot; alltray &amp;
+
+# Not actually part of AfterStep; Trayer is the better option for systrays.
+*Wharf systray - MaxSwallow &quot;trayer&quot; trayer --SetDockType false --widthtype request --heighttype pixel --height 24 --edge bottom --align left --transparent true --alpha 128 &amp;
+
+# Clock if not running MonitorWharf
+*Wharf clock - MaxSwallow &quot;xclock&quot; xclock -geometry 64x32 -digital -brief -bg gray10 -fg cyan -update 1 &amp;
+
+#
+#  End of the Wharf configuration
+##########################################################################
+
+##########################################################################
+# MonitorWharf - monitorng applications, system configuration, clocks and docs:
+#
+#------------------------------------------------------------------------
+
+*MonitorWharfAnimate
+*MonitorWharfAnimateMain
+*MonitorWharfAnimateDelay	2
+*MonitorWharfAnimateSteps	5
+*MonitorWharfAnimateStepsMain	5
+
+*MonitorWharfBalloons
+*MonitorWharfBalloonXOffset		10
+*MonitorWharfBalloonYOffset		-15
+*MonitorWharfBalloonDelay		120
+*MonitorWharfBalloonCloseDelay		1200
+*MonitorWharfBalloonStyle		&quot;*WharfBalloon&quot;
+*MonitorWharfBalloonBorderHilite	Right,Bottom
+*MonitorWharfShowHints                 Name
+
+#------------------------------------------------------------------------
+# Buttons
+#
+*MonitorWharfFullPush
+#*MonitorWharfNoPush
+*MonitorWharfBevel		Right,NoOutline
+
+# This will resize Wharf's buttons to fit the size of swallowed apps/icons
+#*MonitorWharfFitContents
+#*MonitorWharfAlignContents HCenter, VCenter
+
+#------------------------------------------------------------------------
+# Geometry
+#
+#*MonitorWharfForceSize
+#*MonitorWharfRows		1
+*MonitorWharfColumns		1
+*MonitorWharfGeometry		-3-3
+
+#-----------------------------------------------------------------------
+# Monitoring Applications :
+#
+
+# To swallow Pager, you need to:
+#   - In autoexec, comment-out the line &quot;Module  &quot;I&quot;     Pager 0 0&quot;
+#   - In base, set the DeskTopScale value (default is 32, larger number
+#      means smaller Pager is displayed).  Helpful formula for vertical Wharf:
+#      (DesktopWidth) / (WharfWidth) * (#HorizontalViewports) = 1280/64*2 = 40
+#   - In Pager, comment-out the &quot;*PagerGeometry       -3+35&quot; line
+#   - In Pager, in the &quot;*PagerDecoration  ...&quot; line,
+#     change DeskBorderWidth from &quot;1&quot; to &quot;0&quot;
+#   - Edit the line below.  The 0,1, etc. refer to the desktops you want
+#     to display.  Default would be &quot;0 1 2 3&quot;.
+#*MonitorWharf Pager - MaxSwallowModule &quot;Pager&quot; Pager 0 1
+
+# One of the annoying eyes Applets - first available :
+*MonitorWharf eyes - Swallow &quot;speyes&quot; speyes &amp;
+*MonitorWharf eyes - Swallow &quot;wmeyes&quot; wmeyes &amp;
+*MonitorWharf eyes - Swallow &quot;xeyes&quot; xeyes -geometry 64x64 &amp;
+
+# One of the load monitors - first available :
+*MonitorWharf loadmonitor - Swallow &quot;wmfire&quot; wmfire -f 2 &amp;
+*MonitorWharf loadmonitor - Swallow &quot;wmcpuload&quot; wmcpuload -wp &amp;
+*MonitorWharf loadmonitor - Swallow &quot;asmon&quot; asmon &amp;
+*MonitorWharf loadmonitor - Swallow &quot;asload&quot; asload -shape -exe &quot;aterm -e top&quot; &amp;
+*MonitorWharf loadmonitor - Swallow &quot;wmavgload&quot; wmavgload -shape -led red &amp;
+*MonitorWharf loadmonitor - Swallow &quot;wmload&quot; wmload -shape -led red &amp;
+*MonitorWharf loadmonitor - Swallow &quot;xload&quot; xload -geometry 64x64 -bg gray70 -label LOAD -update 3 &amp;
+
+# One of the audio players - first available :
+*MonitorWharf AudioPlayer - Swallow &quot;wmusic&quot; wmusic -w &amp;
+*MonitorWharf AudioPlayer - Swallow &quot;wmxmms&quot; wmxmms --single &amp;
+*MonitorWharf AudioPlayer logos/Xmms Exec &quot;X Multi Media System&quot; xmms &amp;
+*MonitorWharf AudioPlayer - Swallow &quot;ascd&quot; ascd &amp;
+
+# One of the memory monitors - first available :
+*MonitorWharf memory - Swallow &quot;wmmemload&quot; wmmemload -b -c -w &amp;
+*MonitorWharf memory - Swallow &quot;wmmemmon&quot; wmmemmon -b -c -w &amp;
+*MonitorWharf memory - Swallow &quot;asmem&quot; asmem &amp;
+
+# One of the mixers - first available :
+*MonitorWharf mixer - Swallow &quot;Mixer.app&quot; Mixer.app &amp;
+*MonitorWharf mixer - Swallow &quot;wmix&quot; wmix &amp;
+*MonitorWharf mixer - Swallow &quot;asmixer&quot; asmixer -g -1-1 &amp;
+*MonitorWharf mixer - Swallow &quot;wmmixer&quot; wmmixer &amp;
+*MonitorWharf mixer - Swallow &quot;asMix&quot; asmix -shape &amp;
+
+# One of the system temps - first available :
+# You'll need lm_sensors activated; folder-name is found in /sys/bus/i2c/devices/
+*MonitorWharf cputemp - Swallow &quot;wmtemp&quot; wmtemp -w &amp;
+*MonitorWharf cputemp - Swallow &quot;wmcpum&quot; wmcpum -d 9191-0290 &amp;
+*MonitorWharf cputemp - Swallow &quot;wmsensormon&quot; wmsensormon -dt 45 -ds 35 -wt 40 -ws 30 &amp;
+
+# One of the weather monitors - first available :
+# Get the 4-letter code from <A HREF="http://weather.noaa.gov">http://weather.noaa.gov</A>
+*MonitorWharf weather - Swallow &quot;Temperature.app&quot; Temperature.app -s KORD -f -c -p -w MPH &amp;
+*MonitorWharf weather - Swallow &quot;wmweather&quot; wmweather -s KORD --compat &amp;
+
+# One of the clocks - first available :
+*MonitorWharf clock - Swallow &quot;wmclockmon&quot; wmclockmon -w &amp;
+*MonitorWharf clock - Swallow &quot;asclock&quot; asclock -24 -theme penguin &amp;
+*MonitorWharf clock - Swallow &quot;hvclock&quot; hvclock &amp;
+*MonitorWharf clock - Swallow &quot;wmitime&quot; wmitime &amp;
+*MonitorWharf clock - Swallow &quot;Time.app&quot; Time.app -D -t 24 &amp;
+*MonitorWharf clock - MaxSwallow &quot;xclock&quot; xclock -geometry 64x32 -digital -brief -bg gray10 -fg cyan -update 1 &amp;
+*MonitorWharf clock - Exec &quot;r&quot; evolution &amp;
+*MonitorWharf clock - Exec &quot;r&quot; korganizer &amp;
+
+# One of the net monitors - first available :
+*MonitorWharf netmonitor - Swallow &quot;wmnd&quot; wmnd -w lines &amp;
+*MonitorWharf netmonitor - Swallow &quot;wminet&quot; wminet -t &amp;
+*MonitorWharf netmonitor - Swallow &quot;wmnethru&quot; wmnethru &amp;
+*MonitorWharf netmonitor - Swallow &quot;wmnet&quot; wmnet --driver=devstats &amp;
+*MonitorWharf netmonitor - Swallow &quot;wmifinfo&quot; wmifinfo -i eth0 &amp;
+
+#
+#  End of the MonitorWharf configuration
+##########################################################################
+
+--- NEW FILE: AfterStep-2.2.7-winlist.patch ---
+--- afterstep/winlist	2007-05-14 16:13:19.000000000 -0500
++++ afterstep/winlist	2007-11-09 11:26:47.000000000 -0600
+@@ -9,7 +9,7 @@
+ *WinListDefaults
+ 	Geometry        +0+0
+ 	MinSize         10000    #will be truncated to thescreen size
+-	MaxRows         3
++	MaxRows         1
+ 	FillRowsFirst
+ 	UseSkipList
+ 	
+@@ -74,6 +74,6 @@
+ # By default WinList will avoid collision with Pager and Wharf
+ #*WinListNoCollides &quot;Nedit*&quot;
+ #*WinListAllowCollides &quot;Pager*&quot;
+-#*WinListNoCollidesSpacing 5
++*WinListNoCollidesSpacing 3
+ 
+ 
+
+Index: afterstep.desktop.xsessions
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SOURCES/afterstep.desktop.xsessions,v
+retrieving revision 1.2
+retrieving revision 1.3
+diff -u -r1.2 -r1.3
+--- afterstep.desktop.xsessions	24 Mar 2006 14:29:08 -0000	1.2
++++ afterstep.desktop.xsessions	7 Mar 2008 03:28:42 -0000	1.3
+@@ -6,3 +6,6 @@
+ TryExec=afterstep
+ Icon=
+ Type=Application
++
++[Window Manager]
++SessionManaged=true
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000040.html">[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.21, 1.22  misc-apps.inc, 1.15, 1.16 wm-apps.inc, 1.48, 1.49
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#39">[ date ]</a>
+              <a href="thread.html#39">[ thread ]</a>
+              <a href="subject.html#39">[ subject ]</a>
+              <a href="author.html#39">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

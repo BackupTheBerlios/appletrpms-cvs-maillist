@@ -1,0 +1,1243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SPECS calcoo.spec, NONE, 1.1  libAfterImage-NoX.spec, NONE, 1.1 mined.spec, NONE, 1.1  rxvt-unicode.spec, NONE, 1.1 worker.spec, NONE, 1.1 yudit.spec, NONE, 1.1  AfterStep.spec, 1.55, 1.56 aterm.spec, 1.22, 1.23
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20calcoo.spec%2C%20NONE%2C%0A%201.1%20%20libAfterImage-NoX.spec%2C%20NONE%2C%201.1%20mined.spec%2C%20NONE%2C%0A%201.1%20%20rxvt-unicode.spec%2C%20NONE%2C%201.1%20worker.spec%2C%20NONE%2C%201.1%20yudit.spec%2C%20NONE%2C%0A%201.1%20%20AfterStep.spec%2C%201.55%2C%201.56%20aterm.spec%2C%201.22%2C%201.23&In-Reply-To=%3C46CD989E.mailGN31F4767%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000022.html">
+   <LINK REL="Next"  HREF="000024.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SPECS calcoo.spec, NONE, 1.1  libAfterImage-NoX.spec, NONE, 1.1 mined.spec, NONE, 1.1  rxvt-unicode.spec, NONE, 1.1 worker.spec, NONE, 1.1 yudit.spec, NONE, 1.1  AfterStep.spec, 1.55, 1.56 aterm.spec, 1.22, 1.23</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20calcoo.spec%2C%20NONE%2C%0A%201.1%20%20libAfterImage-NoX.spec%2C%20NONE%2C%201.1%20mined.spec%2C%20NONE%2C%0A%201.1%20%20rxvt-unicode.spec%2C%20NONE%2C%201.1%20worker.spec%2C%20NONE%2C%201.1%20yudit.spec%2C%20NONE%2C%0A%201.1%20%20AfterStep.spec%2C%201.55%2C%201.56%20aterm.spec%2C%201.22%2C%201.23&In-Reply-To=%3C46CD989E.mailGN31F4767%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SPECS calcoo.spec, NONE, 1.1  libAfterImage-NoX.spec, NONE, 1.1 mined.spec, NONE, 1.1  rxvt-unicode.spec, NONE, 1.1 worker.spec, NONE, 1.1 yudit.spec, NONE, 1.1  AfterStep.spec, 1.55, 1.56 aterm.spec, 1.22, 1.23">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Thu Aug 23 16:24:30 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000022.html">[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.19, 1.20  misc-apps.inc, 1.13, 1.14
+</A></li>
+        <LI>Next message: <A HREF="000024.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.56, 1.57  rxvt-unicode.spec, 1.1, 1.2 worker.spec, 1.1, 1.2
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#23">[ date ]</a>
+              <a href="thread.html#23">[ thread ]</a>
+              <a href="subject.html#23">[ subject ]</a>
+              <a href="author.html#23">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv21475/SPECS
+
+Modified Files:
+	AfterStep.spec aterm.spec 
+Added Files:
+	calcoo.spec libAfterImage-NoX.spec mined.spec 
+	rxvt-unicode.spec worker.spec yudit.spec 
+Log Message:
+updated AS and aterm, added urxvt, libAI-NoX, worker, yudit, mined, calcoo
+
+
+--- NEW FILE: calcoo.spec ---
+%define name calcoo
+%define version 1.3.18
+%define release 1%{?dist}
+
+Summary: calcoo is a RPN and algebraic scientific calculator
+Name: %name
+Version: %version
+Release: %release
+License: GPL
+Group: Applications/Scientific
+URL: <A HREF="http://calcoo.sourceforge.net/">http://calcoo.sourceforge.net/</A>
+Source0: <A HREF="http://internap.dl.sourceforge.net/sourceforge/%{name">http://internap.dl.sourceforge.net/sourceforge/%{name</A>}/%{name}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+%description
+Calcoo is a scientific calculator designed to provide maximum
+usability.  The features that make Calcoo better than (at least some)
+other calculator programs are:
+
+* Bitmapped button labels and display digits to improve readability.
+
+* No double-function buttons. As the result, you need to click only one 
+  button for any operation (except for arc-hyp trigonometric
+  functions).
+
+* Undo/redo buttons.
+
+* Copy/paste interaction with X the clipboard.
+
+* Both RPN (reverse Polish notation) and algebraic modes are available
+
+* Tick marks to separate thousands.                                  
+
+* Two memory registers with displays.
+
+* Displays for Y, Z, and T registers.
+
+* It is a purely scientific calculator. There are no buttons for the 
+  hexadecimal digits (ABCDEF) and logical operations, which take space
+  and distract from &quot;scientific&quot; buttons.
+
+%prep
+%setup -q
+
+%build
+./configure --prefix=%{_prefix} --mandir=%{_mandir}
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make install DESTDIR=$RPM_BUILD_ROOT
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root,-)
+%{_bindir}/calcoo
+%{_mandir}/man1/*
+%doc AUTHORS COPYING ChangeLog INSTALL NEWS README
+
+%changelog
+* Mon Aug 20 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.3.18-1
+- New version.
+
+* Wed Aug 01 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.3.17-1
+- New version.
+
+* Sun Mar 26 2006 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.3.16-1
+- Initial build.
+
+--- NEW FILE: libAfterImage-NoX.spec ---
+%define	name 	libAfterImage-NoX
+%define	version	1.15
+%define	release	1%{?dist}
+%define	epoch	20
+
+Summary:	A generic image manipulation library (Non-Xfree/Xorg version)
+Name:		%name
+Version:	%version
+Release:	%release
+Epoch:		%epoch
+License:	GPL
+Group:		System Environment/Libraries
+Source0:	<A HREF="ftp://ftp.afterstep.org/stable/libAfterImage/libAfterImage-%{version">ftp://ftp.afterstep.org/stable/libAfterImage/libAfterImage-%{version</A>}.tar.gz
+Source1:	%{name}-COPYING
+Source2:	%{name}-COPYING.LDP
+Source3:	%{name}-COPYING.LIB
+URL:		<A HREF="http://www.afterstep.org">http://www.afterstep.org</A>
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Requires:	librsvg2
+Requires:	libtiff
+Requires:	libjpeg
+Requires:	libpng
+Requires:	freetype
+Requires:	zlib
+BuildRequires:	librsvg2-devel
+BuildRequires:	libtiff-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
+BuildRequires:  freetype-devel
+BuildRequires:  zlib-devel
+Conflicts:	libX11 AfterStep aterm urxvt libAfterImage xorg-x11-filesystem
+Provides:	libAfterImage
+
+%description
+Non-Xfree/Xorg version of libAfterImage, useful for server applications.
+
+libAfterImage is a generic image manipulation library. It was initially
+implemented to address AfterStep Window Manager\'s needs for image handling,
+but it evolved into extremely powerful and flexible software, suitable for
+virtually any project that has needs for loading, manipulating, displaying
+images, as well as writing images in files. Most of the popular image formats
+are supported using standard libraries, with XCF, XPM, PPM/PNM, BMP, ICO,
+TGA and GIF being supported internally.
+
+PNG, JPEG and TIFF formats are supported via standard libraries.
+
+Powerful text rendering capabilities included, providing support for
+TrueType fonts using FreeType library, and antialiasing of standard fonts
+from X window system.
+
+%package devel
+Summary:	Files needed for software development with libAfterImage (Non-Xfree/Xorg version)
+Version:	%{version}
+Release:	%{release}
+Epoch:		%{epoch}
+License:	GPL
+Group:		Development/Libraries
+Requires:	librsvg2-devel
+Requires:	libtiff-devel
+Requires:	libjpeg-devel
+Requires:	libpng-devel
+Requires:	freetype-devel
+Requires:	zlib-devel
+Conflicts:	libX11 libX11-devel xorg-x11-filesystem AfterStep-devel libAfterImage-devel
+Requires:	libAfterImage-NoX = %{epoch}:%{libaiver}
+Provides:	libAfterImage-devel
+
+%description devel
+Non-Xfree/Xorg version of libAfterImage-devel, useful for server applications.
+
+The libAfterImage-devel package contains the files needed for development with
+libAfterImage.
+
+%prep
+%setup -q -n libAfterImage-%{version}
+
+%build
+
+./configure --prefix=%{_prefix} \
+	--mandir=%{_mandir} \
+	--libdir=%{_libdir} \
+	--includedir=%{_includedir} \
+	--without-x \
+	--enable-i18n \
+	--enable-sharedlibs
+
+make
+
+%install
+
+cp %{SOURCE1} COPYING
+cp %{SOURCE2} COPYING.LDP
+cp %{SOURCE3} COPYING.LIB
+
+rm -rf $RPM_BUILD_ROOT
+
+mkdir -p $RPM_BUILD_ROOT
+
+make DESTDIR=$RPM_BUILD_ROOT LDCONFIG=/bin/true install
+
+rm -rf $RPM_BUILD_ROOT/%{_datadir}/libAfterImage/doc/html/*
+rm -rf $RPM_BUILD_ROOT/%{_libdir}/*.a
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
+
+%files
+%defattr(-,root,root)
+%doc ChangeLog README COPYING COPYING.LDP COPYING.LIB doc/html/
+%{_bindir}/afterimage*
+%{_bindir}/ascompose
+%{_bindir}/asflip
+%{_bindir}/asgrad
+%{_bindir}/asi18n
+%{_bindir}/asmerge
+%{_bindir}/asscale
+%{_bindir}/astext
+%{_bindir}/astile
+%{_bindir}/asvector
+%{_bindir}/asview
+%{_libdir}/libAfterImage.so.0*
+%{_mandir}/man3/*
+
+%files devel
+%defattr(-,root,root)
+%{_libdir}/libAfterImage.so
+%dir %{_includedir}/libAfterImage
+%{_includedir}/libAfterImage/*
+
+%changelog
+* Mon Aug 19 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 1.15-1
+- initial build.
+
+--- NEW FILE: mined.spec ---
+%define name	mined
+%define version	2000.14
+%define release	1%{?dist}
+
+Summary:	mined is a powerful text editor with extensive Unicode and CJK support
+Name:		%name
+Version:	%version
+Release:	%release
+License:	GPL
+Group:		Applications/Editors
+URL:		<A HREF="http://towo.net/mined/">http://towo.net/mined/</A>
+Source0:	<A HREF="http://towo.net/%{name">http://towo.net/%{name</A>}/%{name}-%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Requires:	ncurses
+Buildrequires:	ncurses-devel
+
+%description
+mined is a powerful text editor with extensive Unicode and CJK support.
+
+%prep
+%setup -q
+
+%build
+make OPT=&quot;$RPM_OPT_FLAGS -fno-strict-aliasing&quot; -C src -f makefile.linux PREFIX=%{_prefix}
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make INSTALLROOT=$RPM_BUILD_ROOT install
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root,-)
+%{_bindir}/*
+%{_datadir}/mined/*
+%{_mandir}/man1/*
+%doc doc COMPILE.DOC DESCR INSTALL.DOC PACKAGE.DOC README VERSION
+
+%changelog
+* Tue Aug 21 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2000.14-1
+- Initial build..
+
+--- NEW FILE: rxvt-unicode.spec ---
+%define aitest	%(rpm -q --queryformat='%{VERSION}' libAfterImage)
+%define aiver	%aitest 
+%define version 8.3
+%define release 1%{?dist}
+%define name	rxvt-unicode
+%define epoch	2
+
+Summary:	rxvt-unicode is a unicode version of rxvt
+Name:		%name
+Version:	%version
+Release:	%release
+Epoch:		%epoch
+License:	GPL
+Group:		User Interface/X
+URL:		<A HREF="http://software.schmorp.de/pkg/rxvt-unicode.html">http://software.schmorp.de/pkg/rxvt-unicode.html</A>
+Source0:	<A HREF="http://dist.schmorp.de/rxvt-unicode/%{name">http://dist.schmorp.de/rxvt-unicode/%{name</A>}-%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRequires:	perl-devel libXpm-devel libXft-devel freetype-devel
+BuildRequires:	libAfterImage-devel &gt;= 1.15
+BuildRequires:  fontconfig-devel
+BuildRequires:  freetype-devel
+BuildRequires:  glib2-devel
+BuildRequires:  /usr/bin/tic
+BuildRequires:  desktop-file-utils
+BuildRequires:  libX11-devel
+BuildRequires:  libXft-devel
+BuildRequires:  libXpm-devel
+BuildRequires:  libXrender-devel
+BuildRequires:  libXt-devel
+BuildRequires:  xorg-x11-proto-devel
+Requires:	perl libXpm libXft freetype
+Requires:	libAfterImage &gt;= %{aiver}
+
+%description
+rxvt-unicode is a clone of the well known terminal emulator rxvt, modified to
+store text in Unicode (either UCS-2 or UCS-4) and to use locale-correct input
+and output. It also supports mixing multiple fonts at the same time, including
+Xft fonts.
+
+%prep
+%setup -q
+
+%build
+
+./configure --prefix=%{_prefix} --libdir=%{_libdir} \
+		--with-xpm-includes=%{_includedir}/X11 \
+		--with-xpm-library=%{_libdir} \
+		--enable-afterimage
+
+make CFLAGS=&quot;${RPM_OPT_FLAGS}&quot;
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make install DESTDIR=$RPM_BUILD_ROOT
+
+#Install application link for X-Windows
+echo -e &quot;[Desktop Entry]
+Name=%{name}
+Comment=rxvt-unicode is a unicode version of rxvt
+Exec=urxvt
+Terminal=false
+Type=Application&quot; &gt; %{name}.desktop
+                                                                                
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
+desktop-file-install --vendor &quot;&quot; --delete-original \
+  --dir %{buildroot}%{_datadir}/applications                      \
+  --add-category X-Red-Hat-Extra                                  \
+  --add-category Application                                      \
+  --add-category System						  \
+  --add-category Utility					  \
+  --add-category TerminalEmulator                                 \
+  %{name}.desktop
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root)
+%doc COPYING Changes INSTALL README.FAQ README.configure doc/README.xvt doc/etc doc/changes.txt
+%{_bindir}/*
+%{_mandir}/man*/*
+%{_datadir}/applications/*
+%{_libdir}/urxvt
+
+%changelog
+* Tue Aug 21 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2:8.3
+- initial build.
+
+--- NEW FILE: worker.spec ---
+%define name worker
+%define version 2.15.0
+%define release 1%{?dist}
+%define doc_version 2.10.0.2
+
+Summary:	A file manager for X in AMIGA style
+Name:		%name
+Version:	%version
+Release:	%release
+License:	GPL
+Group:		Applications/File
+Source0:	<A HREF="http://www.boomerangsworld.de/worker/downloads/%{name">http://www.boomerangsworld.de/worker/downloads/%{name</A>}-%{version}.tar.gz
+Source1:	<A HREF="http://www.boomerangsworld.de/worker/downloads/%{name">http://www.boomerangsworld.de/worker/downloads/%{name</A>}-%{doc_version}-doc.tar.bz2
+Source2:	worker.desktop
+Source3:	worker.png
+URL:		<A HREF="http://www.boomerangsworld.de/worker/">http://www.boomerangsworld.de/worker/</A>
+BuildRequires:	libX11-devel
+BuildRequires:	bzip2-devel
+BuildRequires:	zlib-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+%description
+Worker is a graphical filemanager for the X Window System. It uses the
+classical two-panel-view of the files and directories. It has many
+intern operations while any extern program can also be used for
+operate on the selected items. You can easily add actions to filetypes
+or buttons with the builtin configuration program.
+
+%prep
+%setup -q -a 1
+
+%build
+./configure --prefix=%{_prefix} --mandir=%{_mandir}
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make DESTDIR=$RPM_BUILD_ROOT install
+
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
+
+cp %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/applications/
+cp %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/pixmaps/
+cd worker-%{doc_version}-doc
+
+./configure --prefix=%{_prefix}
+make
+
+
+make DESTDIR=$RPM_BUILD_ROOT install
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root,-)
+%doc README NEWS AUTHORS ChangeLog
+%docdir %{_datadir}/doc/worker
+%{_datadir}/doc/worker/*
+%{_bindir}/*
+%dir %{_datadir}/worker
+%{_datadir}/worker/scripts/*
+%{_datadir}/worker/catalogs/*
+%{_datadir}/worker/config-*
+%{_mandir}
+%{_datadir}/pixmaps/*
+%{_datadir}/applications/*
+
+%changelog
+* Fri Jun 08 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2.15.0-1
+- new version
+
+* Wed Apr 11 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2.14.4-1
+- new version
+
+* Thu Sep 15 2006 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2.14.0-1
+- new version
+
+* Wed Nov 09 2005 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2.11.0-1
+- new version
+
+* Thu Jul 28 2005 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2.10.2-1
+- new version
+
+* Tue Jun 28 2005 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2.10.1-1
+- new version
+
+* Mon May 30 2005 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2.10.0-1
+- new version
+
+* Mon Feb 28 2005 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2.9.0-1
+- new version
+
+--- NEW FILE: yudit.spec ---
+%define	name 	yudit
+%define	version	2.8.1
+%define	release	1%{?dist}
+
+Summary:	Unicode Text Editor
+Name:		%name
+Version:	%version
+Release:	%release
+License:	GPL
+Group:		Applications/Editors
+Source:		<A HREF="http://yudit.org/download/%{name">http://yudit.org/download/%{name</A>}-%{version}.tar.gz
+Patch0:		%{name}-%{version}-patch1.txt
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+%description
+Yudit is a unicode text editor for  the X Window
+System.  She  can  do True  Type font rendering,
+printing,   transliterated  keyboard  input  and
+handwriting recognition with no dependencies  on
+external  engines. Her conversion  utilities can
+convert    text   between   various   encodings.
+Keyboard  input   maps  can  also  act like text
+converters. There is no need for a pre-installed
+multi-lingual environment. Menus are  translated
+into many languages.
+
+GNU (C) 1997-2005 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt; 
+
+%prep
+%setup
+%patch0
+
+%build
+./configure --prefix=%{_prefix} --mandir=%{_mandir}
+make
+
+%install
+rm -fr $RPM_BUILD_ROOT
+
+mkdir $RPM_BUILD_ROOT
+
+make DESTDIR=$RPM_BUILD_ROOT install
+
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/pixmaps
+
+install -m 644 gnome-yudit.png $RPM_BUILD_ROOT%{_datadir}/pixmaps/yudit.png
+
+cat &gt;$RPM_BUILD_ROOT%{_datadir}/applications/yudit.desktop &lt;&lt;EOF
+[Desktop Entry]
+Name=Yudit (Unicode editor)
+GenericName=Unicode text editor
+Comment=Edits and creates unicode files.
+Exec=yudit
+Icon=yudit.png
+Type=Application
+Terminal=false
+Encoding=UTF-8
+Categories=Application;TextEditors;
+EOF
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root)
+%{_bindir}/uniconv
+%{_bindir}/uniprint
+%{_bindir}/yudit
+%{_bindir}/mytool
+%{_mandir}/man1/*
+
+%dir %{_datadir}/yudit
+%{_datadir}/yudit/data
+%{_datadir}/yudit/fonts
+%{_datadir}/yudit/src 
+%{_datadir}/yudit/doc 
+%dir %{_datadir}/yudit/locale
+%{_datadir}/yudit/locale/am
+%{_datadir}/yudit/locale/ar
+%{_datadir}/yudit/locale/az
+%{_datadir}/yudit/locale/bg
+%{_datadir}/yudit/locale/bn
+%{_datadir}/yudit/locale/cs
+%{_datadir}/yudit/locale/de
+%{_datadir}/yudit/locale/el
+%{_datadir}/yudit/locale/en
+%{_datadir}/yudit/locale/es
+%{_datadir}/yudit/locale/fi
+%{_datadir}/yudit/locale/fr
+%{_datadir}/yudit/locale/gu
+%{_datadir}/yudit/locale/ga
+%{_datadir}/yudit/locale/hi
+%{_datadir}/yudit/locale/hu
+%{_datadir}/yudit/locale/ja
+%{_datadir}/yudit/locale/ko
+%{_datadir}/yudit/locale/mn
+%{_datadir}/yudit/locale/mr
+%{_datadir}/yudit/locale/pa
+%{_datadir}/yudit/locale/pl
+%{_datadir}/yudit/locale/sl
+%{_datadir}/yudit/locale/sr
+%{_datadir}/yudit/locale/ru
+%{_datadir}/yudit/locale/ta
+%{_datadir}/yudit/locale/uk
+%{_datadir}/yudit/locale/ur
+%{_datadir}/yudit/locale/vi
+%{_datadir}/yudit/locale/yi
+%{_datadir}/yudit/locale/zh
+
+%dir %{_datadir}/yudit/config
+%config %{_datadir}/yudit/config/*
+%config %{_datadir}/applications/yudit.desktop
+%config %{_datadir}/pixmaps/yudit.png
+
+%doc CHANGELOG.TXT COPYING.TXT FAQ.TXT README.TXT TODO.TXT doc/*.utf8 doc/notinstalled doc/problems doc/HOWTO-*.txt doc/otfsupport.txt
+
+%changelog
+* Thu Feb 15 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2.8.1-1
+  Updated to version 2.8.1
+  
+* Mon Mar 21 2005 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+  - Merged Marathi and Gujarati menu.
+  - Merged jodakshar.hwd marathi.hwd roman.hwd handwrinting recognition files
+  - Merged CS-qwerty keymap, SpanishPrefix.kmap, Sanskrit-Translit.kmap, GreekAncient.kmap
+  - Updated Tibetan-Wylie.kmap 
+  - Merged Telugu, Italian FAQ
+  - Merged HOWTO greekancient
+  - Merged AMD 64 fixes to InputMethod.cpp.
+* Sat Sep 6 2003 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+  Release 2.7.6
+  Better positioning for complex (indic) scripts.
+  Comments are preserved now in ~/.yudit/yudit.properties
+  Fixed buffer overflow bugs in
+   stoolkit/SString.cpp
+   stoolkit/SParagraph.cpp
+  Yudit -nus command line option turns off uniscribe emulation.  
+  Added Punjabi (pa) translations from
+     Madhusudan Singh &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">chhabra at eecs.umich.edu</A>&gt;.
+  Added more substitution types. The matrix is documented in
+  doc/otfsupport.txt.
+  The following font-range filters have been added:
+     indic: U+0900..U+0FFF
+     deva:  U+0900..U+097F
+     beng:  U+0980..U+09FF
+     guru:  U+0A00..U+0A7F
+     gujr:  U+0A80..U+0AFF
+     orya:  U+0B00..U+0B7F
+     taml:  U+0B80..U+0BFF
+     telu:  U+0C00..U+0C7F
+     knda:  U+0C80..U+0CFF
+     mlym:  U+0D00..U+0D7F
+     sinh:  U+0D80..U+0DFF
+     thai:  U+0E00..U+0E7F
+     lao:   U+0E80..U+0EFF
+     tibt:  U+0F00..U+0FFF
+     jamo:  U+1100..U+11FF
+  usage: ani.ttf:beng,raghu.ttf:deva
+* Sat Jun 14 2003 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+  Updated with Miikka's patch for Unicode 4.0.
+  Added many patches and contributions
+  Added entry level (not full) Tibetan support with some Open Type Fonts 
+  Added yudit.editor.xinputs.style property to yudit.properties.
+     possible values: root,over-the-spot,off-the-spot
+  New menu translations: Czech, Greek, Mongolian, Serbian (cyrillic)
+  New keymaps: Telugu-Rts, CS, Kazakh-prefix, Runes,
+  Dakelh (Carrier syllabics), ArabicBuck, GeorgianB, 
+  BengaliSona, Slavic, Serbian, Kanji,
+  Added new configurable xinput styles:
+  preedit-over-status-over, preedit-over-status-under,
+  preedit-under-status-under, preedit-root-status-root
+  NewYudit specific Private Use Area assignment: 
+  mytool/uni/BLISSYMBOLICS.TXT (BlissSymbolics.kmap, yudit.ttf)
+  Bugfixes and hopefully not many new bugs :)
+  Stable version 2.7.5 is ready
+* Mon Jan 14 2003 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+  o changed names of yudit.editor.xinputs.style
+    preedit-over-status-over
+    preedit-over-status-under
+    preedit-under-status-under
+    preedit-root-status-root
+* Sun Jan 11 2003 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+  Applied SAMPA.patch,patch1,patch2,patch3,patch4
+  Added BengaliSona.kmap
+  Removed dependency on ws2_32.dll - this means it will work on Windows 95
+  Added yudit.editor.xinputs.style property to yudit.properties.
+    possible values: root,over-the-spot,off-the-spot,over-the-spot-off
+* Sun Jan 5 2003 Kevin Patrick Scannell &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">scannell at slu.edu</A>&gt;
+  Added Irish (ga).
+* Sun Dec 1 2002 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+  Added kmap and Russian menu from Vyacheslav Dikonov &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">sdiconov at mail.ru</A>&gt;
+  Added berbere from Bruno Cauchy Lefebvre &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">bb.lefebvre at free.fr</A>&gt;
+  Added Farsi.kmap from  Seyed-allaei &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">allaei at sissa.it</A>&gt;
+  Reorganized kmaps a bit
+  Largefont redrawing fix
+  Added 'C' locale -&gt; '' local patch from Jean-Marc Lienher &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">oksid at bluewin.ch</A>&gt; 
+  Added simple-dark syntax highlight for light background setup
+  Made composing mark work within ligatures too, when shaped.
+  Keymap cleanups 
+  OldHungarian keymap became HungarianRunes keymap.
+  Fixed printing for WindowsXP+ghostscript (Window98 was ok)
+* Sun Nov 10 2002 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+  Added full, Unicode compliant bi-directional support
+  Added Sanskrit.kmap from Yves Codet &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">ycodet at club-internet.fr</A>&gt;
+  Added Polish gui translations from Pawel Zawila-Niedzwiecki &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">zawel at wgt.com.pl</A>&gt;
+  Added Perian.kmap from Roozbeh Pournader &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">roozbeh at sharif.edu</A>&gt;
+  Added ZWJ ZWNJ RLM LRM as a visible glyph when editing.
+  Optimized code for speed
+  Added Inuktitut-ICI.kmap, Inuktitut-KBD.kmap, Chinese-Pinyin.kmap, 
+   Chinese-WB.kmap from &quot;Johnson, Howard&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">Howard.Johnson at nrc.ca</A>&gt;
+  Added OpenType GPOS support for composing characters
+* Sat Oct 10 2002 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+  Added Urdu/Pakistan ur locale from S H A N &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">shanali at singnet.com.sg</A>&gt;
+  Added new ligatures for URDU: U+06A9 U+0627 and U+06A9 U+0644
+  Modified Amharic/Ethiopia am locale Daniel Yacob &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">locales at geez.org</A>&gt;
+  Updated FAQs.
+  Added better composing support. Undo/Redo for composing characters
+   that are added on the fly.
+  Removed clustering feature from several kmaps as cluster now can be 
+  built on the fly.
+  IS_AS,IS_BN,IS_DV,IS_GJ,IS_KN,IS_ML,IS_OR,IS_PJ,IS_RM,IS_TL,IS_TM
+  converters from Anirban.
+* Tue Sep 03 2002 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+  Applied patches and contibutions:
+  Rendering fixes (Miikka-Markus Alhonen)
+  Bengali menu (Anirban Mitra &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">mitra_anirban at yahoo.co.in</A>&gt;)
+  Color Highlighting, word wrapping and other fixes:
+     Maarten van Gompel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">proycon at anaproy.homeip.net</A>&gt;
+* Sun May 31 2002 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+- OpenType font shaping support for shaped characters that are not
+  among Ararbic presentation forms. This inlcudes quite a few Arabic 
+  and Syriac shapes.  
+- Support for unifont syriacforms.hex and arabforms.hex files with
+  direct font rendering.
+- Fixed crash on Sparc computers (alignment problem)
+- Koran menu and FAQ translations from Jungshik Shin &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">jshin at mailaps.org</A>&gt;
+- Amharic menu translations from Daniel Yacob &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">locales at geez.org</A>&gt;
+- Cherokee.kmap from Steve Juranich &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">sjuranic at ee.washington.edu</A>&gt;
+- Added Vietnamese FAQ.TXT HOWTO-vietnamese.txt and message.po
+  from Hoan &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">hoan at wanadoo.fr</A>&gt;
+- Added Urdu.kmap from <A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">Miikka-Markus.Alhonen at tigatieto.com</A>
+* Wed Apr 25 2002 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+- Unicode 3.2 changes
+- X Locale and Input Method Support 
+- Added direct rendering for iso10646 encoded .bdf font files 
+  and unifont .hex files. It is useful on platforms that do not have X11.
+- Locale name for Chinese has been corrected to be zh (ISO639)
+- True Type cmap 12 (needed for plane1,2..) and X11 (iso10646p2-\d+) added
+- True Type cmap 2 with external converter added
+- True Type uses now nonzero winding rule now by default.
+- UTF-16 UTF-16-LE UTF-16-BE support.
+- New converters for utf-16 utf-16-le utf-16-be, gb-18030, 
+  Shift_JISX0213 (shift-jis-3), EUC-JISX0213 (euc-jp-3), 
+  ISO-2022-JP-3 (iso-2022-jp-3) 
+- Old Italic software glyph mirroring added
+- Updated ksx-1001 (replacement for ksc-5601-old), ksc-5601-r ksc-5601-l
+- Updated HOWTO-Japanese.txt
+- JIS X 0213 X11 (jisx0213.2000-1,jisx0213.2000-2) font support
+- Shift_JISX0213 encoded True Type font support with shift-jis-3 converter
+* Sat Feb 28 2002 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+- Malayalam support (Miikka-Markus Alhonen)
+- Kannada support (Miikka-Markus Alhonen)
+- Telugu support (Miikka-Markus Alhonen)
+- koi8-c support (Miikka-Markus Alhonen)
+- koi8-u support (Gaspar)
+- ncr converter (Miikka-Markus Alhonen)
+- rovas converter (Gaspar)
+- iso-8859-15 converter (Gaspar)
+- iso-8859-16 converter (Gaspar)
+- Mirrored characters (Miikka-Markus Alhonen-Gaspar)
+- Old Hungarian support with ligatures in Private Use Area (Gaspar)
+- Ukrainian kmap and translations (Solotskyy)
+* Wed Jan 26 2002 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+- Pango X11 Ligature support
+- Devanagari support (Miikka-Markus Alhonen)
+- Bengali support (Miikka-Markus Alhonen)
+- Gujarati support (Miikka-Markus Alhonen)
+- Gurmukhi support (Miikka-Markus Alhonen)
+- Oriya support (Miikka-Markus Alhonen)
+- Hindi menu (Sanjay)
+* Wed Jan 02 2002 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+- Tamil support (Vasee)
+- Added Hangul Jamos (Miikka-Markus Alhonen)
+- OpenType Ligature substitution support
+- Testing other Indic scripts.
+- Fixed bumap.
+* Tue Nov 27 2001 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+- Prepearing for 2.5 with shaping (Arabic) support.
+- Changed (removed -e, added auto-tmpfile): yudit.default.preview.command=gv
+* Fri Nov 09 2001 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+- Fixed shift-jis converter
+- Optimized speed
+- Fixed layout manager bugs, made it nicer.
+- Optimized memory usage (vut it by a factor of 2)
+- Added freehand (handwriting) input method.
+- Added hiragana and katakana handwriting data (hwd 2.0)
+  generated by Yuko Inui &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">yuko at yudit.org</A>&gt;
+* Thu Oct 25 2001 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt; patch 1,2,3,4,5,7,8
+- renamed yudit-2.4-destdir.patch to //yudit.org/download/yudit-2.4.patch5.txt
+- added 7,8
+- renamed bz2 to gz in Source:
+- removed doc from being doc because yudit uses it.
+* Wed Aug 29 2001 Bernhard Rosenkraenzer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">bero at redhat.com</A>&gt; 2.3-4
+- Fix build as non-root
+- Add patches from yudit.org
+- Set prefix correctly
+- Use %%configure
+- Add docs
+- Add desktop file
+- Fix up specfile
+
+
+Index: AfterStep.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/AfterStep.spec,v
+retrieving revision 1.55
+retrieving revision 1.56
+diff -u -r1.55 -r1.56
+--- AfterStep.spec	15 Jun 2007 03:46:16 -0000	1.55
++++ AfterStep.spec	23 Aug 2007 14:24:27 -0000	1.56
+@@ -39,8 +39,10 @@
+ ### END Distro Definitions
+ 
+ %define	name AfterStep
+-%define	version	2.2.6
+-%define release 2%{?dist}
++%define	version	2.2.7
++%define	libaiver	1.15
++%define	libabver	1.11
++%define release 1%{?dist}
+ %define epoch 20
+ 
+ Summary:	AfterStep Window Manager (NeXTalike)
+@@ -62,71 +64,131 @@
+ Source7: 	afterstep.desktop.wm-properties
+ Source8:	afterstep.fedora.README
+ Patch0:		%{name}-2.2.5-ImageMagick.patch
+-Patch1:		%{name}-%{version}-ttf.patch
+ Distribution:	The AfterStep TEAM
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-Requires:	%{name}-libs = %{epoch}:%{version}
+-Requires:	librsvg2
+-Requires:	freetype
+-Requires:	zlib
+-Requires:	libX11
++%if %{mdk}
++Obsoletes:	libAfterStep1
++%endif
++Obsoletes:	AfterStep-libs
++Provides:	AfterStep-libs
++Requires: 	libAfterImage = %{epoch}:%{libaiver}
++Requires:	readline
++Requires:	gtk2
++Requires:	qiv
++BuildRequires:  readline-devel
++BuildRequires:  gtk2-devel
+ BuildRequires:	librsvg2-devel
++BuildRequires:	libtiff-devel
+ BuildRequires:  freetype-devel
+ BuildRequires:  zlib-devel
+ BuildRequires:  libX11-devel
+ 
+ %description
+-  AfterStep is a Window Manager for X which started by emulating the
+-  NEXTSTEP look and feel, but which has been significantly altered
+-  according to the requests of various users. Many adepts will tell you
+-  that NEXTSTEP is not only the most visually pleasant interface, but
+-  also one of the most functional and intuitive out there. AfterStep
+-  aims to incorporate the advantages of the NEXTSTEP interface, and add
+-  additional useful features.
+-
+-  The developers of AfterStep have also worked very hard to ensure
+-  stability and a small program footprint. Without giving up too many
+-  features, AfterStep still works nicely in environments where memory is
+-  at a premium.
++AfterStep is a Window Manager for X which started by emulating the
++NEXTSTEP look and feel, but which has been significantly altered
++according to the requests of various users. Many adepts will tell you
++that NEXTSTEP is not only the most visually pleasant interface, but
++also one of the most functional and intuitive out there. AfterStep
++aims to incorporate the advantages of the NEXTSTEP interface, and add
++additional useful features.
++
++The developers of AfterStep have also worked very hard to ensure
++stability and a small program footprint. Without giving up too many
++features, AfterStep still works nicely in environments where memory is
++at a premium.
+ 
+-%package libs
+-Summary:	libraries required by afterstep 2.0
++%package devel
++Summary:	Files needed for software development with AfterStep
+ Version:	%{version}
+ Release:	%{release}
+ Epoch:		%{epoch}
+ License:	GPL
+-Group:		User Interface/Desktops
+-Obsoletes:	libAfterImage
+-Provides:	libAfterImage
+-%if %{mdk}
+-Obsoletes:	libAfterStep1
+-%endif
++Group:		Development/Libraries
++Requires: 	libAfterImage-devel = %{epoch}:%{libaiver}
++Requires:	%{name} = %{epoch}:%{version}
++
++%description devel
++Files needed for software development with AfterStep.
+ 
+-%description libs
+-  Libraries needed by AfterStep 2.0
++%package -n libAfterImage
++Summary:	A generic image manipulation library
++Version:	%{libaiver}
++Release:	%{release}
++Epoch:		%{epoch}
++License:	GPL
++Group:		System Environment/Libraries
++Provides:	libAfterImage
++Requires:	librsvg2
++Requires:	libtiff
++Requires:	libpng
++Requires:	libjpeg
++Requires:	freetype
++Requires:	zlib
++Requires:	libX11
++Requires:	libAfterBase = %{epoch}:%{libabver}
+ 
+-%package devel
+-Summary:	AfterStep libs include files
+-Version:	%{version}
++%description -n libAfterImage
++libAfterImage is a generic image manipulation library. It was initially
++implemented to address AfterStep Window Manager\'s needs for image handling,
++but it evolved into extremely powerful and flexible software, suitable for
++virtually any project that has needs for loading, manipulating, displaying
++images, as well as writing images in files. Most of the popular image formats
++are supported using standard libraries, with XCF, XPM, PPM/PNM, BMP, ICO,
++TGA and GIF being supported internally.
++
++PNG, JPEG and TIFF formats are supported via standard libraries.
++
++Powerful text rendering capabilities included, providing support for
++TrueType fonts using FreeType library, and antialiasing of standard fonts
++from X window system.
++
++%package -n libAfterImage-devel
++Summary:	Files needed for software development with libAfterImage
++Version:	%{libaiver}
+ Release:	%{release}
+ Epoch:		%{epoch}
+ License:	GPL
+-Group:		User Interface/Desktops
+-Requires: 	%{name}-libs = %{epoch}:%{version}
+-Obsoletes:	libAfterImage-devel
+-Provides:	libAfterImage-devel
++Group:		Development/Libraries
+ Requires:	librsvg2-devel
++Requires:	libtiff-devel
++Requires:	libpng-devel
++Requires:	libjpeg-devel
+ Requires:	freetype-devel
+ Requires:	zlib-devel
+ Requires:	libX11-devel
++Requires:	libAfterImage = %{epoch}:%{libaiver}
++Requires:	libAfterBase-devel = %{epoch}:%{libabver}
+ 
+-%description devel
+-  AfterStep libs include files
++%description -n libAfterImage-devel
++The libAfterImage-devel package contains the files needed for development with
++libAfterImage
++
++%package -n libAfterBase
++Summary:	A basic functions library providing support for libAfterImage
++Version:	%{libabver}
++Release:	%{release}
++Epoch:		%{epoch}
++License:	GPL
++Group:		System Environment/Libraries
++
++%description -n libAfterBase
++A basic functions library providing support for libAfterImage.
++
++%package -n libAfterBase-devel
++Summary:	Files needed for software development with libAfterBase
++Version:	%{libabver}
++Release:	%{release}
++Epoch:		%{epoch}
++License:	GPL
++Group:		Development/Libraries
++Requires:	libAfterBase = %{epoch}:%{libabver}
++
++%description -n libAfterBase-devel
++Files needed for software development with libAfterBase.
+ 
+ %prep
+-%setup -q -n %{name}-%{version}
++%setup -q
+ %patch0
+-%patch1
+ 
+ %build
+ CFLAGS=$RPM_OPT_FLAGS \
+@@ -137,7 +199,7 @@
+ 	--enable-sharedlibs                       \
+ 	--disable-staticlibs                      \
+ 	--enable-i18n                             \
+-	--with-helpcommand=&quot;aterm -e man&quot;         \
++	--with-helpcommand=&quot;xterm -e man&quot;         \
+ 	--with-desktops=1 --with-deskgeometry=2x3 \
+ 	--with-imageloader=&quot;qiv --root&quot;
+ 
+@@ -210,11 +272,39 @@
+ 
+ %files
+ %defattr(-,root,root)
+-%doc ChangeLog NEW README* TEAM UPGRADE doc/languages doc/licences doc/code TODO doc/*.html
++%doc ChangeLog NEW README* TEAM UPGRADE doc/languages doc/licences doc/code TODO doc/*.html doc/licences/COPYING*
+ %doc src/ASDocGen/html/*html
+-%{_bindir}/*
++%{_bindir}/ASFileBrowser
++%{_bindir}/ASRun
++%{_bindir}/ASWallpaper
++%{_bindir}/Animate
++%{_bindir}/Arrange
++%{_bindir}/Banner
++%{_bindir}/GWCommand
++%{_bindir}/Ident
++%{_bindir}/MonitorWharf
++%{_bindir}/Pager
++%{_bindir}/PrintDesktopEntries
++%{_bindir}/Wharf
++%{_bindir}/WinCommand
++%{_bindir}/WinList
++%{_bindir}/WinTabs
++%{_bindir}/Xpm2Jpg
++%{_bindir}/afterstep
++%{_bindir}/afterstep-config
++%{_bindir}/afterstepdoc
++%{_bindir}/ascolor
++%{_bindir}/ascommand.pl
++%{_bindir}/asgtk-config
++%{_bindir}/importasmenu
++%{_bindir}/installastheme.pl
++%{_bindir}/makeastheme.pl
++%{_bindir}/postcard.sh
+ %dir %{_datadir}/afterstep
+ %{_datadir}/afterstep/*
++%{_libdir}/libASGTK.so.1*
++%{_libdir}/libAfterConf.so.1*
++%{_libdir}/libAfterStep.so.1*
+ %{_mandir}/man1/*
+ # this is evil hack, but I can't get it to work otherwise on mdk
+ %if !%{fedora}
+@@ -237,26 +327,53 @@
+ %{_prefix}/xsessions/AfterStep.desktop
+ %endif
+ 
+-%files libs
+-%defattr(-,root,root)
+-%doc libAfterImage/README 
+-%{_libdir}/libA*
+-
+ %files devel
+ %defattr(-,root,root)
+-%dir %{_includedir}/libAfterBase
+ %dir %{_includedir}/libAfterConf
+-%dir %{_includedir}/libAfterImage
+ %dir %{_includedir}/libAfterStep
+ %dir %{_includedir}/libASGTK
+-%{_includedir}/libAfterBase/*
++%{_libdir}/libASGTK.so
++%{_libdir}/libAfterConf.so
++%{_libdir}/libAfterStep.so
+ %{_includedir}/libAfterConf/*
+-%{_includedir}/libAfterImage/*
+ %{_includedir}/libAfterStep/*
+ %{_includedir}/libASGTK/*
+ %{_mandir}/man3/*
+ %doc src/ASDocGen/html/API/*html
+ 
++%files -n libAfterImage
++%defattr(-,root,root)
++%doc libAfterImage/ChangeLog libAfterImage/README doc/licences/COPYING*
++%{_bindir}/afterimage*
++%{_bindir}/ascompose
++%{_bindir}/asflip
++%{_bindir}/asgrad
++%{_bindir}/asi18n
++%{_bindir}/asmerge
++%{_bindir}/asscale
++%{_bindir}/astext
++%{_bindir}/astile
++%{_bindir}/asvector
++%{_bindir}/asview
++%{_libdir}/libAfterImage.so.0*
++
++%files -n libAfterImage-devel
++%defattr(-,root,root)
++%{_libdir}/libAfterImage.so
++%dir %{_includedir}/libAfterImage
++%{_includedir}/libAfterImage/*
++
++%files -n libAfterBase
++%defattr(-,root,root)
++%doc doc/licences/COPYING*
++%{_libdir}/libAfterBase.so.0*
++
++%files -n libAfterBase-devel
++%defattr(-,root,root)
++%{_libdir}/libAfterBase.so
++%dir %{_includedir}/libAfterBase
++%{_includedir}/libAfterBase/*
++
+ %pre
+ for i in /usr /usr/local /usr/X11R6 ; do
+ 	if [ -d $i/share/afterstep_old ]; then
+@@ -280,6 +397,17 @@
+ if [ -x /usr/sbin/fndSession ]; then /usr/sbin/fndSession || true ; fi
+ 
+ %changelog
++* Wed Aug 22 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 20:2.2.7-1
++- new version.
++
++* Thu Aug 02 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 20:2.2.6-3
++- broke-out libAI and libAB as separate packages for those
++  wanting to run rxvt-unicode and aterm without AfterStep.
++  Rxvt-unicode will need libAI &gt;= 1.15, and a separate
++  package makes it easier to differentiate.
++- added qiv as a require for AfterStep - some apps still need
++  an image loader other than that provided by AfterStep.
++
+ * Thu Jun 14 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 20:2.2.6-2
+ - added test for F7.
+ 
+
+Index: aterm.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/aterm.spec,v
+retrieving revision 1.22
+retrieving revision 1.23
+diff -u -r1.22 -r1.23
+--- aterm.spec	27 Apr 2007 17:04:02 -0000	1.22
++++ aterm.spec	23 Aug 2007 14:24:27 -0000	1.23
+@@ -1,8 +1,8 @@
+-%define astest %(afterstep -v | cut -d ' ' -f3)
+-%define asver %astest 
++%define aitest	%(rpm -q --queryformat='%{VERSION}' libAfterImage)
++%define aiver	%aitest 
+ %define	name	aterm
+-%define	version	1.0.0
+-%define	release	9%{?dist}
++%define	version	1.0.1
++%define	release	1%{?dist}
+ %define epoch	2
+ 
+ Summary:	aterm - terminal emulator in an X window
+@@ -13,10 +13,11 @@
+ License:	GPL
+ Group:		Applications/X11
+ URL:		<A HREF="http://aterm.sourceforge.net">http://aterm.sourceforge.net</A>
++Patch0:		%{name}-%{version}-main.c.patch
+ Source:		<A HREF="ftp://ftp.afterstep.org/apps/aterm/%{name">ftp://ftp.afterstep.org/apps/aterm/%{name</A>}-%{version}.tar.gz
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-BuildRequires:	AfterStep-devel &gt;= 20:2.00.00
+-Requires:	AfterStep &gt;= 20:%{asver}
++BuildRequires:	libAfterImage-devel
++Requires:	libAfterImage &gt;= %{aiver}
+ 
+ %description
+ aterm, version %{version}, is a colour vt102 terminal emulator based on
+@@ -31,12 +32,12 @@
+ 
+ %prep
+ %setup -q
++%patch0
+ 
+ LD_LIBRARY_PATH=../AfterStep-%{asversion}/libAfterBase \
+         CFLAGS=&quot;$RPM_OPT_FLAGS&quot; ./configure --prefix=%{_prefix} \
+ 	--enable-utmp --enable-background-image --with-term=rxvt \
+-	--enable-transparency --enable-menubar --enable-graphics \
+-	--enable-next-scroll --disable-backspace-key \
++	--enable-transparency --enable-graphics --disable-backspace-key \
+ 	--disable-delete-key --enable-xgetdefault --mandir=%{_mandir}
+ 
+ %build
+@@ -48,6 +49,24 @@
+ 
+ make DESTDIR=$RPM_BUILD_ROOT install
+ 
++#Install application link for X-Windows
++echo -e &quot;[Desktop Entry]
++Name=%{name}
++Comment=aterm - terminal emulator in an X window
++Exec=aterm
++Terminal=false
++Type=Application&quot; &gt; %{name}.desktop
++                                                                                
++mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
++desktop-file-install --vendor &quot;&quot; --delete-original \
++  --dir %{buildroot}%{_datadir}/applications                      \
++  --add-category X-Red-Hat-Extra                                  \
++  --add-category Application                                      \
++  --add-category System						  \
++  --add-category Utility					  \
++  --add-category TerminalEmulator                                 \
++  %{name}.desktop
++
+ %clean
+ [ -d $RPM_BUILD_ROOT ] &amp;&amp; rm -rf $RPM_BUILD_ROOT;
+ 
+@@ -56,10 +75,14 @@
+ %doc doc ChangeLog
+ %{_bindir}/aterm
+ %{_mandir}/man1/aterm*
++%{_datadir}/applications/*.desktop
+ #%config(missingok) /etc/X11/wmconfig/aterm
+ 
+ %changelog
+-* Fri Apr 27 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 1.0.0-9
++* Tue Aug 21 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2:1.0.1-1
++- new version, linked to libAfterImage from AS 2.2.7.
++
++* Fri Apr 27 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2:1.0.0-9
+ - rebuild to coincide with AS 2.2.5 release.
+ 
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 1.0.0-8
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000022.html">[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.19, 1.20  misc-apps.inc, 1.13, 1.14
+</A></li>
+	<LI>Next message: <A HREF="000024.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.56, 1.57  rxvt-unicode.spec, 1.1, 1.2 worker.spec, 1.1, 1.2
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#23">[ date ]</a>
+              <a href="thread.html#23">[ thread ]</a>
+              <a href="subject.html#23">[ subject ]</a>
+              <a href="author.html#23">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

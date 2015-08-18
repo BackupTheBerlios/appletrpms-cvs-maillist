@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.24, 1.25  misc-apps.inc, 1.31, 1.32 wm-apps.inc, 1.55, 1.56
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/include%20core-apps.inc%2C%201.24%2C%0A%201.25%20%20misc-apps.inc%2C%201.31%2C%201.32%20wm-apps.inc%2C%201.55%2C%201.56&In-Reply-To=%3C4BB8ECB9.mailI2M1DT8NR%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000089.html">
+   <LINK REL="Next"  HREF="000091.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.24, 1.25  misc-apps.inc, 1.31, 1.32 wm-apps.inc, 1.55, 1.56</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/include%20core-apps.inc%2C%201.24%2C%0A%201.25%20%20misc-apps.inc%2C%201.31%2C%201.32%20wm-apps.inc%2C%201.55%2C%201.56&In-Reply-To=%3C4BB8ECB9.mailI2M1DT8NR%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.24, 1.25  misc-apps.inc, 1.31, 1.32 wm-apps.inc, 1.55, 1.56">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Sun Apr  4 21:47:05 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000089.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES yudit-2.9.2.patch0.txt, NONE, 1.1  fotoxx-9.3-Makefile.patch, 1.1, NONE  medit-0.9.4-stdio.h-conflict.patch, 1.1, NONE  rxvt-unicode-gcc44.patch, 1.1, NONE yudit-2.9.0-patch1.txt, 1.1, NONE  yudit-2.9.0-patch2.txt, 1.1, NONE yudit-2.9.0-patch3.txt, 1.1, NONE
+</A></li>
+        <LI>Next message: <A HREF="000091.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS ascd.spec, 1.13, 1.14  fotoxx.spec, 1.12, 1.13 medit.spec, 1.4, 1.5 mined.spec, 1.2, 1.3  rxvt-unicode.spec, 1.9, 1.10 wmfire.spec, 1.10, 1.11 wmtz.spec, 1.5, 1.6  worker.spec, 1.7, 1.8 yudit.spec, 1.3, 1.4
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#90">[ date ]</a>
+              <a href="thread.html#90">[ thread ]</a>
+              <a href="subject.html#90">[ subject ]</a>
+              <a href="author.html#90">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv23320/include
+
+Modified Files:
+	core-apps.inc misc-apps.inc wm-apps.inc 
+Log Message:
+new versions and orphaned links.
+
+
+Index: core-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/core-apps.inc,v
+retrieving revision 1.24
+retrieving revision 1.25
+diff -u -r1.24 -r1.25
+--- core-apps.inc	13 Sep 2009 18:53:36 -0000	1.24
++++ core-apps.inc	4 Apr 2010 19:47:03 -0000	1.25
+@@ -24,7 +24,7 @@
+ APPLET_LIST += LIBAFTERIMAGE-NOX
+ 
+ RXVT-UNICODE_NAME=rxvt-unicode
+-RXVT-UNICODE_VERSION=9.06
++RXVT-UNICODE_VERSION=9.07
+ RXVT-UNICODE_TAR=$(RXVT-UNICODE_NAME)-$(RXVT-UNICODE_VERSION).tar.bz2
+ RXVT-UNICODE_URL=<A HREF="http://dist.schmorp.de/$(RXVT-UNICODE_NAME">http://dist.schmorp.de/$(RXVT-UNICODE_NAME</A>)/$(RXVT-UNICODE_TAR)
+ 
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.31
+retrieving revision 1.32
+diff -u -r1.31 -r1.32
+--- misc-apps.inc	3 Feb 2010 03:50:34 -0000	1.31
++++ misc-apps.inc	4 Apr 2010 19:47:03 -0000	1.32
+@@ -33,7 +33,7 @@
+ ASCD-THEMES_NAME=ascd-themes
+ ASCD-THEMES_VERSION=1.13
+ ASCD-THEMES_TAR=ascd-0.13pr6-themes.tgz
+-ASCD-THEMES_URL=<A HREF="http://worldserver.oleane.com/rsn/Archives/$(ASCD-THEMES_TAR">http://worldserver.oleane.com/rsn/Archives/$(ASCD-THEMES_TAR</A>)
++ASCD-THEMES_URL=<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(ASCD-THEMES_TAR">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(ASCD-THEMES_TAR</A>)
+ 
+ APPLET_LIST += ASCD-THEMES
+ 
+@@ -42,7 +42,7 @@
+ DWING_NAME=dwing
+ DWING_VERSION=1.10
+ DWING_TAR=$(DWING_NAME).tgz
+-DWING_URL=<A HREF="http://worldserver.oleane.com/rsn/Archives/$(DWING_TAR">http://worldserver.oleane.com/rsn/Archives/$(DWING_TAR</A>)
++DWING_URL=<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(DWING_TAR">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(DWING_TAR</A>)
+ 
+ #APPLET_LIST += DWING
+ 
+@@ -51,7 +51,7 @@
+ LCD_NAME=lcd
+ LCD_VERSION=1.10
+ LCD_TAR=$(LCD_NAME).tar.gz
+-LCD_URL=<A HREF="http://worldserver.oleane.com/rsn/Archives/$(LCD_TAR">http://worldserver.oleane.com/rsn/Archives/$(LCD_TAR</A>)
++LCD_URL=<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(LCD_TAR">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(LCD_TAR</A>)
+ 
+ #APPLET_LIST += LCD
+ 
+@@ -70,7 +70,7 @@
+ APPLET_LIST += CALCOO
+ 
+ FOTOXX_NAME=fotoxx
+-FOTOXX_VERSION=9.5
++FOTOXX_VERSION=9.9
+ FOTOXX_TAR=$(FOTOXX_NAME)-$(FOTOXX_VERSION).tar.gz
+ FOTOXX_URL=<A HREF="http://kornelix.squarespace.com/storage/downloads/$(FOTOXX_TAR">http://kornelix.squarespace.com/storage/downloads/$(FOTOXX_TAR</A>)
+ 
+@@ -100,14 +100,14 @@
+ #APPLET_LIST += LIBWRASTER
+ 
+ MEDIT_NAME=medit
+-MEDIT_VERSION=0.9.4
++MEDIT_VERSION=0.10.1
+ MEDIT_TAR=$(MEDIT_NAME)-$(MEDIT_VERSION).tar.bz2
+-MEDIT_URL=<A HREF="http://easynews.dl.sourceforge.net/sourceforge/mooedit/$(MEDIT_TAR">http://easynews.dl.sourceforge.net/sourceforge/mooedit/$(MEDIT_TAR</A>)
++MEDIT_URL=<A HREF="http://easynews.dl.sourceforge.net/sourceforge/mooedit/medit/$(MEDIT_VERSION">http://easynews.dl.sourceforge.net/sourceforge/mooedit/medit/$(MEDIT_VERSION</A>)/$(MEDIT_TAR)
+ 
+ APPLET_LIST += MEDIT
+ 
+ MINED_NAME=mined
+-MINED_VERSION=2000.15.4
++MINED_VERSION=2000.16
+ MINED_TAR=$(MINED_NAME)-$(MINED_VERSION).tar.gz
+ MINED_URL=<A HREF="http://towo.net/$(MINED_NAME">http://towo.net/$(MINED_NAME</A>)/$(MINED_TAR)
+ 
+@@ -157,7 +157,7 @@
+ APPLET_LIST += TRAYER
+ 
+ WORKER_NAME=worker
+-WORKER_VERSION=2.17.5
++WORKER_VERSION=2.17.6
+ WORKER_TAR=$(WORKER_NAME)-$(WORKER_VERSION).tar.gz
+ WORKER_URL=<A HREF="http://www.boomerangsworld.de/worker/downloads/$(WORKER_TAR">http://www.boomerangsworld.de/worker/downloads/$(WORKER_TAR</A>)
+ 
+@@ -172,7 +172,7 @@
+ APPLET_LIST += WORKER-DOC
+ 
+ YUDIT_NAME=yudit
+-YUDIT_VERSION=2.9.0
++YUDIT_VERSION=2.9.2
+ YUDIT_TAR=$(YUDIT_NAME)-$(YUDIT_VERSION).tar.gz
+ YUDIT_URL=<A HREF="http://yudit.org/download/$(YUDIT_TAR">http://yudit.org/download/$(YUDIT_TAR</A>)
+ 
+
+Index: wm-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/wm-apps.inc,v
+retrieving revision 1.55
+retrieving revision 1.56
+diff -u -r1.55 -r1.56
+--- wm-apps.inc	17 Jan 2010 03:39:04 -0000	1.55
++++ wm-apps.inc	4 Apr 2010 19:47:03 -0000	1.56
+@@ -123,7 +123,7 @@
+ APPLET_LIST += WMEYES
+ 
+ WMFIRE_NAME=wmfire
+-WMFIRE_VERSION=1.2.3
++WMFIRE_VERSION=1.2.4
+ WMFIRE_TAR=$(WMFIRE_NAME)-$(WMFIRE_VERSION).tar.gz
+ WMFIRE_URL=<A HREF="http://www.swanson.ukfsn.org/wmfire/$(WMFIRE_TAR">http://www.swanson.ukfsn.org/wmfire/$(WMFIRE_TAR</A>)
+ 
+@@ -274,7 +274,7 @@
+ WMTZ_NAME=wmtz
+ WMTZ_VERSION=0.7
+ WMTZ_TAR=$(WMTZ_NAME)-$(WMTZ_VERSION).tar.gz
+-WMTZ_URL=<A HREF="http://www.geocities.com/jl1n/$(WMTZ_NAME">http://www.geocities.com/jl1n/$(WMTZ_NAME</A>)/$(WMTZ_TAR)
++WMTZ_URL=<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMTZ_NAME">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMTZ_NAME</A>)/$(WMTZ_TAR)
+ 
+ APPLET_LIST += WMTZ
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000089.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES yudit-2.9.2.patch0.txt, NONE, 1.1  fotoxx-9.3-Makefile.patch, 1.1, NONE  medit-0.9.4-stdio.h-conflict.patch, 1.1, NONE  rxvt-unicode-gcc44.patch, 1.1, NONE yudit-2.9.0-patch1.txt, 1.1, NONE  yudit-2.9.0-patch2.txt, 1.1, NONE yudit-2.9.0-patch3.txt, 1.1, NONE
+</A></li>
+	<LI>Next message: <A HREF="000091.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS ascd.spec, 1.13, 1.14  fotoxx.spec, 1.12, 1.13 medit.spec, 1.4, 1.5 mined.spec, 1.2, 1.3  rxvt-unicode.spec, 1.9, 1.10 wmfire.spec, 1.10, 1.11 wmtz.spec, 1.5, 1.6  worker.spec, 1.7, 1.8 yudit.spec, 1.3, 1.4
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#90">[ date ]</a>
+              <a href="thread.html#90">[ thread ]</a>
+              <a href="subject.html#90">[ subject ]</a>
+              <a href="author.html#90">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

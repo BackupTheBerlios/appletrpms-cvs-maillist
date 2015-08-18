@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/include as-apps.inc, 1.9, 1.10  misc-apps.inc, 1.11, 1.12 wm-apps.inc, 1.41, 1.42
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/include%20as-apps.inc%2C%201.9%2C%0A%201.10%20%20misc-apps.inc%2C%201.11%2C%201.12%20wm-apps.inc%2C%201.41%2C%201.42&In-Reply-To=%3C45EAE9C7.mailCMH1AMQ06%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000001.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/include as-apps.inc, 1.9, 1.10  misc-apps.inc, 1.11, 1.12 wm-apps.inc, 1.41, 1.42</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/include%20as-apps.inc%2C%201.9%2C%0A%201.10%20%20misc-apps.inc%2C%201.11%2C%201.12%20wm-apps.inc%2C%201.41%2C%201.42&In-Reply-To=%3C45EAE9C7.mailCMH1AMQ06%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/include as-apps.inc, 1.9, 1.10  misc-apps.inc, 1.11, 1.12 wm-apps.inc, 1.41, 1.42">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Sun Mar  4 16:46:15 CET 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000001.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.4.disableKDEglobals.patch, NONE, 1.1  AfterStep-2.2.4.menu.pictures.patch, NONE, 1.1 Propaganda-KDE-Desktop, NONE, 1.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv16293
+
+Modified Files:
+	as-apps.inc misc-apps.inc wm-apps.inc 
+Log Message:
+added Propaganda, misc path updates.
+
+
+Index: as-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/as-apps.inc,v
+retrieving revision 1.9
+retrieving revision 1.10
+diff -u -r1.9 -r1.10
+--- as-apps.inc	25 Nov 2006 18:47:08 -0000	1.9
++++ as-apps.inc	4 Mar 2007 15:46:13 -0000	1.10
+@@ -45,7 +45,7 @@
+ APPLET_LIST += ASLOAD
+ 
+ ASMAIL_NAME=asmail
+-ASMAIL_VERSION=1.9
++ASMAIL_VERSION=2.0
+ ASMAIL_TAR=$(ASMAIL_NAME)-$(ASMAIL_VERSION).tar.gz
+ ASMAIL_URL=<A HREF="http://tigr.net/afterstep/download/$(ASMAIL_NAME">http://tigr.net/afterstep/download/$(ASMAIL_NAME</A>)/$(ASMAIL_TAR)
+ 
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.11
+retrieving revision 1.12
+diff -u -r1.11 -r1.12
+--- misc-apps.inc	22 Oct 2006 16:07:14 -0000	1.11
++++ misc-apps.inc	4 Mar 2007 15:46:13 -0000	1.12
+@@ -2,7 +2,34 @@
+ #
+ # misc applets that didn't seem to be specific to any wm
+ 
++#this is the first of three tarballs needed to build Propaganda
++PROPAGANDA_NAME=Propaganda
++PROPAGANDA_VERSION=1
++PROPAGANDA_TAR=$(PROPAGANDA_NAME)-EVERYTHING.tar.bz2
++PROPAGANDA_URL=<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(PROPAGANDA_TAR">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(PROPAGANDA_TAR</A>)
++
++APPLET_LIST += PROPAGANDA
++
++#this is the first of three tarballs needed to build Propaganda
++PROPAGANDA-VOL13_NOSPEC=YES
++PROPAGANDA-VOL13_NAME=Propaganda-Vol13
++PROPAGANDA-VOL13_VERSION=13
++PROPAGANDA-VOL13_TAR=$(PROPAGANDA-VOL13_NAME).tar.bz2
++PROPAGANDA-VOL13_URL=<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(PROPAGANDA-VOL13_TAR">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(PROPAGANDA-VOL13_TAR</A>)
++
++APPLET_LIST += PROPAGANDA-VOL13
++
++#this is the first of three tarballs needed to build Propaganda
++PROPAGANDA-VOL14_NOSPEC=YES
++PROPAGANDA-VOL14_NAME=Propaganda-Vol14
++PROPAGANDA-VOL14_VERSION=14
++PROPAGANDA-VOL14_TAR=$(PROPAGANDA-VOL14_NAME).tar.bz2
++PROPAGANDA-VOL14_URL=<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(PROPAGANDA-VOL14_TAR">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(PROPAGANDA-VOL14_TAR</A>)
++
++APPLET_LIST += PROPAGANDA-VOL14
++
+ #this is the first of three tarballs needed to build ascd-themes
++ASCD-THEMES_NOSPEC=YES
+ ASCD-THEMES_NAME=ascd-themes
+ ASCD-THEMES_VERSION=1.13
+ ASCD-THEMES_TAR=ascd-0.13pr6-themes.tgz
+
+Index: wm-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/wm-apps.inc,v
+retrieving revision 1.41
+retrieving revision 1.42
+diff -u -r1.41 -r1.42
+--- wm-apps.inc	18 Oct 2006 21:47:02 -0000	1.41
++++ wm-apps.inc	4 Mar 2007 15:46:13 -0000	1.42
+@@ -24,8 +24,8 @@
+ APPLET_LIST += HVCLOCK
+ 
+ PEKSYSTRAY_NAME=peksystray
+-PEKSYSTRAY_VERSION=0.3.0
+-PEKSYSTRAY_TAR=$(PEKSYSTRAY_NAME)-$(PEKSYSTRAY_VERSION).tar.gz
++PEKSYSTRAY_VERSION=0.4.0
++PEKSYSTRAY_TAR=$(PEKSYSTRAY_NAME)-$(PEKSYSTRAY_VERSION).tar.bz2
+ PEKSYSTRAY_URL=<A HREF="http://easynews.dl.sourceforge.net/sourceforge/$(PEKSYSTRAY_NAME">http://easynews.dl.sourceforge.net/sourceforge/$(PEKSYSTRAY_NAME</A>)/$(PEKSYSTRAY_TAR)
+ 
+ APPLET_LIST += PEKSYSTRAY
+@@ -47,26 +47,26 @@
+ WMBLUECLOCK_NAME=WMBlueClock
+ WMBLUECLOCK_VERSION=0.1
+ WMBLUECLOCK_TAR=$(WMBLUECLOCK_NAME).tar.gz
+-WMBLUECLOCK_URL=<A HREF="http://sheepmakers.ath.cx/utils/wmblueclock/$(WMBLUECLOCK_TAR">http://sheepmakers.ath.cx/utils/wmblueclock/$(WMBLUECLOCK_TAR</A>)
++WMBLUECLOCK_URL=<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMBLUECLOCK_TAR">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMBLUECLOCK_TAR</A>)
+ 
+ APPLET_LIST += WMBLUECLOCK
+ 
+ WMBLUECPU_NAME=WMBlueCPU
+ WMBLUECPU_VERSION=0.6
+ WMBLUECPU_TAR=$(WMBLUECPU_NAME).tar.gz
+-WMBLUECPU_URL=<A HREF="http://sheepmakers.ath.cx/utils/wmbluecpu/$(WMBLUECPU_TAR">http://sheepmakers.ath.cx/utils/wmbluecpu/$(WMBLUECPU_TAR</A>)
++WMBLUECPU_URL=<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMBLUECPU_TAR">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMBLUECPU_TAR</A>)
+ 
+ APPLET_LIST += WMBLUECPU
+ 
+ WMBLUEMEM_NAME=WMBlueMem
+ WMBLUEMEM_VERSION=0.9
+ WMBLUEMEM_TAR=$(WMBLUEMEM_NAME).tar.gz
+-WMBLUEMEM_URL=<A HREF="http://sheepmakers.ath.cx/utils/wmbluemem/$(WMBLUEMEM_TAR">http://sheepmakers.ath.cx/utils/wmbluemem/$(WMBLUEMEM_TAR</A>)
++WMBLUEMEM_URL=<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMBLUEMEM_TAR">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMBLUEMEM_TAR</A>)
+ 
+ APPLET_LIST += WMBLUEMEM
+ 
+ WMCALENDAR_NAME=wmcalendar
+-WMCALENDAR_VERSION=0.5.0
++WMCALENDAR_VERSION=0.5.2
+ WMCALENDAR_TAR=$(WMCALENDAR_NAME)-$(WMCALENDAR_VERSION).tar.gz
+ WMCALENDAR_URL=<A HREF="http://easynews.dl.sourceforge.net/sourceforge/$(WMCALENDAR_NAME">http://easynews.dl.sourceforge.net/sourceforge/$(WMCALENDAR_NAME</A>)/$(WMCALENDAR_TAR)
+ 
+@@ -80,9 +80,9 @@
+ APPLET_LIST += WMCALC
+ 
+ WMCHARGEMON_NAME=wmchargemon
+-WMCHARGEMON_VERSION=0.2
++WMCHARGEMON_VERSION=0.3
+ WMCHARGEMON_TAR=$(WMCHARGEMON_NAME)-$(WMCHARGEMON_VERSION).tar.gz
+-WMCHARGEMON_URL=<A HREF="http://dockapps.org/download.php/id/694/$(WMCHARGEMON_TAR">http://dockapps.org/download.php/id/694/$(WMCHARGEMON_TAR</A>)
++WMCHARGEMON_URL=<A HREF="http://dockapps.org/download.php/id/715/$(WMCHARGEMON_TAR">http://dockapps.org/download.php/id/715/$(WMCHARGEMON_TAR</A>)
+ 
+ APPLET_LIST += WMCHARGEMON
+ 
+@@ -215,7 +215,7 @@
+ WMRADIO_NAME=wmradio
+ WMRADIO_VERSION=0.9
+ WMRADIO_TAR=$(WMRADIO_NAME)-$(WMRADIO_VERSION).tgz
+-WMRADIO_URL=<A HREF="ftp://ftp.afterstep.org/apps/$(WMRADIO_NAME">ftp://ftp.afterstep.org/apps/$(WMRADIO_NAME</A>)/$(WMRADIO_TAR)
++WMRADIO_URL=<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMRADIO_TAR">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMRADIO_TAR</A>)
+ 
+ APPLET_LIST += WMRADIO
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000001.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.4.disableKDEglobals.patch, NONE, 1.1  AfterStep-2.2.4.menu.pictures.patch, NONE, 1.1 Propaganda-KDE-Desktop, NONE, 1.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

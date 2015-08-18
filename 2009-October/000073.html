@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SOURCES	fotoxx-8.6.1-Makefile.patch, NONE,	1.1 fotoxx-8.4.2-Makefile.patch, 1.1, NONE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SOURCES%0A%09fotoxx-8.6.1-Makefile.patch%2C%20NONE%2C%0A%091.1%20fotoxx-8.4.2-Makefile.patch%2C%201.1%2C%20NONE&In-Reply-To=%3C4AE8E4C4.mailIWN1ZBAAJ%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000072.html">
+   <LINK REL="Next"  HREF="000074.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SOURCES	fotoxx-8.6.1-Makefile.patch, NONE,	1.1 fotoxx-8.4.2-Makefile.patch, 1.1, NONE</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SOURCES%0A%09fotoxx-8.6.1-Makefile.patch%2C%20NONE%2C%0A%091.1%20fotoxx-8.4.2-Makefile.patch%2C%201.1%2C%20NONE&In-Reply-To=%3C4AE8E4C4.mailIWN1ZBAAJ%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SOURCES	fotoxx-8.6.1-Makefile.patch, NONE,	1.1 fotoxx-8.4.2-Makefile.patch, 1.1, NONE">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Thu Oct 29 01:41:40 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000072.html">[Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.24,	1.25
+</A></li>
+        <LI>Next message: <A HREF="000074.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec,1.7,1.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#73">[ date ]</a>
+              <a href="thread.html#73">[ thread ]</a>
+              <a href="subject.html#73">[ subject ]</a>
+              <a href="author.html#73">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv23580/SOURCES
+
+Added Files:
+	fotoxx-8.6.1-Makefile.patch 
+Removed Files:
+	fotoxx-8.4.2-Makefile.patch 
+Log Message:
+updated Makefile patch for fotoxx.
+
+
+--- NEW FILE: fotoxx-8.6.1-Makefile.patch ---
+--- Makefile	2009-10-27 03:07:47.000000000 -0500
++++ Makefile	2009-10-27 20:39:26.000000000 -0500
+@@ -41,16 +41,6 @@
+ 	cp -R data/* $(DESTDIR)$(DATADIR)
+ 	cp $(PROGRAM) $(DESTDIR)$(BINDIR)
+ 	cp -R locales/* $(DESTDIR)$(DATADIR)/locales
+-	#  install .desktop file (menu entry)
+-	@echo &quot;[Desktop Entry]&quot; &gt; $(DESKTOP)
+-	@echo &quot;Name=$(PROGRAM)&quot; &gt;&gt; $(DESKTOP)
+-	@echo &quot;Categories=Graphics&quot; &gt;&gt; $(DESKTOP)
+-	@echo &quot;Type=Application&quot; &gt;&gt; $(DESKTOP)
+-	@echo &quot;Terminal=false&quot; &gt;&gt; $(DESKTOP)
+-	@echo &quot;Exec=$(BINDIR)/$(PROGRAM)&quot; &gt;&gt; $(DESKTOP)
+-	@echo &quot;Icon=$(DATADIR)/icons/$(PROGRAM).png&quot; &gt;&gt; $(DESKTOP)
+-	@echo &quot;GenericName=Digital Photo Editor&quot; &gt;&gt; $(DESKTOP)
+-	xdg-desktop-menu install $(DESKTOP)
+ 	#  install man page
+ 	cp -f doc/$(PROGRAM).man $(PROGRAM).1
+ 	gzip -f -9 $(PROGRAM).1
+
+--- fotoxx-8.4.2-Makefile.patch DELETED ---
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000072.html">[Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.24,	1.25
+</A></li>
+	<LI>Next message: <A HREF="000074.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec,1.7,1.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#73">[ date ]</a>
+              <a href="thread.html#73">[ thread ]</a>
+              <a href="subject.html#73">[ subject ]</a>
+              <a href="author.html#73">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

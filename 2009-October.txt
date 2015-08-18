@@ -1,0 +1,250 @@
+From rpm_speedy at mail.berlios.de  Sat Oct 24 03:46:44 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sat, 24 Oct 2009 03:46:44 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec,1.6,1.7
+Message-ID: <4AE25C84.mailGAK1JK4GM@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv21039/SPECS
+
+Modified Files:
+	fotoxx.spec 
+Log Message:
+updated fotoxx to v 8.6.
+
+
+Index: fotoxx.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/fotoxx.spec,v
+retrieving revision 1.6
+retrieving revision 1.7
+diff -u -r1.6 -r1.7
+--- fotoxx.spec	18 Sep 2009 15:01:03 -0000	1.6
++++ fotoxx.spec	24 Oct 2009 01:46:41 -0000	1.7
+@@ -1,5 +1,5 @@
+ %define name fotoxx
+-%define version 8.4.2
++%define version 8.6
+ %define release 1%{?dist}
+ 
+ Summary: application for processing image files from a digital camera
+@@ -93,7 +93,7 @@
+ %{_mandir}/man1/*.gz
+ 
+ %changelog
+-* Fri Sep 18 2009 J. Krebs <rpm_speedy at yahoo.com> - 8.4.2-1
++* Tue Oct 13 2009 J. Krebs <rpm_speedy at yahoo.com> - 8.6-1
+ - new version.
+ 
+ * Mon Sep 14 2009 J. Krebs <rpm_speedy at yahoo.com> - 8.4.1-1
+
+
+
+From rpm_speedy at mail.berlios.de  Sat Oct 24 03:46:44 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sat, 24 Oct 2009 03:46:44 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.24,
+	1.25
+Message-ID: <4AE25C84.mailGAN11YP8P@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv21039/include
+
+Modified Files:
+	misc-apps.inc 
+Log Message:
+updated fotoxx to v 8.6.
+
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.24
+retrieving revision 1.25
+diff -u -r1.24 -r1.25
+--- misc-apps.inc	18 Sep 2009 15:01:03 -0000	1.24
++++ misc-apps.inc	24 Oct 2009 01:46:42 -0000	1.25
+@@ -70,7 +70,7 @@
+ APPLET_LIST += CALCOO
+ 
+ FOTOXX_NAME=fotoxx
+-FOTOXX_VERSION=8.4.2
++FOTOXX_VERSION=8.6
+ FOTOXX_TAR=$(FOTOXX_NAME)-$(FOTOXX_VERSION).tar.gz
+ FOTOXX_URL=http://kornelix.squarespace.com/storage/downloads/$(FOTOXX_TAR)
+ 
+@@ -83,12 +83,13 @@
+ 
+ APPLET_LIST += LIBDOCKAPP
+ 
+-LIBICAL_NAME=libical
+-LIBICAL_VERSION=0.43
+-LIBICAL_TAR=$(LIBICAL_NAME)-$(LIBICAL_VERSION).tar.gz
+-LIBICAL_URL=http://easynews.dl.sourceforge.net/sourceforge/freeassociation/$(LIBICAL_TAR)
+-
+-APPLET_LIST += LIBICAL
++# Included in Fedora 11 Repository
++#LIBICAL_NAME=libical
++#LIBICAL_VERSION=0.43
++#LIBICAL_TAR=$(LIBICAL_NAME)-$(LIBICAL_VERSION).tar.gz
++#LIBICAL_URL=http://easynews.dl.sourceforge.net/sourceforge/freeassociation/$(LIBICAL_TAR)
++#
++#APPLET_LIST += LIBICAL
+ 
+ #this is the the source file used to build libwraster
+ LIBWRASTER_NAME=libwraster
+@@ -119,12 +120,13 @@
+ 
+ APPLET_LIST += MIXER.APP
+ 
+-PARCELLITE_NAME=parcellite
+-PARCELLITE_VERSION=0.9.1
+-PARCELLITE_TAR=$(PARCELLITE_NAME)-$(PARCELLITE_VERSION).tar.gz
+-PARCELLITE_URL=http://downloads.sourceforge.net/project/$(PARCELLITE_NAME)/$(PARCELLITE_NAME)/$(PARCELLITE_NAME)-$(PARCELLITE_VERSION)/$(PARCELLITE_TAR)
+-
+-APPLET_LIST += PARCELLITE
++# Included in Fedora's Repository
++#PARCELLITE_NAME=parcellite
++#PARCELLITE_VERSION=0.9.1
++#PARCELLITE_TAR=$(PARCELLITE_NAME)-$(PARCELLITE_VERSION).tar.gz
++#PARCELLITE_URL=http://downloads.sourceforge.net/project/$(PARCELLITE_NAME)/$(PARCELLITE_NAME)/$(PARCELLITE_NAME)-$(PARCELLITE_VERSION)/$(PARCELLITE_TAR)
++#
++#APPLET_LIST += PARCELLITE
+ 
+ SALMON_NAME=salmon
+ SALMON_VERSION=1.2.2
+
+
+
+From rpm_speedy at mail.berlios.de  Thu Oct 29 01:41:40 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Thu, 29 Oct 2009 01:41:40 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SOURCES
+	fotoxx-8.6.1-Makefile.patch, NONE,
+	1.1 fotoxx-8.4.2-Makefile.patch, 1.1, NONE
+Message-ID: <4AE8E4C4.mailIWN1ZBAAJ@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv23580/SOURCES
+
+Added Files:
+	fotoxx-8.6.1-Makefile.patch 
+Removed Files:
+	fotoxx-8.4.2-Makefile.patch 
+Log Message:
+updated Makefile patch for fotoxx.
+
+
+--- NEW FILE: fotoxx-8.6.1-Makefile.patch ---
+--- Makefile	2009-10-27 03:07:47.000000000 -0500
++++ Makefile	2009-10-27 20:39:26.000000000 -0500
+@@ -41,16 +41,6 @@
+ 	cp -R data/* $(DESTDIR)$(DATADIR)
+ 	cp $(PROGRAM) $(DESTDIR)$(BINDIR)
+ 	cp -R locales/* $(DESTDIR)$(DATADIR)/locales
+-	#  install .desktop file (menu entry)
+-	@echo "[Desktop Entry]" > $(DESKTOP)
+-	@echo "Name=$(PROGRAM)" >> $(DESKTOP)
+-	@echo "Categories=Graphics" >> $(DESKTOP)
+-	@echo "Type=Application" >> $(DESKTOP)
+-	@echo "Terminal=false" >> $(DESKTOP)
+-	@echo "Exec=$(BINDIR)/$(PROGRAM)" >> $(DESKTOP)
+-	@echo "Icon=$(DATADIR)/icons/$(PROGRAM).png" >> $(DESKTOP)
+-	@echo "GenericName=Digital Photo Editor" >> $(DESKTOP)
+-	xdg-desktop-menu install $(DESKTOP)
+ 	#  install man page
+ 	cp -f doc/$(PROGRAM).man $(PROGRAM).1
+ 	gzip -f -9 $(PROGRAM).1
+
+--- fotoxx-8.4.2-Makefile.patch DELETED ---
+
+
+
+From rpm_speedy at mail.berlios.de  Thu Oct 29 01:41:40 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Thu, 29 Oct 2009 01:41:40 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec,1.7,1.8
+Message-ID: <4AE8E4C4.mailIWT1140UJ@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv23580/SPECS
+
+Modified Files:
+	fotoxx.spec 
+Log Message:
+updated Makefile patch for fotoxx.
+
+
+Index: fotoxx.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/fotoxx.spec,v
+retrieving revision 1.7
+retrieving revision 1.8
+diff -u -r1.7 -r1.8
+--- fotoxx.spec	24 Oct 2009 01:46:41 -0000	1.7
++++ fotoxx.spec	29 Oct 2009 00:41:38 -0000	1.8
+@@ -1,5 +1,5 @@
+ %define name fotoxx
+-%define version 8.6
++%define version 8.6.1
+ %define release 1%{?dist}
+ 
+ Summary: application for processing image files from a digital camera
+@@ -10,7 +10,7 @@
+ Group: Applications/Multimedia
+ URL: http://kornelix.squarespace.com/%{name}/
+ Source0: http://kornelix.squarespace.com/storage/downloads/%{name}-%{version}.tar.gz
+-Patch0: %{name}-8.4.2-Makefile.patch
++Patch0: %{name}-8.6.1-Makefile.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ Requires: gtk2 atk cairo pango libpng exiv2 libstdc++ ufraw perl-Image-ExifTool
+ Buildrequires: gtk2-devel atk-devel cairo-devel pango-devel libpng-devel libstdc++-devel gcc-c++ freeimage-devel ufraw perl-Image-ExifTool
+@@ -93,6 +93,9 @@
+ %{_mandir}/man1/*.gz
+ 
+ %changelog
++* Mon Oct 26 2009 J. Krebs <rpm_speedy at yahoo.com> - 8.6.1-1
++- new version.
++
+ * Tue Oct 13 2009 J. Krebs <rpm_speedy at yahoo.com> - 8.6-1
+ - new version.
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Thu Oct 29 01:41:40 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Thu, 29 Oct 2009 01:41:40 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.25,
+	1.26
+Message-ID: <4AE8E4C4.mailIWW1130DC@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv23580/include
+
+Modified Files:
+	misc-apps.inc 
+Log Message:
+updated Makefile patch for fotoxx.
+
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.25
+retrieving revision 1.26
+diff -u -r1.25 -r1.26
+--- misc-apps.inc	24 Oct 2009 01:46:42 -0000	1.25
++++ misc-apps.inc	29 Oct 2009 00:41:38 -0000	1.26
+@@ -70,7 +70,7 @@
+ APPLET_LIST += CALCOO
+ 
+ FOTOXX_NAME=fotoxx
+-FOTOXX_VERSION=8.6
++FOTOXX_VERSION=8.6.1
+ FOTOXX_TAR=$(FOTOXX_NAME)-$(FOTOXX_VERSION).tar.gz
+ FOTOXX_URL=http://kornelix.squarespace.com/storage/downloads/$(FOTOXX_TAR)
+ 
+
+
+

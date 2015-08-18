@@ -1,0 +1,386 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SPECS Temperature.app.spec, 1.9, 1.10  fotoxx.spec, 1.1, 1.2 libical.spec, 1.8, 1.9 rxvt-unicode.spec, 1.6, 1.7  wmalms.spec, 1.4, 1.5 wmsensormon.spec, 1.7, 1.8 wmtemp.spec, 1.6, 1.7
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20Temperature.app.spec%2C%0A%201.9%2C%201.10%20%20fotoxx.spec%2C%201.1%2C%201.2%20libical.spec%2C%201.8%2C%201.9%20rxvt-unicode.spec%2C%0A%201.6%2C%201.7%20%20wmalms.spec%2C%201.4%2C%201.5%20wmsensormon.spec%2C%201.7%2C%201.8%20wmtemp.spec%2C%201.6%2C%0A%201.7&In-Reply-To=%3C48698C36.mail23K1F07H6%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000052.html">
+   <LINK REL="Next"  HREF="000054.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SPECS Temperature.app.spec, 1.9, 1.10  fotoxx.spec, 1.1, 1.2 libical.spec, 1.8, 1.9 rxvt-unicode.spec, 1.6, 1.7  wmalms.spec, 1.4, 1.5 wmsensormon.spec, 1.7, 1.8 wmtemp.spec, 1.6, 1.7</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20Temperature.app.spec%2C%0A%201.9%2C%201.10%20%20fotoxx.spec%2C%201.1%2C%201.2%20libical.spec%2C%201.8%2C%201.9%20rxvt-unicode.spec%2C%0A%201.6%2C%201.7%20%20wmalms.spec%2C%201.4%2C%201.5%20wmsensormon.spec%2C%201.7%2C%201.8%20wmtemp.spec%2C%201.6%2C%0A%201.7&In-Reply-To=%3C48698C36.mail23K1F07H6%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SPECS Temperature.app.spec, 1.9, 1.10  fotoxx.spec, 1.1, 1.2 libical.spec, 1.8, 1.9 rxvt-unicode.spec, 1.6, 1.7  wmalms.spec, 1.4, 1.5 wmsensormon.spec, 1.7, 1.8 wmtemp.spec, 1.6, 1.7">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Tue Jul  1 03:45:26 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000052.html">[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.22, 1.23  misc-apps.inc, 1.19, 1.20
+</A></li>
+        <LI>Next message: <A HREF="000054.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES	rxvt-unicode-8.4-docs.patch, 1.1,	NONE rxvt-unicode-9.02-stropts.h.patch, 1.1,	NONE wmcalendar-0.5.0-gcc4.patch, 1.1,	NONE wmcalendar-0.5.0-mallocfix.patch, 1.1,	NONE wmcalendar-0.5.0.wharf.patch, 1.1,	NONE yudit-2.8.1-patch1.txt, 1.1, NONE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#53">[ date ]</a>
+              <a href="thread.html#53">[ thread ]</a>
+              <a href="subject.html#53">[ subject ]</a>
+              <a href="author.html#53">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv2621/SPECS
+
+Modified Files:
+	Temperature.app.spec fotoxx.spec libical.spec 
+	rxvt-unicode.spec wmalms.spec wmsensormon.spec wmtemp.spec 
+Log Message:
+Fixed Temperature.app for gcc43, updated requires for lm_sensors apps.
+
+
+Index: Temperature.app.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/Temperature.app.spec,v
+retrieving revision 1.9
+retrieving revision 1.10
+diff -u -r1.9 -r1.10
+--- Temperature.app.spec	4 Jun 2008 13:35:59 -0000	1.9
++++ Temperature.app.spec	1 Jul 2008 01:45:24 -0000	1.10
+@@ -1,6 +1,6 @@
+ %define name Temperature.app
+ %define version 1.4
+-%define release 9%{?dist}
++%define release 10%{?dist}
+ 
+ Summary: WM applet gets temperature every 15 minutes
+ Name: %name
+@@ -10,25 +10,13 @@
+ Group: AfterStep/Applets
+ URL: <A HREF="http://www.fukt.hk-r.se/~per/temperature">http://www.fukt.hk-r.se/~per/temperature</A>
+ Source0: <A HREF="http://www.fukt.bth.se/~per/temperature/%{name">http://www.fukt.bth.se/~per/temperature/%{name</A>}-%{version}.tar.gz
+-Patch0: Temperature.app-1.4.as.patch
+ Patch1: Temperature.app-1.4-frog-5.patch
+-Patch2: Temperature.app-1.4-xpm.patch
++Patch2: Temperature.app-1.4-gcc43.patch
++Patch3: Temperature.app-1.4-Makefile.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ Requires: wget xorg-x11-fonts-ISO8859-1-75dpi xorg-x11-fonts-ISO8859-1-100dpi
+ 
+ %description
+-This WM applet includes two binaries: &quot;Temperature.app&quot; for AfterStep
+-&gt;= 2.1.0 and WindowMaker (perhaps other window managers too) and
+-&quot;Temperature.app.as&quot;, a version modified to work with AfterStep &lt; 2.1.0..
+-The AS version has been modified to work under earlier versions of
+-AfterStep and will not work properly under WindowMaker.
+-
+-Additionally, the patch from Frog at:
+-
+-    <A HREF="http://www.unetz.com/schaepe/DOCKAPPS/dockapps.html">http://www.unetz.com/schaepe/DOCKAPPS/dockapps.html</A>
+-    
+-has been added to allow for pressure, wind, and windchill.
+-
+ Temperature.app is a Window Maker applet which fetches local
+ temperature information every 15 minutes from
+ 
+@@ -36,27 +24,27 @@
+ 
+ and displays it (in Celsius or Fahrenheit).
+ 
++The patch from Frog at:
++
++    <A HREF="http://www.unetz.com/schaepe/DOCKAPPS/dockapps.html">http://www.unetz.com/schaepe/DOCKAPPS/dockapps.html</A>
++
++has been added to allow for pressure, wind, and windchill.
++
++
+ %prep
+-%setup -q -n Temperature.app-%{version}
++%setup -q
+ 
+-%patch1 -p1 -b .frog
+-%patch0 -p1 -b .as
++%patch1
+ %patch2
++%patch3
+ 
+ %build
+ make
+ 
+-mv -f Temperature.app Temperature.app.as
+-cp -f Temperature.cc.as Temperature.cc
+-
+-make
+-
+ %install
+ rm -rf $RPM_BUILD_ROOT
+-mkdir -p $RPM_BUILD_ROOT%{_bindir}
+ 
+-install -s -m 755 Temperature.app $RPM_BUILD_ROOT%{_bindir}/Temperature.app
+-install -s -m 755 Temperature.app.as $RPM_BUILD_ROOT%{_bindir}/Temperature.app.as
++make install-x11 DESTDIR=$RPM_BUILD_ROOT
+ 
+ %clean
+ rm -rf $RPM_BUILD_ROOT
+@@ -68,6 +56,9 @@
+ 
+ 
+ %changelog
++* Mon Jun 30 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.4-10
++- added patch for gcc43.
++
+ * Sat Nov 10 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.4-9
+ - added Require for xorg-x11-fonts-ISO8859-1-75dpi.
+ 
+
+Index: fotoxx.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/fotoxx.spec,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- fotoxx.spec	4 Jun 2008 13:35:59 -0000	1.1
++++ fotoxx.spec	1 Jul 2008 01:45:24 -0000	1.2
+@@ -1,5 +1,5 @@
+ %define name fotoxx
+-%define version 4.5
++%define version 4.7
+ %define release 1%{?dist}
+ 
+ Summary: application for processing image files from a digital camera
+@@ -14,6 +14,7 @@
+ Requires: gtk2 atk cairo pango libpng exiv2 libstdc++
+ Buildrequires: gtk2-devel atk-devel cairo-devel pango-devel libpng-devel libstdc++-devel
+ Obsoletes: fotox
++Provides: fotox
+ 
+ %description
+ Fotoxx is a free open-source Linux program for improving image files
+@@ -89,6 +90,12 @@
+ %{_datadir}/pixmaps/*.png
+ 
+ %changelog
++* Sat Jun 21 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 4.7-1
++- new version.
++
++* Wed Jun 04 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 4.5-2
++- added fotox provide, to help yum users searching for fotox.
++
+ * Tue Jun 03 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 4.5-1
+ - new version, application name changed from fotox to fotoxx.
+ 
+
+Index: libical.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/libical.spec,v
+retrieving revision 1.8
+retrieving revision 1.9
+diff -u -r1.8 -r1.9
+--- libical.spec	25 May 2008 17:57:14 -0000	1.8
++++ libical.spec	1 Jul 2008 01:45:24 -0000	1.9
+@@ -11,6 +11,7 @@
+ URL:		<A HREF="http://softwarestudio.org/libical/">http://softwarestudio.org/libical/</A>
+ Source0:	<A HREF="http://easynews.dl.sourceforge.net/sourceforge/freeassociation/%name-%version.tar.gz">http://easynews.dl.sourceforge.net/sourceforge/freeassociation/%name-%version.tar.gz</A>
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
++BuildRequires:	byacc flex bison
+ 
+ %description
+ Libical is an Open Source implementation of the IETF's iCalendar
+@@ -28,7 +29,6 @@
+ 
+ %prep
+ %setup -q
+-#%patch0
+ 
+ %build
+ ./configure \
+
+Index: rxvt-unicode.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/rxvt-unicode.spec,v
+retrieving revision 1.6
+retrieving revision 1.7
+diff -u -r1.6 -r1.7
+--- rxvt-unicode.spec	4 Jun 2008 13:35:59 -0000	1.6
++++ rxvt-unicode.spec	1 Jul 2008 01:45:24 -0000	1.7
+@@ -1,7 +1,7 @@
+ %define aitest	%(rpm -q --queryformat='%{VERSION}' libAfterImage)
+ %define aiver	%aitest 
+-%define version 9.02
+-%define release 2%{?dist}
++%define version 9.05
++%define release 1%{?dist}
+ %define name	rxvt-unicode
+ %define epoch	2
+ 
+@@ -14,7 +14,6 @@
+ Group:		User Interface/X
+ URL:		<A HREF="http://software.schmorp.de/pkg/rxvt-unicode.html">http://software.schmorp.de/pkg/rxvt-unicode.html</A>
+ Source0:	<A HREF="http://dist.schmorp.de/rxvt-unicode/%{name">http://dist.schmorp.de/rxvt-unicode/%{name</A>}-%{version}.tar.bz2
+-Patch0:		%{name}-%{version}-stropts.h.patch
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires:	perl-devel libXpm-devel libXft-devel freetype-devel
+ BuildRequires:	libAfterImage-devel &gt;= 1.15
+@@ -40,7 +39,6 @@
+ 
+ %prep
+ %setup -q
+-%patch0
+ 
+ %build
+ 
+@@ -86,6 +84,9 @@
+ %{_libdir}/urxvt
+ 
+ %changelog
++* Sat Jun 21 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2:9.05-1
++- new version.
++
+ * Mon Jun 02 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2:9.02-2
+ - added patch for stropts.h - Fedora 9 and later don't ship it.
+ 
+
+Index: wmalms.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmalms.spec,v
+retrieving revision 1.4
+retrieving revision 1.5
+diff -u -r1.4 -r1.5
+--- wmalms.spec	27 Apr 2007 16:09:18 -0000	1.4
++++ wmalms.spec	1 Jul 2008 01:45:24 -0000	1.5
+@@ -1,6 +1,6 @@
+ %define name wmalms
+ %define version 1.1.1
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: Applet to manage sensor data: temperature, fan speed, voltage
+ Name: %name
+@@ -12,8 +12,8 @@
+ Source0: <A HREF="http://www.geocities.com/%{name">http://www.geocities.com/%{name</A>}/%{name}-%{version}.tar.gz
+ Patch0: wmalms-1.1.1-prompt-bypass.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-BuildRequires: lm_sensors-devel &gt;= 2.0
+-Requires: lm_sensors &gt;= 2.0
++BuildRequires: lm_sensors-devel &gt;= 2.0, lm_sensors-devel &lt; 3.0
++Requires: lm_sensors &gt;= 2.0, lm_sensors &lt; 3.0
+ 
+ %description
+ wmalms monitors data obtained from a sensor chip: temperature, fan speed,
+@@ -46,6 +46,9 @@
+ %doc COPYING README manual.html
+ 
+ %changelog
++* Mon Jun 30 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.1.1-5
++- added require for lm_sensors &lt; 3.0.
++
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.1.1-4
+ - added distro info to release.
+ 
+
+Index: wmsensormon.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmsensormon.spec,v
+retrieving revision 1.7
+retrieving revision 1.8
+diff -u -r1.7 -r1.8
+--- wmsensormon.spec	27 Apr 2007 16:09:18 -0000	1.7
++++ wmsensormon.spec	1 Jul 2008 01:45:24 -0000	1.8
+@@ -1,6 +1,6 @@
+ %define name wmsensormon
+ %define version 1.2.1
+-%define release 5%{?dist}
++%define release 6%{?dist}
+ 
+ Summary: uses lm_sensors to monitor CPU &amp; sys temps, fan speed, and CPU voltage
+ Name: %name
+@@ -11,8 +11,8 @@
+ URL: <A HREF="http://wmsensormon.sourceforge.net/">http://wmsensormon.sourceforge.net/</A>
+ Source0: <A HREF="http://superb-west.dl.sourceforge.net/sourceforge/%{name">http://superb-west.dl.sourceforge.net/sourceforge/%{name</A>}/%{name}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-BuildRequires: lm_sensors-devel &gt;= 2.0
+-Requires: lm_sensors &gt;= 2.0
++BuildRequires: lm_sensors-devel &gt;= 2.0, lm_sensors-devel &lt; 3.0
++Requires: lm_sensors &gt;= 2.0, lm_sensors &lt; 3.0
+ 
+ %description
+ Wmsensormon is a doc app for WindowMaker that utilizes lm_sensors to
+@@ -45,6 +45,9 @@
+ %doc CHANGELOG COPYING INSTALL README TODO
+ 
+ %changelog
++* Mon Jun 30 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.2.1-6
++- updated requires for lm_sensors &lt; 3.0.
++
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.2.1-5
+ - added distro info to release.
+ 
+
+Index: wmtemp.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmtemp.spec,v
+retrieving revision 1.6
+retrieving revision 1.7
+diff -u -r1.6 -r1.7
+--- wmtemp.spec	25 May 2008 14:49:04 -0000	1.6
++++ wmtemp.spec	1 Jul 2008 01:45:24 -0000	1.7
+@@ -1,6 +1,6 @@
+ %define name wmtemp
+ %define version 0.0.6
+-%define release 1%{?dist}
++%define release 2%{?dist}
+ 
+ Summary: wmtemp displays CPU &amp; SYS temps in &quot;LCD look&quot; via lm_sensors
+ Name: %name
+@@ -11,8 +11,8 @@
+ URL: <A HREF="http://gnodde.org/wmtemp/">http://gnodde.org/wmtemp/</A>
+ Source0: <A HREF="http://open-systems.ufl.edu/mirrors/gentoo/distfiles/%{name">http://open-systems.ufl.edu/mirrors/gentoo/distfiles/%{name</A>}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-Requires: lm_sensors
+-Buildrequires: lm_sensors-devel
++BuildRequires: lm_sensors-devel &gt;= 2.0, lm_sensors-devel &lt; 3.0
++Requires: lm_sensors &gt;= 2.0, lm_sensors &lt; 3.0
+ 
+ %description
+ wmtemp dockapp displays CPU &amp; SYS temps in LCD look via lm_sensors. 
+@@ -43,6 +43,9 @@
+ 
+ 
+ %changelog
++* Mon Jun 30 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.0.6-2
++- updated requires for lm_sensors &lt; 3.0.
++
+ * Mon May 12 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.0.6-1
+ - new version.
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000052.html">[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.22, 1.23  misc-apps.inc, 1.19, 1.20
+</A></li>
+	<LI>Next message: <A HREF="000054.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES	rxvt-unicode-8.4-docs.patch, 1.1,	NONE rxvt-unicode-9.02-stropts.h.patch, 1.1,	NONE wmcalendar-0.5.0-gcc4.patch, 1.1,	NONE wmcalendar-0.5.0-mallocfix.patch, 1.1,	NONE wmcalendar-0.5.0.wharf.patch, 1.1,	NONE yudit-2.8.1-patch1.txt, 1.1, NONE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#53">[ date ]</a>
+              <a href="thread.html#53">[ thread ]</a>
+              <a href="subject.html#53">[ subject ]</a>
+              <a href="author.html#53">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.19, 1.20  misc-apps.inc, 1.13, 1.14
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/include%20core-apps.inc%2C%201.19%2C%0A%201.20%20%20misc-apps.inc%2C%201.13%2C%201.14&In-Reply-To=%3C46CD989E.mailGN615H4UP%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000023.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.19, 1.20  misc-apps.inc, 1.13, 1.14</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/include%20core-apps.inc%2C%201.19%2C%0A%201.20%20%20misc-apps.inc%2C%201.13%2C%201.14&In-Reply-To=%3C46CD989E.mailGN615H4UP%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.19, 1.20  misc-apps.inc, 1.13, 1.14">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Thu Aug 23 16:24:30 CEST 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000023.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS calcoo.spec, NONE, 1.1  libAfterImage-NoX.spec, NONE, 1.1 mined.spec, NONE, 1.1  rxvt-unicode.spec, NONE, 1.1 worker.spec, NONE, 1.1 yudit.spec, NONE, 1.1  AfterStep.spec, 1.55, 1.56 aterm.spec, 1.22, 1.23
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#22">[ date ]</a>
+              <a href="thread.html#22">[ thread ]</a>
+              <a href="subject.html#22">[ subject ]</a>
+              <a href="author.html#22">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv21475/include
+
+Modified Files:
+	core-apps.inc misc-apps.inc 
+Log Message:
+updated AS and aterm, added urxvt, libAI-NoX, worker, yudit, mined, calcoo
+
+
+Index: core-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/core-apps.inc,v
+retrieving revision 1.19
+retrieving revision 1.20
+diff -u -r1.19 -r1.20
+--- core-apps.inc	15 Jun 2007 03:14:21 -0000	1.19
++++ core-apps.inc	23 Aug 2007 14:24:27 -0000	1.20
+@@ -3,23 +3,30 @@
+ # This is for the core, like AfterStep itself
+ 
+ AFTERSTEP_NAME=AfterStep
+-AFTERSTEP_VERSION=2.2.6
++AFTERSTEP_VERSION=2.2.7
+ AFTERSTEP_TAR=$(AFTERSTEP_NAME)-$(AFTERSTEP_VERSION).tar.gz
+ AFTERSTEP_URL=<A HREF="ftp://ftp.afterstep.org/stable/$(AFTERSTEP_TAR">ftp://ftp.afterstep.org/stable/$(AFTERSTEP_TAR</A>)
+ 
+ APPLET_LIST += AFTERSTEP
+ 
+ ATERM_NAME=aterm
+-ATERM_VERSION=1.0.0
++ATERM_VERSION=1.0.1
+ ATERM_TAR=$(ATERM_NAME)-$(ATERM_VERSION).tar.gz
+ ATERM_URL=<A HREF="ftp://ftp.afterstep.org/apps/aterm/$(ATERM_TAR">ftp://ftp.afterstep.org/apps/aterm/$(ATERM_TAR</A>)
+ 
+ APPLET_LIST += ATERM
+ 
+-#TEMPERATURE.APP_NAME=Temperature.app
+-#TEMPERATURE.APP_VERSION=1.4
+-#TEMPERATURE.APP_TAR=$(TEMPERATURE.APP_NAME)-$(TEMPERATURE.APP_VERSION).tar.gz
+-#TEMPERATURE.APP_URL=<A HREF="http://www.fukt.bth.se/~per/temperature/$(TEMPERATURE.APP_TAR">http://www.fukt.bth.se/~per/temperature/$(TEMPERATURE.APP_TAR</A>)
++LIBAFTERIMAGE-NOX_NAME=libAfterImage-NoX
++LIBAFTERIMAGE-NOX_VERSION=1.15
++LIBAFTERIMAGE-NOX_TAR=libAfterImage-$(LIBAFTERIMAGE-NOX_VERSION).tar.gz
++LIBAFTERIMAGE-NOX_URL=<A HREF="ftp://ftp.afterstep.org/stable/libAfterImage/$(LIBAFTERIMAGE-NOX_TAR">ftp://ftp.afterstep.org/stable/libAfterImage/$(LIBAFTERIMAGE-NOX_TAR</A>)
+ 
+-#APPLET_LIST += TEMPERATURE.APP
++APPLET_LIST += LIBAFTERIMAGE-NOX
++
++RXVT-UNICODE_NAME=rxvt-unicode
++RXVT-UNICODE_VERSION=8.3
++RXVT-UNICODE_TAR=$(RXVT-UNICODE_NAME)-$(RXVT-UNICODE_VERSION).tar.bz2
++RXVT-UNICODE_URL=<A HREF="http://dist.schmorp.de/$(RXVT-UNICODE_NAME">http://dist.schmorp.de/$(RXVT-UNICODE_NAME</A>)/$(RXVT-UNICODE_TAR)
++
++APPLET_LIST += RXVT-UNICODE
+ 
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.13
+retrieving revision 1.14
+diff -u -r1.13 -r1.14
+--- misc-apps.inc	3 May 2007 18:33:50 -0000	1.13
++++ misc-apps.inc	23 Aug 2007 14:24:27 -0000	1.14
+@@ -55,6 +55,13 @@
+ 
+ #APPLET_LIST += LCD
+ 
++CALCOO_NAME=calcoo
++CALCOO_VERSION=1.3.18
++CALCOO_TAR=$(CALCOO_NAME)-$(CALCOO_VERSION).tar.gz
++CALCOO_URL=<A HREF="http://internap.dl.sourceforge.net/sourceforge/$(CALCOO_NAME">http://internap.dl.sourceforge.net/sourceforge/$(CALCOO_NAME</A>)/$(CALCOO_TAR)
++
++APPLET_LIST += CALCOO
++
+ LIBDOCKAPP_NAME=libdockapp
+ LIBDOCKAPP_VERSION=0.6.1
+ LIBDOCKAPP_TAR=$(LIBDOCKAPP_NAME)-$(LIBDOCKAPP_VERSION).tar.bz2
+@@ -77,6 +84,13 @@
+ 
+ #APPLET_LIST += LIBWRASTER
+ 
++MINED_NAME=mined
++MINED_VERSION=2000.14
++MINED_TAR=$(MINED_NAME)-$(MINED_VERSION).tar.gz
++MINED_URL=<A HREF="http://towo.net/$(MINED_NAME">http://towo.net/$(MINED_NAME</A>)/$(MINED_TAR)
++
++APPLET_LIST += MINED
++
+ MIXER.APP_NAME=Mixer.app
+ MIXER.APP_VERSION=1.8.0
+ MIXER.APP_TAR=$(MIXER.APP_NAME)-$(MIXER.APP_VERSION).tar.gz
+@@ -104,3 +118,25 @@
+ TRAYER_URL=<A HREF="http://download.gna.org/fvwm-crystal/$(TRAYER_NAME">http://download.gna.org/fvwm-crystal/$(TRAYER_NAME</A>)/$(TRAYER_VERSION)/$(TRAYER_TAR)
+ 
+ APPLET_LIST += TRAYER
++
++WORKER_NAME=worker
++WORKER_VERSION=2.15.0
++WORKER_TAR=$(WORKER_NAME)-$(WORKER_VERSION).tar.gz
++WORKER_URL=<A HREF="http://www.boomerangsworld.de/worker/downloads/$(WORKER_TAR">http://www.boomerangsworld.de/worker/downloads/$(WORKER_TAR</A>)
++
++APPLET_LIST += WORKER
++
++WORKER-DOC_NOSPEC=YES
++WORKER-DOC_NAME=worker
++WORKER-DOC_VERSION=2.10.0.2
++WORKER-DOC_TAR=$(WORKER-DOC_NAME)-$(WORKER-DOC_VERSION)-doc.tar.bz2
++WORKER-DOC_URL=<A HREF="http://www.boomerangsworld.de/worker/downloads/$(WORKER-DOC_TAR">http://www.boomerangsworld.de/worker/downloads/$(WORKER-DOC_TAR</A>)
++
++APPLET_LIST += WORKER-DOC
++
++YUDIT_NAME=yudit
++YUDIT_VERSION=2.8.1
++YUDIT_TAR=$(YUDIT_NAME)-$(YUDIT_VERSION).tar.gz
++YUDIT_URL=<A HREF="http://yudit.org/download/$(YUDIT_TAR">http://yudit.org/download/$(YUDIT_TAR</A>)
++
++APPLET_LIST += YUDIT
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000023.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS calcoo.spec, NONE, 1.1  libAfterImage-NoX.spec, NONE, 1.1 mined.spec, NONE, 1.1  rxvt-unicode.spec, NONE, 1.1 worker.spec, NONE, 1.1 yudit.spec, NONE, 1.1  AfterStep.spec, 1.55, 1.56 aterm.spec, 1.22, 1.23
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#22">[ date ]</a>
+              <a href="thread.html#22">[ thread ]</a>
+              <a href="subject.html#22">[ subject ]</a>
+              <a href="author.html#22">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

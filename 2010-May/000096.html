@@ -1,0 +1,680 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SPECS eina.spec, NONE,	1.1 calcoo.spec, 1.1, 1.2 fotoxx.spec, 1.14, 1.15 medit.spec,	1.6, 1.7 trayer.spec, 1.4, 1.5 wmcalendar.spec, 1.19,	1.20 wmchargemon.spec, 1.6, 1.7 wmradio.spec, 1.11,	1.12 wmweather+.spec, 1.14, 1.15
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20eina.spec%2C%20NONE%2C%0A%091.1%20calcoo.spec%2C%201.1%2C%201.2%20fotoxx.spec%2C%201.14%2C%201.15%20medit.spec%2C%0A%091.6%2C%201.7%20trayer.spec%2C%201.4%2C%201.5%20wmcalendar.spec%2C%201.19%2C%0A%091.20%20wmchargemon.spec%2C%201.6%2C%201.7%20wmradio.spec%2C%201.11%2C%0A%091.12%20wmweather%2B.spec%2C%201.14%2C%201.15&In-Reply-To=%3C4C028C76.mailMYU1ESIXP%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000095.html">
+   <LINK REL="Next"  HREF="000097.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SPECS eina.spec, NONE,	1.1 calcoo.spec, 1.1, 1.2 fotoxx.spec, 1.14, 1.15 medit.spec,	1.6, 1.7 trayer.spec, 1.4, 1.5 wmcalendar.spec, 1.19,	1.20 wmchargemon.spec, 1.6, 1.7 wmradio.spec, 1.11,	1.12 wmweather+.spec, 1.14, 1.15</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20eina.spec%2C%20NONE%2C%0A%091.1%20calcoo.spec%2C%201.1%2C%201.2%20fotoxx.spec%2C%201.14%2C%201.15%20medit.spec%2C%0A%091.6%2C%201.7%20trayer.spec%2C%201.4%2C%201.5%20wmcalendar.spec%2C%201.19%2C%0A%091.20%20wmchargemon.spec%2C%201.6%2C%201.7%20wmradio.spec%2C%201.11%2C%0A%091.12%20wmweather%2B.spec%2C%201.14%2C%201.15&In-Reply-To=%3C4C028C76.mailMYU1ESIXP%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SPECS eina.spec, NONE,	1.1 calcoo.spec, 1.1, 1.2 fotoxx.spec, 1.14, 1.15 medit.spec,	1.6, 1.7 trayer.spec, 1.4, 1.5 wmcalendar.spec, 1.19,	1.20 wmchargemon.spec, 1.6, 1.7 wmradio.spec, 1.11,	1.12 wmweather+.spec, 1.14, 1.15">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Sun May 30 18:04:06 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000095.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES Temperature.app-1.4-Makefile.patch, 1.1, NONE  Temperature.app-1.4-frog-5.patch, 1.2, NONE  Temperature.app-1.4-gcc43.patch, 1.1, NONE  Temperature.app-1.4.as.patch, 1.1, NONE
+</A></li>
+        <LI>Next message: <A HREF="000097.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES wmradio-0.9-Makefile.in.patch, NONE, 1.1 wmradio-setup-README, NONE, 1.1  trayer-1.0-Makefile.common.patch, 1.1, 1.2  wmcalendar-0.5.2-exit-sin-and-cos.patch, 1.1, 1.2  yudit-2.9.2.patch0.txt, 1.1, 1.2 wmradio-rpm-README, 1.1, NONE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#96">[ date ]</a>
+              <a href="thread.html#96">[ thread ]</a>
+              <a href="subject.html#96">[ subject ]</a>
+              <a href="author.html#96">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv29698
+
+Modified Files:
+	calcoo.spec fotoxx.spec medit.spec trayer.spec wmcalendar.spec 
+	wmchargemon.spec wmradio.spec wmweather+.spec 
+Added Files:
+	eina.spec 
+Log Message:
+added eina, updated SOURCES and SPECS for build under F13
+
+
+--- NEW FILE: eina.spec ---
+%define version 0.9.3
+%define release 1%{?dist}
+%define name	eina
+
+Summary:	A classic player for a modern era
+Name:		%name
+Version:	%version
+Release:	%release
+License:	GPLv2+
+Group:		Applications/Multimedia
+Source0:	<A HREF="http://launchpad.net/eina/trunk/0.9.3/+download/%{name">http://launchpad.net/eina/trunk/0.9.3/+download/%{name</A>}-%{version}.tar.gz
+URL:		<A HREF="http://eina.sourceforge.net/">http://eina.sourceforge.net/</A>
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Requires:	gstreamer curl gtk2 unique sqlite libuuid libnotify clutter-gtk atk
+Requires:	freetype gdk-pixbuf dbus-glib pango cairo libnotify glibc libxml2
+BuildRequires:	freetype-devel
+BuildRequires:	gstreamer-devel 
+BuildRequires:	intltool 
+BuildRequires:	gtk2-devel
+BuildRequires:	dbus-glib-devel
+BuildRequires:	unique-devel
+BuildRequires:	sqlite-devel
+BuildRequires:	desktop-file-utils
+BuildRequires:	curl-devel
+BuildRequires:	libnotify-devel
+BuildRequires:	libuuid-devel
+BuildRequires:	clutter-gtk-devel
+BuildRequires:	dbus-glib-devel
+BuildRequires:	atk-devel
+BuildRequires:	gdk-pixbuf-devel
+BuildRequires:	pango-devel
+BuildRequires:	cairo-devel
+BuildRequires:	libnotify-devel
+BuildRequires:	glibc-devel
+BuildRequires:	libxml2-devel
+
+%description
+Eina works like a common portable music player. It just plays what you
+want to listen to.
+
+Apart from simplicity, today users expect more from a player than just
+reading files. Artwork, lyrics, network support, artist data and other
+music information find their right place in Eina.
+
+Plugins can take care of all the extra functionality, since Eina exposes
+everything from its internals. It's fairly easy to extend the player
+capabilities and change the way it works inside. Feel free to request new
+features and make things the way you like.
+
+%package devel
+Summary:    An Eina development environment
+Group:      Development/Languages
+Requires:   %{name} = %{version}-%{release}
+Requires:   pkgconfig
+
+%description devel
+Header files and libraries for building an extension library for Eina.
+
+%package doc
+Summary: Documentation for %{name}
+Group: Documentation
+Requires: %{name} = %{version}-%{release}
+
+%description doc
+This package contains documentation for eina.
+
+%prep
+%setup -q
+
+%build
+./configure --prefix=%{_prefix} --libdir=%{_libdir} --disable-static
+
+# Remove Rpath
+sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=&quot;&quot;|g' libtool
+sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
+
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make install DESTDIR=$RPM_BUILD_ROOT
+
+%find_lang eina
+
+desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
+
+find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+
+find $RPM_BUILD_ROOT -name '*.a' -exec rm -f {} ';'
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post 
+/sbin/ldconfig
+update-desktop-database &amp;&gt; /dev/null || :
+
+%postun
+/sbin/ldconfig
+update-desktop-database &amp;&gt; /dev/null || :
+
+%files -f eina.lang
+%defattr(-,root,root,-)
+%doc AUTHORS BUGS COPYING ChangeLog INSTALL NEWS README
+%{_bindir}/eina
+%{_bindir}/vogon
+%{_datadir}/applications/eina.desktop
+%{_datadir}/eina/icons/hicolor/*/actions/bug.png
+%{_datadir}/eina/icons/hicolor/*/actions/cover-default.png
+%{_datadir}/eina/icons/hicolor/*/actions/cover-loading.png
+%{_datadir}/eina/icons/hicolor/*/actions/loading-spin.gif
+%{_datadir}/eina/icons/hicolor/*/actions/osx-status-icon.png
+%{_datadir}/eina/icons/hicolor/*/actions/queue.png
+%{_datadir}/eina/icons/hicolor/*/actions/random.png
+%{_datadir}/eina/icons/hicolor/*/actions/repeat.png
+%{_datadir}/eina/icons/hicolor/*/actions/standard-status-icon.png
+%{_datadir}/eina/icons/hicolor/*/apps/eina.png
+%{_datadir}/eina/icons/hicolor/*/apps/plugin.png
+%{_datadir}/eina/icons/hicolor/scalable/actions/cover-default.svg
+%{_datadir}/eina/icons/hicolor/scalable/actions/cover-loading.svg
+%{_datadir}/eina/icons/hicolor/scalable/actions/random.svg
+%{_datadir}/eina/icons/hicolor/scalable/actions/repeat.svg
+%{_datadir}/eina/icons/hicolor/scalable/apps/eina.svg
+%{_datadir}/eina/pixmaps/cover-default.png
+%{_datadir}/eina/pixmaps/cover-loading.png
+%{_datadir}/eina/pixmaps/cover-mask.png
+%{_datadir}/eina/pixmaps/eina.svg
+%{_datadir}/eina/pixmaps/loading-spin-16x16.gif
+%{_datadir}/eina/pixmaps/plugin.png
+%{_datadir}/eina/ui/dock.ui
+%{_datadir}/eina/ui/log.ui
+%{_datadir}/eina/ui/player-preferences.ui
+%{_datadir}/eina/ui/player.ui
+%{_datadir}/eina/ui/playlist.ui
+%{_datadir}/eina/ui/plugins.ui
+%{_libdir}/libgel-1.0.so.1
+%{_libdir}/libgel-1.0.so.1.0.0
+%{_libdir}/liblomo-1.0.so.1
+%{_libdir}/liblomo-1.0.so.1.0.0
+%{_libdir}/eina/adb/adb.png
+%{_libdir}/eina/adb/libadb.so
+%{_libdir}/eina/callhome/libcallhome.so
+%{_libdir}/eina/coverplus/libcoverplus.so
+%{_libdir}/eina/lastfm/lastfm.png
+%{_libdir}/eina/lastfm/lastfm.ui
+%{_libdir}/eina/lastfm/liblastfm.so
+%{_libdir}/eina/lastfm/logo.gif
+%{_libdir}/eina/lastfm/lastfmsubmitd/COPYRIGHT
+%{_libdir}/eina/lastfm/lastfmsubmitd/info.txt
+%attr(755, root, root) %{_libdir}/eina/lastfm/lastfmsubmitd/lastfmsubmitd
+%{_libdir}/eina/lastfm/lastfmsubmitd/lastfm/__init__.py
+%{_libdir}/eina/lastfm/lastfmsubmitd/lastfm/client.py
+%{_libdir}/eina/lastfm/lastfmsubmitd/lastfm/config.py
+%{_libdir}/eina/lastfm/lastfmsubmitd/lastfm/marshaller.py
+%{_libdir}/eina/muine/libmuine.so
+%{_libdir}/eina/muine/muine.ui
+%{_libdir}/eina/ntfy/libntfy.so
+%{_libdir}/eina/ntfy/ntfy.png
+%{_libdir}/eina/recently/dock.ui
+%{_libdir}/eina/recently/go-back.png
+
+%files devel
+%defattr(-,root,root,-)
+%{_includedir}/eina-0.9/eina/art.h
+%{_includedir}/eina-0.9/eina/eina-obj.h
+%{_includedir}/eina-0.9/eina/eina-plugin.h
+%{_includedir}/eina-0.9/eina/fs.h
+%{_includedir}/eina-0.9/eina/lomo.h
+%{_includedir}/eina-0.9/eina/preferences.h
+%{_includedir}/eina-0.9/eina/settings.h
+%{_includedir}/eina-0.9/eina/window.h
+%{_includedir}/eina-0.9/eina/ext/curl-engine.h
+%{_includedir}/eina-0.9/eina/ext/eina-conf.h
+%{_includedir}/eina-0.9/eina/ext/eina-cover.h
+%{_includedir}/eina-0.9/eina/ext/eina-cover-clutter.h
+%{_includedir}/eina-0.9/eina/ext/eina-cover-image.h
+%{_includedir}/eina-0.9/eina/ext/eina-file-chooser-dialog.h
+%{_includedir}/eina-0.9/eina/ext/eina-file-utils.h
+%{_includedir}/eina-0.9/eina/ext/eina-plugin-dialog.h
+%{_includedir}/eina-0.9/eina/ext/eina-plugin-properties.h
+%{_includedir}/eina-0.9/eina/ext/eina-preferences-dialog.h
+%{_includedir}/eina-0.9/eina/ext/eina-seek.h
+%{_includedir}/eina-0.9/eina/ext/eina-stock.h
+%{_includedir}/eina-0.9/eina/ext/eina-volume.h
+%{_includedir}/eina-0.9/eina/ext/eina-window.h
+%{_includedir}/eina-0.9/gel/gel-app.h
+%{_includedir}/eina-0.9/gel/gel.h
+%{_includedir}/eina-0.9/gel/gel-io.h
+%{_includedir}/eina-0.9/gel/gel-io-misc.h
+%{_includedir}/eina-0.9/gel/gel-io-op-result.h
+%{_includedir}/eina-0.9/gel/gel-io-ops.h
+%{_includedir}/eina-0.9/gel/gel-io-recurse-tree.h
+%{_includedir}/eina-0.9/gel/gel-io-scanner.h
+%{_includedir}/eina-0.9/gel/gel-io-tree.h
+%{_includedir}/eina-0.9/gel/gel-job-queue.h
+%{_includedir}/eina-0.9/gel/gel-misc.h
+%{_includedir}/eina-0.9/gel/gel-plugin.h
+%{_includedir}/eina-0.9/gel/gel-string.h
+%{_includedir}/eina-0.9/gel/gel-str-parser.h
+%{_includedir}/eina-0.9/gel/gel-ui.h
+%{_includedir}/eina-0.9/lomo/lomo-metadata-parser.h
+%{_includedir}/eina-0.9/lomo/lomo-player.h
+%{_includedir}/eina-0.9/lomo/lomo-stream.h
+%{_includedir}/eina-0.9/lomo/lomo-util.h
+%{_includedir}/eina-0.9/plugins/adb/adb.h
+%{_libdir}/libgel-1.0.so
+%{_libdir}/liblomo-1.0.so
+%{_libdir}/pkgconfig/eina-0.9.pc
+
+%files doc
+%defattr(-,root,root,-)
+%dir %{_datadir}/gtk-doc/html/lomo
+%{_datadir}/gtk-doc/html/lomo/api-index-full.html
+%{_datadir}/gtk-doc/html/lomo/ch01.html
+%{_datadir}/gtk-doc/html/lomo/home.png
+%{_datadir}/gtk-doc/html/lomo/index.html
+%{_datadir}/gtk-doc/html/lomo/index.sgml
+%{_datadir}/gtk-doc/html/lomo/left.png
+%{_datadir}/gtk-doc/html/lomo/lomo.devhelp
+%{_datadir}/gtk-doc/html/lomo/lomo.devhelp2
+%{_datadir}/gtk-doc/html/lomo/lomo-lomo-util.html
+%{_datadir}/gtk-doc/html/lomo/LomoMetadataParser.html
+%{_datadir}/gtk-doc/html/lomo/LomoPlayer.html
+%{_datadir}/gtk-doc/html/lomo/LomoStream.html
+%{_datadir}/gtk-doc/html/lomo/object-tree.html
+%{_datadir}/gtk-doc/html/lomo/right.png
+%{_datadir}/gtk-doc/html/lomo/style.css
+%{_datadir}/gtk-doc/html/lomo/up.png
+
+%changelog
+* Sat May 29 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 0.9.3-1
+- initial build.
+
+
+Index: calcoo.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/calcoo.spec,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- calcoo.spec	23 Aug 2007 14:24:27 -0000	1.1
++++ calcoo.spec	30 May 2010 16:04:04 -0000	1.2
+@@ -1,6 +1,6 @@
+ %define name calcoo
+ %define version 1.3.18
+-%define release 1%{?dist}
++%define release 2%{?dist}
+ 
+ Summary: calcoo is a RPN and algebraic scientific calculator
+ Name: %name
+@@ -44,7 +44,7 @@
+ 
+ %build
+ ./configure --prefix=%{_prefix} --mandir=%{_mandir}
+-make
++make LIBS=&quot; -lm&quot;
+ 
+ %install
+ rm -rf $RPM_BUILD_ROOT
+@@ -61,6 +61,9 @@
+ %doc AUTHORS COPYING ChangeLog INSTALL NEWS README
+ 
+ %changelog
++* Thu May 27 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.3.18-2
++- added library links to make.
++
+ * Mon Aug 20 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.3.18-1
+ - New version.
+ 
+
+Index: fotoxx.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/fotoxx.spec,v
+retrieving revision 1.14
+retrieving revision 1.15
+diff -u -r1.14 -r1.15
+--- fotoxx.spec	2 May 2010 15:27:11 -0000	1.14
++++ fotoxx.spec	30 May 2010 16:04:04 -0000	1.15
+@@ -1,5 +1,5 @@
+ %define name fotoxx
+-%define version 10.2.1
++%define version 10.4
+ %define release 1%{?dist}
+ 
+ Summary: application for processing image files from a digital camera
+@@ -100,7 +100,7 @@
+ %{_mandir}/man1/%{name}.1.gz
+ 
+ %changelog
+-* Sun May 02 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 10.2.1-1
++* Tue May 25 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 10.4-1
+ - new version.
+ 
+ * Mon Apr 05 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 10.0-1
+
+Index: medit.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/medit.spec,v
+retrieving revision 1.6
+retrieving revision 1.7
+diff -u -r1.6 -r1.7
+--- medit.spec	2 May 2010 15:27:11 -0000	1.6
++++ medit.spec	30 May 2010 16:04:04 -0000	1.7
+@@ -1,9 +1,9 @@
+-%define pythtst	%(rpm -q --queryformat='%{VERSION}' python | cut -b1-3)
+-%define pythver	%pythtst
++%define pythtst %(rpm -q --queryformat='%{VERSION}' python | cut -b1-3)
++%define pythver %pythtst
+ 
+ %define	name 	medit
+ %define	version	0.10.4
+-%define	release	1%{?dist}
++%define	release	2%{?dist}
+ 
+ Summary:	medit is a GTK-based text editor
+ Name:		%name
+@@ -14,8 +14,8 @@
+ URL:		<A HREF="http://mooedit.sourceforge.net/">http://mooedit.sourceforge.net/</A>
+ Source0:	<A HREF="http://easynews.dl.sourceforge.net/sourceforge/mooedit/medit/%{version">http://easynews.dl.sourceforge.net/sourceforge/mooedit/medit/%{version</A>}/%{name}-%{version}.tar.bz2
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-Requires:	python &gt;= %{pythver}, pcre &gt;= 7.0, libxml2, pygtk2, pango, gtk2, cairo, atk, libICE, libX11, libSM
+-Buildrequires:	python-devel, pcre-devel &gt;= 7.0, libxml2-devel, perl-XML-Parser, pygtk2-devel, pango-devel 
++Requires:	python &gt;= %{pythver}, python &lt; 3.0, libxml2, pygtk2, pango, gtk2, cairo, atk, libICE, libX11, libSM
++Buildrequires:	python-devel, libxml2-devel, perl-XML-Parser, pygtk2-devel, pango-devel 
+ Buildrequires:	gtk2-devel, cairo-devel, atk-devel, libICE-devel, libX11-devel, libSM-devel, intltool, cmake
+ BuildRequires:	gettext
+ Provides:	mooedit
+@@ -29,13 +29,31 @@
+ %build
+ %cmake \
+ 	-DMOO_DOC_DIR:PATH=share/doc/%{name}-%{version} \
+-	-DCMAKE_INSTALL_PREFIX=/usr .
++	-DMOO_PLUGINS_DIR:PATH=%{_libdir}/moo/plugins \
++	-DMOO_LIB_DIR:PATH=%{_libdir}/moo \
++	-DCMAKE_C_FLAGS:STRING='-O2 -g -lm -ldl' \
++	-DCMAKE_INSTALL_PREFIX:PATH=%{_prefix} .
++
++# Run cmake twice or plugins won't build
++%cmake \
++	-DMOO_DOC_DIR:PATH=share/doc/%{name}-%{version} \
++	-DMOO_PLUGINS_DIR:PATH=%{_libdir}/moo/plugins \
++	-DMOO_LIB_DIR:PATH=%{_libdir}/moo \
++	-DCMAKE_C_FLAGS:STRING='-O2 -g -lm -ldl' \
++	-DCMAKE_INSTALL_PREFIX:PATH=%{_prefix} .
+ make VERBOSE=1 %{?_smp_mflags}
+ 
+ %install
+ rm -rf $RPM_BUILD_ROOT
+ make install DESTDIR=$RPM_BUILD_ROOT
+ 
++rm -rf $RPM_BUILD_ROOT%{_libdir}/moo/plugins/*.pyc
++rm -rf $RPM_BUILD_ROOT%{_libdir}/moo/plugins/*.pyo
++rm -rf $RPM_BUILD_ROOT%{_libdir}/moo/plugins/lib/*.pyc
++rm -rf $RPM_BUILD_ROOT%{_libdir}/moo/plugins/lib/*.pyo
++rm -rf $RPM_BUILD_ROOT%{_libdir}/moo/plugins/lib/medit/*.pyc
++rm -rf $RPM_BUILD_ROOT%{_libdir}/moo/plugins/lib/medit/*.pyo
++
+ %find_lang moo
+ 
+ %find_lang moo-gsv
+@@ -70,9 +88,16 @@
+ %{_datadir}/icons/hicolor/48x48/apps/medit.png
+ %{_datadir}/moo/
+ %{_datadir}/pixmaps/medit.png
++%{_libdir}/moo/plugins/*.ini
++%{_libdir}/moo/plugins/*.py
++%{_libdir}/moo/plugins/lib/*.py
++%{_libdir}/moo/plugins/lib/medit/*.py
+ %{_mandir}/man1/medit.*
+ 
+ %changelog
++* Fri May 28 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.10.4-2
++- added links for libm and libdl.
++
+ * Thu Apr 29 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.10.4-1
+ - new version.
+ 
+
+Index: trayer.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/trayer.spec,v
+retrieving revision 1.4
+retrieving revision 1.5
+diff -u -r1.4 -r1.5
+--- trayer.spec	7 Aug 2008 14:02:47 -0000	1.4
++++ trayer.spec	30 May 2010 16:04:04 -0000	1.5
+@@ -25,7 +25,7 @@
+ 
+ %define name trayer
+ %define version 1.0
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: A lightweight GTK2-based systray for UNIX desktop
+ Name: %name
+@@ -64,6 +64,9 @@
+ %doc CREDITS COPYING CHANGELOG README
+ 
+ %changelog
++* Thu May 27 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.0-5
++- improved links in Makefile.common patch file.
++
+ * Wed Aug 06 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.0-4
+ - added build requirement for libXmu-devel.
+ 
+
+Index: wmcalendar.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmcalendar.spec,v
+retrieving revision 1.19
+retrieving revision 1.20
+diff -u -r1.19 -r1.20
+--- wmcalendar.spec	13 Sep 2009 18:53:35 -0000	1.19
++++ wmcalendar.spec	30 May 2010 16:04:04 -0000	1.20
+@@ -2,7 +2,7 @@
+ %define licver	%lictest 
+ %define name wmcalendar
+ %define version 0.5.2
+-%define release 5%{?dist}
++%define release 6%{?dist}
+ 
+ Summary: wmCalendar is a calendar dockapp
+ Name: %name
+@@ -69,6 +69,9 @@
+ 
+ 
+ %changelog
++* Thu May 27 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.5.2-6
++- updated patch0 (exit-sin-cos) to improve library links.
++
+ * Tue Aug 04 2009 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.5.2-5
+ - added build patches for Fedora 11.
+ 
+
+Index: wmchargemon.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmchargemon.spec,v
+retrieving revision 1.6
+retrieving revision 1.7
+diff -u -r1.6 -r1.7
+--- wmchargemon.spec	14 Sep 2009 02:50:05 -0000	1.6
++++ wmchargemon.spec	30 May 2010 16:04:04 -0000	1.7
+@@ -25,7 +25,7 @@
+ 
+ %define name	wmchargemon
+ %define version 0.3
+-%define release 3%{?dist}
++%define release 4%{?dist}
+ 
+ Summary:	displays ACPI battery level and power status
+ Name:		%name
+@@ -58,7 +58,7 @@
+ 
+ %build
+ 
+-make PREFIX=%{_prefix}
++make PREFIX=%{_prefix} CFLAGS=&quot; -O2 -ldockapp -lm -lX11&quot;
+ 
+ %install
+ rm -rf $RPM_BUILD_ROOT
+@@ -76,6 +76,9 @@
+ %{_bindir}/*
+ 
+ %changelog
++* Thu May 27 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 0.3-4
++- added cflags to make.
++
+ * Sun Sep 13 2009 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 0.3-3
+ - updated URL info.
+ 
+
+Index: wmradio.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmradio.spec,v
+retrieving revision 1.11
+retrieving revision 1.12
+diff -u -r1.11 -r1.12
+--- wmradio.spec	13 Sep 2009 18:53:35 -0000	1.11
++++ wmradio.spec	30 May 2010 16:04:04 -0000	1.12
+@@ -1,52 +1,60 @@
+-%define name wmradio
+-%define version 0.9
+-%define release 7%{?dist}
+-
+-Summary: wmradio is FM radio card applet for WindowMaker
+-Name: %name
+-Version: %version
+-Release: %release
+-License: GPL
+-Group: AfterStep/Applets
+-URL: <A HREF="http://gogo.aquasoft.cz/~cermak/wmradio/">http://gogo.aquasoft.cz/~cermak/wmradio/</A>
+-Source0: <A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name</A>}-%{version}.tgz
+-Source1: %{name}-rpm-README
+-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
++%define		name wmradio
++%define		version 0.9
++%define		release 8%{?dist}
++
++Summary:	mradio is FM radio card applet for WindowMaker
++Name:		%name
++Version:	%version
++Release:	%release
++License:	GPLv2+
++Group:		AfterStep/Applets
++URL:		<A HREF="http://gogo.aquasoft.cz/~cermak/wmradio/">http://gogo.aquasoft.cz/~cermak/wmradio/</A>
++Source0:	<A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name</A>}-%{version}.tgz
++Source1:	%{name}-setup-README
++Patch0:		%{name}-%{version}-Makefile.in.patch
++BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
++Requires:	python &lt; 3.0
+ 
+ %description
+ wmradio is FM radio card applet for WindowMaker 
+ 
+ %prep
+ %setup -q
++%patch0
+ 
+ %build
+ cp %{SOURCE1} .
+-./configure --prefix=%{_prefix} --libdir=%{_libdir} --disable-libxosd --disable-gnome --mandir=%{_mandir}/man1
+-make
++./configure --prefix=%{_prefix} --libdir=%{_libdir} --disable-libxosd --disable-gnome
++make all
+ 
+ %install
+ rm -rf $RPM_BUILD_ROOT
+ 
+-make MANDIR=%{_mandir}/man1 install DESTDIR=$RPM_BUILD_ROOT
++make install wmradio DESTDIR=$RPM_BUILD_ROOT
+ 
+-make install-skins LIBDIR=%{_libdir}/wmradio/ DESTDIR=$RPM_BUILD_ROOT
+-
+-mkdir -p $RPM_BUILD_ROOT%{_datadir}/
++make install-skins DESTDIR=$RPM_BUILD_ROOT
+ 
+ %clean
+ rm -rf $RPM_BUILD_ROOT
+ 
+ %files
+ %defattr(-,root,root,-)
+-%{_bindir}/*
+-%{_mandir}/man1/*
+-%dir %{_libdir}/wmradio
+-%{_libdir}/wmradio/*
+-%doc README wmradio-rpm-README
+-%{_datadir}/applications/*.desktop
+-%{_datadir}/pixmaps/*.png
++%doc README wmradio-setup-README
++%{_bindir}/wmradio
++%{_bindir}/xwmradio
++%{_bindir}/wmradio-remote
++%{_bindir}/wmradio-config.py
++%{_mandir}/man1/wmradio.*
++%{_libdir}/wmradio/*.skin
++%{_libdir}/wmradio/*.xpm
++%{_datadir}/applications/%{name}-config.desktop
++%{_datadir}/applications/%{name}.desktop
++%{_datadir}/pixmaps/%{name}.png
+ 
+ %changelog
++* Thu May 27 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.9-8
++- cleaned up Makefile.in.
++
+ * Fri Jul 31 2009 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.9-7
+ - code cleanup.
+ 
+
+Index: wmweather+.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmweather+.spec,v
+retrieving revision 1.14
+retrieving revision 1.15
+diff -u -r1.14 -r1.15
+--- wmweather+.spec	25 May 2008 14:49:04 -0000	1.14
++++ wmweather+.spec	30 May 2010 16:04:04 -0000	1.15
+@@ -25,7 +25,7 @@
+ 
+ %define name wmweather+
+ %define version 2.11
+-%define release 1%{?dist}
++%define release 2%{?dist}
+ 
+ Summary: A dock app for displaying weather information
+ Name: %name
+@@ -59,7 +59,7 @@
+ 
+ %build
+ ./configure --prefix=%{_prefix} --mandir=%{_mandir}
+-make
++make X_EXTRA_LIBS=&quot; -lm&quot;
+ 
+ %install
+ 
+@@ -76,6 +76,9 @@
+ 
+ 
+ %changelog
++* Thu May 27 2010 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2.11-2
++- added compiler link to make for libm.
++
+ * Fri Apr 12 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2.11-1
+ - new version.
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000095.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES Temperature.app-1.4-Makefile.patch, 1.1, NONE  Temperature.app-1.4-frog-5.patch, 1.2, NONE  Temperature.app-1.4-gcc43.patch, 1.1, NONE  Temperature.app-1.4.as.patch, 1.1, NONE
+</A></li>
+	<LI>Next message: <A HREF="000097.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES wmradio-0.9-Makefile.in.patch, NONE, 1.1 wmradio-setup-README, NONE, 1.1  trayer-1.0-Makefile.common.patch, 1.1, 1.2  wmcalendar-0.5.2-exit-sin-and-cos.patch, 1.1, 1.2  yudit-2.9.2.patch0.txt, 1.1, 1.2 wmradio-rpm-README, 1.1, NONE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#96">[ date ]</a>
+              <a href="thread.html#96">[ thread ]</a>
+              <a href="subject.html#96">[ subject ]</a>
+              <a href="author.html#96">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

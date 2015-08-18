@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.56, 1.57  rxvt-unicode.spec, 1.1, 1.2 worker.spec, 1.1, 1.2
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20AfterStep.spec%2C%201.56%2C%0A%201.57%20%20rxvt-unicode.spec%2C%201.1%2C%201.2%20worker.spec%2C%201.1%2C%201.2&In-Reply-To=%3C46CDBEB8.mailDQH11C41O%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000023.html">
+   <LINK REL="Next"  HREF="000042.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.56, 1.57  rxvt-unicode.spec, 1.1, 1.2 worker.spec, 1.1, 1.2</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20AfterStep.spec%2C%201.56%2C%0A%201.57%20%20rxvt-unicode.spec%2C%201.1%2C%201.2%20worker.spec%2C%201.1%2C%201.2&In-Reply-To=%3C46CDBEB8.mailDQH11C41O%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.56, 1.57  rxvt-unicode.spec, 1.1, 1.2 worker.spec, 1.1, 1.2">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Thu Aug 23 19:07:04 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000023.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS calcoo.spec, NONE, 1.1  libAfterImage-NoX.spec, NONE, 1.1 mined.spec, NONE, 1.1  rxvt-unicode.spec, NONE, 1.1 worker.spec, NONE, 1.1 yudit.spec, NONE, 1.1  AfterStep.spec, 1.55, 1.56 aterm.spec, 1.22, 1.23
+</A></li>
+        <LI>Next message: <A HREF="000042.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES libAfterImage-NoX-COPYING, NONE, 1.1  libAfterImage-NoX-COPYING.LDP, NONE, 1.1  libAfterImage-NoX-COPYING.LIB, NONE, 1.1 yudit-2.8.1-patch1.txt, NONE, 1.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#24">[ date ]</a>
+              <a href="thread.html#24">[ thread ]</a>
+              <a href="subject.html#24">[ subject ]</a>
+              <a href="author.html#24">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv14538/SPECS
+
+Modified Files:
+	AfterStep.spec rxvt-unicode.spec worker.spec 
+Log Message:
+added SOURCE files, updated specs.
+
+
+Index: AfterStep.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/AfterStep.spec,v
+retrieving revision 1.56
+retrieving revision 1.57
+diff -u -r1.56 -r1.57
+--- AfterStep.spec	23 Aug 2007 14:24:27 -0000	1.56
++++ AfterStep.spec	23 Aug 2007 17:07:01 -0000	1.57
+@@ -42,6 +42,8 @@
+ %define	version	2.2.7
+ %define	libaiver	1.15
+ %define	libabver	1.11
++%define	libairel	1%{?dist}
++%define	libabrel	1%{?dist}
+ %define release 1%{?dist}
+ %define epoch 20
+ 
+@@ -71,7 +73,7 @@
+ %endif
+ Obsoletes:	AfterStep-libs
+ Provides:	AfterStep-libs
+-Requires: 	libAfterImage = %{epoch}:%{libaiver}
++Requires: 	libAfterImage = %{epoch}:%{libaiver}-%libairel
+ Requires:	readline
+ Requires:	gtk2
+ Requires:	qiv
+@@ -104,8 +106,8 @@
+ Epoch:		%{epoch}
+ License:	GPL
+ Group:		Development/Libraries
+-Requires: 	libAfterImage-devel = %{epoch}:%{libaiver}
+-Requires:	%{name} = %{epoch}:%{version}
++Requires: 	libAfterImage-devel = %{epoch}:%{libaiver}-%libairel
++Requires:	%{name} = %{epoch}:%{version}-%{release}
+ 
+ %description devel
+ Files needed for software development with AfterStep.
+@@ -113,7 +115,7 @@
+ %package -n libAfterImage
+ Summary:	A generic image manipulation library
+ Version:	%{libaiver}
+-Release:	%{release}
++Release:	%libairel
+ Epoch:		%{epoch}
+ License:	GPL
+ Group:		System Environment/Libraries
+@@ -125,7 +127,7 @@
+ Requires:	freetype
+ Requires:	zlib
+ Requires:	libX11
+-Requires:	libAfterBase = %{epoch}:%{libabver}
++Requires:	libAfterBase = %{epoch}:%{libabver}-%libabrel
+ 
+ %description -n libAfterImage
+ libAfterImage is a generic image manipulation library. It was initially
+@@ -145,7 +147,7 @@
+ %package -n libAfterImage-devel
+ Summary:	Files needed for software development with libAfterImage
+ Version:	%{libaiver}
+-Release:	%{release}
++Release:	%libairel
+ Epoch:		%{epoch}
+ License:	GPL
+ Group:		Development/Libraries
+@@ -156,8 +158,8 @@
+ Requires:	freetype-devel
+ Requires:	zlib-devel
+ Requires:	libX11-devel
+-Requires:	libAfterImage = %{epoch}:%{libaiver}
+-Requires:	libAfterBase-devel = %{epoch}:%{libabver}
++Requires:	libAfterImage = %{epoch}:%{libaiver}-%libairel
++Requires:	libAfterBase-devel = %{epoch}:%{libabver}-%libabrel
+ 
+ %description -n libAfterImage-devel
+ The libAfterImage-devel package contains the files needed for development with
+@@ -166,7 +168,7 @@
+ %package -n libAfterBase
+ Summary:	A basic functions library providing support for libAfterImage
+ Version:	%{libabver}
+-Release:	%{release}
++Release:	%libabrel
+ Epoch:		%{epoch}
+ License:	GPL
+ Group:		System Environment/Libraries
+@@ -177,11 +179,11 @@
+ %package -n libAfterBase-devel
+ Summary:	Files needed for software development with libAfterBase
+ Version:	%{libabver}
+-Release:	%{release}
++Release:	%libabrel
+ Epoch:		%{epoch}
+ License:	GPL
+ Group:		Development/Libraries
+-Requires:	libAfterBase = %{epoch}:%{libabver}
++Requires:	libAfterBase = %{epoch}:%{libabver}-%libabrel
+ 
+ %description -n libAfterBase-devel
+ Files needed for software development with libAfterBase.
+
+Index: rxvt-unicode.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/rxvt-unicode.spec,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- rxvt-unicode.spec	23 Aug 2007 14:24:27 -0000	1.1
++++ rxvt-unicode.spec	23 Aug 2007 17:07:01 -0000	1.2
+@@ -13,7 +13,7 @@
+ License:	GPL
+ Group:		User Interface/X
+ URL:		<A HREF="http://software.schmorp.de/pkg/rxvt-unicode.html">http://software.schmorp.de/pkg/rxvt-unicode.html</A>
+-Source0:	<A HREF="http://dist.schmorp.de/rxvt-unicode/%{name">http://dist.schmorp.de/rxvt-unicode/%{name</A>}-%{version}.tar.gz
++Source0:	<A HREF="http://dist.schmorp.de/rxvt-unicode/%{name">http://dist.schmorp.de/rxvt-unicode/%{name</A>}-%{version}.tar.bz2
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires:	perl-devel libXpm-devel libXft-devel freetype-devel
+ BuildRequires:	libAfterImage-devel &gt;= 1.15
+
+Index: worker.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/worker.spec,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- worker.spec	23 Aug 2007 14:24:27 -0000	1.1
++++ worker.spec	23 Aug 2007 17:07:01 -0000	1.2
+@@ -11,8 +11,6 @@
+ Group:		Applications/File
+ Source0:	<A HREF="http://www.boomerangsworld.de/worker/downloads/%{name">http://www.boomerangsworld.de/worker/downloads/%{name</A>}-%{version}.tar.gz
+ Source1:	<A HREF="http://www.boomerangsworld.de/worker/downloads/%{name">http://www.boomerangsworld.de/worker/downloads/%{name</A>}-%{doc_version}-doc.tar.bz2
+-Source2:	worker.desktop
+-Source3:	worker.png
+ URL:		<A HREF="http://www.boomerangsworld.de/worker/">http://www.boomerangsworld.de/worker/</A>
+ BuildRequires:	libX11-devel
+ BuildRequires:	bzip2-devel
+@@ -40,8 +38,7 @@
+ 
+ mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
+ 
+-cp %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/applications/
+-cp %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/pixmaps/
++cp Icons/WorkerIcon48.xpm $RPM_BUILD_ROOT%{_datadir}/pixmaps/worker.xpm
+ cd worker-%{doc_version}-doc
+ 
+ ./configure --prefix=%{_prefix}
+@@ -49,6 +46,24 @@
+ 
+ 
+ make DESTDIR=$RPM_BUILD_ROOT install
++
++#Install application link for X-Windows
++echo -e &quot;[Desktop Entry]
++Name=Worker File Manager
++Comment=View and manage files
++Exec=worker
++Icon=worker.xpm
++Terminal=false
++Encoding=UTF-8
++Type=Application&quot; &gt; %{name}.desktop
++                                                                                
++mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
++desktop-file-install --vendor &quot;&quot; --delete-original \
++  --dir $RPM_BUILD_ROOT%{_datadir}/applications                   \
++  --add-category X-Red-Hat-Extra                                  \
++  --add-category Application                                      \
++  --add-category System						  \
++  %{name}.desktop
+ 
+ %clean
+ rm -rf $RPM_BUILD_ROOT
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000023.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS calcoo.spec, NONE, 1.1  libAfterImage-NoX.spec, NONE, 1.1 mined.spec, NONE, 1.1  rxvt-unicode.spec, NONE, 1.1 worker.spec, NONE, 1.1 yudit.spec, NONE, 1.1  AfterStep.spec, 1.55, 1.56 aterm.spec, 1.22, 1.23
+</A></li>
+	<LI>Next message: <A HREF="000042.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES libAfterImage-NoX-COPYING, NONE, 1.1  libAfterImage-NoX-COPYING.LDP, NONE, 1.1  libAfterImage-NoX-COPYING.LIB, NONE, 1.1 yudit-2.8.1-patch1.txt, NONE, 1.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#24">[ date ]</a>
+              <a href="thread.html#24">[ thread ]</a>
+              <a href="subject.html#24">[ subject ]</a>
+              <a href="author.html#24">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

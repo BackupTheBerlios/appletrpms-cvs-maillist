@@ -1,0 +1,1864 @@
+From rpm_speedy at mail.berlios.de  Sun Sep 13 20:53:38 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sun, 13 Sep 2009 20:53:38 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SOURCES
+ AfterStep-2.2.9-SkipPager-Database.c.patch, NONE,
+ 1.1  AfterStep-2.2.9-SkipPager-Pager.c.patch, NONE,
+ 1.1  AfterStep-2.2.9-SkipPager-afterconf.h.patch, NONE,
+ 1.1  AfterStep-2.2.9-SkipPager-asdatabase.h.patch, NONE,
+ 1.1  AfterStep-2.2.9-SkipPager-hints.c.patch, NONE,
+ 1.1  AfterStep-2.2.9-SkipPager-hints.h.patch, NONE,
+ 1.1  AfterStep-2.2.9-ascompose.c.patch, NONE,
+ 1.1  AfterStep-2.2.9-asgtklookedit.c.patch, NONE,
+ 1.1  AfterStep-2.2.9-screen.c.patch, NONE,
+ 1.1  AlsaMixer.app-0.1-Makefile.patch, NONE,
+ 1.1  Temperature.app-1.4-frog-6.patch, NONE, 1.1 fotoxx-8.1-Makefile.patch,
+ NONE, 1.1 libAfterImage-1.18-ascompose.c.patch, NONE,
+ 1.1 libAfterImage-Makefile-ldconfig.patch, NONE,
+ 1.1 libAfterImage-afterimage-config.patch, NONE, 1.1 libAfterImage-glx.patch,
+ NONE, 1.1 libAfterImage-multiarch.patch, NONE,
+ 1.1 medit-0.9.4-stdio.h-conflict.patch, NONE, 1.1 rxvt-unicode-gcc44.patch,
+ NONE, 1.1 wmcalendar-0.5.2-exit-sin-and-cos.patch, NONE,
+ 1.1 wmcalendar-0.5.2-rename_kill_func.patch, NONE,
+ 1.1 yudit-2.9.0-patch1.txt, NONE, 1.1 yudit-2.9.0-patch2.txt, NONE,
+ 1.1 yudit-2.9.0-patch3.txt, NONE, 1.1
+Message-ID: <4AAD3FB2.mail4S41153OA@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv6093/SOURCES
+
+Added Files:
+	AfterStep-2.2.9-SkipPager-Database.c.patch 
+	AfterStep-2.2.9-SkipPager-Pager.c.patch 
+	AfterStep-2.2.9-SkipPager-afterconf.h.patch 
+	AfterStep-2.2.9-SkipPager-asdatabase.h.patch 
+	AfterStep-2.2.9-SkipPager-hints.c.patch 
+	AfterStep-2.2.9-SkipPager-hints.h.patch 
+	AfterStep-2.2.9-ascompose.c.patch 
+	AfterStep-2.2.9-asgtklookedit.c.patch 
+	AfterStep-2.2.9-screen.c.patch 
+	AlsaMixer.app-0.1-Makefile.patch 
+	Temperature.app-1.4-frog-6.patch fotoxx-8.1-Makefile.patch 
+	libAfterImage-1.18-ascompose.c.patch 
+	libAfterImage-Makefile-ldconfig.patch 
+	libAfterImage-afterimage-config.patch libAfterImage-glx.patch 
+	libAfterImage-multiarch.patch 
+	medit-0.9.4-stdio.h-conflict.patch rxvt-unicode-gcc44.patch 
+	wmcalendar-0.5.2-exit-sin-and-cos.patch 
+	wmcalendar-0.5.2-rename_kill_func.patch yudit-2.9.0-patch1.txt 
+	yudit-2.9.0-patch2.txt yudit-2.9.0-patch3.txt 
+Log Message:
+Many updates, patches, work-arounds.  Added AlsaMixer.app.
+
+
+--- NEW FILE: AfterStep-2.2.9-SkipPager-Database.c.patch ---
+--- libAfterConf/Database.c	2008-03-21 17:48:51.000000000 -0500
++++ libAfterConf/Database.c	2009-08-25 14:28:01.000000000 -0500
+@@ -138,6 +138,8 @@
+ 	{TF_NO_MYNAME_PREPENDING, "UseAnyViewport", 14, TT_FLAG, DATABASE_UseAnyViewport_ID, NULL},
+ 	{TF_NO_MYNAME_PREPENDING, "IgnoreRestack", 13, TT_FLAG, DATABASE_IgnoreRestack_ID, NULL},
+ 	{TF_NO_MYNAME_PREPENDING, "HonorRestack", 12, TT_FLAG, DATABASE_HonorRestack_ID, NULL},
++	{TF_NO_MYNAME_PREPENDING, "PagerHit", 10, TT_FLAG, DATABASE_PagerHit_ID, NULL},
++	{TF_NO_MYNAME_PREPENDING, "PagerSkip", 12, TT_FLAG, DATABASE_PagerSkip_ID, NULL},
+ 	ASCF_DEFINE_KEYWORD(DATABASE,TF_NO_MYNAME_PREPENDING,Fullscreen,TT_FLAG,NULL),
+ 	ASCF_DEFINE_KEYWORD(DATABASE,TF_NO_MYNAME_PREPENDING,NoFullscreen,TT_FLAG,NULL),
+ 	ASCF_DEFINE_KEYWORD(DATABASE,TF_NO_MYNAME_PREPENDING,WindowOpacity,TT_INTEGER,NULL),
+@@ -184,6 +186,7 @@
+ 	{STYLE_IGNORE_CONFIG, 	    DATABASE_IgnoreConfig_ID, 	    DATABASE_HonorConfig_ID},
+ 	{STYLE_IGNORE_RESTACK, 	    DATABASE_IgnoreRestack_ID, 	    DATABASE_HonorRestack_ID},
+ 	{STYLE_CURRENT_VIEWPORT,    DATABASE_UseCurrentViewport_ID, 	DATABASE_UseAnyViewport_ID},
++	{STYLE_PAGER,    DATABASE_PagerHit_ID, 	DATABASE_PagerSkip_ID},
+ 	{STYLE_ICON, 				0 /* special case */ , 			DATABASE_NoIcon_ID},
+ 	{STYLE_STARTUP_DESK, 		0 /*special case */ , 			DATABASE_StartsAnywhere_ID},
+ 	{STYLE_FRAME, 				0 /*special case */ , 			DATABASE_NoFrame_ID},
+
+--- NEW FILE: AfterStep-2.2.9-SkipPager-Pager.c.patch ---
+--- src/Pager/Pager.c	2008-03-25 12:33:59.000000000 -0500
++++ src/Pager/Pager.c	2009-08-25 14:32:18.000000000 -0500
+@@ -2432,9 +2432,9 @@
+ 
+ /*         show_activity( "message %lX window %X data %p", type, body[0], wd ); */
+ 		res = handle_window_packet( type, body, &wd );
+-        if( res == WP_DataCreated )
++        if( res == WP_DataCreated && get_flags(wd->flags, AS_HitPager))
+             add_client( wd );
+-		else if( res == WP_DataChanged )
++		else if( res == WP_DataChanged  && get_flags(wd->flags, AS_HitPager))
+ 		{	
+             refresh_client( saved_desk, wd );
+ 			new_desk = wd->desk ;
+
+--- NEW FILE: AfterStep-2.2.9-SkipPager-afterconf.h.patch ---
+--- libAfterConf/afterconf.h	2009-04-02 15:17:42.000000000 -0500
++++ libAfterConf/afterconf.h	2009-08-25 14:28:29.000000000 -0500
+@@ -1407,9 +1407,11 @@
+ #define DATABASE_WindowOpacity_ID		   (DATABASE_ID_START+69)
+ #define DATABASE_IgnoreRestack_ID          (DATABASE_ID_START+70)
+ #define DATABASE_HonorRestack_ID            (DATABASE_ID_START+71)
++#define DATABASE_PagerHit_ID            (DATABASE_ID_START+72)
++#define DATABASE_PagerSkip_ID            (DATABASE_ID_START+73)
+ 
+ 
+-#define DATABASE_ID_END             (DATABASE_ID_START+72)
++#define DATABASE_ID_END             (DATABASE_ID_START+74)
+ 
+ /* we use name_list structure 1 to 1 in here, as it does not requre any
+    preprocessing from us
+
+--- NEW FILE: AfterStep-2.2.9-SkipPager-asdatabase.h.patch ---
+--- libAfterStep/asdatabase.h	2007-05-03 14:41:58.000000000 -0500
++++ libAfterStep/asdatabase.h	2009-08-25 14:29:11.000000000 -0500
+@@ -28,6 +28,7 @@
+ 
+ 
+ /* this are pure flags */
++#define STYLE_PAGER		(1 << 4)   
+ #define STYLE_IGNORE_RESTACK	(1 << 5)   /* if set - client will not be able to rise/lower 
+ 											  the window */
+ #define STYLE_FULLSCREEN		(1 << 6)
+@@ -60,7 +61,7 @@
+ #define STYLE_BUTTONS           (1 << 30)   /*  */
+ #define STYLE_FLAGS             (1 << 31)   /*  */
+ 
+-#define STYLE_DEFAULTS		(STYLE_TITLE|STYLE_CIRCULATE|STYLE_WINLIST| \
++#define STYLE_DEFAULTS		(STYLE_PAGER | STYLE_TITLE|STYLE_CIRCULATE|STYLE_WINLIST| \
+                              STYLE_FOCUS|STYLE_FOCUS_ON_MAP|STYLE_HANDLES| \
+ 							 STYLE_ICON_TITLE|STYLE_PPOSITION|STYLE_GROUP_HINTS| \
+ 							 STYLE_TRANSIENT_HINTS|STYLE_MOTIF_HINTS|STYLE_KDE_HINTS| \
+
+--- NEW FILE: AfterStep-2.2.9-SkipPager-hints.c.patch ---
+--- libAfterStep/hints.c	2007-07-06 17:35:15.000000000 -0500
++++ libAfterStep/hints.c	2009-08-25 14:29:51.000000000 -0500
+@@ -40,7 +40,7 @@
+ {
+ 	if (hints)
+ 	{										   /* some defaults to start with : */
+-		hints->flags = AS_Gravity | AS_AcceptsFocus | AS_Titlebar | AS_IconTitle | AS_Handles | AS_Border;
++		hints->flags = AS_HitPager | AS_Gravity | AS_AcceptsFocus | AS_Titlebar | AS_IconTitle | AS_Handles | AS_Border;
+         /* can't gracefully close the window if it does not support WM_DELETE_WINDOW */
+         hints->function_mask = ~(AS_FuncClose|AS_FuncPinMenu);
+         hints->gravity = NorthWestGravity;
+@@ -1341,6 +1341,7 @@
+ 		{STYLE_IGNORE_CONFIG, AS_IgnoreConfigRequest, 0, 0, AS_IgnoreConfigRequest},
+ 		{STYLE_IGNORE_RESTACK, AS_IgnoreRestackRequest, 0, 0, AS_IgnoreRestackRequest},
+ 		{STYLE_CURRENT_VIEWPORT, AS_UseCurrentViewport, 0, 0, AS_UseCurrentViewport},
++		{STYLE_PAGER, AS_HitPager, 0, 0, AS_HitPager},
+ 		{0, 0, 0, 0, 0}
+ 	};
+ 
+
+--- NEW FILE: AfterStep-2.2.9-SkipPager-hints.h.patch ---
+--- libAfterStep/hints.h	2007-05-03 14:41:58.000000000 -0500
++++ libAfterStep/hints.h	2009-08-25 14:30:13.000000000 -0500
+@@ -97,6 +97,7 @@
+ 										  * window should be animated */ 
+ #define AS_UseCurrentViewport  	(1<<27)
+ #define AS_WindowOpacity	   	(1<<28)
++#define AS_HitPager	   	(1<<29)
+ 
+ #define NOLOOK_HINT_FLAGS	(AS_IgnoreConfigRequest|AS_Module|AS_ShortLived| \
+ 							 AS_AvoidCover|AS_AcceptsFocus|AS_ClickToFocus| \
+
+--- NEW FILE: AfterStep-2.2.9-ascompose.c.patch ---
+--- libAfterImage/apps/ascompose.c	2009-02-11 17:32:03.000000000 -0600
++++ libAfterImage/apps/ascompose.c	2009-08-26 08:56:51.000000000 -0500
+@@ -43,13 +43,19 @@
+ # endif
+ #endif
+ 
+-#if defined(SHAPE) && !defined(X_DISPLAY_MISSING)
+-#include <X11/extensions/shape.h>
+-#endif /* SHAPE */
++
+ #include "../afterbase.h"
+ #include "../afterimage.h"
+ #include "common.h"
+ 
++#if !defined(X_DISPLAY_MISSING)
++int asvisual_empty_XErrorHandler (Display * dpy, XErrorEvent * event);
++
++# if defined(SHAPE)
++#  include <X11/extensions/shape.h>
++# endif /* SHAPE */
++#endif /* X_DISPLAY_MISSING */
++
+ 
+ 
+ /****h* libAfterImage/ascompose
+@@ -797,8 +803,6 @@
+ 	return w;
+ }
+ 
+-int asvisual_empty_XErrorHandler (Display * dpy, XErrorEvent * event);
+-
+ Bool
+ set_root_pixmap_property(long pmap) /* Must have long type to work with XChangeProp on 64 bit machines !!!*/
+ {
+@@ -823,13 +827,13 @@
+ 		for (i = 0 ; i < 2 ; ++i)
+ 			if (atoms[i])
+ 			{
+-				LOCAL_DEBUG_OUT("atoms[%d] = %X", i, atoms[i]);
++				LOCAL_DEBUG_OUT("atoms[%d] = %lX", i, atoms[i]);
+ 				data.long_ptr = NULL ;
+ 		        XGetWindowProperty(dpy, root, atoms[i], 0L, 1L, False, AnyPropertyType, &type, &format, &nitems, &after, &data.uc_ptr);
+ 				if (data.long_ptr == NULL)
+ 					break;
+ 				pmaps[i] = data.long_ptr[0] ;
+-				LOCAL_DEBUG_OUT("pmaps[%d] = %X", i, pmaps[i]);
++				LOCAL_DEBUG_OUT("pmaps[%d] = %lX", i, pmaps[i]);
+ 				if (format != 32 || nitems == 0 || pmaps[i] != pmaps[0] || type != XA_PIXMAP) 
+ 					break;
+ 			}
+@@ -837,7 +841,7 @@
+ 		{
+ 			/* XKillClient is a dangerous affair since properties may hold stale values tha are no longer valid */
+ 			int (*oldXErrorHandler) (Display *, XErrorEvent *) = XSetErrorHandler (asvisual_empty_XErrorHandler);
+-			LOCAL_DEBUG_OUT("killing client for pmap %X", pmaps[0]);
++			LOCAL_DEBUG_OUT("killing client for pmap %lX", pmaps[0]);
+            	XKillClient(dpy, pmaps[0]);
+ 			XSync(dpy, False);
+ 			XSetErrorHandler (oldXErrorHandler);
+@@ -848,7 +852,7 @@
+ 		if (!atoms[i])
+ 			if ( (atoms[i] = XInternAtom (dpy, names[i], False)) == None)
+ 				break;
+-		LOCAL_DEBUG_OUT("Changing property %X to pmap id %X", atoms[i], pmap);
++		LOCAL_DEBUG_OUT("Changing property %lX to pmap id %lX", atoms[i], pmap);
+     	XChangeProperty(dpy, root, atoms[i], XA_PIXMAP, 32, PropModeReplace, (unsigned char *) &pmap, 1);
+ 	}
+ 	if (i >= 2)
+
+--- NEW FILE: AfterStep-2.2.9-asgtklookedit.c.patch ---
+--- libASGTK/asgtklookedit.c	2008-07-02 09:46:01.000000000 -0500
++++ libASGTK/asgtklookedit.c	2009-08-01 15:42:43.000000000 -0500
+@@ -25,6 +25,7 @@
+ #include "../libAfterImage/asvisual.h"
+ #include "../libAfterStep/asapp.h"
+ #include "../libAfterStep/screen.h"
++#include "../libAfterStep/session.h"
+ #include "../libAfterStep/parser.h"
+ #include "../libAfterStep/freestor.h"
+ #include "../libAfterStep/mystyle.h"
+
+--- NEW FILE: AfterStep-2.2.9-screen.c.patch ---
+--- libAfterStep/screen.c	2009-02-11 17:32:03.000000000 -0600
++++ libAfterStep/screen.c	2009-08-25 14:31:29.000000000 -0500
+@@ -291,6 +291,7 @@
+ 		return -1;
+ 
+ 	dpy = display ;
++	set_current_X_display (display); /* for libAfterBase X Wrappers */
+ 	
+ 	if( scr == NULL ) 
+ 	{
+@@ -401,8 +402,6 @@
+ 		exit (1);
+ 	}
+ 	
+-	set_current_X_display (dpy); /* for libAfterBase X Wrappers */
+-
+ 	ConnectXDisplay (dpy, scr, (event_mask&SubstructureRedirectMask));
+     XSelectInput (dpy, scr->Root, event_mask);
+ 	return x_fd;
+
+--- NEW FILE: AlsaMixer.app-0.1-Makefile.patch ---
+--- Makefile	2004-09-30 23:44:06.000000000 +0300
++++ Makefile	2008-06-28 08:40:28.000000000 +0300
+@@ -4,22 +4,22 @@
+ 
+ DESTDIR =
+ GNUSTEP_BINDIR = /usr/local/GNUstep/Apps/AlsaMixer.app
+-X11_BINDIR = /usr/X11R6/bin
++X11_BINDIR = /usr/bin
+ 
+-CXX=c++
+-CXXFLAGS += -Wall -pedantic -fno-rtti -fno-exceptions -O2 -I/usr/X11R6/include
+-LDFLAGS += -L/usr/X11R6/lib -lXpm -lXext -lX11 -lasound
++CXX ?= g++
++CXXFLAGS += -Wall -pedantic -fno-rtti -fno-exceptions
++LIBS = -lXpm -lXext -lX11 -lasound
+ 
+ OBJECTS = Main.o Mixer.o Xpm.o AMixer/AMixer.o AMixer/AItem.o AMixer/AChannel.o
+ 
+ all: AlsaMixer.app
+ 
+ AlsaMixer.app: $(OBJECTS)
+-	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS)
++	$(CXX) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $@
+ 
+ .PHONY:	install clean distclean
+ 
+-install: install-gnustep
++install: install-x11
+ 
+ install-gnustep: all
+ 	install -d  $(DESTDIR)$(GNUSTEP_BINDIR)
+
+--- NEW FILE: Temperature.app-1.4-frog-6.patch ---
+Files Temperature.app-1.4/.dockapp.cc.swp and Temperature.app-1.4-frog/.dockapp.cc.swp differ
+diff -Nur Temperature.app-1.4/Makefile Temperature.app-1.4-frog/Makefile
+--- Makefile	2001-06-25 18:03:07.000000000 +0200
++++ Makefile	2006-02-24 21:08:06.000000000 +0100
+@@ -1,35 +1,32 @@
+-#
+-# Temperature.app Makefile
+-#
++CC              = g++
++CXXFLAGS	+= -I.. -I/usr/include -I/usr/include/freetype2 -DHAVE_XFT -Wall
++LIBS            = -L/usr/lib64 -L/usr/lib -lXpm -lX11 -lpthread -lXft -lXext -lXext
+ 
+-DESTDIR =
+-GNUSTEP_BINDIR = /usr/local/GNUstep/Apps/Temperature.app
+-X11_BINDIR = /usr/X11R6/bin
++PREFIX          = /usr
++INSTALL         = /usr/bin/install -c
++DESTDIR         =
+ 
+[...1372 lines suppressed...]
++#include <X11/xpm.h>
++
++class Xpm 
++{
++    private:
++    Display*      _display;
++    XpmAttributes _attributes;
++    Pixmap        _image;
++    Pixmap        _mask;
++    GC		  _gc;
++    Window	  _win;
++
++    public:
++    Xpm(Display* display,Window win,GC& gc,char* data[]);
++    virtual ~Xpm();
++    virtual void setXpm();
++    virtual void drawString(int x,int y,char *string,int len);
++};
++
++#endif
+
+--- NEW FILE: fotoxx-8.1-Makefile.patch ---
+--- Makefile	2009-08-20 00:42:45.000000000 -0500
++++ Makefile	2009-08-20 12:56:11.000000000 -0500
+@@ -41,17 +41,6 @@
+ 	cp -R data/* $(DESTDIR)$(DATADIR)
+ 	cp $(PROGRAM) $(DESTDIR)$(BINDIR)
+ 	cp -R locales/* $(DESTDIR)$(DATADIR)/locales
+-#  install .desktop file (menu entry)
+-	@echo "[Desktop Entry]" > $(DESKTOP)
+-	@echo "Name=$(PROGRAM)" >> $(DESKTOP)
+-	@echo "Categories=Graphics" >> $(DESKTOP)
+-	@echo "Type=Application" >> $(DESKTOP)
+-	@echo "Terminal=false" >> $(DESKTOP)
+-	@echo "Exec=$(BINDIR)/$(PROGRAM)" >> $(DESKTOP)
+-	@echo "Icon=$(DATADIR)/icons/$(PROGRAM).png" >> $(DESKTOP)
+-	@echo "GenericName=Digital Photo Editor" >> $(DESKTOP)
+-	@chown $(USER): $(DESKTOP)
+-	xdg-desktop-menu install $(DESKTOP)
+ #  install man page
+ 	cp -f doc/$(PROGRAM).man $(PROGRAM).1
+ 	gzip -f $(PROGRAM).1
+
+--- NEW FILE: libAfterImage-1.18-ascompose.c.patch ---
+--- apps/ascompose.c	2008-06-24 11:46:11.000000000 -0500
++++ apps/ascompose.c	2009-08-26 09:20:13.000000000 -0500
+@@ -43,13 +43,19 @@
+ # endif
+ #endif
+ 
+-#if defined(SHAPE) && !defined(X_DISPLAY_MISSING)
+-#include <X11/extensions/shape.h>
+-#endif /* SHAPE */
++
+ #include "../afterbase.h"
+ #include "../afterimage.h"
+ #include "common.h"
+ 
++#if !defined(X_DISPLAY_MISSING)
++int asvisual_empty_XErrorHandler (Display * dpy, XErrorEvent * event);
++
++# if defined(SHAPE)
++#  include <X11/extensions/shape.h>
++# endif /* SHAPE */
++#endif /* X_DISPLAY_MISSING */
++
+ 
+ 
+ /****h* libAfterImage/ascompose
+@@ -274,6 +280,7 @@
+ Window make_main_window(Bool on_root, ASComposeWinProps *props);	
+ 
+ int screen = 0, depth = 0;
++Display *dpy = NULL;
+ 
+ int main(int argc, char** argv) {
+ 
+@@ -731,7 +738,10 @@
+ 	if (main_window_props.canvas)
+ 		XFreePixmap(dpy, main_window_props.canvas); 
+ 	if( dpy )
++	{
+         XCloseDisplay (dpy);
++		dpy = NULL;
++	}
+ #endif
+ 	LOCAL_DEBUG_OUT( "display Closed%s","");
+ #ifdef DEBUG_ALLOCS
+@@ -793,8 +803,6 @@
+ 	return w;
+ }
+ 
+-int asvisual_empty_XErrorHandler (Display * dpy, XErrorEvent * event);
+-
+ Bool
+ set_root_pixmap_property(long pmap) /* Must have long type to work with XChangeProp on 64 bit machines !!!*/
+ {
+@@ -819,13 +827,13 @@
+ 		for (i = 0 ; i < 2 ; ++i)
+ 			if (atoms[i])
+ 			{
+-				LOCAL_DEBUG_OUT("atoms[%d] = %X", i, atoms[i]);
++				LOCAL_DEBUG_OUT("atoms[%d] = %lX", i, atoms[i]);
+ 				data.long_ptr = NULL ;
+ 		        XGetWindowProperty(dpy, root, atoms[i], 0L, 1L, False, AnyPropertyType, &type, &format, &nitems, &after, &data.uc_ptr);
+ 				if (data.long_ptr == NULL)
+ 					break;
+ 				pmaps[i] = data.long_ptr[0] ;
+-				LOCAL_DEBUG_OUT("pmaps[%d] = %X", i, pmaps[i]);
++				LOCAL_DEBUG_OUT("pmaps[%d] = %lX", i, pmaps[i]);
+ 				if (format != 32 || nitems == 0 || pmaps[i] != pmaps[0] || type != XA_PIXMAP) 
+ 					break;
+ 			}
+@@ -833,7 +841,7 @@
+ 		{
+ 			/* XKillClient is a dangerous affair since properties may hold stale values tha are no longer valid */
+ 			int (*oldXErrorHandler) (Display *, XErrorEvent *) = XSetErrorHandler (asvisual_empty_XErrorHandler);
+-			LOCAL_DEBUG_OUT("killing client for pmap %X", pmaps[0]);
++			LOCAL_DEBUG_OUT("killing client for pmap %lX", pmaps[0]);
+            	XKillClient(dpy, pmaps[0]);
+ 			XSync(dpy, False);
+ 			XSetErrorHandler (oldXErrorHandler);
+@@ -844,7 +852,7 @@
+ 		if (!atoms[i])
+ 			if ( (atoms[i] = XInternAtom (dpy, names[i], False)) == None)
+ 				break;
+-		LOCAL_DEBUG_OUT("Changing property %X to pmap id %X", atoms[i], pmap);
++		LOCAL_DEBUG_OUT("Changing property %lX to pmap id %lX", atoms[i], pmap);
+     	XChangeProperty(dpy, root, atoms[i], XA_PIXMAP, 32, PropModeReplace, (unsigned char *) &pmap, 1);
+ 	}
+ 	if (i >= 2)
+
+--- NEW FILE: libAfterImage-Makefile-ldconfig.patch ---
+--- Makefile.in	2008-10-04 19:52:07.000000000 +0200
++++ Makefile.in	2008-10-04 19:53:15.000000000 +0200
+@@ -143,20 +143,6 @@
+ 		@(if [ -d $(LIBDIR) ] && [ -w $(LIBDIR) ]; then \
+ 		    echo "$(INSTALL_LIB) $(LIB_STATIC) $(LIBDIR)"; \
+ 		    $(INSTALL_LIB) $(LIB_STATIC) $(LIBDIR); \
+-		    if [ `uname` = "Linux" ]; then \
+-			if test $(LIBDIR) = "/lib" || test $(LIBDIR) = "/usr/lib"; then \
+-		    	    echo "" > /dev/null; \
+-			elif grep -q $(LIBDIR) /etc/ld.so.conf > /dev/null 2>&1; then \
+-		    	    echo "" > /dev/null; \
+-			else \
+-		    	    echo "Unable to find $(LIBDIR) in ld.so.conf. In order to use "; \
+-		    	    echo "$(LIB_STATIC), you may need to add it or set LD_LIBRARY_PATH."; \
+-			fi; \
+-			if test -w /etc; then \
+-			    echo "$(LDCONFIG)"; \
+-			    $(LDCONFIG); \
+-			fi; \
+-		    fi ;\
+ 		fi \
+ 		)
+ 
+@@ -169,18 +155,6 @@
+ 		$(RM) -f $(LIBDIR)/$(LIB_SHARED).$(LIBVERMAJOR) $(LIBDIR)/$(LIB_SHARED); \
+ 		$(LN_S) -f $(LIB_SHARED).$(LIBVER) $(LIBDIR)/$(LIB_SHARED).$(LIBVERMAJOR); \
+ 		$(LN_S) -f $(LIB_SHARED).$(LIBVERMAJOR) $(LIBDIR)/$(LIB_SHARED); \
+-		if test `uname` = "Linux"; then \
+-		   if test $(LIBDIR) = "/lib" || test $(LIBDIR) = "/usr/lib"; then \
+-		     echo "" > /dev/null; \
+-		   elif grep -q $(LIBDIR) /etc/ld.so.conf > /dev/null 2>&1; then \
+-		     echo "" > /dev/null; \
+-		   else \
+-		     echo "Unable to find $(LIBDIR) in ld.so.conf. In order to use "; \
+-		     echo "$(LIB_SHARED), you may need to add it or set LD_LIBRARY_PATH."; \
+-		   fi; \
+-		   echo "$(LDCONFIG)"; \
+-		   $(LDCONFIG); \
+-		 fi \
+ 		)
+ 
+ install.cyg:	mkdir
+
+--- NEW FILE: libAfterImage-afterimage-config.patch ---
+--- afterimage-config.in	2008-10-04 19:36:52.000000000 +0200
++++ afterimage-config.in	2008-10-04 19:42:48.000000000 +0200
+@@ -115,11 +115,7 @@
+         	libs="-lAfterBase $libs"
+  	fi
+  	libs="-lAfterImage $libs" 
+-	if test "@libdir@" != "/usr/lib" ; then
+-  		echo -L at libdir@ $libs
+- 	else
+-  		echo $libs
+- 	fi
++ 	echo $libs
+  else
+         echo $libs
+  fi
+@@ -127,7 +123,6 @@
+ 
+ if test "$echo_libtool" = "yes" ; then
+  convlib="libAfterImage.la"
+- echo @libdir@/$convlib
+ fi
+ 
+ if test "$echo_have_afterbase" = "yes" ; then
+
+--- NEW FILE: libAfterImage-glx.patch ---
+--- asvisual.c	2008-11-27 06:17:24.000000000 +0100
++++ asvisual.c	2008-11-27 06:18:19.000000000 +0100
+@@ -404,9 +404,9 @@
+ 		}
+ #ifdef HAVE_GLX
+ 		if( asv->glx_scratch_gc_direct )
+-			glXDestroyContext(dpy, asv->glx_scratch_gc_direct );
++			glXDestroyContext(asv->dpy, asv->glx_scratch_gc_direct );
+ 		if( asv->glx_scratch_gc_indirect )
+-			glXDestroyContext(dpy, asv->glx_scratch_gc_indirect );
++			glXDestroyContext(asv->dpy, asv->glx_scratch_gc_indirect );
+ #endif
+ 		if( asv->scratch_window ) 
+ 			XDestroyWindow( asv->dpy, asv->scratch_window );
+
+--- NEW FILE: libAfterImage-multiarch.patch ---
+--- configure.in	2008-10-04 19:43:12.000000000 +0200
++++ configure.in	2008-10-04 19:44:34.000000000 +0200
+@@ -689,9 +689,9 @@
+     	AFTERIMAGE_TEST_LIBS="-L./ -L../libAfterBase -lAfterImage $AFTERIMAGE_LIBS"
+     	AFTERIMAGE_LIB_LIBS="-L./ -L../libAfterBase $AFTERIMAGE_LIBS"
+     else
+-    	AFTERIMAGE_APPS_LIBS="-L../ -L$libdir -lAfterImage $AFTERIMAGE_LIBS"
+-    	AFTERIMAGE_TEST_LIBS="-L./ -L$libdir -lAfterImage $AFTERIMAGE_LIBS"
+-    	AFTERIMAGE_LIB_LIBS="-L./ -L$libdir $AFTERIMAGE_LIBS"
++    	AFTERIMAGE_APPS_LIBS="-L../ -lAfterImage $AFTERIMAGE_LIBS"
++    	AFTERIMAGE_TEST_LIBS="-L./ -lAfterImage $AFTERIMAGE_LIBS"
++    	AFTERIMAGE_LIB_LIBS="-L./ $AFTERIMAGE_LIBS"
+     fi
+     AC_DEFINE(HAVE_AFTERBASE,1,[Define if libAfterBase is available])
+ else
+@@ -722,7 +722,7 @@
+ 	  CLEAN_AFTERIMAGE_LIBS="$CLEAN_AFTERIMAGE_LIBS $L"
+   fi
+ done
+-AFTERIMAGE_LIBS="-L$libdir -lAfterImage $CLEAN_AFTERIMAGE_LIBS"
++AFTERIMAGE_LIBS="-lAfterImage $CLEAN_AFTERIMAGE_LIBS"
+ AC_SUBST(AFTERIMAGE_LIBS)
+ 
+ if test "x$enable_staticlibs" = "xyes"; then
+--- configure.orig	2008-10-04 19:44:46.000000000 +0200
++++ configure	2008-10-04 19:45:28.000000000 +0200
+@@ -8805,9 +8805,9 @@
+     	AFTERIMAGE_TEST_LIBS="-L./ -L../libAfterBase -lAfterImage $AFTERIMAGE_LIBS"
+     	AFTERIMAGE_LIB_LIBS="-L./ -L../libAfterBase $AFTERIMAGE_LIBS"
+     else
+-    	AFTERIMAGE_APPS_LIBS="-L../ -L$libdir -lAfterImage $AFTERIMAGE_LIBS"
+-    	AFTERIMAGE_TEST_LIBS="-L./ -L$libdir -lAfterImage $AFTERIMAGE_LIBS"
+-    	AFTERIMAGE_LIB_LIBS="-L./ -L$libdir $AFTERIMAGE_LIBS"
++    	AFTERIMAGE_APPS_LIBS="-L../ -lAfterImage $AFTERIMAGE_LIBS"
++    	AFTERIMAGE_TEST_LIBS="-L./ -lAfterImage $AFTERIMAGE_LIBS"
++    	AFTERIMAGE_LIB_LIBS="-L./ $AFTERIMAGE_LIBS"
+     fi
+ 
+ cat >>confdefs.h <<\_ACEOF
+@@ -9314,7 +9314,7 @@
+ 	  CLEAN_AFTERIMAGE_LIBS="$CLEAN_AFTERIMAGE_LIBS $L"
+   fi
+ done
+-AFTERIMAGE_LIBS="-L$libdir -lAfterImage $CLEAN_AFTERIMAGE_LIBS"
++AFTERIMAGE_LIBS="-lAfterImage $CLEAN_AFTERIMAGE_LIBS"
+ 
+ 
+ if test "x$enable_staticlibs" = "xyes"; then
+
+--- NEW FILE: medit-0.9.4-stdio.h-conflict.patch ---
+--- moo/moolua/ldebug.c	2008-08-25 01:17:21.000000000 -0500
++++ moo/moolua/ldebug.c	2009-08-01 09:29:29.000000000 -0500
+@@ -46,7 +46,7 @@
+   if (pc < 0)
+     return -1;  /* only active lua functions have current-line information */
+   else
+-    return getline(ci_func(ci)->l.p, pc);
++    return lua_getline(ci_func(ci)->l.p, pc);
+ }
+ 
+ 
+--- moo/moolua/ldebug.h	2008-08-25 01:17:21.000000000 -0500
++++ moo/moolua/ldebug.h	2009-08-01 08:48:54.000000000 -0500
+@@ -13,7 +13,7 @@
+ 
+ #define pcRel(pc, p)	(cast(int, (pc) - (p)->code) - 1)
+ 
+-#define getline(f,pc)	(((f)->lineinfo) ? (f)->lineinfo[pc] : 0)
++#define lua_getline(f,pc)	(((f)->lineinfo) ? (f)->lineinfo[pc] : 0)
+ 
+ #define resethookcount(L)	(L->hookcount = L->basehookcount)
+ 
+--- moo/moolua/luaall.c	2008-08-25 01:17:21.000000000 -0500
++++ moo/moolua/luaall.c	2009-08-01 08:53:48.000000000 -0500
+@@ -4,6 +4,7 @@
+ 
+ #define luaall_c
+ 
++#include "lobject.c"
+ #include "lapi.c"
+ #include "lcode.c"
+ #include "ldebug.c"
+@@ -13,7 +14,6 @@
+ #include "lgc.c"
+ #include "llex.c"
+ #include "lmem.c"
+-#include "lobject.c"
+ #include "lopcodes.c"
+ #include "lparser.c"
+ #include "lstate.c"
+--- moo/moolua/lvm.c	2008-08-25 01:17:21.000000000 -0500
++++ moo/moolua/lvm.c	2009-08-01 09:30:55.000000000 -0500
+@@ -68,10 +68,10 @@
+   if (mask & LUA_MASKLINE) {
+     Proto *p = ci_func(L->ci)->l.p;
+     int npc = pcRel(pc, p);
+-    int newline = getline(p, npc);
++    int newline = lua_getline(p, npc);
+     /* call linehook when enter a new function, when jump back (loop),
+        or when enter a new line */
+-    if (npc == 0 || pc <= oldpc || newline != getline(p, pcRel(oldpc, p)))
++    if (npc == 0 || pc <= oldpc || newline != lua_getline(p, pcRel(oldpc, p)))
+       luaD_callhook(L, LUA_HOOKLINE, newline);
+   }
+ }
+
+--- NEW FILE: rxvt-unicode-gcc44.patch ---
+--- src/background.C	2009-04-25 01:12:46.000000000 +0200
++++ src/background.C	2009-04-25 01:19:21.000000000 +0200
+@@ -261,7 +261,7 @@
+   unsigned int w = 0, h = 0;
+   unsigned int n;
+   unsigned long new_flags = (flags & (~geometryFlags));
+-  char *p;
++  const char *p;
+ #  define MAXLEN_GEOM		256 /* could be longer than regular geometry string */
+ 
+   if (geom == NULL)
+@@ -677,7 +677,7 @@
+       if (!target->asimman)
+         target->asimman = create_generic_imageman (target->rs[Rs_path]);
+ 
+-      if (char *f = strchr (file, ';'))
++      if (char *f = (char *) strchr (file, ';'))
+         {
+           size_t len = f - file;
+           f = (char *)malloc (len + 1);
+--- src/command.C	2009-04-25 01:20:29.000000000 +0200
++++ src/command.C	2009-04-25 01:21:20.000000000 +0200
+@@ -3336,7 +3336,7 @@
+           }
+         else
+           {
+-            char *eq = strchr (str, '='); // constness lost, but verified to be ok
++            char *eq = (char *) strchr (str, '='); // constness lost, but verified to be ok
+ 
+             if (eq)
+               {
+--- src/misc.C	2009-04-25 01:41:05.000000000 +0200
++++ src/misc.C	2009-04-25 01:41:37.000000000 +0200
+@@ -170,7 +170,7 @@
+ char *
+ rxvt_basename (const char *str) NOTHROW
+ {
+-  char *base = strrchr (str, '/');
++  char *base = (char *) strrchr (str, '/');
+ 
+   return (char *) (base ? base + 1 : str);
+ }
+
+--- NEW FILE: wmcalendar-0.5.2-exit-sin-and-cos.patch ---
+--- Src/calendarfunc.c	2003-07-13 17:41:02.000000000 +0300
++++ Src/calendarfunc.c	2008-05-03 10:03:06.000000000 +0300
+@@ -22,7 +22,7 @@
+ 
+ #include "calendarfunc.h"
+ #include <stdio.h>
+-
++#include <math.h>
+ 
+ 
+ long persian_jdn(struct icaltimetype dt)
+--- Src/dockapp.c	2003-07-15 18:15:12.000000000 +0300
++++ Src/dockapp.c	2008-05-03 10:03:34.000000000 +0300
+@@ -23,6 +23,7 @@
+  * modified by Seiichi SATO <ssato at sh.rim.or.jp>
+  */
+ 
++#include <stdlib.h>
+ #include "dockapp.h"
+ 
+ #define WINDOWED_SIZE_W 64
+--- Src/Makefile	2003-07-15 18:19:26.000000000 +0300
++++ Src/Makefile	2008-05-03 10:11:48.000000000 +0300
+@@ -1,19 +1,15 @@
+-CC     = gcc
++CC     ?= gcc
+ INCLUDES  = `pkg-config --cflags gtk+-2.0` -I. 
+-LFLAGS = `pkg-config --libs gtk+-2.0`
+ 
+ # for BSD
+ #INCLUDES = `gtk12-config --cflags` -I. 
+ #LFLAGS = `gtk12-config --libs`
+-X11BASE = /usr/X11R6
+-CFLAGS =  $(INCLUDES) -DICON_TYPE=$(ICON_TYPE)
+-INCDIR = -I$(X11BASE)/include/X11 -I$(X11BASE)/include -I$/usr/include -I$/usr/local/include
+-DESTDIR= /usr/local
+-LIBDIR = -L/usr/lib -L${X11BASE}/lib -L/usr/local/lib
++CFLAGS +=  $(INCLUDES) -DICON_TYPE=$(ICON_TYPE)
++PREFIX = /usr
+ PACKAGE = wmCalendar
+ 
+ # for Linux
+-LIBS   = $(LIBDIR) -lXpm -lical -lpthread
++LIBS   = -lXpm -lical -lpthread `pkg-config --libs gtk+-2.0`
+ # for Solaris (untested!!!)
+ # LIBS   = -lXpm -lX11 -lXext -lsocket -lnsl -lical
+ 
+@@ -30,7 +26,7 @@
+ all:	wmCalendar.o wmCalendar 
+ 
+ wmCalendar: $(OBJECTS) 
+-	 $(CC) $(COPTS)  $(SYSTEM) $(LFLAGS) -o $@ $(OBJECTS) -o wmCalendar $(INCDIR)$(LIBDIR) $(LIBS)
++	 $(CC) $(CFLAGS) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $@
+ 
+ wmCalendar.o: wmCalendar_master.xpm   wmCalendar_master2.xpm
+ clean:
+@@ -40,6 +36,8 @@
+ 	rm -f wmCalendar
+ 
+ install:: wmCalendar
+-	install -c -s -m 0755 wmCalendar $(DESTDIR)/bin/
+-	install -c -m 0644 wmCalendar.1 $(DESTDIR)/man/man1 
++	install -d $(DESTDIR)$(PREFIX)/bin
++	install -m 0755 wmCalendar $(DESTDIR)$(PREFIX)/bin
++	install -d $(DESTDIR)$(PREFIX)/share/man/man1
++	install -m 0644 wmCalendar.1 $(DESTDIR)$(PREFIX)/share/man/man1 
+ 
+
+--- NEW FILE: wmcalendar-0.5.2-rename_kill_func.patch ---
+--- Src/calendar.c	2009-01-22 16:36:23.000000000 +0100
++++ Src/calendar.c	2009-01-22 16:36:07.000000000 +0100
+@@ -48,7 +48,7 @@
+ 
+ 
+ 
+-void kill (GtkWidget * widget)
++void close_app (GtkWidget * widget)
+ {
+     gtk_widget_destroy ((GtkWidget*)gtk_widget_get_toplevel(widget));
+     gtk_main_quit ();
+@@ -193,7 +193,7 @@
+ 	gtk_signal_connect(GTK_OBJECT (event_box), "button_press_event",
+ 			   GTK_SIGNAL_FUNC (move), NULL);
+ 	gtk_signal_connect(GTK_OBJECT (event_box2), "button_press_event",
+-			   (GtkSignalFunc) kill, GTK_OBJECT(dayView));
++			   (GtkSignalFunc) close_app, GTK_OBJECT(dayView));
+ 
+ 	gtk_widget_realize(dayView);
+ 	//	gtk_window_set_position(GTK_WINDOW (dayView),GTK_WIN_POS_CENTER_ON_PARENT);
+
+--- NEW FILE: yudit-2.9.0-patch1.txt ---
+*** swindow/SPostscript.cpp	2007-12-09 20:52:09.000000000 +0900
+--- swindow/SPostscript.cpp	2008-06-15 14:46:31.000000000 +0900
+***************
+*** 209,217 ****
+    SString bb("%%BoundingBox: ");
+  
+!   bb.print (widthMargin); bb.append (" ");
+!   bb.print (heightMargin); bb.append (" ");
+!   bb.print (width - widthMargin); bb.append (" ");
+!   bb.print (height - heightMargin); 
+!   head.append (bb);
+  
+    head.append ("%%Title: Untitled");
+--- 209,235 ----
+    SString bb("%%BoundingBox: ");
+  
+!   switch (orientation)
+!   {
+!   case LANDSCAPE:
+!  
+!         bb.print (heightMargin); bb.append (" ");
+!         bb.print (widthMargin); bb.append (" ");
+!         bb.print (height - heightMargin); bb.append (" ");
+!         bb.print (width - widthMargin);
+!         head.append (bb);
+!  
+!     break;
+!  
+!   case PORTRAIT:
+!   default:
+!  
+!         bb.print (widthMargin); bb.append (" ");
+!         bb.print (heightMargin); bb.append (" ");
+!         bb.print (width - widthMargin); bb.append (" ");
+!         bb.print (height - heightMargin);
+!         head.append (bb);
+!  
+!     break;
+!   }
+  
+    head.append ("%%Title: Untitled");
+***************
+*** 263,268 ****
+       m.append ("A4 ");
+    }
+!   m.print (width); m.append (" ");
+!   m.print (height); m.append (" 0 () ()");
+    head.append (m);
+    // windows gs goes crazy if I uncomment this.
+--- 281,294 ----
+       m.append ("A4 ");
+    }
+!   if (orientation == LANDSCAPE)
+!   {
+!     m.print (height); m.append (" ");
+!     m.print (width); m.append (" 0 () ()");
+!   }
+!   else 
+!   {
+!     m.print (width); m.append (" ");
+!     m.print (height); m.append (" 0 () ()");
+!   }
+    head.append (m);
+    // windows gs goes crazy if I uncomment this.
+***************
+*** 330,334 ****
+      currentPage++;
+      char buff[128];
+!     sprintf (buff, "\n%%%%Page: %u %u\nsave\n", pages, currentPage);
+      writeString (buff);
+    }
+--- 356,378 ----
+      currentPage++;
+      char buff[128];
+!  
+!   switch (orientation)
+!   {
+!   case LANDSCAPE:
+!  
+!           sprintf (buff, "\n%%%%Page: %u %u\nsave\n90 rotate\n0 -%d.000 translate\n", pages, currentPage, height);
+!  
+!     break;
+!  
+!   case PORTRAIT:
+!   default:
+!  
+!           sprintf (buff, "\n%%%%Page: %u %u\nsave\n", pages, currentPage);
+!  
+!     break;
+!   }
+!  
+!  
+!  
+      writeString (buff);
+    }
+*** uniprint/Main.cpp	2007-12-12 22:12:15.000000000 +0900
+--- uniprint/Main.cpp	2008-06-15 14:48:23.000000000 +0900
+***************
+*** 114,117 ****
+--- 114,121 ----
+        orient = SPrinter::LANDSCAPE;
+      }
++     else if (strcmp ("-landscape", argv[i])==0)
++     { 
++       orient = SPrinter::LANDSCAPE;
++     }
+      else if (strcmp ("-printer", argv[i])==0 && i<argc-1)
+      { 
+***************
+*** 338,342 ****
+    fprintf (stdout,   "usage: uniprint [-out file] [-printer name] [-in file] [-decode name] \n");
+    fprintf (stdout,   "[-media A4] [-break] [-right|-left] [-hsize header-font-size] [-size font-size]\n");
+!   fprintf (stdout,   "[-landscape] [-wrap] [-font truetype.ttf [-font otherfont.ttf [...]] \n\n");
+    fprintf (stdout,   "uniprint [-us] using uniscribe-clone rendering (default).\n");
+    fprintf (stdout,   "uniprint [-nus] not using uniscribe-clone rendering.\n");
+--- 342,346 ----
+    fprintf (stdout,   "usage: uniprint [-out file] [-printer name] [-in file] [-decode name] \n");
+    fprintf (stdout,   "[-media A4] [-break] [-right|-left] [-hsize header-font-size] [-size font-size]\n");
+!   fprintf (stdout,   "[-L|-landscape] [-wrap] [-font truetype.ttf [-font otherfont.ttf [...]] \n\n");
+    fprintf (stdout,   "uniprint [-us] using uniscribe-clone rendering (default).\n");
+    fprintf (stdout,   "uniprint [-nus] not using uniscribe-clone rendering.\n");
+
+--- NEW FILE: yudit-2.9.0-patch2.txt ---
+--- stoolkit/SBHashtable.cpp	2006-05-21 10:57:44.000000000 +0200
++++ stoolkit/SBHashtable.cpp	2008-11-18 12:30:37.000000000 +0100
+@@ -324,7 +324,9 @@
+         }
+         if (j==1)
+         {
+-           delete bv; GET_BUCKET (buffer->array, mod) = 0;
++           delete [] bv;
++	   bv = NULL;
++	   GET_BUCKET (buffer->array, mod) = 0;
+            break;
+         }
+         break;
+@@ -365,7 +367,8 @@
+              bi = bv[j];
+              delete bi;
+           }
+-          delete bv;
++          delete [] bv;
++	  bv = NULL;
+        }
+     }
+     delete buffer;
+@@ -532,7 +535,8 @@
+    }
+    if (bv != 0)
+    {
+-     delete bv;
++     delete [] bv;
++     bv = NULL;
+    }
+    nv[count] = bi;
+    nv[count+1] = 0;
+
+--- NEW FILE: yudit-2.9.0-patch3.txt ---
+*** swindow/SPostscript.cpp	2007-12-09 20:52:09.000000000 +0900
+--- swindow/SPostscript.cpp	2009-03-28 00:19:36.000000000 +0900
+***************
+*** 26,33 ****
+   */
+  #ifndef USE_WINAPI 
+! #include <X11/Xlib.h>
+! #include <X11/Xutil.h>
+! #include "swindow/SAwt.h"
+! #include "swindow/sx11/SX11Impl.h"
+  #endif
+  
+--- 26,35 ----
+   */
+  #ifndef USE_WINAPI 
+! # if USE_X11
+! #  include <X11/Xlib.h>
+! #  include <X11/Xutil.h>
+! #  include "swindow/SAwt.h"
+! #  include "swindow/sx11/SX11Impl.h"
+! # endif
+  #endif
+  
+
+
+
+From rpm_speedy at mail.berlios.de  Sun Sep 13 20:53:38 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sun, 13 Sep 2009 20:53:38 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.23,
+ 1.24  misc-apps.inc, 1.21, 1.22 wm-apps.inc, 1.50, 1.51
+Message-ID: <4AAD3FB2.mail4SF1LKFTZ@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv6093/include
+
+Modified Files:
+	core-apps.inc misc-apps.inc wm-apps.inc 
+Log Message:
+Many updates, patches, work-arounds.  Added AlsaMixer.app.
+
+
+Index: core-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/core-apps.inc,v
+retrieving revision 1.23
+retrieving revision 1.24
+diff -u -r1.23 -r1.24
+--- core-apps.inc	1 Jul 2008 01:45:24 -0000	1.23
++++ core-apps.inc	13 Sep 2009 18:53:36 -0000	1.24
+@@ -3,7 +3,7 @@
+ # This is for the core, like AfterStep itself
+ 
+ AFTERSTEP_NAME=AfterStep
+-AFTERSTEP_VERSION=2.2.8
++AFTERSTEP_VERSION=2.2.9
+ AFTERSTEP_TAR=$(AFTERSTEP_NAME)-$(AFTERSTEP_VERSION).tar.gz
+ AFTERSTEP_URL=ftp://ftp.afterstep.org/stable/$(AFTERSTEP_TAR)
+ 
+@@ -17,14 +17,14 @@
+ APPLET_LIST += ATERM
+ 
+ LIBAFTERIMAGE-NOX_NAME=libAfterImage-NoX
+-LIBAFTERIMAGE-NOX_VERSION=1.15
++LIBAFTERIMAGE-NOX_VERSION=1.18
+ LIBAFTERIMAGE-NOX_TAR=libAfterImage-$(LIBAFTERIMAGE-NOX_VERSION).tar.gz
+ LIBAFTERIMAGE-NOX_URL=ftp://ftp.afterstep.org/stable/libAfterImage/$(LIBAFTERIMAGE-NOX_TAR)
+ 
+ APPLET_LIST += LIBAFTERIMAGE-NOX
+ 
+ RXVT-UNICODE_NAME=rxvt-unicode
+-RXVT-UNICODE_VERSION=9.05
++RXVT-UNICODE_VERSION=9.06
+ RXVT-UNICODE_TAR=$(RXVT-UNICODE_NAME)-$(RXVT-UNICODE_VERSION).tar.bz2
+ RXVT-UNICODE_URL=http://dist.schmorp.de/$(RXVT-UNICODE_NAME)/$(RXVT-UNICODE_TAR)
+ 
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.21
+retrieving revision 1.22
+diff -u -r1.21 -r1.22
+--- misc-apps.inc	4 Aug 2008 03:24:29 -0000	1.21
++++ misc-apps.inc	13 Sep 2009 18:53:36 -0000	1.22
+@@ -70,21 +70,21 @@
+ APPLET_LIST += CALCOO
+ 
+ FOTOXX_NAME=fotoxx
+-FOTOXX_VERSION=4.9
++FOTOXX_VERSION=8.4
+ FOTOXX_TAR=$(FOTOXX_NAME)-$(FOTOXX_VERSION).tar.gz
+-FOTOXX_URL=http://kornelix.squarespace.com/storage/$(FOTOXX_TAR)
++FOTOXX_URL=http://kornelix.squarespace.com/storage/downloads/$(FOTOXX_TAR)
+ 
+ APPLET_LIST += FOTOXX
+ 
+ LIBDOCKAPP_NAME=libdockapp
+-LIBDOCKAPP_VERSION=0.6.1
++LIBDOCKAPP_VERSION=0.6.2
+ LIBDOCKAPP_TAR=$(LIBDOCKAPP_NAME)-$(LIBDOCKAPP_VERSION).tar.bz2
+ LIBDOCKAPP_URL=http://solfertje.student.utwente.nl/~dalroi/$(LIBDOCKAPP_NAME)/files/$(LIBDOCKAPP_TAR)
+ 
+ APPLET_LIST += LIBDOCKAPP
+ 
+ LIBICAL_NAME=libical
+-LIBICAL_VERSION=0.31
++LIBICAL_VERSION=0.43
+ LIBICAL_TAR=$(LIBICAL_NAME)-$(LIBICAL_VERSION).tar.gz
+ LIBICAL_URL=http://easynews.dl.sourceforge.net/sourceforge/freeassociation/$(LIBICAL_TAR)
+ 
+@@ -94,19 +94,19 @@
+ LIBWRASTER_NAME=libwraster
+ LIBWRASTER_VERSION=0.80.2
+ LIBWRASTER_TAR=WindowMaker-$(LIBWRASTER_VERSION).tar.gz
+-LIBWRASTER_URL=http://www.windowmaker.info/pub/source/release/archive/$(LIBWRASTER_TAR)
++LIBWRASTER_URL=http://windowmaker.info/pub/source/archive/$(LIBWRASTER_TAR)
+ 
+ #APPLET_LIST += LIBWRASTER
+ 
+ MEDIT_NAME=medit
+-MEDIT_VERSION=0.9.3
++MEDIT_VERSION=0.9.4
+ MEDIT_TAR=$(MEDIT_NAME)-$(MEDIT_VERSION).tar.bz2
+ MEDIT_URL=http://easynews.dl.sourceforge.net/sourceforge/mooedit/$(MEDIT_TAR)
+ 
+ APPLET_LIST += MEDIT
+ 
+ MINED_NAME=mined
+-MINED_VERSION=2000.14
++MINED_VERSION=2000.15.4
+ MINED_TAR=$(MINED_NAME)-$(MINED_VERSION).tar.gz
+ MINED_URL=http://towo.net/$(MINED_NAME)/$(MINED_TAR)
+ 
+@@ -115,14 +115,14 @@
+ MIXER.APP_NAME=Mixer.app
+ MIXER.APP_VERSION=1.8.0
+ MIXER.APP_TAR=$(MIXER.APP_NAME)-$(MIXER.APP_VERSION).tar.gz
+-MIXER.APP_URL=http://www.fukt.bth.se/~per/mixer/$(MIXER.APP_TAR)
++MIXER.APP_URL=http://www.fukt.bsnet.se/~per/mixer/$(MIXER.APP_TAR)
+ 
+ APPLET_LIST += MIXER.APP
+ 
+ PARCELLITE_NAME=parcellite
+-PARCELLITE_VERSION=0.7
++PARCELLITE_VERSION=0.9.1
+ PARCELLITE_TAR=$(PARCELLITE_NAME)-$(PARCELLITE_VERSION).tar.gz
+-PARCELLITE_URL=http://xyhthyx.googlecode.com/files/$(PARCELLITE_TAR)
++PARCELLITE_URL=http://downloads.sourceforge.net/project/$(PARCELLITE_NAME)/$(PARCELLITE_NAME)/$(PARCELLITE_NAME)-$(PARCELLITE_VERSION)/$(PARCELLITE_TAR)
+ 
+ APPLET_LIST += PARCELLITE
+ 
+@@ -143,7 +143,7 @@
+ TEMPERATURE.APP_NAME=Temperature.app
+ TEMPERATURE.APP_VERSION=1.4
+ TEMPERATURE.APP_TAR=$(TEMPERATURE.APP_NAME)-$(TEMPERATURE.APP_VERSION).tar.gz
+-TEMPERATURE.APP_URL=http://www.fukt.bth.se/~per/temperature/$(TEMPERATURE.APP_TAR)
++TEMPERATURE.APP_URL=http://www.fukt.bsnet.se/~per/temperature/$(TEMPERATURE.APP_TAR)
+ 
+ APPLET_LIST += TEMPERATURE.APP
+ 
+@@ -155,7 +155,7 @@
+ APPLET_LIST += TRAYER
+ 
+ WORKER_NAME=worker
+-WORKER_VERSION=2.16.5
++WORKER_VERSION=2.17.4
+ WORKER_TAR=$(WORKER_NAME)-$(WORKER_VERSION).tar.gz
+ WORKER_URL=http://www.boomerangsworld.de/worker/downloads/$(WORKER_TAR)
+ 
+
+Index: wm-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/wm-apps.inc,v
+retrieving revision 1.50
+retrieving revision 1.51
+diff -u -r1.50 -r1.51
+--- wm-apps.inc	25 May 2008 14:49:05 -0000	1.50
++++ wm-apps.inc	13 Sep 2009 18:53:36 -0000	1.51
+@@ -2,6 +2,13 @@
+ # Window Maker applets
+ # unfortunatelly not all at one place like AS ones
+ 
++ALSAMIXER.APP_NAME=AlsaMixer.app
++ALSAMIXER.APP_VERSION=0.1
++ALSAMIXER.APP_TAR=$(ALSAMIXER.APP_NAME)-$(ALSAMIXER.APP_VERSION).tar.gz
++ALSAMIXER.APP_URL=http://gentoo.mirrors.easynews.com/linux/gentoo/distfiles/$(ALSAMIXER.APP_TAR)
++
++APPLET_LIST += ALSAMIXER.APP-
++
+ BUBBLEMON-DOCKAPP_NAME=bubblemon-dockapp
+ BUBBLEMON-DOCKAPP_VERSION=1.46
+ BUBBLEMON-DOCKAPP_TAR=$(BUBBLEMON-DOCKAPP_NAME)-$(BUBBLEMON-DOCKAPP_VERSION).tar.gz
+@@ -40,7 +47,7 @@
+ WMALMS_NAME=wmalms
+ WMALMS_VERSION=1.1.1
+ WMALMS_TAR=$(WMALMS_NAME)-$(WMALMS_VERSION).tar.gz
+-WMALMS_URL=http://www.geocities.com/$(WMALMS_NAME)/$(WMALMS_TAR)
++WMALMS_URL=ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMALMS_NAME)/$(WMALMS_TAR)
+ 
+ APPLET_LIST += WMALMS
+ 
+@@ -173,7 +180,7 @@
+ WMMSG_NAME=wmmsg
+ WMMSG_VERSION=1.0.1
+ WMMSG_TAR=$(WMMSG_NAME)-$(WMMSG_VERSION).tar.gz
+-WMMSG_URL=http://dockapps.org/download.php/id/518/$(WMMSG_TAR)
++WMMSG_URL=http://swapspace.net/~matt/wmmsg/$(WMMSG_TAR)
+ 
+ APPLET_LIST += WMMSG
+ 
+@@ -187,7 +194,7 @@
+ WMNETHRU_NAME=wmnethru
+ WMNETHRU_VERSION=0.1.1
+ WMNETHRU_TAR=$(WMNETHRU_NAME)-$(WMNETHRU_VERSION).tar.gz
+-WMNETHRU_URL=http://dockapps.org/download.php/id/693/$(WMNETHRU_TAR)
++WMNETHRU_URL=ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMNETHRU_TAR)
+ 
+ APPLET_LIST += WMNETHRU
+ 
+@@ -199,7 +206,7 @@
+ APPLET_LIST += WMPOP3LB
+ 
+ WMPOWER_NAME=wmpower
+-WMPOWER_VERSION=0.4.2
++WMPOWER_VERSION=0.4.3
+ WMPOWER_TAR=$(WMPOWER_NAME)-$(WMPOWER_VERSION).tar.bz2
+ WMPOWER_URL=http://easynews.dl.sourceforge.net/sourceforge/$(WMPOWER_NAME)/$(WMPOWER_TAR)
+ 
+@@ -222,7 +229,7 @@
+ WMSENSORMON_NAME=wmsensormon
+ WMSENSORMON_VERSION=1.2.1
+ WMSENSORMON_TAR=$(WMSENSORMON_NAME)-$(WMSENSORMON_VERSION).tar.gz
+-WMSENSORMON_URL=http://superb-west.dl.sourceforge.net/sourceforge/$(WMSENSORMON_NAME)/$(WMSENSORMON_TAR)
++WMSENSORMON_URL=http://prdownloads.sourceforge.net/sourceforge/$(WMSENSORMON_NAME)/$(WMSENSORMON_TAR)
+ 
+ APPLET_LIST += WMSENSORMON
+ 
+@@ -250,7 +257,7 @@
+ WMTIMER_NAME=wmtimer
+ WMTIMER_VERSION=2.92
+ WMTIMER_TAR=$(WMTIMER_NAME)-$(WMTIMER_VERSION).tar.gz
+-WMTIMER_URL=http://open-systems.ufl.edu/mirrors/gentoo/distfiles/$(WMTIMER_TAR)
++WMTIMER_URL=http://gentoo.mirrors.easynews.com/linux/gentoo/distfiles/$(WMTIMER_TAR)
+ 
+ APPLET_LIST += WMTIMER
+ 
+@@ -276,9 +283,9 @@
+ APPLET_LIST += WMUSIC
+ 
+ WMWEATHER_NAME=wmweather
+-WMWEATHER_VERSION=2.4.4
+-WMWEATHER_TAR=$(WMWEATHER_NAME)-$(WMWEATHER_VERSION).tar.gz
+-WMWEATHER_URL=http://people.debian.org/~godisch/debian/$(WMWEATHER_NAME)/$(WMWEATHER_TAR)
++WMWEATHER_VERSION=2.4.5
++WMWEATHER_TAR=$(WMWEATHER_NAME)_$(WMWEATHER_VERSION).orig.tar.gz
++WMWEATHER_URL=http://ftp.de.debian.org/debian/pool/main/w/wmweather/$(WMWEATHER_TAR)
+ 
+ APPLET_LIST += WMWEATHER
+ 
+@@ -292,14 +299,14 @@
+ WMWIFI_NAME=wmwifi
+ WMWIFI_VERSION=0.6
+ WMWIFI_TAR=$(WMWIFI_NAME)-$(WMWIFI_VERSION).tar.gz
+-WMWIFI_URL=http://digitalssg.net/debian/$(WMWIFI_TAR)
++WMWIFI_URL=ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMWIFI_TAR)
+ 
+ APPLET_LIST += WMWIFI
+ 
+ WMXKB_NAME=wmxkb
+ WMXKB_VERSION=1.2.2
+ WMXKB_TAR=$(WMXKB_NAME)-$(WMXKB_VERSION).tar.gz
+-WMXKB_URL=http://www.geocities.com/wmalms/$(WMXKB_TAR)
++WMXKB_URL=ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMXKB_TAR)
+ 
+ APPLET_LIST += WMXKB
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Mon Sep 14 04:50:09 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Mon, 14 Sep 2009 04:50:09 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include as-apps.inc, 1.11,
+ 1.12  wm-apps.inc, 1.51, 1.52
+Message-ID: <4AADAF61.mailU61XK21W@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv996/include
+
+Modified Files:
+	as-apps.inc wm-apps.inc 
+Log Message:
+updated URL info for dead links to ftp.afterstep.org
+
+
+Index: as-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/as-apps.inc,v
+retrieving revision 1.11
+retrieving revision 1.12
+diff -u -r1.11 -r1.12
+--- as-apps.inc	27 Apr 2007 16:09:18 -0000	1.11
++++ as-apps.inc	14 Sep 2009 02:50:07 -0000	1.12
+@@ -113,7 +113,7 @@
+ ASWVDIAL_NAME=aswvdial
+ ASWVDIAL_VERSION=1.7
+ ASWVDIAL_TAR=$(ASWVDIAL_NAME)-$(ASWVDIAL_VERSION).tar.bz2
+-ASWVDIAL_URL=http://www.ma-scha.de/download/$(ASWVDIAL_TAR)
++ASWVDIAL_URL=ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(ASWVDIAL_TAR)
+ 
+ APPLET_LIST += ASWVDIAL
+ 
+
+Index: wm-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/wm-apps.inc,v
+retrieving revision 1.51
+retrieving revision 1.52
+diff -u -r1.51 -r1.52
+--- wm-apps.inc	13 Sep 2009 18:53:36 -0000	1.51
++++ wm-apps.inc	14 Sep 2009 02:50:07 -0000	1.52
+@@ -89,7 +89,7 @@
+ WMCHARGEMON_NAME=wmchargemon
+ WMCHARGEMON_VERSION=0.3
+ WMCHARGEMON_TAR=$(WMCHARGEMON_NAME)-$(WMCHARGEMON_VERSION).tar.gz
+-WMCHARGEMON_URL=http://dockapps.org/download.php/id/715/$(WMCHARGEMON_TAR)
++WMCHARGEMON_URL=ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMCHARGEMON_TAR)
+ 
+ APPLET_LIST += WMCHARGEMON
+ 
+@@ -103,7 +103,7 @@
+ WMCPULOAD_NAME=wmcpuload
+ WMCPULOAD_VERSION=1.1.0pre5
+ WMCPULOAD_TAR=$(WMCPULOAD_NAME)-$(WMCPULOAD_VERSION).tar.gz
+-WMCPULOAD_URL=http://seiichisato.jp/dockapps/src/$(WMCPULOAD_TAR)
++WMCPULOAD_URL=ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMCPULOAD_TAR)
+ 
+ APPLET_LIST += WMCPULOAD
+ 
+@@ -159,21 +159,21 @@
+ WMIX_NAME=wmix
+ WMIX_VERSION=3.2
+ WMIX_TAR=$(WMIX_NAME)-$(WMIX_VERSION).tar.gz
+-WMIX_URL=http://www.dockapps.com/download.php/id/528/$(WMIX_TAR)
++WMIX_URL=ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMIX_TAR)
+ 
+ APPLET_LIST += WMIX
+ 
+ WMMEMLOAD_NAME=wmmemload
+ WMMEMLOAD_VERSION=0.1.6
+ WMMEMLOAD_TAR=$(WMMEMLOAD_NAME)-$(WMMEMLOAD_VERSION).tar.gz
+-WMMEMLOAD_URL=http://markstaggs.net/wmmemload-download/$(WMMEMLOAD_TAR)
++WMMEMLOAD_URL=ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMMEMLOAD_TAR)
+ 
+ APPLET_LIST += WMMEMLOAD
+ 
+ WMMEMMON_NAME=wmmemmon
+ WMMEMMON_VERSION=1.0.2pre2
+ WMMEMMON_TAR=$(WMMEMMON_NAME)-$(WMMEMMON_VERSION).tar.gz
+-WMMEMMON_URL=http://seiichisato.jp/dockapps/src/$(WMMEMMON_TAR)
++WMMEMMON_URL=ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMMEMMON_TAR)
+ 
+ APPLET_LIST += WMMEMMON
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Mon Sep 14 04:50:09 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Mon, 14 Sep 2009 04:50:09 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS aswvdial.spec, 1.8,
+ 1.9  wmchargemon.spec, 1.5, 1.6 wmcpuload.spec, 1.5, 1.6 wmix.spec, 1.5,
+ 1.6  wmmemload.spec, 1.5, 1.6 wmmemmon.spec, 1.13, 1.14
+Message-ID: <4AADAF61.mailTX1FCO4T@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv996/SPECS
+
+Modified Files:
+	aswvdial.spec wmchargemon.spec wmcpuload.spec wmix.spec 
+	wmmemload.spec wmmemmon.spec 
+Log Message:
+updated URL info for dead links to ftp.afterstep.org
+
+
+Index: aswvdial.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/aswvdial.spec,v
+retrieving revision 1.8
+retrieving revision 1.9
+diff -u -r1.8 -r1.9
+--- aswvdial.spec	27 Apr 2007 16:09:17 -0000	1.8
++++ aswvdial.spec	14 Sep 2009 02:50:05 -0000	1.9
+@@ -8,8 +8,8 @@
+ Release: %release
+ License: GPL
+ Group: AfterStep/Applets
+-URL: http://www.ma-scha.de/
+-Source0: http://www.ma-scha.de/download/%{name}-%{version}.tar.bz2
++URL: ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/
++Source0: ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name}-%{version}.tar.bz2
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires: libxml-devel
+ Requires: libxml wvdial
+
+Index: wmchargemon.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmchargemon.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmchargemon.spec	27 Apr 2007 16:09:18 -0000	1.5
++++ wmchargemon.spec	14 Sep 2009 02:50:05 -0000	1.6
+@@ -25,7 +25,7 @@
+ 
+ %define name	wmchargemon
+ %define version 0.3
+-%define release 2%{?dist}
++%define release 3%{?dist}
+ 
+ Summary:	displays ACPI battery level and power status
+ Name:		%name
+@@ -33,8 +33,8 @@
+ Release:	%release
+ License:	GPL
+ Group:		AfterStep/Applets
+-Source0:	http://dockapps.org/download.php/id/715/%{name}-%{version}.tar.gz
+-URL:		http://dockapps.org/file.php/id/319
++Source0:	ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name}-%{version}.tar.gz
++URL:		ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %if %{mdk}
+@@ -76,6 +76,9 @@
+ %{_bindir}/*
+ 
+ %changelog
++* Sun Sep 13 2009 J. Krebs <rpm_speedy at yahoo.com> 0.3-3
++- updated URL info.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> 0.3-2
+ - added distro info to release.
+ 
+
+Index: wmcpuload.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmcpuload.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmcpuload.spec	27 Apr 2007 16:09:18 -0000	1.5
++++ wmcpuload.spec	14 Sep 2009 02:50:05 -0000	1.6
+@@ -1,6 +1,6 @@
+ %define name wmcpuload
+ %define version 1.1.0pre5
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: CPU monitor dockapp which has an LCD look user interface
+ Name: %name
+@@ -8,8 +8,8 @@
+ Release: %release
+ License: GPL
+ Group: AfterStep/Applets
+-URL: http://www.sh.rim.or.jp/~ssato/dockapp/index.shtml#wmcpuload
+-Source0: http://seiichisato.jp/dockapps/src/%{name}-%{version}.tar.gz
++URL: ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/
++Source0: ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+@@ -43,6 +43,9 @@
+ 
+ 
+ %changelog
++* Sun Sep 13 2009 J. Krebs <rpm_speedy at yahoo.com> - 1.1.0pre5-5
++- updated URL info.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.1.0pre5-4
+ - added distro info to release.
+ 
+
+Index: wmix.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmix.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmix.spec	27 Apr 2007 16:09:18 -0000	1.5
++++ wmix.spec	14 Sep 2009 02:50:05 -0000	1.6
+@@ -1,6 +1,6 @@
+ %define name wmix
+ %define version 3.2
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: dockapp mixer utilizing the OSS mixer API
+ Name: %name
+@@ -8,8 +8,8 @@
+ Release: %release
+ License: GPL
+ Group: AfterStep/Applets
+-URL: http://www.dockapps.com/file.php/id/58
+-Source0: http://www.dockapps.com/download.php/id/528/%{name}-%{version}.tar.gz
++URL: ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/
++Source0: ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+@@ -45,6 +45,9 @@
+ %doc AUTHORS BUGS COPYING INSTALL NEWS README sample.wmixrc
+ 
+ %changelog
++* Sun Sep 13 2009 J. Krebs <rpm_speedy at yahoo.com> - 3.2-5
++- updated URL info.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 3.2-4
+ - added distro info to release.
+ 
+
+Index: wmmemload.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmmemload.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmmemload.spec	13 Sep 2009 18:53:35 -0000	1.5
++++ wmmemload.spec	14 Sep 2009 02:50:05 -0000	1.6
+@@ -9,7 +9,7 @@
+ License: GPL
+ Group: AfterStep/Applets
+ URL: https://sourceforge.net/projects/freshmeat_wmmemload/
+-Source0: http://gentoo.mirrors.easynews.com/linux/gentoo/distfiles/%{name}-%{version}.tar.gz
++Source0: ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+
+Index: wmmemmon.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmmemmon.spec,v
+retrieving revision 1.13
+retrieving revision 1.14
+diff -u -r1.13 -r1.14
+--- wmmemmon.spec	27 Apr 2007 16:09:18 -0000	1.13
++++ wmmemmon.spec	14 Sep 2009 02:50:05 -0000	1.14
+@@ -1,6 +1,6 @@
+ %define name wmmemmon
+ %define version 1.0.2pre2
+-%define release 6%{?dist}
++%define release 7%{?dist}
+ 
+ Summary: WMMemMon - A dockapp to monitor memory/swap usages
+ Name: %name
+@@ -8,8 +8,8 @@
+ Release: %release
+ License: GPL
+ Group: AfterStep/Applets
+-URL: http://seiichisato.jp/dockapps/
+-Source0: http://seiichisato.jp/dockapps/src/%{name}-%{version}.tar.gz
++URL: ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/
++Source0: ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name}-%{version}.tar.gz
+ Patch0: wmmemmon-1.0.2-main.c.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+@@ -50,6 +50,9 @@
+ 
+ 
+ %changelog
++* Sun Sep 13 2009 J. Krebs <rpm_speedy at yahoo.com> - 1.0.2pre2-7
++- updated URL info.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.0.2pre2-6
+ - added distro info to release.
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Tue Sep 15 02:18:11 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Tue, 15 Sep 2009 02:18:11 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.22,
+	1.23
+Message-ID: <4AAEDD43.mailD261106OM@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv16790/include
+
+Modified Files:
+	misc-apps.inc 
+Log Message:
+updated fotoxx.
+
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.22
+retrieving revision 1.23
+diff -u -r1.22 -r1.23
+--- misc-apps.inc	13 Sep 2009 18:53:36 -0000	1.22
++++ misc-apps.inc	15 Sep 2009 00:18:09 -0000	1.23
+@@ -70,7 +70,7 @@
+ APPLET_LIST += CALCOO
+ 
+ FOTOXX_NAME=fotoxx
+-FOTOXX_VERSION=8.4
++FOTOXX_VERSION=8.4.1
+ FOTOXX_TAR=$(FOTOXX_NAME)-$(FOTOXX_VERSION).tar.gz
+ FOTOXX_URL=http://kornelix.squarespace.com/storage/downloads/$(FOTOXX_TAR)
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Tue Sep 15 02:18:11 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Tue, 15 Sep 2009 02:18:11 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec,1.4,1.5
+Message-ID: <4AAEDD43.mailD2211G86I@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv16790/SPECS
+
+Modified Files:
+	fotoxx.spec 
+Log Message:
+updated fotoxx.
+
+
+Index: fotoxx.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/fotoxx.spec,v
+retrieving revision 1.4
+retrieving revision 1.5
+diff -u -r1.4 -r1.5
+--- fotoxx.spec	13 Sep 2009 18:53:35 -0000	1.4
++++ fotoxx.spec	15 Sep 2009 00:18:08 -0000	1.5
+@@ -1,5 +1,5 @@
+ %define name fotoxx
+-%define version 8.4
++%define version 8.4.1
+ %define release 1%{?dist}
+ 
+ Summary: application for processing image files from a digital camera
+@@ -93,7 +93,10 @@
+ %{_mandir}/man1/*.gz
+ 
+ %changelog
+-* Mon Sep 13 2009 J. Krebs <rpm_speedy at yahoo.com> - 8.4-1
++* Mon Sep 14 2009 J. Krebs <rpm_speedy at yahoo.com> - 8.4.1-1
++- new version.
++
++* Sun Sep 13 2009 J. Krebs <rpm_speedy at yahoo.com> - 8.4-1
+ - new version.
+ 
+ * Mon Sep 08 2008 J. Krebs <rpm_speedy at yahoo.com> - 5.2.4-1
+
+
+
+From rpm_speedy at mail.berlios.de  Tue Sep 15 02:18:11 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Tue, 15 Sep 2009 02:18:11 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs buildme,1.19,1.20
+Message-ID: <4AAEDD43.mailD1Z112PHQ@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs
+In directory sheep:/tmp/cvs-serv16790
+
+Modified Files:
+	buildme 
+Log Message:
+updated fotoxx.
+
+
+Index: buildme
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/buildme,v
+retrieving revision 1.19
+retrieving revision 1.20
+diff -u -r1.19 -r1.20
+--- buildme	7 Aug 2008 14:02:46 -0000	1.19
++++ buildme	15 Sep 2009 00:18:08 -0000	1.20
+@@ -15,7 +15,7 @@
+ our $SPECS = "SPECS";
+ our $RPMS = "RPMS";
+ our $SRPMS = "SRPMS";
+-our $RPM = "rpmbuild --target=x86_64 --define='_topdir $ENV{PWD}'";
++our $RPM = "rpmbuild --define='_topdir $ENV{PWD}'";
+ 
+ my $target = shift;
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Tue Sep 15 02:45:31 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Tue, 15 Sep 2009 02:45:31 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include wm-apps.inc, 1.52,
+	1.53
+Message-ID: <4AAEE3AB.mailFO31YY5EN@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv20145/include
+
+Modified Files:
+	wm-apps.inc 
+Log Message:
+these apps won't work with lm_sensors 3.0.  Will leave out for now.
+
+
+Index: wm-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/wm-apps.inc,v
+retrieving revision 1.52
+retrieving revision 1.53
+diff -u -r1.52 -r1.53
+--- wm-apps.inc	14 Sep 2009 02:50:07 -0000	1.52
++++ wm-apps.inc	15 Sep 2009 00:45:28 -0000	1.53
+@@ -7,7 +7,7 @@
+ ALSAMIXER.APP_TAR=$(ALSAMIXER.APP_NAME)-$(ALSAMIXER.APP_VERSION).tar.gz
+ ALSAMIXER.APP_URL=http://gentoo.mirrors.easynews.com/linux/gentoo/distfiles/$(ALSAMIXER.APP_TAR)
+ 
+-APPLET_LIST += ALSAMIXER.APP-
++APPLET_LIST += ALSAMIXER.APP
+ 
+ BUBBLEMON-DOCKAPP_NAME=bubblemon-dockapp
+ BUBBLEMON-DOCKAPP_VERSION=1.46
+@@ -44,12 +44,13 @@
+ 
+ APPLET_LIST += SPEYES
+ 
+-WMALMS_NAME=wmalms
+-WMALMS_VERSION=1.1.1
+-WMALMS_TAR=$(WMALMS_NAME)-$(WMALMS_VERSION).tar.gz
+-WMALMS_URL=ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMALMS_NAME)/$(WMALMS_TAR)
++# Will not work with current lm_sensors - will disable for now
++#WMALMS_NAME=wmalms
++#WMALMS_VERSION=1.1.1
++#WMALMS_TAR=$(WMALMS_NAME)-$(WMALMS_VERSION).tar.gz
++#WMALMS_URL=ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMALMS_NAME)/$(WMALMS_TAR)
+ 
+-APPLET_LIST += WMALMS
++#APPLET_LIST += WMALMS
+ 
+ WMBLUECLOCK_NAME=WMBlueClock
+ WMBLUECLOCK_VERSION=0.1
+@@ -226,12 +227,13 @@
+ 
+ APPLET_LIST += WMRADIO
+ 
+-WMSENSORMON_NAME=wmsensormon
+-WMSENSORMON_VERSION=1.2.1
+-WMSENSORMON_TAR=$(WMSENSORMON_NAME)-$(WMSENSORMON_VERSION).tar.gz
+-WMSENSORMON_URL=http://prdownloads.sourceforge.net/sourceforge/$(WMSENSORMON_NAME)/$(WMSENSORMON_TAR)
++# Will not work with current lm_sensors - will disable for now
++#WMSENSORMON_NAME=wmsensormon
++#WMSENSORMON_VERSION=1.2.1
++#WMSENSORMON_TAR=$(WMSENSORMON_NAME)-$(WMSENSORMON_VERSION).tar.gz
++#WMSENSORMON_URL=http://prdownloads.sourceforge.net/sourceforge/$(WMSENSORMON_NAME)/$(WMSENSORMON_TAR)
+ 
+-APPLET_LIST += WMSENSORMON
++#APPLET_LIST += WMSENSORMON
+ 
+ WMSM.APP_NAME=wmsm.app
+ WMSM.APP_VERSION=0.2.1
+@@ -247,12 +249,13 @@
+ 
+ APPLET_LIST += WMSYSTRAY
+ 
+-WMTEMP_NAME=wmtemp
+-WMTEMP_VERSION=0.0.6
+-WMTEMP_TAR=$(WMTEMP_NAME)-$(WMTEMP_VERSION).tar.gz
+-WMTEMP_URL=http://gnodde.org/$(WMTEMP_NAME)/$(WMTEMP_TAR)
++# Will not work with current lm_sensors - will disable for now
++#WMTEMP_NAME=wmtemp
++#WMTEMP_VERSION=0.0.6
++#WMTEMP_TAR=$(WMTEMP_NAME)-$(WMTEMP_VERSION).tar.gz
++#WMTEMP_URL=http://gnodde.org/$(WMTEMP_NAME)/$(WMTEMP_TAR)
+ 
+-APPLET_LIST += WMTEMP
++#APPLET_LIST += WMTEMP
+ 
+ WMTIMER_NAME=wmtimer
+ WMTIMER_VERSION=2.92
+
+
+
+From rpm_speedy at mail.berlios.de  Fri Sep 18 17:01:05 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 18 Sep 2009 17:01:05 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec,1.5,1.6
+Message-ID: <4AB3A0B1.mail7N611H3TW@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv9854/SPECS
+
+Modified Files:
+	fotoxx.spec 
+Log Message:
+removed old patches, updated fotoxx.
+
+
+Index: fotoxx.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/fotoxx.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- fotoxx.spec	15 Sep 2009 00:18:08 -0000	1.5
++++ fotoxx.spec	18 Sep 2009 15:01:03 -0000	1.6
+@@ -1,5 +1,5 @@
+ %define name fotoxx
+-%define version 8.4.1
++%define version 8.4.2
+ %define release 1%{?dist}
+ 
+ Summary: application for processing image files from a digital camera
+@@ -10,7 +10,7 @@
+ Group: Applications/Multimedia
+ URL: http://kornelix.squarespace.com/%{name}/
+ Source0: http://kornelix.squarespace.com/storage/downloads/%{name}-%{version}.tar.gz
+-Patch0: %{name}-8.1-Makefile.patch
++Patch0: %{name}-8.4.2-Makefile.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ Requires: gtk2 atk cairo pango libpng exiv2 libstdc++ ufraw perl-Image-ExifTool
+ Buildrequires: gtk2-devel atk-devel cairo-devel pango-devel libpng-devel libstdc++-devel gcc-c++ freeimage-devel ufraw perl-Image-ExifTool
+@@ -93,6 +93,9 @@
+ %{_mandir}/man1/*.gz
+ 
+ %changelog
++* Fri Sep 18 2009 J. Krebs <rpm_speedy at yahoo.com> - 8.4.2-1
++- new version.
++
+ * Mon Sep 14 2009 J. Krebs <rpm_speedy at yahoo.com> - 8.4.1-1
+ - new version.
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Fri Sep 18 17:01:05 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 18 Sep 2009 17:01:05 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SOURCES
+	fotoxx-8.4.2-Makefile.patch, NONE,
+	1.1 AfterStep-2.2.8-Pager.c.patch, 1.1,
+	NONE AfterStep-2.2.8-configure.h.in.patch, 1.1,
+	NONE fotoxx-8.1-Makefile.patch, 1.1, NONE
+Message-ID: <4AB3A0B1.mail7N217EC0V@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv9854/SOURCES
+
+Added Files:
+	fotoxx-8.4.2-Makefile.patch 
+Removed Files:
+	AfterStep-2.2.8-Pager.c.patch 
+	AfterStep-2.2.8-configure.h.in.patch fotoxx-8.1-Makefile.patch 
+Log Message:
+removed old patches, updated fotoxx.
+
+
+--- NEW FILE: fotoxx-8.4.2-Makefile.patch ---
+--- Makefile	2009-09-18 02:11:08.000000000 -0500
++++ Makefile	2009-09-18 09:49:43.000000000 -0500
+@@ -41,17 +41,6 @@
+ 	cp -R data/* $(DESTDIR)$(DATADIR)
+ 	cp $(PROGRAM) $(DESTDIR)$(BINDIR)
+ 	cp -R locales/* $(DESTDIR)$(DATADIR)/locales
+-#  install .desktop file (menu entry)
+-	@echo "[Desktop Entry]" > $(DESKTOP)
+-	@echo "Name=$(PROGRAM)" >> $(DESKTOP)
+-	@echo "Categories=Graphics" >> $(DESKTOP)
+-	@echo "Type=Application" >> $(DESKTOP)
+-	@echo "Terminal=false" >> $(DESKTOP)
+-	@echo "Exec=$(BINDIR)/$(PROGRAM)" >> $(DESKTOP)
+-	@echo "Icon=$(DATADIR)/icons/$(PROGRAM).png" >> $(DESKTOP)
+-	@echo "GenericName=Digital Photo Editor" >> $(DESKTOP)
+-	@chown $(USER): $(DESKTOP)
+-	xdg-desktop-menu install $(DESKTOP)
+ #  install man page
+ 	cp -f doc/$(PROGRAM).man $(PROGRAM).1
+ 	gzip -f -9 $(PROGRAM).1
+
+--- AfterStep-2.2.8-Pager.c.patch DELETED ---
+
+--- AfterStep-2.2.8-configure.h.in.patch DELETED ---
+
+--- fotoxx-8.1-Makefile.patch DELETED ---
+
+
+
+From rpm_speedy at mail.berlios.de  Fri Sep 18 17:01:05 2009
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Fri, 18 Sep 2009 17:01:05 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.23,
+	1.24
+Message-ID: <4AB3A0B1.mail7NC113H7J@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv9854/include
+
+Modified Files:
+	misc-apps.inc 
+Log Message:
+removed old patches, updated fotoxx.
+
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.23
+retrieving revision 1.24
+diff -u -r1.23 -r1.24
+--- misc-apps.inc	15 Sep 2009 00:18:09 -0000	1.23
++++ misc-apps.inc	18 Sep 2009 15:01:03 -0000	1.24
+@@ -70,7 +70,7 @@
+ APPLET_LIST += CALCOO
+ 
+ FOTOXX_NAME=fotoxx
+-FOTOXX_VERSION=8.4.1
++FOTOXX_VERSION=8.4.2
+ FOTOXX_TAR=$(FOTOXX_NAME)-$(FOTOXX_VERSION).tar.gz
+ FOTOXX_URL=http://kornelix.squarespace.com/storage/downloads/$(FOTOXX_TAR)
+ 
+
+
+

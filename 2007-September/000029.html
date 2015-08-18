@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SPECS wmusic.spec, 1.5, 1.6  wmweather.spec, 1.6, 1.7
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20wmusic.spec%2C%201.5%2C%0A%201.6%20%20wmweather.spec%2C%201.6%2C%201.7&In-Reply-To=%3C46FFA7C9.mail1ZH112E4K%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000028.html">
+   <LINK REL="Next"  HREF="000030.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SPECS wmusic.spec, 1.5, 1.6  wmweather.spec, 1.6, 1.7</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20wmusic.spec%2C%201.5%2C%0A%201.6%20%20wmweather.spec%2C%201.6%2C%201.7&In-Reply-To=%3C46FFA7C9.mail1ZH112E4K%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SPECS wmusic.spec, 1.5, 1.6  wmweather.spec, 1.6, 1.7">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Sun Sep 30 15:42:33 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000028.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.4.Pulse.icon, 1.1, NONE  AfterStep-2.2.4.Worker.icon, 1.1, NONE  AfterStep-2.2.4.disableKDEglobals.patch, 1.1, NONE  AfterStep-2.2.4.menu.pictures.patch, 1.1, NONE  AfterStep-2.2.4.update.patches, 1.1, NONE AfterStep-2.2.5-MMX.patch, 1.1, NONE  AfterStep-2.2.5-Propaganda-setup.tar.gz, 1.1, NONE  AfterStep-2.2.6-ttf.patch, 1.1, NONE
+</A></li>
+        <LI>Next message: <A HREF="000030.html">[Appletrpms-cvs] CVS: afterapps-specs/include wm-apps.inc, 1.46,	1.47
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#29">[ date ]</a>
+              <a href="thread.html#29">[ thread ]</a>
+              <a href="subject.html#29">[ subject ]</a>
+              <a href="author.html#29">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv2490/SPECS
+
+Modified Files:
+	wmusic.spec wmweather.spec 
+Log Message:
+updates, new source paths.
+
+
+Index: wmusic.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmusic.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmusic.spec	27 Apr 2007 16:09:18 -0000	1.5
++++ wmusic.spec	30 Sep 2007 13:42:31 -0000	1.6
+@@ -1,7 +1,7 @@
+ %define prefix /usr
+ %define name wmusic
+ %define version 1.5.0
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: Windowmaker dockapp that remote controls xmms
+ Name: %name
+@@ -10,7 +10,7 @@
+ License: GPL
+ Group: AfterStep/Applets
+ URL: <A HREF="http://home.jtan.com/~john/wmusic/">http://home.jtan.com/~john/wmusic/</A>
+-Source0: <A HREF="http://home.jtan.com/~john/wmusic/%{name">http://home.jtan.com/~john/wmusic/%{name</A>}-%{version}.tar.gz
++Source0: <A HREF="ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name">ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name</A>}-%{version}.tar.gz
+ Requires:   xmms &gt;= 1.0.0
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires: xmms-devel
+@@ -54,6 +54,9 @@
+ 
+ 
+ %changelog
++* Fri Sep 28 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.5.0-5
++- homepage has disappeared pointed Source0 to ftp.afterstep.org.
++
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.5.0-4
+ - added distro info to release.
+ 
+
+Index: wmweather.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmweather.spec,v
+retrieving revision 1.6
+retrieving revision 1.7
+diff -u -r1.6 -r1.7
+--- wmweather.spec	27 Apr 2007 16:09:18 -0000	1.6
++++ wmweather.spec	30 Sep 2007 13:42:31 -0000	1.7
+@@ -1,6 +1,6 @@
+ %define name wmweather
+-%define version 2.4.3
+-%define release 4%{?dist}
++%define version 2.4.4
++%define release 1%{?dist}
+ 
+ Summary: wmweather is a dockapp that displays the current weather
+ Name: %name
+@@ -48,6 +48,9 @@
+ %doc CHANGES COPYING README src/wmweather.conf
+ 
+ %changelog
++* Fri Sep 28 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2.4.4-1
++- new version.
++
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2.4.3-4
+ - added distro info to release.
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000028.html">[Appletrpms-cvs] CVS: afterapps-specs/SOURCES AfterStep-2.2.4.Pulse.icon, 1.1, NONE  AfterStep-2.2.4.Worker.icon, 1.1, NONE  AfterStep-2.2.4.disableKDEglobals.patch, 1.1, NONE  AfterStep-2.2.4.menu.pictures.patch, 1.1, NONE  AfterStep-2.2.4.update.patches, 1.1, NONE AfterStep-2.2.5-MMX.patch, 1.1, NONE  AfterStep-2.2.5-Propaganda-setup.tar.gz, 1.1, NONE  AfterStep-2.2.6-ttf.patch, 1.1, NONE
+</A></li>
+	<LI>Next message: <A HREF="000030.html">[Appletrpms-cvs] CVS: afterapps-specs/include wm-apps.inc, 1.46,	1.47
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#29">[ date ]</a>
+              <a href="thread.html#29">[ thread ]</a>
+              <a href="subject.html#29">[ subject ]</a>
+              <a href="author.html#29">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

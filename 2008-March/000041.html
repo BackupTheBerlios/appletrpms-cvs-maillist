@@ -1,0 +1,825 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SPECS avfs.spec, NONE,	1.1 medit.spec, NONE, 1.1 parcellite.spec, NONE,	1.1 stalonetray.spec, NONE, 1.1 AfterStep.spec, 1.58,	1.59 Temperature.app.spec, 1.7, 1.8 rxvt-unicode.spec, 1.4,	1.5 wmifinfo.spec, 1.5, 1.6 worker.spec, 1.2, 1.3 yudit.spec,	1.1, 1.2
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20avfs.spec%2C%20NONE%2C%0A%091.1%20medit.spec%2C%20NONE%2C%201.1%20parcellite.spec%2C%20NONE%2C%0A%091.1%20stalonetray.spec%2C%20NONE%2C%201.1%20AfterStep.spec%2C%201.58%2C%0A%091.59%20Temperature.app.spec%2C%201.7%2C%201.8%20rxvt-unicode.spec%2C%201.4%2C%0A%091.5%20wmifinfo.spec%2C%201.5%2C%201.6%20worker.spec%2C%201.2%2C%201.3%20yudit.spec%2C%0A%091.1%2C%201.2&In-Reply-To=%3C47D0B66D.mailF5G11HISZ%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000040.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SPECS avfs.spec, NONE,	1.1 medit.spec, NONE, 1.1 parcellite.spec, NONE,	1.1 stalonetray.spec, NONE, 1.1 AfterStep.spec, 1.58,	1.59 Temperature.app.spec, 1.7, 1.8 rxvt-unicode.spec, 1.4,	1.5 wmifinfo.spec, 1.5, 1.6 worker.spec, 1.2, 1.3 yudit.spec,	1.1, 1.2</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20avfs.spec%2C%20NONE%2C%0A%091.1%20medit.spec%2C%20NONE%2C%201.1%20parcellite.spec%2C%20NONE%2C%0A%091.1%20stalonetray.spec%2C%20NONE%2C%201.1%20AfterStep.spec%2C%201.58%2C%0A%091.59%20Temperature.app.spec%2C%201.7%2C%201.8%20rxvt-unicode.spec%2C%201.4%2C%0A%091.5%20wmifinfo.spec%2C%201.5%2C%201.6%20worker.spec%2C%201.2%2C%201.3%20yudit.spec%2C%0A%091.1%2C%201.2&In-Reply-To=%3C47D0B66D.mailF5G11HISZ%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SPECS avfs.spec, NONE,	1.1 medit.spec, NONE, 1.1 parcellite.spec, NONE,	1.1 stalonetray.spec, NONE, 1.1 AfterStep.spec, 1.58,	1.59 Temperature.app.spec, 1.7, 1.8 rxvt-unicode.spec, 1.4,	1.5 wmifinfo.spec, 1.5, 1.6 worker.spec, 1.2, 1.3 yudit.spec,	1.1, 1.2">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Fri Mar  7 04:28:45 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000040.html">[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.21, 1.22  misc-apps.inc, 1.15, 1.16 wm-apps.inc, 1.48, 1.49
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#41">[ date ]</a>
+              <a href="thread.html#41">[ thread ]</a>
+              <a href="subject.html#41">[ subject ]</a>
+              <a href="author.html#41">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv19423/SPECS
+
+Modified Files:
+	AfterStep.spec Temperature.app.spec rxvt-unicode.spec 
+	wmifinfo.spec worker.spec yudit.spec 
+Added Files:
+	avfs.spec medit.spec parcellite.spec stalonetray.spec 
+Log Message:
+added new programs, updated older versions.
+
+
+--- NEW FILE: avfs.spec ---
+%define	name 	avfs
+%define	version	0.9.8
+%define	release	1%{?dist}
+
+Summary:	Enables programs to look inside archived/compressed files, access remote files
+Name:		%name
+Version:	%version
+Release:	%release
+License:	GPLv2 and LGPLv2
+Group:		Applications/Archiving
+URL:		<A HREF="http://sourceforge.net/projects/avf">http://sourceforge.net/projects/avf</A>
+Source0:	<A HREF="http://easynews.dl.sourceforge.net/sourceforge/avf/%{name">http://easynews.dl.sourceforge.net/sourceforge/avf/%{name</A>}-%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Requires:	fuse
+Buildrequires:	fuse-devel
+
+%description
+AVFS is a system which enables all programs to look inside archived
+or compressed files, or access remote files without recompiling the
+programs or changing the kernel.
+
+At the moment it supports floppies, tar and gzip files, zip, bzip2, ar
+and rar files, ftp sessions, http, webdav, rsh/rcp, ssh/scp. Quite a
+few other handlers are implemented with the Midnight Commander's
+external FS.
+
+AVFS is (C) under the GNU GPL (see the file COPYING). The shared
+library supporting AVFS with LD_PRELOAD is (C) under the GNU LGPL (see
+the file COPYING.LIB).
+
+AVFS comes with ABSOLUTELY NO WARRANTY, for details see the file COPYING. 
+
+%package devel
+Summary:   Development libraries and header files for %{name}
+Group:     Development/Libraries
+Requires:  %{name} = %{version}-%{release}
+
+%description devel
+Development libraries and header files for %{name}
+
+%prep
+%setup -q
+
+%build
+./configure --prefix=%{_prefix} --enable-fuse
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make install DESTDIR=$RPM_BUILD_ROOT
+
+rm -rf doc/Makefil*
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
+
+%files
+%defattr(-,root,root,-)
+%{_bindir}/*
+%{_libdir}/%{name}/
+%{_libdir}/*.so.*
+%{_includedir}/*
+%doc AUTHORS COPYING COPYING.LIB ChangeLog INSTALL NEWS README TODO doc/
+
+%files devel
+%{_includedir}/
+%{_libdir}/*.so
+%{_libdir}/*.*a
+
+%changelog
+* Sat Nov 10 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.9.8-1
+- Initial build.
+
+--- NEW FILE: medit.spec ---
+%define	name 	medit
+%define	version	0.9.3
+%define	release	1%{?dist}
+
+Summary:	medit is a GTK-based text editor
+Name:		%name
+Version:	%version
+Release:	%release
+License:	GPLv2 and LGPLv2
+Group:		Applications/Editors
+URL:		<A HREF="http://mooedit.sourceforge.net/">http://mooedit.sourceforge.net/</A>
+Source0:	<A HREF="http://easynews.dl.sourceforge.net/sourceforge/mooedit/%{name">http://easynews.dl.sourceforge.net/sourceforge/mooedit/%{name</A>}-%{version}.tar.bz2
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Requires:	python, pcre &gt;= 7.0, libxml2, pygtk2, pango, gtk2, cairo, atk, libICE, libX11, libSM
+Buildrequires:	python-devel, pcre-devel &gt;= 7.0, libxml2-devel, perl-XML-Parser, pygtk2-devel, pango-devel 
+Buildrequires:	gtk2-devel, cairo-devel, atk-devel, libICE-devel, libX11-devel, libSM-devel
+
+%description
+medit is a GTK-based text editor.
+
+%prep
+%setup -q
+
+%build
+./configure --prefix=%{_prefix} --with-python --docdir=%{_datadir}/doc/%{name}-%{version}
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make install DESTDIR=$RPM_BUILD_ROOT
+
+rm -rf $RPM_BUILD_ROOT%{_datadir}/mime/mime.cache
+
+rm -rf $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/icon-theme.cache
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post
+update-mime-database %{_datadir}/mime &amp;&gt; /dev/null || :
+
+touch --no-create %{_datadir}/icons/hicolor
+if [ -x %{_bindir}/gtk-update-icon-cache ]; then
+  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+fi
+
+%postun
+update-mime-database %{_datadir}/mime &amp;&gt; /dev/null || :
+
+touch --no-create %{_datadir}/icons/hicolor
+if [ -x %{_bindir}/gtk-update-icon-cache ]; then
+  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+fi
+
+%files
+%defattr(-,root,root,-)
+%doc AUTHORS COPYING COPYING.GPL INSTALL LICENSE NEWS README THANKS doc/help/
+%{_bindir}/medit
+%{_libdir}/moo/
+%{_libdir}/python2.5/
+%{_datadir}/applications/medit.desktop
+%{_datadir}/icons/hicolor/48x48/apps/medit.png
+%{_datadir}/locale/
+%{_datadir}/mime/
+%{_datadir}/moo/
+%{_datadir}/pixmaps/medit.png
+%{_mandir}/man1/medit*
+
+%changelog
+* Sun Feb 10 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.9.3-1
+- New version.
+
+* Thu Jan 10 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.9.2-1
+- New version.
+
+* Mon Dec 03 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.9.0-1
+- Initial build.
+
+--- NEW FILE: parcellite.spec ---
+%define name parcellite
+%define version 0.6.1
+%define release 1%{?dist}
+
+Summary: Parcellite (Parcelle Lite) is a lightweight GTK+ clipboard manager
+Name: %name
+Version: %version
+Release: %release
+License: GPLv3+
+Group: Applications/X11
+URL: <A HREF="http://code.google.com/p/xyhthyx/">http://code.google.com/p/xyhthyx/</A>
+Source0: <A HREF="http://xyhthyx.googlecode.com/files/%{name">http://xyhthyx.googlecode.com/files/%{name</A>}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Requires: gtk2 &gt;= 2.10
+Buildrequires: gtk2-devel &gt;= 2.10
+
+%description
+Parcellite (Parcelle Lite) is a lightweight GTK+ clipboard manager. This is
+a stripped down, basic-features-only version of Parcelle with a small memory
+footprint for those who like simplicity.
+
+%prep
+%setup -q
+
+%build
+./autogen.sh
+
+./configure prefix=%{_prefix} exec_prefix=%{_prefix}
+
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make install DESTDIR=$RPM_BUILD_ROOT prefix=%{_prefix} exec_prefix=%{_prefix}
+
+#Install application link for X-Windows
+echo -e &quot;[Desktop Entry]
+Name=Parcellite
+Name[en_US]=Parcellite
+Comment=Lightweight GTK+ clipboard manager
+Exec=parcellite
+Icon=stock_paste
+Terminal=false
+Encoding=UTF-8
+Type=Application&quot; &gt; %{name}.desktop
+                                                                                
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
+desktop-file-install --vendor &quot;&quot; --delete-original \
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications                   \
+  --add-category GNOME                                            \
+  --add-category Application                                      \
+  --add-category Utility					  \
+  %{name}.desktop
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root,-)
+%{_bindir}/*
+%{_datadir}/applications/*.desktop
+%{_sysconfdir}/xdg/autostart/*.desktop
+%doc AUTHORS COPYING INSTALL ChangeLog NEWS README TODO
+
+%changelog
+* Sun Feb 24 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.6.1-1
+- New version.
+
+* Sun Feb 10 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.6-1
+- New version.
+
+* Mon Jan 21 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.5.1-1
+- New version.
+
+* Sun Dec 16 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.4.1-1
+- New version.
+
+* Sun Nov 25 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.4-1
+- Initial build.
+
+
+
+
+--- NEW FILE: stalonetray.spec ---
+%define name	stalonetray
+%define version	0.7.6
+%define release	1%{?dist}
+
+Summary:	STand Alone TRAY (notification area) implementation
+Name:		%name
+Version:	%version
+Release:	%release
+License:	GPLv2+
+Group:		User Interface/Desktops
+URL:		<A HREF="http://sourceforge.net/projects/stalonetray">http://sourceforge.net/projects/stalonetray</A>
+Source0:	<A HREF="http://easynews.dl.sourceforge.net/sourceforge/%{name">http://easynews.dl.sourceforge.net/sourceforge/%{name</A>}/%{name}-%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+%description
+Stalonetray is a stand-alone freedesktop.org and KDE system tray
+(notification area) for X Window System/X11 (e.g. X.Org or XFree86).
+It has full XEMBED support and minimal dependencies: an X11 lib only.
+Stalonetray works with virtually any EWMH-compliant window manager.
+
+%prep
+%setup -q
+
+%build
+./configure --prefix=%{_prefix}
+
+make
+
+make check
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make DESTDIR=$RPM_BUILD_ROOT install
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root,-)
+%doc README NEWS COPYING AUTHORS ChangeLog stalonetrayrc.sample stalonetray.html stalonetray.xml
+%{_bindir}/*
+%{_mandir}/man*/*
+
+%changelog
+* Wed Jan 09 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.7.6-1
+- Initial build.
+
+Index: AfterStep.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/AfterStep.spec,v
+retrieving revision 1.58
+retrieving revision 1.59
+diff -u -r1.58 -r1.59
+--- AfterStep.spec	27 Aug 2007 17:18:49 -0000	1.58
++++ AfterStep.spec	7 Mar 2008 03:28:42 -0000	1.59
+@@ -39,9 +39,9 @@
+ ### END Distro Definitions
+ 
+ %define	name AfterStep
+-%define	version	2.2.7
+-%define	libaiver	1.15
+-%define	libabver	1.11
++%define	version	2.2.8
++%define	libaiver	1.17
++%define	libabver	1.12
+ %define	libairel	1%{?dist}
+ %define	libabrel	1%{?dist}
+ %define release 1%{?dist}
+@@ -65,7 +65,10 @@
+ Source6: 	afterstep.desktop.xsessions
+ Source7: 	afterstep.desktop.wm-properties
+ Source8:	afterstep.fedora.README
++Source9:	%{name}-2.2.7-wharf.alternate
+ Patch0:		%{name}-2.2.5-ImageMagick.patch
++Patch1:		%{name}-2.2.7-winlist.patch
++Patch2:		%{name}-2.2.7-pager.patch
+ Distribution:	The AfterStep TEAM
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ %if %{mdk}
+@@ -75,8 +78,9 @@
+ Provides:	AfterStep-libs
+ Requires: 	libAfterImage = %{epoch}:%{libaiver}-%libairel
+ Requires:	readline
+-Requires:	gtk2
++Requires:	gtk2, gtk2-devel
+ Requires:	qiv
++Requires:	libXt
+ BuildRequires:  readline-devel
+ BuildRequires:  gtk2-devel
+ BuildRequires:	librsvg2-devel
+@@ -84,6 +88,7 @@
+ BuildRequires:  freetype-devel
+ BuildRequires:  zlib-devel
+ BuildRequires:  libX11-devel
++BuildRequires:  libXt-devel
+ 
+ %description
+ AfterStep is a Window Manager for X which started by emulating the
+@@ -191,6 +196,8 @@
+ %prep
+ %setup -q
+ %patch0
++%patch1
++%patch2
+ 
+ %build
+ CFLAGS=$RPM_OPT_FLAGS \
+@@ -202,7 +209,7 @@
+ 	--disable-staticlibs                      \
+ 	--enable-i18n                             \
+ 	--with-helpcommand=&quot;xterm -e man&quot;         \
+-	--with-desktops=1 --with-deskgeometry=2x3 \
++	--with-desktops=2 --with-deskgeometry=2x2 \
+ 	--with-imageloader=&quot;qiv --root&quot;
+ 
+ make
+@@ -221,6 +228,9 @@
+ rm -rf afterstep/start/2_Modules/Scripts/
+ rm -rf afterstep/start/2_Modules/Stop/
+ 
++mv afterstep/wharf afterstep/wharf.orig
++cp %{SOURCE9} afterstep/wharf
++
+ %install
+ if [[ -d $RPM_BUILD_ROOT ]]; then rm -rf $RPM_BUILD_ROOT; fi
+ mkdir -p $RPM_BUILD_ROOT
+@@ -233,8 +243,8 @@
+ cp %{SOURCE8} .
+ install -d $RPM_BUILD_ROOT%{_datadir}/switchdesk/
+ install -m 0755 %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/switchdesk/Xclients.afterstep
+-install -d $RPM_BUILD_ROOT/etc/X11/gdm/Sessions/
+-install -m 0755 %{SOURCE2} $RPM_BUILD_ROOT/etc/X11/gdm/Sessions/afterstep
++install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/gdm/Sessions/
++install -m 0755 %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/X11/gdm/Sessions/afterstep
+ install -d $RPM_BUILD_ROOT%{_datadir}/xsessions/
+ install -m 0644 %{SOURCE6} $RPM_BUILD_ROOT%{_datadir}/xsessions/afterstep.desktop
+ install -d $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties/
+@@ -253,12 +263,12 @@
+ 
+ # mandrake/mandriva menu items
+ %if %{mdk}
+-install -d $RPM_BUILD_ROOT/etc/X11/wmsession.d/
+-install -m 0644 %{SOURCE3} $RPM_BUILD_ROOT/etc/X11/wmsession.d/42AfterStep
++install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/wmsession.d/
++install -m 0644 %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/X11/wmsession.d/42AfterStep
+ install -d $RPM_BUILD_ROOT%{_libdir}/menu/afterstep
+ install -m 0644 %{SOURCE4} $RPM_BUILD_ROOT%{_libdir}/menu/afterstep
+-install -d $RPM_BUILD_ROOT/etc/menu-methods/
+-install -m 0755 %{SOURCE5} $RPM_BUILD_ROOT/etc/menu-methods/AfterStep
++install -d $RPM_BUILD_ROOT%{_sysconfdir}/menu-methods/
++install -m 0755 %{SOURCE5} $RPM_BUILD_ROOT%{_sysconfdir}/menu-methods/AfterStep
+ %endif
+ 
+ %if %{ismultiarch}
+@@ -310,7 +320,7 @@
+ %{_mandir}/man1/*
+ # this is evil hack, but I can't get it to work otherwise on mdk
+ %if !%{fedora}
+-%config /etc/X11/wmsession.d/42AfterStep
++%config %{_sysconfdir}/X11/wmsession.d/42AfterStep
+ %{_sysconfdir}/menu-methods/AfterStep
+ %{_datadir}/xsessions/AfterStep.desktop
+ %config %{_libdir}/menu/afterstep/AfterStep.menu
+@@ -399,6 +409,18 @@
+ if [ -x /usr/sbin/fndSession ]; then /usr/sbin/fndSession || true ; fi
+ 
+ %changelog
++* Fri Mar 06 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 20:2.2.8-1
++- new version.
++
++* Thu Dec 06 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 20:2.2.7-4
++- added patch to skip short duration windows under workspace_state.
++
++* Thu Dec 06 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 20:2.2.7-3
++- added patches to look for urxvt (then aterm, rxvt, xterm).
++
++* Fri Nov 09 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 20:2.2.7-2
++- cleaned-up desktop.
++
+ * Mon Aug 27 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 20:2.2.7-1
+ - new version.
+ 
+@@ -409,6 +431,9 @@
+   package makes it easier to differentiate.
+ - added qiv as a require for AfterStep - some apps still need
+   an image loader other than that provided by AfterStep.
++
++* Thu Jun 14 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 20:2.2.6-2
++- added test for F7.
+ 
+ * Thu Jun 14 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 20:2.2.6-2
+ - added test for F7.
+
+Index: Temperature.app.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/Temperature.app.spec,v
+retrieving revision 1.7
+retrieving revision 1.8
+diff -u -r1.7 -r1.8
+--- Temperature.app.spec	27 Apr 2007 16:09:17 -0000	1.7
++++ Temperature.app.spec	7 Mar 2008 03:28:42 -0000	1.8
+@@ -1,6 +1,6 @@
+ %define name Temperature.app
+ %define version 1.4
+-%define release 8%{?dist}
++%define release 9%{?dist}
+ 
+ Summary: WM applet gets temperature every 15 minutes
+ Name: %name
+@@ -13,7 +13,7 @@
+ Patch0: Temperature.app-1.4.as.patch
+ Patch1: Temperature.app-1.4-frog-5.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-Requires: wget
++Requires: wget xorg-x11-fonts-ISO8859-1-75dpi xorg-x11-fonts-ISO8859-1-100dpi
+ 
+ %description
+ This WM applet includes two binaries: &quot;Temperature.app&quot; for AfterStep
+@@ -66,6 +66,9 @@
+ 
+ 
+ %changelog
++* Sat Nov 10 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.4-9
++- added Require for xorg-x11-fonts-ISO8859-1-75dpi.
++
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.4-8
+ - added distro info to release.
+ 
+
+Index: rxvt-unicode.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/rxvt-unicode.spec,v
+retrieving revision 1.4
+retrieving revision 1.5
+diff -u -r1.4 -r1.5
+--- rxvt-unicode.spec	1 Nov 2007 17:39:32 -0000	1.4
++++ rxvt-unicode.spec	7 Mar 2008 03:28:42 -0000	1.5
+@@ -1,6 +1,6 @@
+ %define aitest	%(rpm -q --queryformat='%{VERSION}' libAfterImage)
+ %define aiver	%aitest 
+-%define version 8.4
++%define version 9.02
+ %define release 1%{?dist}
+ %define name	rxvt-unicode
+ %define epoch	2
+@@ -14,7 +14,6 @@
+ Group:		User Interface/X
+ URL:		<A HREF="http://software.schmorp.de/pkg/rxvt-unicode.html">http://software.schmorp.de/pkg/rxvt-unicode.html</A>
+ Source0:	<A HREF="http://dist.schmorp.de/rxvt-unicode/%{name">http://dist.schmorp.de/rxvt-unicode/%{name</A>}-%{version}.tar.bz2
+-Patch0:		%{name}-%{version}-docs.patch
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires:	perl-devel libXpm-devel libXft-devel freetype-devel
+ BuildRequires:	libAfterImage-devel &gt;= 1.15
+@@ -85,6 +84,21 @@
+ %{_libdir}/urxvt
+ 
+ %changelog
++* Fri Feb 02 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2:9.02
++- new version.
++
++* Fri Jan 25 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2:9.0
++- new version.
++
++* Mon Dec 24 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2:8.9
++- new version.
++
++* Sat Dec 15 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2:8.8
++- new version.
++
++* Sun Nov 25 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2:8.7
++- new version.
++
+ * Sat Oct 27 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2:8.4
+ - new version.
+ 
+
+Index: wmifinfo.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmifinfo.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmifinfo.spec	27 Apr 2007 16:09:18 -0000	1.5
++++ wmifinfo.spec	7 Mar 2008 03:28:42 -0000	1.6
+@@ -1,6 +1,6 @@
+ %define name wmifinfo
+ %define version 0.09
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: wmifinfo shows basic network info for all available interfaces
+ Name: %name
+@@ -8,8 +8,8 @@
+ Release: %release
+ License: GPL
+ Group: AfterStep/Applets
+-URL: <A HREF="http://www.zevv.nl/wmifinfo/">http://www.zevv.nl/wmifinfo/</A>
+-Source0: <A HREF="http://www.zevv.nl/wmifinfo/%{name">http://www.zevv.nl/wmifinfo/%{name</A>}-%{version}.tgz
++URL: <A HREF="http://www.zevv.nl/play/code/wmifinfo/">http://www.zevv.nl/play/code/wmifinfo/</A>
++Source0: <A HREF="http://www.zevv.nl/play/code/%{name">http://www.zevv.nl/play/code/%{name</A>}/%{name}-%{version}.tgz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+@@ -40,6 +40,9 @@
+ %doc README
+ 
+ %changelog
++* Sat Nov 24 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.09-5
++- updated URL info.
++
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.09-4
+ - added distro info to release.
+ 
+
+Index: worker.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/worker.spec,v
+retrieving revision 1.2
+retrieving revision 1.3
+diff -u -r1.2 -r1.3
+--- worker.spec	23 Aug 2007 17:07:01 -0000	1.2
++++ worker.spec	7 Mar 2008 03:28:42 -0000	1.3
+@@ -1,5 +1,5 @@
+ %define name worker
+-%define version 2.15.0
++%define version 2.16.2
+ %define release 1%{?dist}
+ %define doc_version 2.10.0.2
+ 
+@@ -12,9 +12,8 @@
+ Source0:	<A HREF="http://www.boomerangsworld.de/worker/downloads/%{name">http://www.boomerangsworld.de/worker/downloads/%{name</A>}-%{version}.tar.gz
+ Source1:	<A HREF="http://www.boomerangsworld.de/worker/downloads/%{name">http://www.boomerangsworld.de/worker/downloads/%{name</A>}-%{doc_version}-doc.tar.bz2
+ URL:		<A HREF="http://www.boomerangsworld.de/worker/">http://www.boomerangsworld.de/worker/</A>
+-BuildRequires:	libX11-devel
+-BuildRequires:	bzip2-devel
+-BuildRequires:	zlib-devel
++Requires:	libXpm avfs fuse
++BuildRequires:	libX11-devel bzip2-devel zlib-devel libXpm-devel avfs-devel
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+@@ -28,7 +27,7 @@
+ %setup -q -a 1
+ 
+ %build
+-./configure --prefix=%{_prefix} --mandir=%{_mandir}
++./configure --prefix=%{_prefix} --mandir=%{_mandir} --docdir=%{_datadir}/doc/%{name}-%{version}
+ make
+ 
+ %install
+@@ -36,15 +35,21 @@
+ 
+ make DESTDIR=$RPM_BUILD_ROOT install
+ 
+-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
++mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/16x16/apps/
++mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/32x32/apps/
++mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/48x48/apps/
++mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/64x64/apps/
++
++install -m 644 Icons/WorkerIcon16.xpm $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/16x16/apps/worker.xpm
++install -m 644 Icons/WorkerIcon32.xpm $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/32x32/apps/worker.xpm
++install -m 644 Icons/WorkerIcon48.xpm $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/48x48/apps/worker.xpm
++install -m 644 Icons/WorkerIcon.xpm $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/64x64/apps/worker.xpm
+ 
+-cp Icons/WorkerIcon48.xpm $RPM_BUILD_ROOT%{_datadir}/pixmaps/worker.xpm
+-cd worker-%{doc_version}-doc
++rm -rf $RPM_BUILD_ROOT%{_datadir}/pixmaps/*.xpm
+ 
++cd worker-%{doc_version}-doc
+ ./configure --prefix=%{_prefix}
+ make
+-
+-
+ make DESTDIR=$RPM_BUILD_ROOT install
+ 
+ #Install application link for X-Windows
+@@ -65,24 +70,59 @@
+   --add-category System						  \
+   %{name}.desktop
+ 
++cd ..
++
++mkdir -p $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++install -m 644 AUTHORS $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++install -m 644 COPYING $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++install -m 644 INSTALL $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++install -m 644 ChangeLog $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++install -m 644 NEWS $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++install -m 644 READM* $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++install -m 644 THANKS $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++
++mv $RPM_BUILD_ROOT%{_datadir}/doc/%{name}/* $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/
++rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/%{name}/
++
+ %clean
+ rm -rf $RPM_BUILD_ROOT
+ 
++%post
++touch --no-create %{_datadir}/icons/hicolor
++if [ -x %{_bindir}/gtk-update-icon-cache ]; then
++  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
++fi
++
++%postun
++touch --no-create %{_datadir}/icons/hicolor
++if [ -x %{_bindir}/gtk-update-icon-cache ]; then
++  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
++fi
++
++
+ %files
+ %defattr(-,root,root,-)
+-%doc README NEWS AUTHORS ChangeLog
+-%docdir %{_datadir}/doc/worker
+-%{_datadir}/doc/worker/*
++%docdir %{_datadir}/doc/%{name}-%{version}
++%{_datadir}/doc/%{name}-%{version}/
+ %{_bindir}/*
+ %dir %{_datadir}/worker
+ %{_datadir}/worker/scripts/*
+ %{_datadir}/worker/catalogs/*
+ %{_datadir}/worker/config-*
+-%{_mandir}
+-%{_datadir}/pixmaps/*
++%{_mandir}/
++%{_datadir}/icons/hicolor/
+ %{_datadir}/applications/*
+ 
+ %changelog
++* Mon Feb 11 2008 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2.16.2-1
++- new version
++
++* Mon Dec 03 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2.16.1-1
++- new version
++
++* Tue Nov 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2.16.0-1
++- new version
++
+ * Fri Jun 08 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; 2.15.0-1
+ - new version
+ 
+
+Index: yudit.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/yudit.spec,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- yudit.spec	23 Aug 2007 14:24:27 -0000	1.1
++++ yudit.spec	7 Mar 2008 03:28:42 -0000	1.2
+@@ -1,5 +1,5 @@
+ %define	name 	yudit
+-%define	version	2.8.1
++%define	version	2.9.0
+ %define	release	1%{?dist}
+ 
+ Summary:	Unicode Text Editor
+@@ -9,7 +9,6 @@
+ License:	GPL
+ Group:		Applications/Editors
+ Source:		<A HREF="http://yudit.org/download/%{name">http://yudit.org/download/%{name</A>}-%{version}.tar.gz
+-Patch0:		%{name}-%{version}-patch1.txt
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+@@ -28,7 +27,6 @@
+ 
+ %prep
+ %setup
+-%patch0
+ 
+ %build
+ ./configure --prefix=%{_prefix} --mandir=%{_mandir}
+@@ -72,8 +70,10 @@
+ %dir %{_datadir}/yudit
+ %{_datadir}/yudit/data
+ %{_datadir}/yudit/fonts
+-%{_datadir}/yudit/src 
+-%{_datadir}/yudit/doc 
++%{_datadir}/yudit/src
++%{_datadir}/yudit/doc
++%{_datadir}/yudit/syntax
++
+ %dir %{_datadir}/yudit/locale
+ %{_datadir}/yudit/locale/am
+ %{_datadir}/yudit/locale/ar
+@@ -106,6 +106,7 @@
+ %{_datadir}/yudit/locale/vi
+ %{_datadir}/yudit/locale/yi
+ %{_datadir}/yudit/locale/zh
++%{_datadir}/yudit/locale/zh_CN
+ 
+ %dir %{_datadir}/yudit/config
+ %config %{_datadir}/yudit/config/*
+@@ -115,9 +116,10 @@
+ %doc CHANGELOG.TXT COPYING.TXT FAQ.TXT README.TXT TODO.TXT doc/*.utf8 doc/notinstalled doc/problems doc/HOWTO-*.txt doc/otfsupport.txt
+ 
+ %changelog
++* Mon Dec 24 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2.9.0-1
++  Updated to version 2.9.0
+ * Thu Feb 15 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 2.8.1-1
+   Updated to version 2.8.1
+-  
+ * Mon Mar 21 2005 Gaspar Sinai &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">gsinai at yudit.org</A>&gt;
+   - Merged Marathi and Gujarati menu.
+   - Merged jodakshar.hwd marathi.hwd roman.hwd handwrinting recognition files
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000040.html">[Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.21, 1.22  misc-apps.inc, 1.15, 1.16 wm-apps.inc, 1.48, 1.49
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#41">[ date ]</a>
+              <a href="thread.html#41">[ thread ]</a>
+              <a href="subject.html#41">[ subject ]</a>
+              <a href="author.html#41">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

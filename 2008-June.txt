@@ -1,0 +1,488 @@
+From rpm_speedy at mail.berlios.de  Wed Jun  4 15:36:01 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Wed, 04 Jun 2008 15:36:01 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SOURCES
+	aterm-1.0.1-stropts.h.patch, NONE,
+	1.1 rxvt-unicode-9.02-stropts.h.patch, NONE,
+	1.1 fotox-0.43-build.patch, 1.1, NONE
+Message-ID: <48469A41.mailF1N11EIU0@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv19093/SOURCES
+
+Added Files:
+	aterm-1.0.1-stropts.h.patch rxvt-unicode-9.02-stropts.h.patch 
+Removed Files:
+	fotox-0.43-build.patch 
+Log Message:
+fixes and patches to allow things to work under Fedora 9
+
+
+--- NEW FILE: aterm-1.0.1-stropts.h.patch ---
+--- src/command.c	2006-06-26 13:01:20.000000000 -0500
++++ src/command.c	2008-06-03 08:51:15.000000000 -0500
+@@ -91,7 +91,6 @@
+ 
+ #if defined (__svr4__) || defined (__lnx21__)
+ # include <sys/resource.h>	/* for struct rlimit */
+-# include <sys/stropts.h>	/* for I_PUSH */
+ # define _NEW_TTY_CTRL		/* to get proper defines in <termios.h> */
+ #endif
+ 
+@@ -673,16 +672,7 @@
+ 	exit(EXIT_FAILURE);
+     }
+ #if defined (__svr4__) || defined (__lnx21__)
+-/*
+- * Push STREAMS modules:
+- *    ptem: pseudo-terminal hardware emulation module.
+- *    ldterm: standard terminal line discipline.
+- *    ttcompat: V7, 4BSD and XENIX STREAMS compatibility module.
+- */
+-    ioctl(fd, I_PUSH, "ptem");
+-    ioctl(fd, I_PUSH, "ldterm");
+-    ioctl(fd, I_PUSH, "ttcompat");
+-#else				/* __svr4__ */
++				/* __svr4__ */
+     {
+     	/* change ownership of tty to real uid and real group */
+ #ifndef __CYGWIN32__		
+
+--- NEW FILE: rxvt-unicode-9.02-stropts.h.patch ---
+--- config.h.in	2007-12-24 02:00:14.000000000 -0600
++++ config.h.in	2008-06-02 11:11:51.000000000 -0500
+@@ -76,9 +76,6 @@
+ /* Define to 1 if you have the <inttypes.h> header file. */
+ #undef HAVE_INTTYPES_H
+ 
+-/* Define to 1 if you have the `isastream' function. */
+-#undef HAVE_ISASTREAM
+-
+ /* Define to 1 if you have the `kqueue' function. */
+ #undef HAVE_KQUEUE
+ 
+
+--- fotox-0.43-build.patch DELETED ---
+
+
+
+From rpm_speedy at mail.berlios.de  Wed Jun  4 15:36:01 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Wed, 04 Jun 2008 15:36:01 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include misc-apps.inc, 1.18,
+	1.19
+Message-ID: <48469A41.mailF1Y1X4A79@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv19093/include
+
+Modified Files:
+	misc-apps.inc 
+Log Message:
+fixes and patches to allow things to work under Fedora 9
+
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.18
+retrieving revision 1.19
+diff -u -r1.18 -r1.19
+--- misc-apps.inc	25 May 2008 17:57:15 -0000	1.18
++++ misc-apps.inc	4 Jun 2008 13:35:59 -0000	1.19
+@@ -69,12 +69,12 @@
+ 
+ APPLET_LIST += CALCOO
+ 
+-FOTOX_NAME=fotox
+-FOTOX_VERSION=0.43
+-FOTOX_TAR=$(FOTOX_NAME).43.tar.gz
+-FOTOX_URL=http://kornelix.squarespace.com/storage/fotox/$(FOTOX_TAR)
++FOTOXX_NAME=fotoxx
++FOTOXX_VERSION=4.5
++FOTOXX_TAR=$(FOTOXX_NAME)-$(FOTOXX_VERSION).tar.gz
++FOTOXX_URL=http://kornelix.squarespace.com/storage/programs/$(FOTOXX_NAME)/$(FOTOXX_TAR)
+ 
+-APPLET_LIST += FOTOX
++APPLET_LIST += FOTOXX
+ 
+ LIBDOCKAPP_NAME=libdockapp
+ LIBDOCKAPP_VERSION=0.6.1
+
+
+
+From rpm_speedy at mail.berlios.de  Wed Jun  4 15:36:01 2008
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Wed, 04 Jun 2008 15:36:01 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS fotoxx.spec, NONE,
+ 1.1  AfterStep.spec, 1.60, 1.61 Temperature.app.spec, 1.8,
+ 1.9  asfsm_lite.spec, 1.5, 1.6 aterm.spec, 1.24, 1.25 rxvt-unicode.spec, 1.5,
+ 1.6  fotox.spec, 1.1, NONE
+Message-ID: <48469A41.mailF1R1AIYFV@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv19093/SPECS
+
+Modified Files:
+	AfterStep.spec Temperature.app.spec asfsm_lite.spec aterm.spec 
+	rxvt-unicode.spec 
+Added Files:
+	fotoxx.spec 
+Removed Files:
+	fotox.spec 
+Log Message:
+fixes and patches to allow things to work under Fedora 9
+
+
+--- NEW FILE: fotoxx.spec ---
+%define name fotoxx
+%define version 4.5
+%define release 1%{?dist}
+
+Summary: application for processing image files from a digital camera
+Name: %name
+Version: %version
+Release: %release
+License: GPLv2
+Group: Applications/Multimedia
+URL: http://kornelix.squarespace.com/%{name}/
+Source0: http://kornelix.squarespace.com/storage/programs/%{name}/%{name}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Requires: gtk2 atk cairo pango libpng exiv2 libstdc++
+Buildrequires: gtk2-devel atk-devel cairo-devel pango-devel libpng-devel libstdc++-devel
+Obsoletes: fotox
+
+%description
+Fotoxx is a free open-source Linux program for improving image files
+made with a digital camera.
+
+ The following functions are provided:
+
+    * Show thumbnails of image files in a directory, navigate, choose
+      files to view or edit.
+    * Adjust overexposed or underexposed areas to improve visibility
+      of detail (change brightness independently for different
+      brightness levels).
+    * Reduce fog or haze by removing "whiteness" and intensifying
+      colors.
+    * Edit whole image or an arbitrary area outlined with the mouse.
+    * High dynamic range (HDR) photography: combine an underexposed
+      and overexposed image to improve details visible in both bright
+      and dark areas. Automatic image alignment.
+    * Photo stitching or panorama: stitch two or more images together
+      to make an ultra-wide image.
+    * Simple image alignment and brightness / color matching.
+    * Crop an image (choose the area of interest and cut-off the
+      margins).
+    * Rotate an image by any angle (level a tilted image, or turn in
+      90 degree steps).
+    * Resize an image, with convenience buttons for 2/3, 1/2, 1/3 and
+      1/4 size.
+    * Red-eye removal.
+
+%prep
+%setup -n fotoxx
+
+%build
+rm -rf $RPM_BUILD_ROOT
+
+make PREFIX=%{_prefix} DOCDIR=%{_datadir}/doc/%{name}-%{version}
+
+%install
+make install DESTDIR=$RPM_BUILD_ROOT PREFIX=%{_prefix} DOCDIR=%{_datadir}/doc/%{name}-%{version}
+
+#Install application link for X-Windows
+echo -e "[Desktop Entry]
+Name=Fotoxx Digital Image Editor
+Comment=Edit and improve digital camera image files
+Exec=fotoxx
+Icon=fotoxx.png
+Terminal=false
+Encoding=UTF-8
+Type=Application" > %{name}.desktop
+                                                                                
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
+desktop-file-install --vendor "" --delete-original \
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications                   \
+  --add-category X-Red-Hat-Extra                                  \
+  --add-category GTK                                              \
+  --add-category 2DGraphics                                       \
+  --add-category Graphics	                                  \
+  %{name}.desktop
+
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/
+install -m 644 data/icons/fotoxx.png $RPM_BUILD_ROOT%{_datadir}/pixmaps/
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root,-)
+%doc doc/*
+%{_bindir}/%{name}
+%{_datadir}/applications/*.desktop
+%{_datadir}/%{name}/*.xtext
+%{_datadir}/%{name}/icons/*
+%{_datadir}/pixmaps/*.png
+
+%changelog
+* Tue Jun 03 2008 J. Krebs <rpm_speedy at yahoo.com> - 4.5-1
+- new version, application name changed from fotox to fotoxx.
+
+* Sun May 25 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.44-1
+- new version.
+
+* Thu May 22 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.43-1
+- new version.
+
+* Mon Apr 21 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.41-1
+- new version.
+
+* Sat Apr 18 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.40-1
+- new version.
+
+* Sat Apr 12 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.39-1
+- new version.
+
+* Sun Mar 09 2008 J. Krebs <rpm_speedy at yahoo.com> - 0.37-1
+- Initial build.
+
+Index: AfterStep.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/AfterStep.spec,v
+retrieving revision 1.60
+retrieving revision 1.61
+diff -u -r1.60 -r1.61
+--- AfterStep.spec	25 May 2008 14:49:04 -0000	1.60
++++ AfterStep.spec	4 Jun 2008 13:35:59 -0000	1.61
+@@ -42,9 +42,9 @@
+ %define	version	2.2.8
+ %define	libaiver	1.17
+ %define	libabver	1.12
+-%define	libairel	2%{?dist}
+-%define	libabrel	2%{?dist}
+-%define release 2%{?dist}
++%define	libairel	3%{?dist}
++%define	libabrel	3%{?dist}
++%define release 3%{?dist}
+ %define epoch 20
+ 
+ Summary:	AfterStep Window Manager (NeXTalike)
+@@ -81,7 +81,7 @@
+ Requires: 	libAfterImage = %{epoch}:%{libaiver}-%libairel
+ Requires:	readline
+ Requires:	gtk2, gtk2-devel
+-Requires:	qiv
++Requires:	feh
+ Requires:	libXt
+ BuildRequires:  readline-devel
+ BuildRequires:  gtk2-devel
+@@ -214,7 +214,7 @@
+ 	--enable-i18n                             \
+ 	--with-helpcommand="xterm -e man"         \
+ 	--with-desktops=2 --with-deskgeometry=2x2 \
+-	--with-imageloader="qiv --root"
++	--with-imageloader="feh --bg-center"
+ 
+ make
+ 
+@@ -413,6 +413,9 @@
+ if [ -x /usr/sbin/fndSession ]; then /usr/sbin/fndSession || true ; fi
+ 
+ %changelog
++* Sat May 31 2008 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.8-3
++- Changed image loader from qiv to feh.
++
+ * Mon Mar 24 2008 J. Krebs <rpm_speedy at yahoo.com> - 20:2.2.8-2
+ - Pager fix added to fix issues when swallowed by Wharf.
+ 
+
+Index: Temperature.app.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/Temperature.app.spec,v
+retrieving revision 1.8
+retrieving revision 1.9
+diff -u -r1.8 -r1.9
+--- Temperature.app.spec	7 Mar 2008 03:28:42 -0000	1.8
++++ Temperature.app.spec	4 Jun 2008 13:35:59 -0000	1.9
+@@ -12,6 +12,7 @@
+ Source0: http://www.fukt.bth.se/~per/temperature/%{name}-%{version}.tar.gz
+ Patch0: Temperature.app-1.4.as.patch
+ Patch1: Temperature.app-1.4-frog-5.patch
++Patch2: Temperature.app-1.4-xpm.patch
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ Requires: wget xorg-x11-fonts-ISO8859-1-75dpi xorg-x11-fonts-ISO8859-1-100dpi
+ 
+@@ -40,6 +41,7 @@
+ 
+ %patch1 -p1 -b .frog
+ %patch0 -p1 -b .as
++%patch2
+ 
+ %build
+ make
+
+Index: asfsm_lite.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/asfsm_lite.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- asfsm_lite.spec	27 Apr 2007 16:09:17 -0000	1.5
++++ asfsm_lite.spec	4 Jun 2008 13:35:59 -0000	1.6
+@@ -1,6 +1,6 @@
+ %define name asfsm_lite
+ %define version 1.0.0
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: File system monitor
+ Name: %name
+@@ -11,6 +11,8 @@
+ URL: http://tigr.net/afterstep/view.php?applet=asfsm_lite/data
+ Source0: http://tigr.net/afterstep/download/%{name}/%{name}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
++Requires: libXaw
++BuildRequires: libXaw-devel
+ 
+ %description
+ A swallowable applet monitors the file system space.
+@@ -42,6 +44,9 @@
+ 
+ 
+ %changelog
++* Mon May 26 2008 J. Krebs <rpm_speedy at yahoo.com> - 1.0.0-5
++- added build require for libXaw-devel.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.0.0-4
+ - added distro info to release.
+ 
+
+Index: aterm.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/aterm.spec,v
+retrieving revision 1.24
+retrieving revision 1.25
+diff -u -r1.24 -r1.25
+--- aterm.spec	9 Nov 2007 16:15:08 -0000	1.24
++++ aterm.spec	4 Jun 2008 13:35:59 -0000	1.25
+@@ -2,7 +2,7 @@
+ %define aiver	%aitest 
+ %define	name	aterm
+ %define	version	1.0.1
+-%define	release	3%{?dist}
++%define	release	4%{?dist}
+ %define epoch	2
+ 
+ Summary:	aterm - terminal emulator in an X window
+@@ -15,6 +15,7 @@
+ URL:		http://aterm.sourceforge.net
+ Patch0:		%{name}-%{version}-main.c.patch
+ Patch1:		%{name}-%{version}-screen.c.patch
++Patch2:		%{name}-%{version}-stropts.h.patch
+ Source:		ftp://ftp.afterstep.org/apps/aterm/%{name}-%{version}.tar.gz
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires:	libAfterImage-devel
+@@ -35,15 +36,15 @@
+ %setup -q
+ %patch0
+ %patch1
++%patch2
+ 
+-LD_LIBRARY_PATH=../AfterStep-%{asversion}/libAfterBase \
+-        CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix} \
++CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix} \
+ 	--enable-utmp --enable-background-image --with-term=rxvt \
+ 	--enable-transparency --enable-graphics --disable-backspace-key \
+ 	--disable-delete-key --enable-xgetdefault --mandir=%{_mandir}
+ 
+ %build
+-LD_LIBRARY_PATH=../AfterStep-%{asversion}/libAfterBase make
++make
+ 
+ %install
+ [ -d $RPM_BUILD_ROOT ] && rm -rf $RPM_BUILD_ROOT;
+@@ -81,6 +82,10 @@
+ #%config(missingok) /etc/X11/wmconfig/aterm
+ 
+ %changelog
++* Mon Jun 02 2008 J. Krebs <rpm_speedy at yahoo.com> 2:1.0.1-4
++- cleaned-up LD_LIBRARY_PATH info.
++- added patch for stropts.h - Fedora 9 and later don't ship it.
++
+ * Fri Nov 09 2007 J. Krebs <rpm_speedy at yahoo.com> 2:1.0.1-3
+ - added patches for cut and paste, borderless.
+ 
+
+Index: rxvt-unicode.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/rxvt-unicode.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- rxvt-unicode.spec	7 Mar 2008 03:28:42 -0000	1.5
++++ rxvt-unicode.spec	4 Jun 2008 13:35:59 -0000	1.6
+@@ -1,7 +1,7 @@
+ %define aitest	%(rpm -q --queryformat='%{VERSION}' libAfterImage)
+ %define aiver	%aitest 
+ %define version 9.02
+-%define release 1%{?dist}
++%define release 2%{?dist}
+ %define name	rxvt-unicode
+ %define epoch	2
+ 
+@@ -14,6 +14,7 @@
+ Group:		User Interface/X
+ URL:		http://software.schmorp.de/pkg/rxvt-unicode.html
+ Source0:	http://dist.schmorp.de/rxvt-unicode/%{name}-%{version}.tar.bz2
++Patch0:		%{name}-%{version}-stropts.h.patch
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires:	perl-devel libXpm-devel libXft-devel freetype-devel
+ BuildRequires:	libAfterImage-devel >= 1.15
+@@ -39,6 +40,7 @@
+ 
+ %prep
+ %setup -q
++%patch0
+ 
+ %build
+ 
+@@ -84,23 +86,26 @@
+ %{_libdir}/urxvt
+ 
+ %changelog
+-* Fri Feb 02 2008 J. Krebs <rpm_speedy at yahoo.com> - 2:9.02
++* Mon Jun 02 2008 J. Krebs <rpm_speedy at yahoo.com> - 2:9.02-2
++- added patch for stropts.h - Fedora 9 and later don't ship it.
++
++* Fri Feb 02 2008 J. Krebs <rpm_speedy at yahoo.com> - 2:9.02-1
+ - new version.
+ 
+-* Fri Jan 25 2008 J. Krebs <rpm_speedy at yahoo.com> - 2:9.0
++* Fri Jan 25 2008 J. Krebs <rpm_speedy at yahoo.com> - 2:9.0-1
+ - new version.
+ 
+-* Mon Dec 24 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.9
++* Mon Dec 24 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.9-1
+ - new version.
+ 
+-* Sat Dec 15 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.8
++* Sat Dec 15 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.8-1
+ - new version.
+ 
+-* Sun Nov 25 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.7
++* Sun Nov 25 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.7-1
+ - new version.
+ 
+-* Sat Oct 27 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.4
++* Sat Oct 27 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.4-1
+ - new version.
+ 
+-* Tue Aug 21 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.3
++* Tue Aug 21 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.3-1
+ - initial build.
+
+--- fotox.spec DELETED ---
+
+
+

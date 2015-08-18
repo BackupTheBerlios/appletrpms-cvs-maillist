@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/include as-apps.inc, 1.10, 1.11  core-apps.inc, 1.17, 1.18
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/include%20as-apps.inc%2C%201.10%2C%0A%201.11%20%20core-apps.inc%2C%201.17%2C%201.18&In-Reply-To=%3C46322030.mail5AK11V86J%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000008.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/include as-apps.inc, 1.10, 1.11  core-apps.inc, 1.17, 1.18</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/include%20as-apps.inc%2C%201.10%2C%0A%201.11%20%20core-apps.inc%2C%201.17%2C%201.18&In-Reply-To=%3C46322030.mail5AK11V86J%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/include as-apps.inc, 1.10, 1.11  core-apps.inc, 1.17, 1.18">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Fri Apr 27 18:09:20 CEST 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000008.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.49,	1.50
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#7">[ date ]</a>
+              <a href="thread.html#7">[ thread ]</a>
+              <a href="subject.html#7">[ subject ]</a>
+              <a href="author.html#7">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv6658/include
+
+Modified Files:
+	as-apps.inc core-apps.inc 
+Log Message:
+added {?dist} tag, new versions of AfterStep, asmem, asmail.
+
+
+Index: as-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/as-apps.inc,v
+retrieving revision 1.10
+retrieving revision 1.11
+diff -u -r1.10 -r1.11
+--- as-apps.inc	4 Mar 2007 15:46:13 -0000	1.10
++++ as-apps.inc	27 Apr 2007 16:09:18 -0000	1.11
+@@ -45,14 +45,14 @@
+ APPLET_LIST += ASLOAD
+ 
+ ASMAIL_NAME=asmail
+-ASMAIL_VERSION=2.0
++ASMAIL_VERSION=2.1
+ ASMAIL_TAR=$(ASMAIL_NAME)-$(ASMAIL_VERSION).tar.gz
+ ASMAIL_URL=<A HREF="http://tigr.net/afterstep/download/$(ASMAIL_NAME">http://tigr.net/afterstep/download/$(ASMAIL_NAME</A>)/$(ASMAIL_TAR)
+ 
+ APPLET_LIST += ASMAIL
+ 
+ ASMEM_NAME=asmem
+-ASMEM_VERSION=1.10
++ASMEM_VERSION=1.12
+ ASMEM_TAR=$(ASMEM_NAME)-$(ASMEM_VERSION).tar.gz
+ ASMEM_URL=<A HREF="http://tigr.net/afterstep/download/$(ASMEM_NAME">http://tigr.net/afterstep/download/$(ASMEM_NAME</A>)/$(ASMEM_TAR)
+ 
+
+Index: core-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/core-apps.inc,v
+retrieving revision 1.17
+retrieving revision 1.18
+diff -u -r1.17 -r1.18
+--- core-apps.inc	25 Nov 2006 18:47:08 -0000	1.17
++++ core-apps.inc	27 Apr 2007 16:09:18 -0000	1.18
+@@ -3,7 +3,7 @@
+ # This is for the core, like AfterStep itself
+ 
+ AFTERSTEP_NAME=AfterStep
+-AFTERSTEP_VERSION=2.2.4
++AFTERSTEP_VERSION=2.2.5
+ AFTERSTEP_TAR=$(AFTERSTEP_NAME)-$(AFTERSTEP_VERSION).tar.gz
+ AFTERSTEP_URL=<A HREF="ftp://ftp.afterstep.org/stable/$(AFTERSTEP_TAR">ftp://ftp.afterstep.org/stable/$(AFTERSTEP_TAR</A>)
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000008.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.49,	1.50
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#7">[ date ]</a>
+              <a href="thread.html#7">[ thread ]</a>
+              <a href="subject.html#7">[ subject ]</a>
+              <a href="author.html#7">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

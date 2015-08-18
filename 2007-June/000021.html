@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Appletrpms-cvs] CVS: afterapps-specs/SPECS bubblemon-dockapp.spec, 1.10, 1.11  wmcalendar.spec, 1.16, 1.17 wmclockmon.spec, 1.9, 1.10 wmfishtime.spec, 1.5, 1.6
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/appletrpms-cvs/2007-June/index.html" >
+   <LINK REL="made" HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20bubblemon-dockapp.spec%2C%0A%201.10%2C%201.11%20%20wmcalendar.spec%2C%201.16%2C%201.17%20wmclockmon.spec%2C%201.9%2C%0A%201.10%20wmfishtime.spec%2C%201.5%2C%201.6&In-Reply-To=%3C46736CD1.mailFYV117G7M%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000020.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Appletrpms-cvs] CVS: afterapps-specs/SPECS bubblemon-dockapp.spec, 1.10, 1.11  wmcalendar.spec, 1.16, 1.17 wmclockmon.spec, 1.9, 1.10 wmfishtime.spec, 1.5, 1.6</H1>
+    <B>rpm_speedy at BerliOS</B> 
+    <A HREF="mailto:appletrpms-cvs%40lists.berlios.de?Subject=Re%3A%20%5BAppletrpms-cvs%5D%20CVS%3A%20afterapps-specs/SPECS%20bubblemon-dockapp.spec%2C%0A%201.10%2C%201.11%20%20wmcalendar.spec%2C%201.16%2C%201.17%20wmclockmon.spec%2C%201.9%2C%0A%201.10%20wmfishtime.spec%2C%201.5%2C%201.6&In-Reply-To=%3C46736CD1.mailFYV117G7M%40sheep.berlios.de%3E"
+       TITLE="[Appletrpms-cvs] CVS: afterapps-specs/SPECS bubblemon-dockapp.spec, 1.10, 1.11  wmcalendar.spec, 1.16, 1.17 wmclockmon.spec, 1.9, 1.10 wmfishtime.spec, 1.5, 1.6">rpm_speedy at mail.berlios.de
+       </A><BR>
+    <I>Sat Jun 16 06:53:37 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000020.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.54, 1.55  wmwifi.spec, 1.6, 1.7
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#21">[ date ]</a>
+              <a href="thread.html#21">[ thread ]</a>
+              <a href="subject.html#21">[ subject ]</a>
+              <a href="author.html#21">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv20295/SPECS
+
+Modified Files:
+	bubblemon-dockapp.spec wmcalendar.spec wmclockmon.spec 
+	wmfishtime.spec 
+Log Message:
+added dependencies and cleanup.
+
+
+Index: bubblemon-dockapp.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/bubblemon-dockapp.spec,v
+retrieving revision 1.10
+retrieving revision 1.11
+diff -u -r1.10 -r1.11
+--- bubblemon-dockapp.spec	27 Apr 2007 16:09:18 -0000	1.10
++++ bubblemon-dockapp.spec	16 Jun 2007 04:53:34 -0000	1.11
+@@ -25,7 +25,7 @@
+ 
+ %define name bubblemon-dockapp
+ %define version 1.46
+-%define release 5%{?dist}
++%define release 6%{?dist}
+ 
+ Summary: system monitoring dockapp based-on GNOME BubbleMon
+ Name: %name
+@@ -37,9 +37,13 @@
+ Source0: <A HREF="http://www.ne.jp/asahi/linux/timecop/software/%{name">http://www.ne.jp/asahi/linux/timecop/software/%{name</A>}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ %if %{mdk}
+-Requires: libgtk+1.2-devel
++Requires: libgtk+1.2
++Buildrequires: libgtk+1.2-devel
+ %endif
+ %if %{fedora}
++Requires: gtk+
++Requires: gdk-pixbuf
++BuildRequires: gtk+-devel
+ BuildRequires: gdk-pixbuf-devel
+ %endif
+ 
+@@ -81,6 +85,9 @@
+ %doc ChangeLog INSTALL README SUPPORTED_SYSTEMS doc/COPYING doc/Xdefaults.sample
+ 
+ %changelog
++* Fri Jun 15 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.46-6
++- added require for gtk+-devel, gtk+.
++
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.46-5
+ - added distro info to release.
+ 
+
+Index: wmcalendar.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmcalendar.spec,v
+retrieving revision 1.16
+retrieving revision 1.17
+diff -u -r1.16 -r1.17
+--- wmcalendar.spec	27 Apr 2007 16:09:18 -0000	1.16
++++ wmcalendar.spec	16 Jun 2007 04:53:34 -0000	1.17
+@@ -25,7 +25,7 @@
+ 
+ %define name wmcalendar
+ %define version 0.5.2
+-%define release 2%{?dist}
++%define release 3%{?dist}
+ 
+ Summary: wmCalendar is a calendar dockapp
+ Name: %name
+@@ -37,7 +37,6 @@
+ Source0: <A HREF="http://easynews.dl.sourceforge.net/sourceforge/%{name">http://easynews.dl.sourceforge.net/sourceforge/%{name</A>}/%{name}-%{version}.tar.gz
+ Source1: %{name}.ogo2ical
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-Buildrequires: libical
+ Requires: libical
+ Buildrequires: libical-devel
+ 
+@@ -89,6 +88,9 @@
+ 
+ 
+ %changelog
++* Fri Jun  15 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.5.2-3
++- spec file cleanup.
++
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.5.2-2
+ - added distro info to release.
+ 
+
+Index: wmclockmon.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmclockmon.spec,v
+retrieving revision 1.9
+retrieving revision 1.10
+diff -u -r1.9 -r1.10
+--- wmclockmon.spec	27 Apr 2007 16:09:18 -0000	1.9
++++ wmclockmon.spec	16 Jun 2007 04:53:34 -0000	1.10
+@@ -1,6 +1,31 @@
++### BEGIN Distro Defines
++%define mdk  %(if [ -e /etc/mandrake-release ]; then echo 1; else echo 0; fi;)
++%{?_with_mdk:   %{expand: %%global mdk 1}}
++
++%define fedora  %(if [ -e /etc/fedora-release ]; then echo 1; else echo 0; fi;)
++%{?_with_fedora:   %{expand: %%global fedora 1}}
++
++%define suse %(if [ -e /etc/SuSE-release ]; then echo 1; else echo 0; fi;)
++%{?_with_suse:   %{expand: %%global suse 1}}
++
++%define generic 1
++
++%if %{mdk}
++  %define generic 0
++%endif
++
++%if %{fedora}
++  %define generic 0
++%endif
++
++%if %{suse}
++  %define generic 0
++%endif
++### END Distro Definitions
++
+ %define name wmclockmon
+ %define version 0.8.1
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: digital clock with 7 different styles in either LCD or LED style
+ Name: %name
+@@ -11,6 +36,16 @@
+ URL: <A HREF="http://tnemeth.free.fr/projets/dockapps.html">http://tnemeth.free.fr/projets/dockapps.html</A>
+ Source0: <A HREF="http://tnemeth.free.fr/projets/programmes/%{name">http://tnemeth.free.fr/projets/programmes/%{name</A>}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
++%if %{mdk}
++Requires: libgtk+1.2
++Buildrequires: libgtk+1.2-devel
++%endif
++%if %{fedora}
++Requires: gtk+
++Requires: gdk-pixbuf
++BuildRequires: gtk+-devel
++BuildRequires: gdk-pixbuf-devel
++%endif
+ 
+ %description
+ wmclockmon is a nice digital clock with 7 different styles in either
+@@ -50,6 +85,9 @@
+ %doc doc/sample*.wmclockmonrc AUTHORS BUGS COPYING ChangeLog INSTALL NEWS README THANKS TODO
+ 
+ %changelog
++* Fri Jun 15 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.8.1-5
++- added require for gtk+-devel, gtk+.
++
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 0.8.1-4
+ - added distro info to release.
+ 
+
+Index: wmfishtime.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmfishtime.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmfishtime.spec	27 Apr 2007 16:09:18 -0000	1.5
++++ wmfishtime.spec	16 Jun 2007 04:53:34 -0000	1.6
+@@ -1,6 +1,31 @@
++### BEGIN Distro Defines
++%define mdk  %(if [ -e /etc/mandrake-release ]; then echo 1; else echo 0; fi;)
++%{?_with_mdk:   %{expand: %%global mdk 1}}
++
++%define fedora  %(if [ -e /etc/fedora-release ]; then echo 1; else echo 0; fi;)
++%{?_with_fedora:   %{expand: %%global fedora 1}}
++
++%define suse %(if [ -e /etc/SuSE-release ]; then echo 1; else echo 0; fi;)
++%{?_with_suse:   %{expand: %%global suse 1}}
++
++%define generic 1
++
++%if %{mdk}
++  %define generic 0
++%endif
++
++%if %{fedora}
++  %define generic 0
++%endif
++
++%if %{suse}
++  %define generic 0
++%endif
++### END Distro Definitions
++
+ %define name wmfishtime
+ %define version 1.24
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: clock dockapp with fish
+ Name: %name
+@@ -11,6 +36,16 @@
+ URL: <A HREF="http://www.ne.jp/asahi/linux/timecop/">http://www.ne.jp/asahi/linux/timecop/</A>
+ Source0: <A HREF="http://www.ne.jp/asahi/linux/timecop/software/%{name">http://www.ne.jp/asahi/linux/timecop/software/%{name</A>}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
++%if %{mdk}
++Requires: libgtk+1.2
++Buildrequires: libgtk+1.2-devel
++%endif
++%if %{fedora}
++Requires: gtk+
++Requires: gdk-pixbuf
++BuildRequires: gtk+-devel
++BuildRequires: gdk-pixbuf-devel
++%endif
+ 
+ %description
+ Well, this is just your standard time dockapp. Top part has the clock face,
+@@ -48,6 +83,9 @@
+ 
+ 
+ %changelog
++* Fri Jun 15 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.24-5
++- added require for gtk+-devel, gtk+.
++
+ * Fri Apr 13 2007 J. Krebs &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">rpm_speedy at yahoo.com</A>&gt; - 1.24-4
+ - added distro info to release.
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000020.html">[Appletrpms-cvs] CVS: afterapps-specs/SPECS AfterStep.spec, 1.54, 1.55  wmwifi.spec, 1.6, 1.7
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#21">[ date ]</a>
+              <a href="thread.html#21">[ thread ]</a>
+              <a href="subject.html#21">[ subject ]</a>
+              <a href="author.html#21">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/appletrpms-cvs">More information about the Appletrpms-cvs
+mailing list</a><br>
+</body></html>

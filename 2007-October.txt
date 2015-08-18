@@ -1,0 +1,415 @@
+From rpm_speedy at mail.berlios.de  Sun Oct 28 15:56:43 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sun, 28 Oct 2007 15:56:43 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS libAfterImage-NoX.spec,
+ 1.1, 1.2  libical.spec, 1.6, 1.7 rxvt-unicode.spec, 1.2, 1.3 wmcalendar.spec,
+ 1.17, 1.18  wmusic.spec, 1.6, 1.7 wmweather.spec, 1.7, 1.8
+Message-ID: <4724A32B.mail6TQ11YE8K@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv8727/SPECS
+
+Modified Files:
+	libAfterImage-NoX.spec libical.spec rxvt-unicode.spec 
+	wmcalendar.spec wmusic.spec wmweather.spec 
+Log Message:
+updated rxvt-unicode, libical, wmweather versions. libAI logic fix. licenses.
+
+
+Index: libAfterImage-NoX.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/libAfterImage-NoX.spec,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- libAfterImage-NoX.spec	23 Aug 2007 14:24:27 -0000	1.1
++++ libAfterImage-NoX.spec	28 Oct 2007 14:56:40 -0000	1.2
+@@ -1,6 +1,6 @@
+ %define	name 	libAfterImage-NoX
+ %define	version	1.15
+-%define	release	1%{?dist}
++%define	release	2%{?dist}
+ %define	epoch	20
+ 
+ Summary:	A generic image manipulation library (Non-Xfree/Xorg version)
+@@ -8,7 +8,7 @@
+ Version:	%version
+ Release:	%release
+ Epoch:		%epoch
+-License:	GPL
++License:	GPLv2+
+ Group:		System Environment/Libraries
+ Source0:	ftp://ftp.afterstep.org/stable/libAfterImage/libAfterImage-%{version}.tar.gz
+ Source1:	%{name}-COPYING
+@@ -62,7 +62,7 @@
+ Requires:	freetype-devel
+ Requires:	zlib-devel
+ Conflicts:	libX11 libX11-devel xorg-x11-filesystem AfterStep-devel libAfterImage-devel
+-Requires:	libAfterImage-NoX = %{epoch}:%{libaiver}
++Requires:	libAfterImage-NoX = %{epoch}:%{version}
+ Provides:	libAfterImage-devel
+ 
+ %description devel
+@@ -132,5 +132,8 @@
+ %{_includedir}/libAfterImage/*
+ 
+ %changelog
++* Sat Oct 20 2007 J. Krebs <rpm_speedy at yahoo.com> 1.15-2
++- fixed typo in requires for -devel (libaiver wasn't defined).
++
+ * Mon Aug 19 2007 J. Krebs <rpm_speedy at yahoo.com> 1.15-1
+ - initial build.
+
+Index: libical.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/libical.spec,v
+retrieving revision 1.6
+retrieving revision 1.7
+diff -u -r1.6 -r1.7
+--- libical.spec	5 May 2007 04:28:10 -0000	1.6
++++ libical.spec	28 Oct 2007 14:56:40 -0000	1.7
+@@ -1,16 +1,16 @@
+ %define	name	libical
+-%define	version	0.24.RC4
+-%define release 6%{?dist}
++%define	version	0.27
++%define release 1%{?dist}
+ 
+ Summary:	An implementation of basic iCAL protocols
+ Name:		%{name}
+ Version:	%{version}
+ Release:	%{release}
+-License:	MPL
++License:	Dual LGPLv2+ and MPLv1.0
+ Group:		Development/Libraries/C and C++
+ URL:		http://softwarestudio.org/libical/
+ Source0:	http://easynews.dl.sourceforge.net/sourceforge/freeassociation/%name-%version.tar.gz
+-Patch0:		%name.diff
++#Patch0:		%name.diff
+ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ 
+ %description
+@@ -28,31 +28,30 @@
+ libical include files.
+ 
+ %prep
+-%setup -q -n %{name}-0.24
+-%patch0
++%setup -q
++#%patch0
+ 
+ %build
+-autoreconf -f -i
+-CFLAGS="$RPM_OPT_FLAGS" \
+-CXXFLAGS="$RPM_OPT_FLAGS" \
+-  ./configure \
++ 
++./configure \
+      --prefix=%{_prefix} \
+      --exec-prefix=%{_prefix} \
+-     --libdir=%{_libdir} \
+-     --with-devel \
+-     --enable-python
++     --enable-shared \
++     --libdir=%{_libdir}
++
+ make
+ 
+ %install
+-make install DESTDIR=$RPM_BUILD_ROOT
+ rm -rf examples/.deps/
+ rm -rf examples/.libs
+-rm examples/*.o
++
++make install DESTDIR=$RPM_BUILD_ROOT
++
+ mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}/scripts/
+ install -m 644 scripts/*.pl $RPM_BUILD_ROOT%{_datadir}/%{name}/scripts/
+-rm -rf doc/Makefil*
+-rm -rf examples/Makefil*
+-rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/scripts/
++#rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/scripts/
++rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/doc/Makefil*
++rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}/examples/Makefil*
+ 
+ %clean
+ rm -rf $RPM_BUILD_ROOT
+@@ -76,6 +75,9 @@
+ %postun -p /sbin/ldconfig
+ 
+ %changelog
++* Thu Oct 11 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.27-1
++- new version.
++
+ * Fri May 04 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.24.RC4-6
+ - added rpm macro libdir to configure.
+ 
+
+Index: rxvt-unicode.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/rxvt-unicode.spec,v
+retrieving revision 1.2
+retrieving revision 1.3
+diff -u -r1.2 -r1.3
+--- rxvt-unicode.spec	23 Aug 2007 17:07:01 -0000	1.2
++++ rxvt-unicode.spec	28 Oct 2007 14:56:40 -0000	1.3
+@@ -1,6 +1,6 @@
+ %define aitest	%(rpm -q --queryformat='%{VERSION}' libAfterImage)
+ %define aiver	%aitest 
+-%define version 8.3
++%define version 8.4
+ %define release 1%{?dist}
+ %define name	rxvt-unicode
+ %define epoch	2
+@@ -10,7 +10,7 @@
+ Version:	%version
+ Release:	%release
+ Epoch:		%epoch
+-License:	GPL
++License:	GPLv2+
+ Group:		User Interface/X
+ URL:		http://software.schmorp.de/pkg/rxvt-unicode.html
+ Source0:	http://dist.schmorp.de/rxvt-unicode/%{name}-%{version}.tar.bz2
+@@ -84,5 +84,8 @@
+ %{_libdir}/urxvt
+ 
+ %changelog
++* Sat Oct 27 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.4
++- new version.
++
+ * Tue Aug 21 2007 J. Krebs <rpm_speedy at yahoo.com> - 2:8.3
+ - initial build.
+
+Index: wmcalendar.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmcalendar.spec,v
+retrieving revision 1.17
+retrieving revision 1.18
+diff -u -r1.17 -r1.18
+--- wmcalendar.spec	16 Jun 2007 04:53:34 -0000	1.17
++++ wmcalendar.spec	28 Oct 2007 14:56:40 -0000	1.18
+@@ -1,43 +1,20 @@
+-### BEGIN Distro Defines
+-%define mdk  %(if [ -e /etc/mandrake-release ]; then echo 1; else echo 0; fi;)
+-%{?_with_mdk:   %{expand: %%global mdk 1}}
+-
+-%define fedora  %(if [ -e /etc/fedora-release ]; then echo 1; else echo 0; fi;)
+-%{?_with_fedora:   %{expand: %%global fedora 1}}
+-
+-%define suse %(if [ -e /etc/SuSE-release ]; then echo 1; else echo 0; fi;)
+-%{?_with_suse:   %{expand: %%global suse 1}}
+-
+-%define generic 1
+-
+-%if %{mdk}
+-  %define generic 0
+-%endif
+-
+-%if %{fedora}
+-  %define generic 0
+-%endif
+-
+-%if %{suse}
+-  %define generic 0
+-%endif
+-### END Distro Definitions
+-
++%define lictest	%(rpm -q --queryformat='%{VERSION}' libical)
++%define licver	%lictest 
+ %define name wmcalendar
+ %define version 0.5.2
+-%define release 3%{?dist}
++%define release 4%{?dist}
+ 
+ Summary: wmCalendar is a calendar dockapp
+ Name: %name
+ Version: %version
+ Release: %release
+-License: GPL
++License: GPLv2+
+ Group: AfterStep/Applets
+ URL: http://sourceforge.net/projects/wmcalendar/
+ Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
+ Source1: %{name}.ogo2ical
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+-Requires: libical
++Requires: libical >= %{licver}
+ Buildrequires: libical-devel
+ 
+ %description
+@@ -88,7 +65,10 @@
+ 
+ 
+ %changelog
+-* Fri Jun  15 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.5.2-3
++* Fri Oct 12 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.5.2-4
++- added test for libical version, updated for libical 0.27.
++
++* Fri Jun 15 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.5.2-3
+ - spec file cleanup.
+ 
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 0.5.2-2
+
+Index: wmusic.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmusic.spec,v
+retrieving revision 1.6
+retrieving revision 1.7
+diff -u -r1.6 -r1.7
+--- wmusic.spec	30 Sep 2007 13:42:31 -0000	1.6
++++ wmusic.spec	28 Oct 2007 14:56:40 -0000	1.7
+@@ -7,7 +7,7 @@
+ Name: %name
+ Version: %version
+ Release: %release
+-License: GPL
++License: GPLv2+
+ Group: AfterStep/Applets
+ URL: http://home.jtan.com/~john/wmusic/
+ Source0: ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name}-%{version}.tar.gz
+
+Index: wmweather.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmweather.spec,v
+retrieving revision 1.7
+retrieving revision 1.8
+diff -u -r1.7 -r1.8
+--- wmweather.spec	30 Sep 2007 13:42:31 -0000	1.7
++++ wmweather.spec	28 Oct 2007 14:56:40 -0000	1.8
+@@ -6,7 +6,7 @@
+ Name: %name
+ Version: %version
+ Release: %release
+-License: GPL
++License: GPLv2+
+ Group: AfterStep/Applets
+ URL: http://www.godisch.de/debian/wmweather/
+ Source0: http://www.godisch.de/debian/%{name}/%{name}-%{version}.tar.gz
+
+
+
+From rpm_speedy at mail.berlios.de  Sun Oct 28 15:56:43 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sun, 28 Oct 2007 15:56:43 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include core-apps.inc, 1.20,
+ 1.21  misc-apps.inc, 1.14, 1.15
+Message-ID: <4724A32B.mail6TX1Z1IKM@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv8727/include
+
+Modified Files:
+	core-apps.inc misc-apps.inc 
+Log Message:
+updated rxvt-unicode, libical, wmweather versions. libAI logic fix. licenses.
+
+
+Index: core-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/core-apps.inc,v
+retrieving revision 1.20
+retrieving revision 1.21
+diff -u -r1.20 -r1.21
+--- core-apps.inc	23 Aug 2007 14:24:27 -0000	1.20
++++ core-apps.inc	28 Oct 2007 14:56:41 -0000	1.21
+@@ -24,7 +24,7 @@
+ APPLET_LIST += LIBAFTERIMAGE-NOX
+ 
+ RXVT-UNICODE_NAME=rxvt-unicode
+-RXVT-UNICODE_VERSION=8.3
++RXVT-UNICODE_VERSION=8.4
+ RXVT-UNICODE_TAR=$(RXVT-UNICODE_NAME)-$(RXVT-UNICODE_VERSION).tar.bz2
+ RXVT-UNICODE_URL=http://dist.schmorp.de/$(RXVT-UNICODE_NAME)/$(RXVT-UNICODE_TAR)
+ 
+
+Index: misc-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/misc-apps.inc,v
+retrieving revision 1.14
+retrieving revision 1.15
+diff -u -r1.14 -r1.15
+--- misc-apps.inc	23 Aug 2007 14:24:27 -0000	1.14
++++ misc-apps.inc	28 Oct 2007 14:56:41 -0000	1.15
+@@ -70,7 +70,7 @@
+ APPLET_LIST += LIBDOCKAPP
+ 
+ LIBICAL_NAME=libical
+-LIBICAL_VERSION=0.24.RC4
++LIBICAL_VERSION=0.27
+ LIBICAL_TAR=$(LIBICAL_NAME)-$(LIBICAL_VERSION).tar.gz
+ LIBICAL_URL=http://easynews.dl.sourceforge.net/sourceforge/freeassociation/$(LIBICAL_TAR)
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Sun Oct 28 17:05:05 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sun, 28 Oct 2007 17:05:05 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include wm-apps.inc, 1.47,
+	1.48
+Message-ID: <4724B331.mailAQF1162LQ@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv13833/include
+
+Modified Files:
+	wm-apps.inc 
+Log Message:
+changed paths to wmweather source tarball.
+
+
+Index: wm-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/wm-apps.inc,v
+retrieving revision 1.47
+retrieving revision 1.48
+diff -u -r1.47 -r1.48
+--- wm-apps.inc	30 Sep 2007 13:42:31 -0000	1.47
++++ wm-apps.inc	28 Oct 2007 16:05:03 -0000	1.48
+@@ -278,7 +278,7 @@
+ WMWEATHER_NAME=wmweather
+ WMWEATHER_VERSION=2.4.4
+ WMWEATHER_TAR=$(WMWEATHER_NAME)-$(WMWEATHER_VERSION).tar.gz
+-WMWEATHER_URL=http://www.godisch.de/debian/$(WMWEATHER_NAME)/$(WMWEATHER_TAR)
++WMWEATHER_URL=http://people.debian.org/~godisch/debian/$(WMWEATHER_NAME)/$(WMWEATHER_TAR)
+ 
+ APPLET_LIST += WMWEATHER
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Sun Oct 28 17:05:05 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sun, 28 Oct 2007 17:05:05 +0100
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS wmweather.spec, 1.8, 1.9
+Message-ID: <4724B331.mailAQA1131GE@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv13833/SPECS
+
+Modified Files:
+	wmweather.spec 
+Log Message:
+changed paths to wmweather source tarball.
+
+
+Index: wmweather.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmweather.spec,v
+retrieving revision 1.8
+retrieving revision 1.9
+diff -u -r1.8 -r1.9
+--- wmweather.spec	28 Oct 2007 14:56:40 -0000	1.8
++++ wmweather.spec	28 Oct 2007 16:05:03 -0000	1.9
+@@ -9,7 +9,7 @@
+ License: GPLv2+
+ Group: AfterStep/Applets
+ URL: http://www.godisch.de/debian/wmweather/
+-Source0: http://www.godisch.de/debian/%{name}/%{name}-%{version}.tar.gz
++Source0: http://people.debian.org/~godisch/debian/%{name}/%{name}-%{version}.tar.gz
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires: curl-devel
+ Requires: curl
+
+
+

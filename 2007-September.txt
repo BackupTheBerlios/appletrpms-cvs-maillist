@@ -1,0 +1,169 @@
+From rpm_speedy at mail.berlios.de  Sat Sep  1 04:38:29 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sat, 01 Sep 2007 04:38:29 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SOURCES
+ AfterStep-2.2.4.Pulse.icon, 1.1, NONE  AfterStep-2.2.4.Worker.icon, 1.1,
+ NONE  AfterStep-2.2.4.disableKDEglobals.patch, 1.1,
+ NONE  AfterStep-2.2.4.menu.pictures.patch, 1.1,
+ NONE  AfterStep-2.2.4.update.patches, 1.1, NONE AfterStep-2.2.5-MMX.patch,
+ 1.1, NONE  AfterStep-2.2.5-Propaganda-setup.tar.gz, 1.1,
+ NONE  AfterStep-2.2.6-ttf.patch, 1.1, NONE
+Message-ID: <46D8D0A5.mailHTO11538L@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SOURCES
+In directory sheep:/tmp/cvs-serv23035
+
+Removed Files:
+	AfterStep-2.2.4.Pulse.icon AfterStep-2.2.4.Worker.icon 
+	AfterStep-2.2.4.disableKDEglobals.patch 
+	AfterStep-2.2.4.menu.pictures.patch 
+	AfterStep-2.2.4.update.patches AfterStep-2.2.5-MMX.patch 
+	AfterStep-2.2.5-Propaganda-setup.tar.gz 
+	AfterStep-2.2.6-ttf.patch 
+Log Message:
+Removed old AS patches.
+
+
+--- AfterStep-2.2.4.Pulse.icon DELETED ---
+
+--- AfterStep-2.2.4.Worker.icon DELETED ---
+
+--- AfterStep-2.2.4.disableKDEglobals.patch DELETED ---
+
+--- AfterStep-2.2.4.menu.pictures.patch DELETED ---
+
+--- AfterStep-2.2.4.update.patches DELETED ---
+
+--- AfterStep-2.2.5-MMX.patch DELETED ---
+
+--- AfterStep-2.2.5-Propaganda-setup.tar.gz DELETED ---
+
+--- AfterStep-2.2.6-ttf.patch DELETED ---
+
+
+
+From rpm_speedy at mail.berlios.de  Sun Sep 30 15:42:33 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sun, 30 Sep 2007 15:42:33 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/SPECS wmusic.spec, 1.5,
+ 1.6  wmweather.spec, 1.6, 1.7
+Message-ID: <46FFA7C9.mail1ZH112E4K@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/SPECS
+In directory sheep:/tmp/cvs-serv2490/SPECS
+
+Modified Files:
+	wmusic.spec wmweather.spec 
+Log Message:
+updates, new source paths.
+
+
+Index: wmusic.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmusic.spec,v
+retrieving revision 1.5
+retrieving revision 1.6
+diff -u -r1.5 -r1.6
+--- wmusic.spec	27 Apr 2007 16:09:18 -0000	1.5
++++ wmusic.spec	30 Sep 2007 13:42:31 -0000	1.6
+@@ -1,7 +1,7 @@
+ %define prefix /usr
+ %define name wmusic
+ %define version 1.5.0
+-%define release 4%{?dist}
++%define release 5%{?dist}
+ 
+ Summary: Windowmaker dockapp that remote controls xmms
+ Name: %name
+@@ -10,7 +10,7 @@
+ License: GPL
+ Group: AfterStep/Applets
+ URL: http://home.jtan.com/~john/wmusic/
+-Source0: http://home.jtan.com/~john/wmusic/%{name}-%{version}.tar.gz
++Source0: ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/%{name}-%{version}.tar.gz
+ Requires:   xmms >= 1.0.0
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+ BuildRequires: xmms-devel
+@@ -54,6 +54,9 @@
+ 
+ 
+ %changelog
++* Fri Sep 28 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.5.0-5
++- homepage has disappeared pointed Source0 to ftp.afterstep.org.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 1.5.0-4
+ - added distro info to release.
+ 
+
+Index: wmweather.spec
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/SPECS/wmweather.spec,v
+retrieving revision 1.6
+retrieving revision 1.7
+diff -u -r1.6 -r1.7
+--- wmweather.spec	27 Apr 2007 16:09:18 -0000	1.6
++++ wmweather.spec	30 Sep 2007 13:42:31 -0000	1.7
+@@ -1,6 +1,6 @@
+ %define name wmweather
+-%define version 2.4.3
+-%define release 4%{?dist}
++%define version 2.4.4
++%define release 1%{?dist}
+ 
+ Summary: wmweather is a dockapp that displays the current weather
+ Name: %name
+@@ -48,6 +48,9 @@
+ %doc CHANGES COPYING README src/wmweather.conf
+ 
+ %changelog
++* Fri Sep 28 2007 J. Krebs <rpm_speedy at yahoo.com> - 2.4.4-1
++- new version.
++
+ * Fri Apr 13 2007 J. Krebs <rpm_speedy at yahoo.com> - 2.4.3-4
+ - added distro info to release.
+ 
+
+
+
+From rpm_speedy at mail.berlios.de  Sun Sep 30 15:42:33 2007
+From: rpm_speedy at mail.berlios.de (rpm_speedy at BerliOS)
+Date: Sun, 30 Sep 2007 15:42:33 +0200
+Subject: [Appletrpms-cvs] CVS: afterapps-specs/include wm-apps.inc, 1.46,
+	1.47
+Message-ID: <46FFA7C9.mail1ZL1R0RUW@sheep.berlios.de>
+
+Update of /cvsroot/appletrpms/afterapps-specs/include
+In directory sheep:/tmp/cvs-serv2490/include
+
+Modified Files:
+	wm-apps.inc 
+Log Message:
+updates, new source paths.
+
+
+Index: wm-apps.inc
+===================================================================
+RCS file: /cvsroot/appletrpms/afterapps-specs/include/wm-apps.inc,v
+retrieving revision 1.46
+retrieving revision 1.47
+diff -u -r1.46 -r1.47
+--- wm-apps.inc	27 Aug 2007 17:48:26 -0000	1.46
++++ wm-apps.inc	30 Sep 2007 13:42:31 -0000	1.47
+@@ -271,12 +271,12 @@
+ WMUSIC_NAME=wmusic
+ WMUSIC_VERSION=1.5.0
+ WMUSIC_TAR=$(WMUSIC_NAME)-$(WMUSIC_VERSION).tar.gz
+-WMUSIC_URL=http://home.jtan.com/~john/wmusic/$(WMUSIC_TAR)
++WMUSIC_URL=ftp://ftp.afterstep.org/stable/rpms/misc-tarballs/$(WMUSIC_TAR)
+ 
+ APPLET_LIST += WMUSIC
+ 
+ WMWEATHER_NAME=wmweather
+-WMWEATHER_VERSION=2.4.3
++WMWEATHER_VERSION=2.4.4
+ WMWEATHER_TAR=$(WMWEATHER_NAME)-$(WMWEATHER_VERSION).tar.gz
+ WMWEATHER_URL=http://www.godisch.de/debian/$(WMWEATHER_NAME)/$(WMWEATHER_TAR)
+ 
+
+
+
